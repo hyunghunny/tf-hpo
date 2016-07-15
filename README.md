@@ -23,7 +23,7 @@ This project aims to find the optimal way to select the hyperparameters of Deep 
  
     This project is consisted of two parts:
       * _TrainManager.ipynb_ : control the trainings by the magic command to prevent MemoryExhaustionError
-      * _{DNN architecture}_layer{number}.py_ : Actual code to train a specific DNN
+      * _{DNN architecture}_layer{number}.py_ : Actual python code to train a specific DNN. It requires more arguments to proper execution. See the help (-h) for your information.
       
 
   * __Key Considerations__
