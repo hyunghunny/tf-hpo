@@ -49,7 +49,7 @@ def create_logger():
     #fomatter = logging.Formatter('[%(levelname)s|%(filename)s:%(lineno)s] %(asctime)s > %(message)s')
     file_formatter = logging.Formatter('%(asctime)s, %(message)s')
     # Create handles to redirect the log to each stream and file
-    fileHandler = logging.FileHandler('../logs/mnist-cnn-2.csv')
+    fileHandler = logging.FileHandler('../log/mnist-cnn-2.csv')
     #streamHandler = logging.StreamHandler()
 
     # Set the formatter for each handlers
