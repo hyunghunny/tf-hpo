@@ -27,6 +27,12 @@ import time
 import logging
 import logging.handlers
 
+# Network Parameters
+n_input = 784 # MNIST data input (img shape: 28*28)
+n_classes = 10 # MNIST total classes (0-9 digits)
+neurons = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
+logger = None
+
 # MNIST importer
 def get_mnist():
     # Import MNIST data
@@ -43,7 +49,7 @@ def create_logger():
     #fomatter = logging.Formatter('[%(levelname)s|%(filename)s:%(lineno)s] %(asctime)s > %(message)s')
     file_formatter = logging.Formatter('%(asctime)s, %(message)s')
     # Create handles to redirect the log to each stream and file
-    fileHandler = logging.FileHandler('./logs/mnist-cnn.csv')
+    fileHandler = logging.FileHandler('../logs/mnist-cnn-2.csv')
     #streamHandler = logging.StreamHandler()
 
     # Set the formatter for each handlers
@@ -55,16 +61,16 @@ def create_logger():
     #logger.addHandler(streamHandler)
 
     logger.setLevel(logging.DEBUG)
+    #print "logger created"
     return logger
 
-
-# Network Parameters
-n_input = 784 # MNIST data input (img shape: 28*28)
-n_classes = 10 # MNIST total classes (0-9 digits)
-neurons = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
-logger = create_logger()
-mnist = get_mnist()
-                                                                       
+def delete_logger(logger):
+    handlers = logger.handlers[:]
+    for handler in handlers:
+        handler.close()
+        logger.removeHandler(handler)
+    #print "logger deleted"
+        
 # Create 2 layers conv model with a specific neurons
 def conv_net_2(x, conv_1_output, conv_2_output, fully_output, dropout):
     
@@ -115,14 +121,18 @@ def conv_net_2(x, conv_1_output, conv_2_output, fully_output, dropout):
 
 
 # Design scalable and iterative training function
-def train_mnist_cnn(tag, model_func, **params):
+def train_mnist_nn(tag, mnist, model_func, **params):
     '''training cnn with  various hyperparameters
     
     keyword arguments:
+    tag -- the brief name of neural network
+    dataset -- dataset for 
     model_func -- the model function to be used
     params -- vararg for neurons at each hidden layers   
     '''
-   
+    # declare global variable use
+    global logger
+        
     # tensorboard configuration
     tb_logs_path = "./logs/" + tag 
     
@@ -166,7 +176,7 @@ def train_mnist_cnn(tag, model_func, **params):
     
     # Initializing the variables
     init = tf.initialize_all_variables()
-    logger.info("Tag Name,Iteration,Minibatch Loss,Traning Accuracy,Elapsed Time,Testing Accuracy" )
+    logger.info("Tag Name,L1,L2,L3,Iteration,Minibatch Loss,Training Accuracy,Elapsed Time,Testing Accuracy" )
 
     # Launch the graph
     with tf.Session() as sess:
@@ -207,6 +217,7 @@ def train_mnist_cnn(tag, model_func, **params):
         logger.info(tag +",,,,," + str(test_acc))
         print tag + " : " + str(test_acc)
         sess.close()
+        
     return
 
 # Create some wrappers for simplicity
@@ -222,15 +233,18 @@ def maxpool2d(x, k=2):
     return tf.nn.max_pool(x, ksize=[1, k, k, 1], strides=[1, k, k, 1],
                           padding='SAME')
 
-def train(layer1_out, layer2_out, fully) :
+def train(dataset, layer1_out, layer2_out, fully) :
 
-    tag = "cnn_2_" + str(layer1_out) + "_" + str(layer2_out) + "_" + str(fully)
-    print "start training by " + tag
-    train_mnist_cnn(tag, conv_net_2, conv_1_output=layer1_out, conv_2_output=layer2_out, fully_output=fully)
+    tag = "mnist_cnn_2," + str(layer1_out) + "," + str(layer2_out) + "," + str(fully)
+    #print "start training by " + tag
+    
+    train_mnist_nn(tag, dataset, conv_net_2, conv_1_output=layer1_out, conv_2_output=layer2_out, fully_output=fully)
     return
 
 
 def main():
+    # declare global variable use
+    global logger    
     # parse command line options
     try:
         opts, args = getopt.getopt(sys.argv[1:], "h", ["help"])
@@ -243,13 +257,20 @@ def main():
         if o in ("-h", "--help"):
             print __doc__
             sys.exit(0)
+   
+    # create global logger
+    if logger is None:
+        logger = create_logger()
+
+    # get MNIST dataset
+    mnist = get_mnist();
     
     # process arguments
     if len(args) == 3: 
-        train(int(args[0]), int(args[1]), int(args[2]), int(args[3])) 
+        train(mnist, int(args[0]), int(args[1]), int(args[2])) 
     elif len(args) == 2:
         for i in neurons:
-            train(int(args[0]), int(args[1]), i)
+            train(mnist, int(args[0]), int(args[1]), i)
     elif len(args) == 1:
         print "TODO:future works"
 #        for j in neurons:
@@ -257,6 +278,8 @@ def main():
 #                train(int(args[0], j, k)
     else:
         print __doc__
+        
+    delete_logger(logger)
     sys.exit(0)
                       
 if __name__ == "__main__":
