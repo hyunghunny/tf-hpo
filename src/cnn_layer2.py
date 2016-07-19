@@ -20,6 +20,7 @@ Set the appropriate arguments like follows:
     {neurons in layer 2} : optional, if it is skipped, a predetermined number of neurons in each layer 2 and fully connected layers will be used repeatly
     {neurons in fully connected layer} : optional, if it is skipped, a predetermined number of neurons in fully connected layers will be used repeatly
 """
+import os
 import sys
 import getopt
 import tensorflow as tf
@@ -32,6 +33,7 @@ n_input = 784 # MNIST data input (img shape: 28*28)
 n_classes = 10 # MNIST total classes (0-9 digits)
 neurons = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
 logger = None
+log_path = '../log/mnist-cnn-2.csv'
 
 # MNIST importer
 def get_mnist():
@@ -49,7 +51,7 @@ def create_logger():
     #fomatter = logging.Formatter('[%(levelname)s|%(filename)s:%(lineno)s] %(asctime)s > %(message)s')
     file_formatter = logging.Formatter('%(asctime)s, %(message)s')
     # Create handles to redirect the log to each stream and file
-    fileHandler = logging.FileHandler('../log/mnist-cnn-2.csv')
+    fileHandler = logging.FileHandler(log_path)
     #streamHandler = logging.StreamHandler()
 
     # Set the formatter for each handlers
@@ -61,6 +63,11 @@ def create_logger():
     #logger.addHandler(streamHandler)
 
     logger.setLevel(logging.DEBUG)
+    
+    # add head tag if it doesn't existed
+    if os.path.getsize(log_path) < 10 :
+        logger.info("Tag Name,L1,L2,L3,Iteration,Minibatch Loss,Training Accuracy,Elapsed Time,Testing Accuracy" )
+    
     #print "logger created"
     return logger
 
@@ -176,7 +183,7 @@ def train_mnist_nn(tag, mnist, model_func, **params):
     
     # Initializing the variables
     init = tf.initialize_all_variables()
-    logger.info("Tag Name,L1,L2,L3,Iteration,Minibatch Loss,Training Accuracy,Elapsed Time,Testing Accuracy" )
+    
 
     # Launch the graph
     with tf.Session() as sess:
