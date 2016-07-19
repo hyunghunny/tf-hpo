@@ -264,21 +264,23 @@ def main():
 
     # get MNIST dataset
     mnist = get_mnist();
-    
-    # process arguments
-    if len(args) == 3: 
-        train(mnist, int(args[0]), int(args[1]), int(args[2])) 
-    elif len(args) == 2:
-        for i in neurons:
-            train(mnist, int(args[0]), int(args[1]), i)
-    elif len(args) == 1:
-        print "TODO:future works"
-#        for j in neurons:
-#            for k in neurons:
-#                train(int(args[0], j, k)
-    else:
-        print __doc__
-        
+
+    try:
+        # process arguments
+        if len(args) == 3: 
+            train(mnist, int(args[0]), int(args[1]), int(args[2])) 
+        elif len(args) == 2:
+            for i in neurons:
+                train(mnist, int(args[0]), int(args[1]), i)
+        elif len(args) == 1:
+            print "TODO:future works"
+        else:
+            print __doc__
+    except:
+        e = sys.exc_info()[0]
+        print e
+        delete_logger(logger) # catch exception to remove logger
+
     delete_logger(logger)
     sys.exit(0)
                       
