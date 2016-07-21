@@ -16,24 +16,26 @@ Set the appropriate arguments like follows:
     python cnn_layer2.py {neurons in layer 1} {neurons in layer 2} {neurons in fully connected layer}
     
     Parameters:
+    -a, --all : run all conditions
+    -h --help: this help
+    or 
     {neurons in layer 1} : mendatory
     {neurons in layer 2} : optional, if it is skipped, a predetermined number of neurons in each layer 2 and fully connected layers will be used repeatly
     {neurons in fully connected layer} : optional, if it is skipped, a predetermined number of neurons in fully connected layers will be used repeatly
 """
-import os
 import sys
 import getopt
+import traceback
 import tensorflow as tf
-import time
-import logging
-import logging.handlers
+from util import CSVLogger
 
 # Network Parameters
 n_input = 784 # MNIST data input (img shape: 28*28)
 n_classes = 10 # MNIST total classes (0-9 digits)
 neurons = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
-logger = None
-log_path = '../log/mnist-cnn-2.csv'
+train_images = [256, 512, 2048, 8092]
+
+log_path = '../log/mnist-cnn.csv'
 
 # MNIST importer
 def get_mnist():
@@ -41,42 +43,6 @@ def get_mnist():
     from tensorflow.examples.tutorials.mnist import input_data
     mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
     return mnist
-
-# logging untility    
-def create_logger():
-    # Create logger instance
-    logger = logging.getLogger('tflogger')
-
-    # Create logger formatter
-    #fomatter = logging.Formatter('[%(levelname)s|%(filename)s:%(lineno)s] %(asctime)s > %(message)s')
-    file_formatter = logging.Formatter('%(asctime)s, %(message)s')
-    # Create handles to redirect the log to each stream and file
-    fileHandler = logging.FileHandler(log_path)
-    #streamHandler = logging.StreamHandler()
-
-    # Set the formatter for each handlers
-    fileHandler.setFormatter(file_formatter)
-    #streamHandler.setFormatter(file_formatter)
-
-    # Attach the handlers to logger instance
-    logger.addHandler(fileHandler)
-    #logger.addHandler(streamHandler)
-
-    logger.setLevel(logging.DEBUG)
-    
-    # add head tag if it doesn't existed
-    if os.path.getsize(log_path) < 10 :
-        logger.info("Tag Name,L1,L2,L3,Iteration,Minibatch Loss,Training Accuracy,Elapsed Time,Testing Accuracy" )
-    
-    #print "logger created"
-    return logger
-
-def delete_logger(logger):
-    handlers = logger.handlers[:]
-    for handler in handlers:
-        handler.close()
-        logger.removeHandler(handler)
-    #print "logger deleted"
         
 # Create 2 layers conv model with a specific neurons
 def conv_net_2(x, conv_1_output, conv_2_output, fully_output, dropout):
@@ -128,21 +94,16 @@ def conv_net_2(x, conv_1_output, conv_2_output, fully_output, dropout):
 
 
 # Design scalable and iterative training function
-def train_mnist_nn(tag, mnist, model_func, **params):
+def train_mnist_nn(logger, mnist, model_func, **params):
     '''training cnn with  various hyperparameters
     
     keyword arguments:
-    tag -- the brief name of neural network
+    logger -- logger for logging
     dataset -- dataset for 
     model_func -- the model function to be used
     params -- vararg for neurons at each hidden layers   
     '''
-    # declare global variable use
-    global logger
         
-    # tensorboard configuration
-    tb_logs_path = "./logs/" + tag 
-    
     # Parameters
     learning_rate = 0.001
     training_iters = 200000
@@ -155,6 +116,12 @@ def train_mnist_nn(tag, mnist, model_func, **params):
     conv_2_output = params["conv_2_output"]
     fully_output = params["fully_output"]     
 
+    tag = "cnn_mnist_test_acc_" + str(conv_1_output) + "_" + str(conv_2_output) + "_" + str(fully_output) 
+    
+    # tensorboard configuration
+    tb_logs_path = "./logs/" + tag     
+    
+    
     # tf Graph input
     x = tf.placeholder(tf.float32, [None, n_input])
     y = tf.placeholder(tf.float32, [None, n_classes])
@@ -193,7 +160,10 @@ def train_mnist_nn(tag, mnist, model_func, **params):
         # create log writer object
         #writer = tf.train.SummaryWriter(tb_logs_path, graph=tf.get_default_graph())
 
-        timestamp = time.time() # measure start timestamp for each display steps
+        logger.setTimer()
+        logger.setLayers(conv_1_output, conv_2_output, fully_output)
+        
+        test_accs_list = [] 
         # Keep training until reach max iterations
         while step * batch_size < training_iters:
             batch_x, batch_y = mnist.train.next_batch(batch_size)
@@ -206,23 +176,21 @@ def train_mnist_nn(tag, mnist, model_func, **params):
                 loss, acc = sess.run([cost, accuracy], feed_dict={x: batch_x,
                                                                   y: batch_y,
                                                                   keep_prob: 1.})
-                perf = tag +"," + str(step*batch_size) + "," + \
-                      "{:.6f}".format(loss) + "," + \
-                      "{:.5f}".format(acc) + "," + "{0:.3g}".format(time.time() - timestamp)
-                logger.debug(perf)
+                test_accs = []
+                for i in train_images :                        
+                    # Calculate accuracy for mnist test images
+                    test_acc = sess.run(accuracy, feed_dict={x: mnist.test.images[:i],
+                                              y: mnist.test.labels[:i],
+                                              keep_prob: 1.})
+                    test_accs.append(test_acc)
+                logger.measure(tag, step * batch_size, test_accs[0], test_accs[1], test_accs[2], test_accs[3])
+                test_accs_list.append(test_accs)
             step += 1
 
             # write log
             #writer.add_summary(summary, step * batch_size)
 
-            timestamp = time.time() # reset timestamp
-            
-        # Calculate accuracy for 256 mnist test images
-        test_acc = sess.run(accuracy, feed_dict={x: mnist.test.images[:256],
-                                          y: mnist.test.labels[:256],
-                                          keep_prob: 1.})
-        logger.info(tag +",,,,," + str(test_acc))
-        print tag + " : " + str(test_acc)
+        print tag + " test accuracies : " + str(test_accs_list[:1])
         sess.close()
         
     return
@@ -240,21 +208,43 @@ def maxpool2d(x, k=2):
     return tf.nn.max_pool(x, ksize=[1, k, k, 1], strides=[1, k, k, 1],
                           padding='SAME')
 
-def train(dataset, layer1_out, layer2_out, fully) :
-
-    tag = "mnist_cnn_2," + str(layer1_out) + "," + str(layer2_out) + "," + str(fully)
-    #print "start training by " + tag
-    
-    train_mnist_nn(tag, dataset, conv_net_2, conv_1_output=layer1_out, conv_2_output=layer2_out, fully_output=fully)
+def train(layer1_out=None, layer2_out=None, fully=None) :
+    try:
+        # get MNIST dataset
+        dataset = get_mnist();
+        
+        # create logger
+        logger = CSVLogger(log_path, 3)
+        
+        if layer1_out is None:
+            for i in neurons:
+                for j in neurons:
+                    for k in neurons:                        
+                        train_mnist_nn(logger, dataset, conv_net_2, conv_1_output=i, conv_2_output=j, fully_output=k)
+        elif layer2_out is None:
+            for j in neurons:
+                for k in neurons:
+                    train_mnist_nn(logger, dataset, conv_net_2, conv_1_output=layer1_out, conv_2_output=j, fully_output=k)
+        elif fully is None:
+            for k in neurons:
+                train_mnist_nn(logger, dataset, conv_net_2, conv_1_output=layer1_out, conv_2_output=layer2_out, fully_output=k)
+        else:
+            train_mnist_nn(logger, dataset, conv_net_2, conv_1_output=layer1_out, conv_2_output=layer2_out, fully_output=fully)
+    except:
+        e = sys.exc_info()[0]
+        traceback.print_exc()
+        print e
+        logger.delete() # catch exception to remove logger
+                        
     return
 
 
 def main():
     # declare global variable use
-    global logger    
+     
     # parse command line options
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "h", ["help"])
+        opts, args = getopt.getopt(sys.argv[1:], "ah", ["all", "help"])
     except getopt.error, msg:
         print msg
         print "for help use --help"
@@ -264,31 +254,22 @@ def main():
         if o in ("-h", "--help"):
             print __doc__
             sys.exit(0)
-   
-    # create global logger
-    if logger is None:
-        logger = create_logger()
+    for o, a in opts:
+        if o in ("-a", "--all"):
+            train()
+            sys.exit(0) 
+           
+            
+    # process arguments
+    if len(args) is 3: 
+        train(int(args[0]), int(args[1]), int(args[2])) 
+    elif len(args) is 2:
+        train(int(args[0]), int(args[1]))
+    elif len(args) is 1:
+        train(int(args[0]))
+    else:
+        print __doc__
 
-    # get MNIST dataset
-    mnist = get_mnist();
-
-    try:
-        # process arguments
-        if len(args) == 3: 
-            train(mnist, int(args[0]), int(args[1]), int(args[2])) 
-        elif len(args) == 2:
-            for i in neurons:
-                train(mnist, int(args[0]), int(args[1]), i)
-        elif len(args) == 1:
-            print "TODO:future works"
-        else:
-            print __doc__
-    except:
-        e = sys.exc_info()[0]
-        print e
-        delete_logger(logger) # catch exception to remove logger
-
-    delete_logger(logger)
     sys.exit(0)
                       
 if __name__ == "__main__":
