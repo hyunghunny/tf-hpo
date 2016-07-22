@@ -220,19 +220,19 @@ def train(layer1_out=None, layer2_out=None, fully=None) :
             for i in neurons:
                 for j in neurons:		    
                     for k in neurons:			
-			with tf.device('/gpu:' + str(gpu_id%4)):                        
+			with tf.device('/gpu:' + str(gpu_id % 3 + 1)):                       
                         	train_mnist_nn(logger, dataset, conv_net_2, conv_1_output=i, conv_2_output=j, fully_output=k)
       				gpu_id += 1
 	elif layer2_out is None:
             for j in neurons:
                 for k in neurons:
 			
-			with tf.device('/gpu:' + str(gpu_id%4)):
+			with tf.device('/gpu:' + str(gpu_id % 3 + 1)):
                 		train_mnist_nn(logger, dataset, conv_net_2, conv_1_output=layer1_out, conv_2_output=j, fully_output=k)
         			gpu_id += 1
 	elif fully is None:
             for k in neurons:
-		with tf.device('/gpu:' + str(gpu_id % 4)):
+		with tf.device('/gpu:' + str(gpu_id % 3 + 1)):
                     train_mnist_nn(logger, dataset, conv_net_2, conv_1_output=layer1_out, conv_2_output=layer2_out, fully_output=k)
 		    gpu_id += 1
         else:
