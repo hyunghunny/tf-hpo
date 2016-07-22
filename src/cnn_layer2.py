@@ -153,7 +153,7 @@ def train_mnist_nn(logger, mnist, model_func, **params):
     
 
     # Launch the graph
-    with tf.Session() as sess:
+    with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
         sess.run(init)
         step = 1
 
