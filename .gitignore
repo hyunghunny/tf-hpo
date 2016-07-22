@@ -89,4 +89,4 @@ ENV/
 .ropeproject
 
 # nohup log
-*.out
+src/nohup.out
