@@ -126,83 +126,83 @@ def train_mnist_nn(logger, mnist, model_func, **params):
     # tensorboard configuration
     tb_logs_path = "./logs/" + tag     
     
-    
-    # tf Graph input
-    x = tf.placeholder(tf.float32, [None, n_input])
-    y = tf.placeholder(tf.float32, [None, n_classes])
+    print "training at GPU: " + str(main_gpu)
+    with tf.device('/gpu:' + str((main_gpu_id + 1) % total_gpu + 1)):    
+        # tf Graph input
+        x = tf.placeholder(tf.float32, [None, n_input])
+        y = tf.placeholder(tf.float32, [None, n_classes])
 
-    # dropout (keep probability)
-    keep_prob = tf.placeholder(tf.float32) 
-    
-    # Construct model
-    pred = model_func(x, conv_1_output, conv_2_output, fully_output, keep_prob)
+        # dropout (keep probability)
+        keep_prob = tf.placeholder(tf.float32) 
+        
+        # Construct model
+        pred = model_func(x, conv_1_output, conv_2_output, fully_output, keep_prob)
 
-    # Define loss and optimizer
-    cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y))
-    optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
+        # Define loss and optimizer
+        cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y))
+        optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
 
-    # Evaluate model
-    correct_pred = tf.equal(tf.argmax(pred, 1), tf.argmax(y, 1))
-    accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
+        # Evaluate model
+        correct_pred = tf.equal(tf.argmax(pred, 1), tf.argmax(y, 1))
+        accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
 
-    # create a summary for our cost and accuracy
-    #tf.scalar_summary("cost", cost)
-    #tf.scalar_summary("accuracy", accuracy)
+        # create a summary for our cost and accuracy
+        #tf.scalar_summary("cost", cost)
+        #tf.scalar_summary("accuracy", accuracy)
 
-    # merge all summaries into a single "operation" which we can execute in a session 
-    #summary_op = tf.merge_all_summaries()
+        # merge all summaries into a single "operation" which we can execute in a session 
+        #summary_op = tf.merge_all_summaries()
 
-    
-    # Initializing the variables
-    init = tf.initialize_all_variables()
-    
+        
+        # Initializing the variables
+        init = tf.initialize_all_variables()
+        
 
-    # Launch the graph
-    with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
-        with tf.device('/gpu:' + str((main_gpu_id + 1) % total_gpu + 1)):
+        # Launch the graph
+        with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:        
             sess.run(init)
-        step = 1
+            step = 1
 
-        # create log writer object
-        #writer = tf.train.SummaryWriter(tb_logs_path, graph=tf.get_default_graph())
+            # create log writer object
+            #writer = tf.train.SummaryWriter(tb_logs_path, graph=tf.get_default_graph())
 
-        logger.setTimer()
-        logger.setLayers(conv_1_output, conv_2_output, fully_output)
-        
-        test_accs_list = [] 
-        # Keep training until reach max iterations
-        while step * batch_size < training_iters:
-            batch_x, batch_y = mnist.train.next_batch(batch_size)
-            # Run optimization op (backprop)            
-            #_, summary = sess.run([optimizer, summary_op], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
-            with tf.device('/gpu:' + str((main_gpu_id + 1) % total_gpu + 1)):
-                _ = sess.run([optimizer], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
+            logger.setTimer()
+            logger.setLayers(conv_1_output, conv_2_output, fully_output)
             
-            if step % display_step == 0:
-                # Calculate batch loss and accuracy
-                with tf.device('/gpu:' + str((main_gpu_id + 2) % total_gpu + 1)):
-                    loss, acc = sess.run([cost, accuracy], feed_dict={x: batch_x,
-                                                                  y: batch_y,
-                                                                  keep_prob: 1.})
-                test_accs = []
-                for i in train_images :                        
-                    # Calculate accuracy for mnist test images
-                    with tf.device('/gpu:' + str((main_gpu_id + 3) % total_gpu + 1)):
-                        test_acc = sess.run(accuracy, feed_dict={x: mnist.test.images[:i],
-                                              y: mnist.test.labels[:i],
-                                              keep_prob: 1.})
-                    test_accs.append(test_acc)
-                logger.measure(tag, step * batch_size, test_accs[0], test_accs[1], test_accs[2], test_accs[3])
-                test_accs_list.append(test_accs)
-            step += 1
+            test_accs_list = [] 
+            # Keep training until reach max iterations
+            while step * batch_size < training_iters:
+                batch_x, batch_y = mnist.train.next_batch(batch_size)
+                # Run optimization op (backprop)            
+                #_, summary = sess.run([optimizer, summary_op], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
+                with tf.device('/gpu:' + str((main_gpu_id + 1) % total_gpu + 1)):
+                    _ = sess.run([optimizer], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
+                
+                if step % display_step == 0:
+                    # Calculate batch loss and accuracy
+                    with tf.device('/gpu:' + str((main_gpu_id + 2) % total_gpu + 1)):
+                        loss, acc = sess.run([cost, accuracy], feed_dict={x: batch_x,
+                                                                      y: batch_y,
+                                                                      keep_prob: 1.})
+                    test_accs = []
+                    for i in train_images :                        
+                        # Calculate accuracy for mnist test images
+                        with tf.device('/gpu:' + str((main_gpu_id + 3) % total_gpu + 1)):
+                            test_acc = sess.run(accuracy, feed_dict={x: mnist.test.images[:i],
+                                                  y: mnist.test.labels[:i],
+                                                  keep_prob: 1.})
+                        test_accs.append(test_acc)
+                    logger.measure(tag, step * batch_size, test_accs[0], test_accs[1], test_accs[2], test_accs[3])
+                    test_accs_list.append(test_accs)
+                step += 1
 
-            # write log
-            #writer.add_summary(summary, step * batch_size)
+                # write log
+                #writer.add_summary(summary, step * batch_size)
 
-        print tag + " test accuracies : " + str(test_accs_list[:1])
-        sess.close()
-        
-    return
+            print tag + " test accuracies : " + str(test_accs_list[:1])
+            sess.close()
+            
+        return
 
 # Create some wrappers for simplicity
 def conv2d(x, W, b, strides=1):
