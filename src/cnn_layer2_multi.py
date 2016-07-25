@@ -126,7 +126,7 @@ def train_mnist_nn(logger, mnist, model_func, **params):
     # tensorboard configuration
     tb_logs_path = "./logs/" + tag     
     
-    print "training at GPU: " + str(main_gpu)
+    print "training at GPU:" + str((main_gpu_id + 1) % total_gpu + 1)
     with tf.device('/gpu:' + str((main_gpu_id + 1) % total_gpu + 1)):    
         # tf Graph input
         x = tf.placeholder(tf.float32, [None, n_input])
