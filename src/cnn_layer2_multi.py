@@ -235,11 +235,11 @@ def train(layer1_out=None, layer2_out=None, fully=None) :
             for j in neurons:
                 for k in neurons:			
 	            	train_mnist_nn(logger, dataset, conv_net_2, main_gpu=gpu_id, conv_1_output=layer1_out, conv_2_output=j, fully_output=k)
-        			gpu_id += 1
+                    gpu_id += 1
 	elif fully is None:
             for k in neurons:
 		        train_mnist_nn(logger, dataset, conv_net_2, main_gpu=gpu_id, conv_1_output=layer1_out, conv_2_output=layer2_out, fully_output=k)
-		    gpu_id += 1
+                gpu_id += 1
         else:
             train_mnist_nn(logger, dataset, conv_net_2, main_gpu=gpu_id, conv_1_output=layer1_out, conv_2_output=layer2_out, fully_output=fully)
     except:
