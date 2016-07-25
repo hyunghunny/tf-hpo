@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-"""Module CNN layer 2 hyperparameter optimization evaluation.
+"""Module CNN layer 2 hyperparameter optimization evaluation for Multiple GPUs.
 A Convolutional Network implementation example using TensorFlow library.
 This example is using the MNIST database of handwritten digits
 (http://yann.lecun.com/exdb/mnist/)
@@ -13,7 +13,7 @@ Author: Hyunghun Cho
 
 Set the appropriate arguments like follows:
 
-    python cnn_layer2.py {neurons in layer 1} {neurons in layer 2} {neurons in fully connected layer}
+    python cnn_layer2_multi.py {neurons in layer 1} {neurons in layer 2} {neurons in fully connected layer}
     
     Parameters:
     -a, --all : run all conditions
@@ -34,7 +34,7 @@ n_input = 784 # MNIST data input (img shape: 28*28)
 n_classes = 10 # MNIST total classes (0-9 digits)
 neurons = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
 train_images = [256, 512, 2048, 8092]
-
+total_gpu = 4
 log_path = '../log/mnist-cnn.csv'
 
 # MNIST importer
@@ -114,7 +114,12 @@ def train_mnist_nn(logger, mnist, model_func, **params):
     # Structure parameters
     conv_1_output = params["conv_1_output"]
     conv_2_output = params["conv_2_output"]
-    fully_output = params["fully_output"]     
+    fully_output = params["fully_output"]
+
+    # Set main GPU id
+    main_gpu_id = params["main_gpu"]
+    if main_gpu_id is None:
+        main_gpu_id = 0     
 
     tag = "cnn_mnist_test_acc_" + str(conv_1_output) + "_" + str(conv_2_output) + "_" + str(fully_output) 
     
@@ -154,7 +159,8 @@ def train_mnist_nn(logger, mnist, model_func, **params):
 
     # Launch the graph
     with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
-        sess.run(init)
+        with tf.device('/gpu:' + str(main_gpu_id % total_gpu + 0)):
+            sess.run(init)
         step = 1
 
         # create log writer object
@@ -169,17 +175,20 @@ def train_mnist_nn(logger, mnist, model_func, **params):
             batch_x, batch_y = mnist.train.next_batch(batch_size)
             # Run optimization op (backprop)            
             #_, summary = sess.run([optimizer, summary_op], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
-            _ = sess.run([optimizer], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
+            with tf.device('/gpu:' + str(main_gpu_id % total_gpu + 1)):
+                _ = sess.run([optimizer], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
             
             if step % display_step == 0:
                 # Calculate batch loss and accuracy
-                loss, acc = sess.run([cost, accuracy], feed_dict={x: batch_x,
+                with tf.device('/gpu:' + str(main_gpu_id % total_gpu + 2)):
+                    loss, acc = sess.run([cost, accuracy], feed_dict={x: batch_x,
                                                                   y: batch_y,
                                                                   keep_prob: 1.})
                 test_accs = []
                 for i in train_images :                        
                     # Calculate accuracy for mnist test images
-                    test_acc = sess.run(accuracy, feed_dict={x: mnist.test.images[:i],
+                    with tf.device('/gpu:' + str(main_gpu_id % total_gpu + 3)):
+                        test_acc = sess.run(accuracy, feed_dict={x: mnist.test.images[:i],
                                               y: mnist.test.labels[:i],
                                               keep_prob: 1.})
                     test_accs.append(test_acc)
@@ -220,23 +229,19 @@ def train(layer1_out=None, layer2_out=None, fully=None) :
             for i in neurons:
                 for j in neurons:		    
                     for k in neurons:			
-			with tf.device('/gpu:' + str(gpu_id % 3 + 1)):                       
-                        	train_mnist_nn(logger, dataset, conv_net_2, conv_1_output=i, conv_2_output=j, fully_output=k)
-      				gpu_id += 1
+			            train_mnist_nn(logger, dataset, conv_net_2, main_gpu=gpu_id, conv_1_output=i, conv_2_output=j, fully_output=k)
+      				    gpu_id += 1
 	elif layer2_out is None:
             for j in neurons:
-                for k in neurons:
-			
-			with tf.device('/gpu:' + str(gpu_id % 3 + 1)):
-                		train_mnist_nn(logger, dataset, conv_net_2, conv_1_output=layer1_out, conv_2_output=j, fully_output=k)
+                for k in neurons:			
+	            	train_mnist_nn(logger, dataset, conv_net_2, main_gpu=gpu_id, conv_1_output=layer1_out, conv_2_output=j, fully_output=k)
         			gpu_id += 1
 	elif fully is None:
             for k in neurons:
-		with tf.device('/gpu:' + str(gpu_id % 3 + 1)):
-                    train_mnist_nn(logger, dataset, conv_net_2, conv_1_output=layer1_out, conv_2_output=layer2_out, fully_output=k)
+		        train_mnist_nn(logger, dataset, conv_net_2, main_gpu=gpu_id, conv_1_output=layer1_out, conv_2_output=layer2_out, fully_output=k)
 		    gpu_id += 1
         else:
-            train_mnist_nn(logger, dataset, conv_net_2, conv_1_output=layer1_out, conv_2_output=layer2_out, fully_output=fully)
+            train_mnist_nn(logger, dataset, conv_net_2, main_gpu=gpu_id, conv_1_output=layer1_out, conv_2_output=layer2_out, fully_output=fully)
     except:
         e = sys.exc_info()[0]
         traceback.print_exc()
