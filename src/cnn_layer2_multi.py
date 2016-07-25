@@ -35,7 +35,7 @@ n_classes = 10 # MNIST total classes (0-9 digits)
 neurons = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
 train_images = [256, 512, 2048]
 total_gpu = 3
-log_path = '../log/mnist-cnn.csv'
+log_path = '../log/mnist-cnn_20160725.csv'
 
 # MNIST importer
 def get_mnist():
@@ -192,7 +192,7 @@ def train_mnist_nn(logger, mnist, model_func, **params):
                                                   y: mnist.test.labels[:i],
                                                   keep_prob: 1.})
                         test_accs.append(test_acc)
-                    logger.measure(tag, step * batch_size, test_accs[0], test_accs[1], test_accs[2], test_accs[3])
+                    logger.measure(tag, step * batch_size, test_accs[0], test_accs[1], test_accs[2])
                     test_accs_list.append(test_accs)
                 step += 1
 

@@ -15,7 +15,7 @@ class CSVLogger:
     def __init__(self, path, layers):
         self.path = path
         self.csv_format = '%(asctime)s,%(message)s'
-        self.csv_header = "Tag Name,Iteration,Testing Accuracy(256), Testing Accuracy(512), Testing Accuracy(2048), Testing Accuracy(8092), Elapsed Time"
+        self.csv_header = "Tag Name,Iteration,Testing Accuracy(256),Testing Accuracy(512),Testing Accuracy(2048),Elapsed Time"
         emptyLayers = []
         for l in range(layers):
             self.csv_header = self.csv_header + ",L" + str(l+1)
@@ -70,12 +70,12 @@ class CSVLogger:
             tails += "," + str(l)
         self.tails = tails
         
-    def measure(self, tag, iteration, acc1, acc2, acc3, acc4):
+    def measure(self, tag, iteration, acc1, acc2, acc3):
         timegap = time.time() - self.timestamp
         msg = tag +"," + str(iteration) + "," + \
             "{:.6f}".format(acc1) + "," + \
             "{:.5f}".format(acc2) + "," + "{:.5f}".format(acc3) + "," + \
-            "{:.5f}".format(acc4) + "," + "{0:.3g}".format(timegap) + self.tails
+            "{0:.3g}".format(timegap) + self.tails
         self.logger.debug(msg)
         self.setTimer() # reset timer
       
