@@ -159,7 +159,7 @@ def train_mnist_nn(logger, mnist, model_func, **params):
 
     # Launch the graph
     with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
-        with tf.device('/gpu:' + str(main_gpu_id % total_gpu)):
+        with tf.device('/gpu:' + str((main_gpu_id + 1) % total_gpu)):
             sess.run(init)
         step = 1
 
