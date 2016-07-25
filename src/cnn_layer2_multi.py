@@ -159,7 +159,7 @@ def train_mnist_nn(logger, mnist, model_func, **params):
 
     # Launch the graph
     with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
-        with tf.device('/gpu:' + str(main_gpu_id % total_gpu + 0)):
+        with tf.device('/gpu:' + str(main_gpu_id % total_gpu)):
             sess.run(init)
         step = 1
 
@@ -175,19 +175,19 @@ def train_mnist_nn(logger, mnist, model_func, **params):
             batch_x, batch_y = mnist.train.next_batch(batch_size)
             # Run optimization op (backprop)            
             #_, summary = sess.run([optimizer, summary_op], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
-            with tf.device('/gpu:' + str(main_gpu_id % total_gpu + 1)):
+            with tf.device('/gpu:' + str((main_gpu_id + 1) % total_gpu)):
                 _ = sess.run([optimizer], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
             
             if step % display_step == 0:
                 # Calculate batch loss and accuracy
-                with tf.device('/gpu:' + str(main_gpu_id % total_gpu + 2)):
+                with tf.device('/gpu:' + str((main_gpu_id + 2) % total_gpu)):
                     loss, acc = sess.run([cost, accuracy], feed_dict={x: batch_x,
                                                                   y: batch_y,
                                                                   keep_prob: 1.})
                 test_accs = []
                 for i in train_images :                        
                     # Calculate accuracy for mnist test images
-                    with tf.device('/gpu:' + str(main_gpu_id % total_gpu + 3)):
+                    with tf.device('/gpu:' + str((main_gpu_id + 3) % total_gpu)):
                         test_acc = sess.run(accuracy, feed_dict={x: mnist.test.images[:i],
                                               y: mnist.test.labels[:i],
                                               keep_prob: 1.})
@@ -224,7 +224,7 @@ def train(layer1_out=None, layer2_out=None, fully=None) :
         
         # create logger
         logger = CSVLogger(log_path, 3)
-        gpu_id = 0
+        gpu_id = 1
         if layer1_out is None:
             for i in neurons:
                 for j in neurons:            
