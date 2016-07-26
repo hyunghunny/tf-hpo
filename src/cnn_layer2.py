@@ -14,11 +14,11 @@ Author: Hyunghun Cho
 Set the appropriate arguments like follows:
 
     python cnn_layer2.py {neurons in layer 1} {neurons in layer 2} {neurons in fully connected layer}
-    
+
     Parameters:
     -a, --all : run all conditions
     -h --help: this help
-    or 
+    or
     {neurons in layer 1} : mendatory
     {neurons in layer 2} : optional, if it is skipped, a predetermined number of neurons in each layer 2 and fully connected layers will be used repeatly
     {neurons in fully connected layer} : optional, if it is skipped, a predetermined number of neurons in fully connected layers will be used repeatly
@@ -29,13 +29,17 @@ import traceback
 import tensorflow as tf
 from util import CSVLogger
 
+# set configuration
+f = file('tf-hpo.cfg')
+cfg = Config(f)
 # Network Parameters
-n_input = 784 # MNIST data input (img shape: 28*28)
-n_classes = 10 # MNIST total classes (0-9 digits)
-neurons = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
-train_images = [256, 512, 2048, 8092]
+n_input = cfg.mnist.n_input # MNIST data input (img shape: 28*28)
+n_classes = cfg.mnist.n_classes # MNIST total classes (0-9 digits)
+neurons = cfg.mnist.neurons
+train_images = cfg.mnist.train_images
 
-log_path = '../log/mnist-cnn.csv'
+log_path = cfg.log_path
+
 
 # MNIST importer
 def get_mnist():
@@ -43,10 +47,10 @@ def get_mnist():
     from tensorflow.examples.tutorials.mnist import input_data
     mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
     return mnist
-        
+
 # Create 2 layers conv model with a specific neurons
 def conv_net_2(x, conv_1_output, conv_2_output, fully_output, dropout):
-    
+
     # Store layers weight & bias
     weights = {
         # 5x5 conv, 1 input, a specific layer 1 outputs
@@ -65,7 +69,7 @@ def conv_net_2(x, conv_1_output, conv_2_output, fully_output, dropout):
         'bd1': tf.Variable(tf.random_normal([fully_output])),
         'out': tf.Variable(tf.random_normal([n_classes]))
     }
-    
+
     # Reshape input picture
     x = tf.reshape(x, shape=[-1, 28, 28, 1])
 
@@ -84,51 +88,51 @@ def conv_net_2(x, conv_1_output, conv_2_output, fully_output, dropout):
     fc1 = tf.reshape(conv2, [-1, weights['wd1'].get_shape().as_list()[0]])
     fc1 = tf.add(tf.matmul(fc1, weights['wd1']), biases['bd1'])
     fc1 = tf.nn.relu(fc1)
-    
+
     # Apply Dropout
     fc1 = tf.nn.dropout(fc1, dropout)
 
     # Output, class prediction
     out = tf.add(tf.matmul(fc1, weights['out']), biases['out'])
-    return out    
+    return out
 
 
 # Design scalable and iterative training function
 def train_mnist_nn(logger, mnist, model_func, **params):
     '''training cnn with  various hyperparameters
-    
+
     keyword arguments:
     logger -- logger for logging
-    dataset -- dataset for 
+    dataset -- dataset for
     model_func -- the model function to be used
-    params -- vararg for neurons at each hidden layers   
+    params -- vararg for neurons at each hidden layers
     '''
-        
+
     # Parameters
     learning_rate = 0.001
     training_iters = 200000
     batch_size = 128
-    display_step = 10  
+    display_step = 10
     dropout = 0.75 # Dropout, probability to keep units
-    
+
     # Structure parameters
     conv_1_output = params["conv_1_output"]
     conv_2_output = params["conv_2_output"]
-    fully_output = params["fully_output"]     
+    fully_output = params["fully_output"]
 
-    tag = "cnn_mnist_test_acc_" + str(conv_1_output) + "_" + str(conv_2_output) + "_" + str(fully_output) 
-    
+    tag = "cnn_mnist_test_acc_" + str(conv_1_output) + "_" + str(conv_2_output) + "_" + str(fully_output)
+
     # tensorboard configuration
-    tb_logs_path = "./logs/" + tag     
-    
-    
+    tb_logs_path = "./logs/" + tag
+
+
     # tf Graph input
     x = tf.placeholder(tf.float32, [None, n_input])
     y = tf.placeholder(tf.float32, [None, n_classes])
 
     # dropout (keep probability)
-    keep_prob = tf.placeholder(tf.float32) 
-    
+    keep_prob = tf.placeholder(tf.float32)
+
     # Construct model
     pred = model_func(x, conv_1_output, conv_2_output, fully_output, keep_prob)
 
@@ -144,13 +148,13 @@ def train_mnist_nn(logger, mnist, model_func, **params):
     #tf.scalar_summary("cost", cost)
     #tf.scalar_summary("accuracy", accuracy)
 
-    # merge all summaries into a single "operation" which we can execute in a session 
+    # merge all summaries into a single "operation" which we can execute in a session
     #summary_op = tf.merge_all_summaries()
 
-    
+
     # Initializing the variables
     init = tf.initialize_all_variables()
-    
+
 
     # Launch the graph
     with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
@@ -162,22 +166,22 @@ def train_mnist_nn(logger, mnist, model_func, **params):
 
         logger.setTimer()
         logger.setLayers(conv_1_output, conv_2_output, fully_output)
-        
-        test_accs_list = [] 
+
+        test_accs_list = []
         # Keep training until reach max iterations
         while step * batch_size < training_iters:
             batch_x, batch_y = mnist.train.next_batch(batch_size)
-            # Run optimization op (backprop)            
+            # Run optimization op (backprop)
             #_, summary = sess.run([optimizer, summary_op], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
             _ = sess.run([optimizer], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
-            
+
             if step % display_step == 0:
                 # Calculate batch loss and accuracy
                 loss, acc = sess.run([cost, accuracy], feed_dict={x: batch_x,
                                                                   y: batch_y,
                                                                   keep_prob: 1.})
                 test_accs = []
-                for i in train_images :                        
+                for i in train_images :
                     # Calculate accuracy for mnist test images
                     test_acc = sess.run(accuracy, feed_dict={x: mnist.test.images[:i],
                                               y: mnist.test.labels[:i],
@@ -192,7 +196,7 @@ def train_mnist_nn(logger, mnist, model_func, **params):
 
         print tag + " test accuracies : " + str(test_accs_list[:1])
         sess.close()
-        
+
     return
 
 # Create some wrappers for simplicity
@@ -212,14 +216,14 @@ def train(layer1_out=None, layer2_out=None, fully=None) :
     try:
         # get MNIST dataset
         dataset = get_mnist();
-        
+
         # create logger
         logger = CSVLogger(log_path, 3)
-        
+
         if layer1_out is None:
             for i in neurons:
                 for j in neurons:
-                    for k in neurons:                        
+                    for k in neurons:
                         train_mnist_nn(logger, dataset, conv_net_2, conv_1_output=i, conv_2_output=j, fully_output=k)
         elif layer2_out is None:
             for j in neurons:
@@ -235,13 +239,13 @@ def train(layer1_out=None, layer2_out=None, fully=None) :
         traceback.print_exc()
         print e
         logger.delete() # catch exception to remove logger
-                        
+
     return
 
 
 def main():
     # declare global variable use
-     
+
     # parse command line options
     try:
         opts, args = getopt.getopt(sys.argv[1:], "ah", ["all", "help"])
@@ -257,12 +261,12 @@ def main():
     for o, a in opts:
         if o in ("-a", "--all"):
             train()
-            sys.exit(0) 
-           
-            
+            sys.exit(0)
+
+
     # process arguments
-    if len(args) is 3: 
-        train(int(args[0]), int(args[1]), int(args[2])) 
+    if len(args) is 3:
+        train(int(args[0]), int(args[1]), int(args[2]))
     elif len(args) is 2:
         train(int(args[0]), int(args[1]))
     elif len(args) is 1:
@@ -271,8 +275,6 @@ def main():
         print __doc__
 
     sys.exit(0)
-                      
+
 if __name__ == "__main__":
     main()
-
-
