@@ -31,7 +31,7 @@ from util import CSVLogger
 from config import Config
 
 # set configuration
-f = file('tf-hpo.cfg')
+f = file('./tf-hpo.cfg')
 cfg = Config(f)
 # Network Parameters
 n_input = cfg.mnist.n_input # MNIST data input (img shape: 28*28)
@@ -47,7 +47,7 @@ total_gpu = cfg.available_gpus
 def get_mnist():
     # Import MNIST data
     from tensorflow.examples.tutorials.mnist import input_data
-    mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
+    mnist = input_data.read_data_sets("~/.tmp/data/", one_hot=True)
     return mnist
 
 # Create 2 layers conv model with a specific neurons
@@ -132,8 +132,11 @@ def train_mnist_nn(logger, mnist, model_func, **params):
     # tensorboard configuration
     tb_logs_path = "./logs/" + tag
 
-    print "training at GPU:" + str((main_gpu_id + 1) % total_gpu + 1)
-    with tf.device('/gpu:' + str((main_gpu_id + 1) % total_gpu + 1)):
+    device_id = '/gpu:' + str(main_gpu_id % total_gpu)
+    
+    print "start training at " + device_id
+    with tf.device(device_id):
+        
         # tf Graph input
         x = tf.placeholder(tf.float32, [None, n_input])
         y = tf.placeholder(tf.float32, [None, n_classes])
@@ -165,7 +168,7 @@ def train_mnist_nn(logger, mnist, model_func, **params):
 
 
         # Launch the graph
-        with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+        with tf.Session() as sess:
             sess.run(init)
             step = 1
 
@@ -180,20 +183,19 @@ def train_mnist_nn(logger, mnist, model_func, **params):
             while step * batch_size < training_iters:
                 batch_x, batch_y = mnist.train.next_batch(batch_size)
                 # Run optimization op (backprop)
+                
                 #_, summary = sess.run([optimizer, summary_op], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
-                with tf.device('/gpu:' + str((main_gpu_id + 1) % total_gpu + 1)):
-                    _ = sess.run([optimizer], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
+                _ = sess.run([optimizer], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
 
                 if step % display_step == 0:
                     # Calculate batch loss and accuracy
-                    with tf.device('/gpu:' + str((main_gpu_id + 2) % total_gpu + 1)):
-                        loss, acc = sess.run([cost, accuracy], feed_dict={x: batch_x,
+                    loss, acc = sess.run([cost, accuracy], feed_dict={x: batch_x,
                                                                       y: batch_y,
                                                                       keep_prob: 1.})
                     test_accs = []
                     for i in train_images :
                         # Calculate accuracy for mnist test images
-                        with tf.device('/gpu:' + str((main_gpu_id + 3) % total_gpu + 1)):
+                        with tf.device('/cpu:0'):
                             test_acc = sess.run(accuracy, feed_dict={x: mnist.test.images[:i],
                                                   y: mnist.test.labels[:i],
                                                   keep_prob: 1.})
@@ -288,6 +290,7 @@ def main():
     else:
         print __doc__
 
+    print "training is terminated"
     sys.exit(0)
 
 if __name__ == "__main__":
