@@ -29,6 +29,7 @@ import traceback
 import tensorflow as tf
 from util import CSVLogger
 from config import Config
+from multiprocessing import Process
 
 # set configuration
 f = file('./tf-hpo.cfg')
@@ -47,7 +48,7 @@ total_gpu = cfg.available_gpus
 def get_mnist():
     # Import MNIST data
     from tensorflow.examples.tutorials.mnist import input_data
-    mnist = input_data.read_data_sets("~/.tmp/data/", one_hot=True)
+    mnist = input_data.read_data_sets("../.tmp/data/", one_hot=True)
     return mnist
 
 # Create 2 layers conv model with a specific neurons
@@ -100,7 +101,7 @@ def conv_net_2(x, conv_1_output, conv_2_output, fully_output, dropout):
 
 
 # Design scalable and iterative training function
-def train_mnist_nn(logger, mnist, model_func, **params):
+def train_mnist_nn(main_gpu_id, logger, mnist, model_func, conv_1_output, conv_2_output, fully_output):
     '''training cnn with  various hyperparameters
 
     keyword arguments:
@@ -117,15 +118,6 @@ def train_mnist_nn(logger, mnist, model_func, **params):
     display_step = 10
     dropout = 0.75 # Dropout, probability to keep units
 
-    # Structure parameters
-    conv_1_output = params["conv_1_output"]
-    conv_2_output = params["conv_2_output"]
-    fully_output = params["fully_output"]
-
-    # Set main GPU id
-    main_gpu_id = params["main_gpu"]
-    if main_gpu_id is None:
-        main_gpu_id = 0
 
     tag = "cnn_mnist_test_acc_" + str(conv_1_output) + "_" + str(conv_2_output) + "_" + str(fully_output)
 
@@ -134,7 +126,7 @@ def train_mnist_nn(logger, mnist, model_func, **params):
 
     device_id = '/gpu:' + str(main_gpu_id % total_gpu)
     
-    print "start training at " + device_id
+    #print "start training at " + device_id
     with tf.device(device_id):
         
         # tf Graph input
@@ -237,19 +229,19 @@ def train(layer1_out=None, layer2_out=None, fully=None) :
             for i in neurons:
                 for j in neurons:
                     for k in neurons:
-                        train_mnist_nn(logger, dataset, conv_net_2, main_gpu=gpu_id, conv_1_output=i, conv_2_output=j, fully_output=k)
+                        train_mnist_nn(gpu_id, logger, dataset, conv_net_2, i, j, k)
                         gpu_id += 1
         elif layer2_out is None:
             for j in neurons:
                 for k in neurons:
-                    train_mnist_nn(logger, dataset, conv_net_2, main_gpu=gpu_id, conv_1_output=layer1_out, conv_2_output=j, fully_output=k)
+                    train_mnist_nn(gpu_id,logger, dataset, conv_net_2, layer1_out, j, k)
                     gpu_id += 1
         elif fully is None:
             for k in neurons:
-                train_mnist_nn(logger, dataset, conv_net_2, main_gpu=gpu_id, conv_1_output=layer1_out, conv_2_output=layer2_out, fully_output=k)
+                train_mnist_nn(gpu_id, logger, dataset, conv_net_2, layer1_out, layer2_out, k)
                 gpu_id += 1
         else:
-            train_mnist_nn(logger, dataset, conv_net_2, main_gpu=gpu_id, conv_1_output=layer1_out, conv_2_output=layer2_out, fully_output=fully)
+            train_mnist_nn(gpu_id, logger, dataset, conv_net_2, layer1_out, layer2_out, fully)
     except:
         e = sys.exc_info()[0]
         traceback.print_exc()
@@ -258,6 +250,64 @@ def train(layer1_out=None, layer2_out=None, fully=None) :
 
     return
 
+def train_multi(layer1_out=None, layer2_out=None, fully=None) :
+    
+    try:        
+        # get MNIST dataset
+        dataset = get_mnist();
+
+        # create logger
+        logger = CSVLogger(log_path, 3)
+        gpu_id = 0
+        args_list = []
+        if layer1_out is None:
+            for i in neurons:
+                for j in neurons:
+                    for k in neurons:
+                        args_list.append([gpu_id, logger, dataset, conv_net_2, i, j, k])
+                        gpu_id += 1
+            
+        elif layer2_out is None:
+            for j in neurons:
+                for k in neurons:
+                    args_list.append([gpu_id,logger, dataset, conv_net_2, layer1_out, j, k])
+                    gpu_id += 1
+        elif fully is None:
+            for k in neurons:
+                args_list.append([gpu_id, logger, dataset, conv_net_2, layer1_out, layer2_out, k])
+                gpu_id += 1
+        else:
+            args_list.append([gpu_id, logger, dataset, conv_net_2, layer1_out, layer2_out, fully])
+        
+        idx = 0
+        while idx < len(args_list):
+            # create the concurrent processes as same as the installed gpu boards
+            processes = []
+            
+            if len(args_list) - idx < total_gpu:
+                forks = len(args_list) - idx
+            else:
+                forks = total_gpu
+                
+            for i in range(forks):
+                args = args_list[idx]                
+                processes.append(Process(target=train_mnist_nn, args=(args[0], args[1], args[2], args[3], args[4], args[5], args[6])))
+                idx += 1
+            # start processes at the same time   
+            for j in range(forks):
+                processes[j].start()
+                
+            # wait until all proceses
+            for k in range(forks):
+                processes[k].join()
+        
+    except:
+        e = sys.exc_info()[0]
+        traceback.print_exc()
+        print e
+        logger.delete() # catch exception to remove logger
+
+    return
 
 def main():
     # declare global variable use
@@ -282,11 +332,11 @@ def main():
 
     # process arguments
     if len(args) is 3:
-        train(int(args[0]), int(args[1]), int(args[2]))
+        train_multi(int(args[0]), int(args[1]), int(args[2]))
     elif len(args) is 2:
-        train(int(args[0]), int(args[1]))
+        train_multi(int(args[0]), int(args[1]))
     elif len(args) is 1:
-        train(int(args[0]))
+        train_multi(int(args[0]))
     else:
         print __doc__
 
