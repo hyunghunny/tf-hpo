@@ -326,7 +326,7 @@ def main():
             sys.exit(0)
     for o, a in opts:
         if o in ("-a", "--all"):
-            train()
+            train_multi()
             sys.exit(0)
 
 
