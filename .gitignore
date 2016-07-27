@@ -90,3 +90,5 @@ ENV/
 
 # nohup log
 src/nohup.out
+
+.tmp/
