@@ -158,9 +158,12 @@ def train_mnist_nn(main_gpu_id, logger, mnist, model_func, conv_1_output, conv_2
         # Initializing the variables
         init = tf.initialize_all_variables()
 
-
+        # GPU setting
+        config = tf.ConfigProto()
+        config.gpu_options.per_process_gpu_memory_fraction = cfg.gpu_memory_fraction
+        
         # Launch the graph
-        with tf.Session() as sess:
+        with tf.Session(config=config) as sess:
             sess.run(init)
             step = 1
 
@@ -186,11 +189,10 @@ def train_mnist_nn(main_gpu_id, logger, mnist, model_func, conv_1_output, conv_2
                                                                       keep_prob: 1.})
                     test_accs = []
                     for i in train_images :
-                        # Calculate accuracy for mnist test images
-                        with tf.device('/cpu:0'):
-                            test_acc = sess.run(accuracy, feed_dict={x: mnist.test.images[:i],
-                                                  y: mnist.test.labels[:i],
-                                                  keep_prob: 1.})
+                        # Calculate accuracy for mnist test images                        
+                        test_acc = sess.run(accuracy, feed_dict={x: mnist.test.images[:i],
+                                              y: mnist.test.labels[:i],
+                                              keep_prob: 1.})
                         test_accs.append(test_acc)
                     logger.measure(tag, step * batch_size, test_accs[0], test_accs[1], test_accs[2])
                     test_accs_list.append(test_accs)
@@ -270,7 +272,7 @@ def train_multi(layer1_out=None, layer2_out=None, fully=None) :
         elif layer2_out is None:
             for j in neurons:
                 for k in neurons:
-                    args_list.append([gpu_id,logger, dataset, conv_net_2, layer1_out, j, k])
+                    args_list.append([gpu_id, logger, dataset, conv_net_2, layer1_out, j, k])
                     gpu_id += 1
         elif fully is None:
             for k in neurons:
