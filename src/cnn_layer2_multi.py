@@ -161,49 +161,53 @@ def train_mnist_nn(main_gpu_id, logger, mnist, model_func, conv_1_output, conv_2
         # GPU setting
         config = tf.ConfigProto()
         config.gpu_options.per_process_gpu_memory_fraction = cfg.gpu_memory_fraction
-        
-        # Launch the graph
-        with tf.Session(config=config) as sess:
-            sess.run(init)
-            step = 1
 
-            # create log writer object
-            #writer = tf.train.SummaryWriter(tb_logs_path, graph=tf.get_default_graph())
+        try:
+            # Launch the graph
+            with tf.Session(config=config) as sess:
+                sess.run(init)
+                step = 1
 
-            logger.setTimer()
-            logger.setLayers(conv_1_output, conv_2_output, fully_output)
+                # create log writer object
+                #writer = tf.train.SummaryWriter(tb_logs_path, graph=tf.get_default_graph())
 
-            test_accs_list = []
-            # Keep training until reach max iterations
-            while step * batch_size < training_iters:
-                batch_x, batch_y = mnist.train.next_batch(batch_size)
-                # Run optimization op (backprop)
+                logger.setTimer()
+                logger.setLayers(conv_1_output, conv_2_output, fully_output)
+
+                test_accs_list = []
+                # Keep training until reach max iterations
+                while step * batch_size < training_iters:
+                    batch_x, batch_y = mnist.train.next_batch(batch_size)
+                    # Run optimization op (backprop)
                 
-                #_, summary = sess.run([optimizer, summary_op], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
-                _ = sess.run([optimizer], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
+                    #_, summary = sess.run([optimizer, summary_op], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
+                    _ = sess.run([optimizer], feed_dict={x: batch_x, y: batch_y, keep_prob: dropout})
 
-                if step % display_step == 0:
-                    # Calculate batch loss and accuracy
-                    loss, acc = sess.run([cost, accuracy], feed_dict={x: batch_x,
-                                                                      y: batch_y,
-                                                                      keep_prob: 1.})
-                    test_accs = []
-                    for i in train_images :
-                        # Calculate accuracy for mnist test images                        
-                        test_acc = sess.run(accuracy, feed_dict={x: mnist.test.images[:i],
-                                              y: mnist.test.labels[:i],
-                                              keep_prob: 1.})
-                        test_accs.append(test_acc)
-                    logger.measure(tag, step * batch_size, test_accs[0], test_accs[1], test_accs[2])
-                    test_accs_list.append(test_accs)
-                step += 1
+                    if step % display_step == 0:
+                        # Calculate batch loss and accuracy
+                        loss, acc = sess.run([cost, accuracy], feed_dict={x: batch_x,
+                                                                          y: batch_y,
+                                                                          keep_prob: 1.})
+                        test_accs = []
+                        for i in train_images :
+                            # Calculate accuracy for mnist test images                        
+                            test_acc = sess.run(accuracy, feed_dict={x: mnist.test.images[:i],
+                                                  y: mnist.test.labels[:i],
+                                                  keep_prob: 1.})
+                            test_accs.append(test_acc)
+                        logger.measure(tag, step * batch_size, test_accs[0], test_accs[1], test_accs[2])
+                        test_accs_list.append(test_accs)
+                    step += 1
 
-                # write log
-                #writer.add_summary(summary, step * batch_size)
+                    # write log
+                    #writer.add_summary(summary, step * batch_size)
 
-            print tag + " test accuracies : " + str(test_accs_list[:1])
+                print tag + " test accuracies : " + str(test_accs_list[:1])
+                sess.close()
+        except:
             sess.close()
-
+            sys.exit(-1)
+            
         return
 
 # Create some wrappers for simplicity
