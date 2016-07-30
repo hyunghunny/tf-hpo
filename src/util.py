@@ -15,7 +15,7 @@ class CSVLogger:
     def __init__(self, path, layers):
         self.path = path
         self.csv_format = '%(asctime)s,%(message)s'
-        self.csv_header = "Tag Name,Iteration,Testing Accuracy(256),Testing Accuracy(512),Testing Accuracy(2048),Elapsed Time"
+        self.csv_header = "Tag Name,Iteration,Testing Accuracy(128),Testing Accuracy(256),Testing Accuracy(512),Elapsed Time"
         emptyLayers = []
         for l in range(layers):
             self.csv_header = self.csv_header + ",L" + str(l+1)

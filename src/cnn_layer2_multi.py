@@ -269,17 +269,17 @@ def train_multi(layer1_out=None, layer2_out=None, fully=None) :
         if layer1_out is None:
             for i in neurons:
                 for j in neurons:
-                    for k in neurons:
+                    for k in [512, 1024]:
                         args_list.append([gpu_id, logger, dataset, conv_net_2, i, j, k])
                         gpu_id += 1
             
         elif layer2_out is None:
             for j in neurons:
-                for k in neurons:
+                for k in [512, 1024]:
                     args_list.append([gpu_id, logger, dataset, conv_net_2, layer1_out, j, k])
                     gpu_id += 1
         elif fully is None:
-            for k in neurons:
+            for k in [512, 1024]:
                 args_list.append([gpu_id, logger, dataset, conv_net_2, layer1_out, layer2_out, k])
                 gpu_id += 1
         else:
