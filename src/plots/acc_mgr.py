@@ -17,7 +17,7 @@ def log_scale(list, base=2):
 
 # read data from csv
 accuracy_table = pd.read_csv("test_accuracy.csv", header=0)
-
+all_logs = pd.read_csv("../../log/all_logs_20160810.csv", header=0) 
 
 def plot_by_fc(iteration, test_data_num, to_log_scale=False):
     """This figure shows the accuracy after iterations when the neurons in conv1, conv2 and fully connected layers varies."""
@@ -29,7 +29,7 @@ def plot_by_fc(iteration, test_data_num, to_log_scale=False):
     
     
     # set figure size
-    fig = plt.figure(num=None, figsize=(16, 14), dpi=80, facecolor='w', edgecolor='k')
+    fig = plt.figure(num=None, figsize=(16, 12), dpi=80, facecolor='w', edgecolor='k')
 
     cov1_neurons = [2, 4, 8, 16, 32, 64, 128]
     
@@ -78,13 +78,19 @@ def plot_by_fc(iteration, test_data_num, to_log_scale=False):
             ax[j].set_xlabel("cov2 size")
             ax[j].set_ylim([0.0, 1.0])
     plt.ylabel("test accuracy")
-    plt.suptitle("Accuracy trends at " + str(iteration) + " iterations with " + str(test_data_num) + " test data")
+    title = "Accuracy trends at " + str(iteration) + " iterations with " + str(test_data_num) + " test data"
+    
+    if to_log_scale is True:
+        title += " (log scale)"
+    
+    plt.suptitle(title)
     plt.legend(loc="best")
     plt.show()
     
     return fig
 
-
+def get_acc():
+    return accuracy_table
 
 
 def get_df_by_iter(iteration, test_data_num):
@@ -113,30 +119,4 @@ def get_df_by_iter(iteration, test_data_num):
     
     return tables
 
-
-def get_df_by_fc(fc_num, test_data_num):
-    """ get accuracy table with a specific condition """
-    # followings are observed conditions
-    observed_iterations = [6400, 12800, 199680]    
-    observed_test_data = [256, 512, 2048, 8092]
-    
-    # observed fully connected layers
-    L3_neurons = [128, 256, 512, 1024] 
-    
-    if not test_data_num in observed_test_data :
-        return [] # return empty array if not observed
-    
-    if not fc_num in L3_neurons :
-        return [] # return empty array if not observed
-    
-    selected_acc_table = accuracy_table[accuracy_table["L3"] == fc_num]
-    
-    tables = []
-
-    for i in observed_iterations:
-        table = selected_acc_table[selected_acc_table["Iteration"] == i]
-        table = table["Testing Accuracy(" + str(test_data_num) +")"]
-        tables.append(table)
-    
-    return tables
 
