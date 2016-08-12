@@ -40,11 +40,12 @@ from util import CSVLogger
 
 # DEFINE FLAGS
 tf.app.flags.DEFINE_boolean("self_test", False, "True if running a self test.")
-tf.app.flags.DEFINE_string("config", "default", "set config file path. default uses internal setting")
-tf.app.flags.DEFINE_integer("filter_size", 5, "set filter size. default is 5")
-tf.app.flags.DEFINE_integer("conv1_depth", 32, "set first conv layer depth. default is 32.")
-tf.app.flags.DEFINE_integer("conv2_depth", 64, "set second conv layer depth. default is 64.")
-tf.app.flags.DEFINE_integer("fc_depth", 512, "set fully connected layer depth. default is 512.")
+tf.app.flags.DEFINE_boolean("log", False, "True if logging test accuracy.")
+tf.app.flags.DEFINE_string("config", "default", "Set config file path. default if uses internal setting")
+tf.app.flags.DEFINE_integer("filter_size", 5, "Set filter size. default is 5")
+tf.app.flags.DEFINE_integer("conv1_depth", 32, "Set first conv layer depth. default is 32.")
+tf.app.flags.DEFINE_integer("conv2_depth", 64, "Set second conv layer depth. default is 64.")
+tf.app.flags.DEFINE_integer("fc_depth", 512, "Set fully connected layer depth. default is 512.")
 
 FLAGS = tf.app.flags.FLAGS
 
@@ -85,7 +86,7 @@ def reset_consts(cfg):
     NUM_EPOCHS = cfg.NUM_EPOCHS
     EVAL_BATCH_SIZE = cfg.EVAL_BATCH_SIZE
     EVAL_FREQUENCY = cfg.EVAL_FREQUENCY
-    
+        
 
 # initialize tensorflow variables which are required to learning
 def init_vars(filter_size, conv1_depth, conv2_depth, fc_depth):
@@ -211,6 +212,7 @@ def main(argv=None):    # pylint: disable=unused-argument
         train_labels = train_labels[VALIDATION_SIZE:]
         num_epochs = NUM_EPOCHS
     
+    
     # reset the constants if configuration file declared
     if FLAGS.config is "default" :
         print("Using the builtin configuration")
@@ -221,7 +223,12 @@ def main(argv=None):    # pylint: disable=unused-argument
             reset_consts(cfg)
         except:
             print("Config file not found")
-        
+ 
+        if FLAGS.log:
+            print("logging test accuarcy")
+            logger = CSVLogger(cfg.log_path)
+            logger.create(3, 1) # create log with 3 layers and 1 test accuracy
+
     train_size = train_labels.shape[0]
 
     # This is where training samples and labels are fed to the graph.
@@ -274,21 +281,24 @@ def main(argv=None):    # pylint: disable=unused-argument
     # Saves memory and enables this to run on smaller GPUs.
     def eval_in_batches(data, sess):
         """Get all predictions for a dataset by running it in small batches."""
-        size = data.shape[0]
-        if size < EVAL_BATCH_SIZE:
-            raise ValueError("batch size for evals larger than dataset: %d" % size)
-        predictions = numpy.ndarray(shape=(size, NUM_LABELS), dtype=numpy.float32)
-        for begin in xrange(0, size, EVAL_BATCH_SIZE):
-            end = begin + EVAL_BATCH_SIZE
-            if end <= size:
-                predictions[begin:end, :] = sess.run(
+        with tf.device(cfg.eval_device_id):
+            size = data.shape[0]
+            if size < EVAL_BATCH_SIZE:
+                raise ValueError("batch size for evals larger than dataset: %d" % size)
+            predictions = numpy.ndarray(shape=(size, NUM_LABELS), dtype=numpy.float32)
+            for begin in xrange(0, size, EVAL_BATCH_SIZE):
+                end = begin + EVAL_BATCH_SIZE
+                if end <= size:
+                    predictions[begin:end, :] = sess.run(
                         eval_prediction,
                         feed_dict={eval_data: data[begin:end, ...]})
-            else:
-                batch_predictions = sess.run(
+                else:
+                
+                    batch_predictions = sess.run(
                         eval_prediction,
                         feed_dict={eval_data: data[-EVAL_BATCH_SIZE:, ...]})
-                predictions[begin:, :] = batch_predictions[begin - size:, :]
+                    predictions[begin:, :] = batch_predictions[begin - size:, :]
+        
         return predictions    
     
     # Create a local session to run the training.
@@ -297,21 +307,31 @@ def main(argv=None):    # pylint: disable=unused-argument
         # Run all the initializers to prepare the trainable parameters.
         tf.initialize_all_variables().run()
         print('Initialized!')
+        
         # Loop through training steps.
         for step in xrange(int(num_epochs * train_size) // BATCH_SIZE):
+            
+            if FLAGS.log:
+                logger.setTimer()
+                logger.setLayers(FLAGS.conv1_depth, FLAGS.conv2_depth, FLAGS.fc_depth)
+            
             # Compute the offset of the current minibatch in the data.
             # Note that we could use better randomization across epochs.
             offset = (step * BATCH_SIZE) % (train_size - BATCH_SIZE)
             batch_data = train_data[offset:(offset + BATCH_SIZE), ...]
             batch_labels = train_labels[offset:(offset + BATCH_SIZE)]
+            
             # This dictionary maps the batch data (as a numpy array) to the
             # node in the graph it should be fed to.
             feed_dict = {train_data_node: batch_data,
                                      train_labels_node: batch_labels}
-            # Run the graph and fetch some of the nodes.
-            _, l, lr, predictions = sess.run(
+            
+            with tf.device(cfg.train_device_id):
+                # Run the graph and fetch some of the nodes.
+                _, l, lr, predictions = sess.run(
                     [optimizer, loss, learning_rate, train_prediction],
                     feed_dict=feed_dict)
+            
             if step % EVAL_FREQUENCY == 0:
                 elapsed_time = time.time() - start_time
                 start_time = time.time()
@@ -323,9 +343,18 @@ def main(argv=None):    # pylint: disable=unused-argument
                 print('Validation error: %.1f%%' % error_rate(
                         eval_in_batches(validation_data, sess), validation_labels))
                 sys.stdout.flush()
+                
+                if FLAGS.log:
+                    # log test accuracy 
+                    test_accuracy = 1.0 - error_rate(eval_in_batches(test_data, sess), test_labels)
+                    tag = FLAGS.filter_size + "_" + FLAGS.conv1_depth + "_" + FLAGS.conv2_depth + "_" + FLAGS.fc_depth
+                    logger.measure(tag, step, test_accuracy)
+                
+        
         # Finally print the result!
         test_error = error_rate(eval_in_batches(test_data, sess), test_labels)
         print('Test error: %.1f%%' % test_error)
+        
         if FLAGS.self_test:
             print('test_error', test_error)
             assert test_error == 0.0, 'expected 0.0 test_error, got %.2f' % (

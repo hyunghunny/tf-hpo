@@ -33,7 +33,8 @@ class CSVLogger:
             self.csv_header = self.csv_header + ",L" + str(l+1)
             emptyLayers.append("NA")
        
-        self.setLayers(*emptyLayers)        
+        self.setLayers(*emptyLayers)
+        
         # Create logger instance
         logger = logging.getLogger('tflogger')
 
@@ -84,7 +85,16 @@ class CSVLogger:
             "{0:.3g}".format(timegap) + self.tails
         self.logger.debug(msg)
         self.setTimer() # reset timer
-      
+
+    def measure(self, tag, step, acc):
+        timegap = time.time() - self.timestamp
+        msg = tag +"," + str(step) + "," + \
+            "{:.6f}".format(acc1) + "," + \            
+            "{0:.3g}".format(timegap) + self.tails
+        self.logger.debug(msg)
+        self.setTimer() # reset timer
+        
+        
     def comment(self, msg):
         """ add comment message into log """
         self.logger.info("# " + msg);
