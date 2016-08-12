@@ -89,7 +89,7 @@ class CSVLogger:
     def measure(self, tag, step, acc):
         timegap = time.time() - self.timestamp
         msg = tag +"," + str(step) + "," + \
-            "{:.6f}".format(acc1) + "," + \            
+            "{:.6f}".format(acc1) + "," + \
             "{0:.3g}".format(timegap) + self.tails
         self.logger.debug(msg)
         self.setTimer() # reset timer
