@@ -264,7 +264,8 @@ def train_multi(layer1_out=None, layer2_out=None, fully=None) :
         dataset = get_mnist();
 
         # create logger
-        logger = CSVLogger(log_path, 3)
+        logger = CSVLogger(log_path)
+        logger.create(3)
         gpu_id = 0
         args_list = []
         if layer1_out is None:
