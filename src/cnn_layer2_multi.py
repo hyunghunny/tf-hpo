@@ -230,7 +230,7 @@ def train(layer1_out=None, layer2_out=None, fully=None) :
 
         # create logger
         logger = CSVLogger(log_path)
-        logger.create(3)
+        logger.create(3, 3)
         gpu_id = 1
         if layer1_out is None:
             for i in neurons:
@@ -265,7 +265,7 @@ def train_multi(layer1_out=None, layer2_out=None, fully=None) :
 
         # create logger
         logger = CSVLogger(log_path)
-        logger.create(3)
+        logger.create(3, 3)
         gpu_id = 0
         args_list = []
         if layer1_out is None:
