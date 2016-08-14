@@ -64,6 +64,9 @@ NUM_EPOCHS = 10
 EVAL_BATCH_SIZE = 64
 EVAL_FREQUENCY = 100    # Number of steps between evaluations.
 
+TRAIN_DEVICE_ID = "gpu:0"
+EVAL_DEVICE_ID ="gpu:1"
+
 
 # reset constants from configuration
 def reset_consts(cfg):
@@ -76,6 +79,8 @@ def reset_consts(cfg):
     global NUM_EPOCHS
     global EVAL_BATCH_SIZE
     global EVAL_FREQUENCY
+    global TRAIN_DEVICE_ID
+    global EVAL_DEVICE_ID
 
     VAR_INIT_VALUE = cfg.VAR_INIT_VALUE
     DROPOUT_RATE = cfg.DROPOUT_RATE
@@ -85,7 +90,8 @@ def reset_consts(cfg):
     NUM_EPOCHS = cfg.NUM_EPOCHS
     EVAL_BATCH_SIZE = cfg.EVAL_BATCH_SIZE
     EVAL_FREQUENCY = cfg.EVAL_FREQUENCY
-        
+    TRAIN_DEVICE_ID = cfg.train_device_id
+    EVAL_DEVICE_ID = cfg.eval_device_id    
 
 # initialize tensorflow variables which are required to learning
 def init_vars(filter_size, conv1_depth, conv2_depth, fc_depth):
@@ -280,7 +286,7 @@ def main(argv=None):    # pylint: disable=unused-argument
     # Saves memory and enables this to run on smaller GPUs.
     def eval_in_batches(data, sess):
         """Get all predictions for a dataset by running it in small batches."""
-        with tf.device(cfg.eval_device_id):
+        with tf.device(EVAL_DEVICE_ID):
             size = data.shape[0]
             if size < EVAL_BATCH_SIZE:
                 raise ValueError("batch size for evals larger than dataset: %d" % size)
@@ -325,7 +331,7 @@ def main(argv=None):    # pylint: disable=unused-argument
             feed_dict = {train_data_node: batch_data,
                                      train_labels_node: batch_labels}
             
-            with tf.device(cfg.train_device_id):
+            with tf.device(TRAIN_DEVICE_ID):
                 # Run the graph and fetch some of the nodes.
                 _, l, lr, predictions = sess.run(
                     [optimizer, loss, learning_rate, train_prediction],
