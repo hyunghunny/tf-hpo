@@ -39,7 +39,7 @@ from util import CSVLogger
 
 # DEFINE FLAGS
 tf.app.flags.DEFINE_boolean("self_test", False, "True if running a self test.")
-tf.app.flags.DEFINE_boolean("log", False, "True if logging test accuracy.")
+tf.app.flags.DEFINE_boolean("log", True, "True if logging test accuracy.")
 tf.app.flags.DEFINE_string("config", "default", "Set config file path. default if uses internal setting")
 tf.app.flags.DEFINE_integer("filter_size", 5, "Set filter size. default is 5")
 tf.app.flags.DEFINE_integer("conv1_depth", 32, "Set first conv layer depth. default is 32.")
@@ -66,7 +66,7 @@ EVAL_FREQUENCY = 100    # Number of steps between evaluations.
 
 TRAIN_DEVICE_ID = "gpu:0"
 EVAL_DEVICE_ID ="gpu:1"
-
+LOG_PATH = "test.log"
 
 # reset constants from configuration
 def reset_consts(cfg):
@@ -81,6 +81,7 @@ def reset_consts(cfg):
     global EVAL_FREQUENCY
     global TRAIN_DEVICE_ID
     global EVAL_DEVICE_ID
+    global LOG_PATH
 
     VAR_INIT_VALUE = cfg.VAR_INIT_VALUE
     DROPOUT_RATE = cfg.DROPOUT_RATE
@@ -91,7 +92,8 @@ def reset_consts(cfg):
     EVAL_BATCH_SIZE = cfg.EVAL_BATCH_SIZE
     EVAL_FREQUENCY = cfg.EVAL_FREQUENCY
     TRAIN_DEVICE_ID = cfg.train_device_id
-    EVAL_DEVICE_ID = cfg.eval_device_id    
+    EVAL_DEVICE_ID = cfg.eval_device_id
+    LOG_PATH = cfg.log_path
 
 # initialize tensorflow variables which are required to learning
 def init_vars(filter_size, conv1_depth, conv2_depth, fc_depth):
@@ -113,7 +115,7 @@ def init_vars(filter_size, conv1_depth, conv2_depth, fc_depth):
     
     fc1_weights = tf.Variable(    # fully connected
             tf.truncated_normal(
-                    [IMAGE_SIZE // 4 * IMAGE_SIZE // 4 * 64, fc_depth],
+                    [IMAGE_SIZE // 4 * IMAGE_SIZE // 4 * conv2_depth, fc_depth],
                     stddev=VAR_INIT_VALUE,
                     seed=SEED))
     
@@ -227,13 +229,13 @@ def main(argv=None):    # pylint: disable=unused-argument
             print("Using settings in " + FLAGS.config) 
             reset_consts(cfg)
         except:
-            print("Config file not found")
+            print("Config file not found: " + FLAGS.config)
+    
+    if FLAGS.log:
+        print("logging test accuarcy")
+        logger = CSVLogger(LOG_PATH)
+        logger.create(3, 1) # create log with 3 layers and 1 test accuracy
  
-        if FLAGS.log:
-            print("logging test accuarcy")
-            logger = CSVLogger(cfg.log_path)
-            logger.create(3, 1) # create log with 3 layers and 1 test accuracy
-
     train_size = train_labels.shape[0]
 
     # This is where training samples and labels are fed to the graph.
@@ -351,8 +353,9 @@ def main(argv=None):    # pylint: disable=unused-argument
                 
                 if FLAGS.log:
                     # log test accuracy 
-                    test_accuracy = 1.0 - error_rate(eval_in_batches(test_data, sess), test_labels)
-                    tag = FLAGS.filter_size + "_" + FLAGS.conv1_depth + "_" + FLAGS.conv2_depth + "_" + FLAGS.fc_depth
+                    test_accuracy = 100.0 - error_rate(eval_in_batches(test_data, sess), test_labels)
+                    tag = str(FLAGS.filter_size) + "_" + str(FLAGS.conv1_depth) + \
+                        "_" + str(FLAGS.conv2_depth) + "_" + str(FLAGS.fc_depth)
                     logger.measure(tag, step, test_accuracy)
                 
         
