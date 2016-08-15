@@ -23,7 +23,7 @@ class CSVLogger:
     def create(self, layers, accs):
         
         self.csv_format = '%(asctime)s,%(message)s'
-        self.csv_header = "Tag Name,Iteration"
+        self.csv_header = "Tag Name,Step"
         for a in range(accs):
             self.csv_header = self.csv_header + ",Accuarcy"+str(a+1)
         self.csv_header = self.csv_header + ",Elapsed Time"    
@@ -77,24 +77,20 @@ class CSVLogger:
             tails += "," + str(l)
         self.tails = tails
         
-    def measure(self, tag, iteration, acc1, acc2, acc3):
+    def measure(self, tag, step, acc1, acc2, acc3):
         timegap = time.time() - self.timestamp
-        msg = tag +"," + str(iteration) + "," + \
-            "{:.6f}".format(acc1) + "," + \
-            "{:.5f}".format(acc2) + "," + "{:.5f}".format(acc3) + "," + \
+        msg = tag +"," + str(step) + "," + \
+            "{:.3f}".format(acc1) + "," + \
+            "{:.3f}".format(acc2) + "," + "{:.3f}".format(acc3) + "," + \
             "{0:.3g}".format(timegap) + self.tails
         self.logger.debug(msg)
         self.setTimer() # reset timer
-
+"""
     def measure(self, tag, step, acc):
         timegap = time.time() - self.timestamp
         msg = tag +"," + str(step) + "," + \
-            "{:.6f}".format(acc) + "," + \
+            "{:.3f}".format(acc) + "," + \
             "{0:.3g}".format(timegap) + self.tails
         self.logger.debug(msg)
         self.setTimer() # reset timer
-        
-        
-    def comment(self, msg):
-        """ add comment message into log """
-        self.logger.info("# " + msg);
+"""        

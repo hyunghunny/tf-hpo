@@ -16,6 +16,9 @@ NUM_CHANNELS = 1
 PIXEL_DEPTH = 255
 NUM_LABELS = 10
 
+NUM_TRAIN_DATA = 60000
+NUM_TEST_DATA = 10000
+
 # DATA DOWNLOADER
 def maybe_download(filename):
     """Download the data from Yann's website, unless it's already here."""
@@ -35,7 +38,7 @@ def extract_data(filename, num_images):
 
     Values are rescaled from [0, 255] down to [-0.5, 0.5].
     """
-    print('Extracting', filename)
+    #print('Extracting', filename)
     with gzip.open(filename) as bytestream:
         bytestream.read(16)
         buf = bytestream.read(IMAGE_SIZE * IMAGE_SIZE * num_images)
@@ -47,7 +50,7 @@ def extract_data(filename, num_images):
 
 def extract_labels(filename, num_images):
     """Extract the labels into a vector of int64 label IDs."""
-    print('Extracting', filename)
+    #print('Extracting', filename)
     with gzip.open(filename) as bytestream:
         bytestream.read(8)
         buf = bytestream.read(1 * num_images)

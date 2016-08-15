@@ -26,6 +26,7 @@ from __future__ import print_function
 
 import sys
 import time
+import traceback
 
 import numpy
 from six.moves import urllib
@@ -38,15 +39,26 @@ from config import Config
 from util import CSVLogger
 
 # DEFINE FLAGS
-tf.app.flags.DEFINE_boolean("self_test", False, "True if running a self test.")
-tf.app.flags.DEFINE_boolean("log", True, "True if logging test accuracy.")
-tf.app.flags.DEFINE_string("config", "default", "Set config file path. default if uses internal setting")
-tf.app.flags.DEFINE_integer("filter_size", 5, "Set filter size. default is 5")
-tf.app.flags.DEFINE_integer("conv1_depth", 32, "Set first conv layer depth. default is 32.")
-tf.app.flags.DEFINE_integer("conv2_depth", 64, "Set second conv layer depth. default is 64.")
-tf.app.flags.DEFINE_integer("fc_depth", 512, "Set fully connected layer depth. default is 512.")
+def define_flags():
+    tf.app.flags.DEFINE_boolean("self_test", False, "True if running a self test.")
+    tf.app.flags.DEFINE_boolean("log_only", True, "True if logging test accuracy only.")    
+    tf.app.flags.DEFINE_string("config", "default", "Set config file path. default if uses internal setting")
+    
+    tf.app.flags.DEFINE_integer("filter_size", 5, "Set filter size. default is 5")
+    tf.app.flags.DEFINE_integer("conv1_depth", 32, "Set first conv layer depth. default is 32.")
+    tf.app.flags.DEFINE_integer("conv2_depth", 64, "Set second conv layer depth. default is 64.")
+    tf.app.flags.DEFINE_integer("fc_depth", 512, "Set fully connected layer depth. default is 512.")
 
+    tf.app.flags.DEFINE_boolean("define_done", True, "True if the flag configuration is done properly. DO NOT set this manually.")        
+        
 FLAGS = tf.app.flags.FLAGS
+
+# check the flags have been configured
+try :
+    if FLAGS.define_done is False:
+        define_flags()
+except:    
+    define_flags() # done is not set yet
 
 # DEFINE CONSTANTS
 IMAGE_SIZE = mnist.IMAGE_SIZE
@@ -66,7 +78,7 @@ EVAL_FREQUENCY = 100    # Number of steps between evaluations.
 
 TRAIN_DEVICE_ID = "gpu:0"
 EVAL_DEVICE_ID ="gpu:1"
-LOG_PATH = "test.log"
+LOG_PATH = "test2.log"
 
 # reset constants from configuration
 def reset_consts(cfg):
@@ -207,10 +219,10 @@ def main(argv=None):    # pylint: disable=unused-argument
         test_labels_filename = mnist.maybe_download('t10k-labels-idx1-ubyte.gz')
 
         # Extract it into numpy arrays.
-        train_data = mnist.extract_data(train_data_filename, 60000)
-        train_labels = mnist.extract_labels(train_labels_filename, 60000)
-        test_data = mnist.extract_data(test_data_filename, 10000)
-        test_labels = mnist.extract_labels(test_labels_filename, 10000)
+        train_data = mnist.extract_data(train_data_filename, mnist.NUM_TRAIN_DATA)
+        train_labels = mnist.extract_labels(train_labels_filename, mnist.NUM_TRAIN_DATA)
+        test_data = mnist.extract_data(test_data_filename, mnist.NUM_TEST_DATA)
+        test_labels = mnist.extract_labels(test_labels_filename, mnist.NUM_TEST_DATA)
 
         # Generate a validation set.
         validation_data = train_data[:VALIDATION_SIZE, ...]
@@ -224,17 +236,18 @@ def main(argv=None):    # pylint: disable=unused-argument
     if FLAGS.config is "default" :
         print("Using the builtin configuration")
     else:
-        try:
+        try: 
             cfg = Config(file(FLAGS.config))
             print("Using settings in " + FLAGS.config) 
             reset_consts(cfg)
         except:
-            print("Config file not found: " + FLAGS.config)
+            print("Invalid config file: " + FLAGS.config)
+            traceback.print_exc()
     
-    if FLAGS.log:
-        print("logging test accuarcy")
+    if FLAGS.log_only:
+        print("Logging test accuracy at " + LOG_PATH)
         logger = CSVLogger(LOG_PATH)
-        logger.create(3, 1) # create log with 3 layers and 1 test accuracy
+        logger.create(3, 3) # create log with 3 layers and mninbatch, validation, test accuracy        
  
     train_size = train_labels.shape[0]
 
@@ -313,12 +326,12 @@ def main(argv=None):    # pylint: disable=unused-argument
     with tf.Session() as sess:
         # Run all the initializers to prepare the trainable parameters.
         tf.initialize_all_variables().run()
-        print('Initialized!')
+        print_out('Initialized!')
         
         # Loop through training steps.
         for step in xrange(int(num_epochs * train_size) // BATCH_SIZE):
             
-            if FLAGS.log:
+            if FLAGS.log_only:
                 logger.setTimer()
                 logger.setLayers(FLAGS.conv1_depth, FLAGS.conv2_depth, FLAGS.fc_depth)
             
@@ -342,29 +355,31 @@ def main(argv=None):    # pylint: disable=unused-argument
             if step % EVAL_FREQUENCY == 0:
                 elapsed_time = time.time() - start_time
                 start_time = time.time()
-                print('Step %d (epoch %.2f), %.1f ms' %
+                print_out('Step %d (epoch %.2f), %.1f ms' %
                             (step, float(step) * BATCH_SIZE / train_size,
                              1000 * elapsed_time / EVAL_FREQUENCY))
-                print('Minibatch loss: %.3f, learning rate: %.6f' % (l, lr))
-                print('Minibatch error: %.1f%%' % error_rate(predictions, batch_labels))
-                print('Validation error: %.1f%%' % error_rate(
-                        eval_in_batches(validation_data, sess), validation_labels))
+                print_out('Minibatch loss: %.3f, learning rate: %.6f' % (l, lr))
+                minibatch_err = error_rate(predictions, batch_labels)
+                print_out('Minibatch error: %.1f%%' % minibatch_err)
+                validation_err = error_rate(eval_in_batches(validation_data, sess), validation_labels)
+                print_out('Validation error: %.1f%%' % validation_err)
                 sys.stdout.flush()
                 
-                if FLAGS.log:
+                if FLAGS.log_only:
                     # log test accuracy 
                     test_accuracy = 100.0 - error_rate(eval_in_batches(test_data, sess), test_labels)
                     tag = str(FLAGS.filter_size) + "_" + str(FLAGS.conv1_depth) + \
                         "_" + str(FLAGS.conv2_depth) + "_" + str(FLAGS.fc_depth)
-                    logger.measure(tag, step, test_accuracy)
+                    logger.measure(tag, step, (100.0 - minibatch_err), (100.0 - validation_err), test_accuracy)
                 
         
-        # Finally print the result!
-        test_error = error_rate(eval_in_batches(test_data, sess), test_labels)
-        print('Test error: %.1f%%' % test_error)
+        if FLAGS.log_only is False:
+            # Finally print the result!
+            test_error = error_rate(eval_in_batches(test_data, sess), test_labels)
+            print_out('Test error: %.1f%%' % test_error)
         
         if FLAGS.self_test:
-            print('test_error', test_error)
+            print_out('test_error', test_error)
             assert test_error == 0.0, 'expected 0.0 test_error, got %.2f' % (
                     test_error,)     
             
@@ -376,6 +391,9 @@ def error_rate(predictions, labels):
             numpy.sum(numpy.argmax(predictions, 1) == labels) /
             predictions.shape[0])
 
+def print_out(*args):
+    if FLAGS.log_only is False:
+        print(args)
             
 if __name__ == '__main__':
     tf.app.run()
