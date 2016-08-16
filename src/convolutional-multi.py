@@ -49,6 +49,7 @@ def define_flags():
     tf.app.flags.DEFINE_integer("conv2_depth", 64, "Set second conv layer depth. default is 64.")
     tf.app.flags.DEFINE_integer("fc_depth", 512, "Set fully connected layer depth. default is 512.")
 
+    tf.app.flags.DEFINE_boolean("grid_seq", False, "True if run a grid search sequentially.")
     tf.app.flags.DEFINE_boolean("define_done", True, "True if the flag configuration is done properly. DO NOT set this manually.")        
         
 FLAGS = tf.app.flags.FLAGS
@@ -204,53 +205,23 @@ def model(vars, data, train=False):
     
     return tf.matmul(hidden, vars["fc2_weights"]) + vars["fc2_biases"]
 
-            
-def main(argv=None):    # pylint: disable=unused-argument
-    if FLAGS.self_test:
-        print('Running self-test.')
-        train_data, train_labels = mnist.fake_data(256)
-        validation_data, validation_labels = mnist.fake_data(EVAL_BATCH_SIZE)
-        test_data, test_labels = mnist.fake_data(EVAL_BATCH_SIZE)
-        num_epochs = 1
-    else:
-        # Get the data.
-        train_data_filename = mnist.maybe_download('train-images-idx3-ubyte.gz')
-        train_labels_filename = mnist.maybe_download('train-labels-idx1-ubyte.gz')
-        test_data_filename = mnist.maybe_download('t10k-images-idx3-ubyte.gz')
-        test_labels_filename = mnist.maybe_download('t10k-labels-idx1-ubyte.gz')
 
-        # Extract it into numpy arrays.
-        train_data = mnist.extract_data(train_data_filename, mnist.NUM_TRAIN_DATA)
-        train_labels = mnist.extract_labels(train_labels_filename, mnist.NUM_TRAIN_DATA)
-        test_data = mnist.extract_data(test_data_filename, mnist.NUM_TEST_DATA)
-        test_labels = mnist.extract_labels(test_labels_filename, mnist.NUM_TEST_DATA)
+    
+def train_mnist(dataset, flags):    
 
-        # Generate a validation set.
-        validation_data = train_data[:VALIDATION_SIZE, ...]
-        validation_labels = train_labels[:VALIDATION_SIZE]
-        train_data = train_data[VALIDATION_SIZE:, ...]
-        train_labels = train_labels[VALIDATION_SIZE:]
-        num_epochs = NUM_EPOCHS
+    train_data = dataset["train_data"]
+    train_labels = dataset["train_labels"]
+    validation_data = dataset["validation_data"]
+    validation_labels = dataset["validation_labels"]
+    test_data = dataset["test_data"]
+    test_labels = dataset["test_labels"]
+        
+    num_epochs = dataset["num_epochs"]
     
-    
-    # reset the constants if configuration file declared
-    if FLAGS.config is "default" :
-        print("Using the builtin configuration")
-    else:
-        try: 
-            cfg = Config(file(FLAGS.config))
-            #print("Using settings in " + FLAGS.config) 
-            reset_consts(cfg)
-        except:
-            print("Invalid config file: " + FLAGS.config)
-            traceback.print_exc()
-    
-    if FLAGS.log_only:
+    if flags.log_only:
         print("Logging test accuracy at " + LOG_PATH)
         logger = CSVLogger(LOG_PATH)
         logger.create(3, 3) # create log with 3 layers and mninbatch, validation, test accuracy        
- 
-    
 
     # Small utility function to evaluate a dataset by feeding batches of data to
     # {eval_data} and pulling the results from {eval_predictions}.
@@ -293,7 +264,7 @@ def main(argv=None):    # pylint: disable=unused-argument
 
 
         # Initialize required variables
-        vars = init_vars(FLAGS.filter_size, FLAGS.conv1_depth, FLAGS.conv2_depth, FLAGS.fc_depth)
+        vars = init_vars(flags.filter_size, flags.conv1_depth, flags.conv2_depth, flags.fc_depth)
     
         # Training computation: logits + cross-entropy loss.
         logits = model(vars, train_data_node, True)
@@ -320,18 +291,20 @@ def main(argv=None):    # pylint: disable=unused-argument
     # Use simple momentum for the optimization.
     optimizer = tf.train.MomentumOptimizer(learning_rate, 0.9).minimize(loss, global_step=batch)
 
-    #with tf.device(TRAIN_DEVICE_ID): 
-    # Predictions for the current training minibatch.
-    train_prediction = tf.nn.softmax(logits)
+    with tf.device(TRAIN_DEVICE_ID): 
+        # Predictions for the current training minibatch.
+        train_prediction = tf.nn.softmax(logits)
 
-    #with tf.device(EVAL_DEVICE_ID): 
-    # Predictions for the test and validation, which we'll compute less often.
-    eval_prediction = tf.nn.softmax(model(vars, eval_data))
+    with tf.device(EVAL_DEVICE_ID): 
+        # Predictions for the test and validation, which we'll compute less often.
+        eval_prediction = tf.nn.softmax(model(vars, eval_data))
 
     # Create a local session to run the training.
-    start_time = time.time()    
-    with tf.Session(config=tf.ConfigProto(
-      allow_soft_placement=True, log_device_placement=True)) as sess:
+    start_time = time.time()
+    config = tf.ConfigProto(allow_soft_placement=True, log_device_placement=True)
+    config.gpu_options.per_process_gpu_memory_fraction = cfg.gpu_memory_fraction
+    
+    with tf.Session(config = config) as sess:
         # Run all the initializers to prepare the trainable parameters.
         init = tf.initialize_all_variables()
         sess.run(init)
@@ -340,9 +313,9 @@ def main(argv=None):    # pylint: disable=unused-argument
         # Loop through training steps.
         for step in xrange(int(num_epochs * train_size) // BATCH_SIZE):
             
-            if FLAGS.log_only:
+            if flags.log_only:
                 logger.setTimer()
-                logger.setLayers(FLAGS.conv1_depth, FLAGS.conv2_depth, FLAGS.fc_depth)
+                logger.setLayers(flags.conv1_depth, flags.conv2_depth, flags.fc_depth)
             
             # Compute the offset of the current minibatch in the data.
             # Note that we could use better randomization across epochs.
@@ -375,23 +348,25 @@ def main(argv=None):    # pylint: disable=unused-argument
                     print_out('Validation error: %.1f%%' % validation_err)
                     sys.stdout.flush()
                 
-                    if FLAGS.log_only:
+                    if flags.log_only:
                         # log test accuracy 
                         test_accuracy = 100.0 - error_rate(eval_in_batches(test_data, sess), test_labels)
-                        tag = str(FLAGS.filter_size) + "_" + str(FLAGS.conv1_depth) + \
-                            "_" + str(FLAGS.conv2_depth) + "_" + str(FLAGS.fc_depth)
+                        tag = str(flags.filter_size) + "_" + str(flags.conv1_depth) + \
+                            "_" + str(flags.conv2_depth) + "_" + str(flags.fc_depth)
                         logger.measure(tag, step, (100.0 - minibatch_err), (100.0 - validation_err), test_accuracy)
               
         
-        if FLAGS.log_only is False:
+        if flags.log_only is False:
             # Finally print the result!
             test_error = error_rate(eval_in_batches(test_data, sess), test_labels)
             print_out('Test error: %.1f%%' % test_error)
         
-        if FLAGS.self_test:
+        if flags.self_test:
             print_out('test_error', test_error)
             assert test_error == 0.0, 'expected 0.0 test_error, got %.2f' % (
-                    test_error,) 
+                    test_error,)
+        
+        sess.close()
             
 
 def error_rate(predictions, labels):
@@ -404,6 +379,75 @@ def error_rate(predictions, labels):
 def print_out(*args):
     if FLAGS.log_only is False:
         print(args)
-            
+
+def main(argv=None):    # pylint: disable=unused-argument
+    if FLAGS.self_test:
+        print('Running self-test.')
+        train_data, train_labels = mnist.fake_data(256)
+        validation_data, validation_labels = mnist.fake_data(EVAL_BATCH_SIZE)
+        test_data, test_labels = mnist.fake_data(EVAL_BATCH_SIZE)
+        num_epochs = 1
+    else:
+        # Get the data.
+        train_data_filename = mnist.maybe_download('train-images-idx3-ubyte.gz')
+        train_labels_filename = mnist.maybe_download('train-labels-idx1-ubyte.gz')
+        test_data_filename = mnist.maybe_download('t10k-images-idx3-ubyte.gz')
+        test_labels_filename = mnist.maybe_download('t10k-labels-idx1-ubyte.gz')
+
+        # Extract it into numpy arrays.
+        train_data = mnist.extract_data(train_data_filename, mnist.NUM_TRAIN_DATA)
+        train_labels = mnist.extract_labels(train_labels_filename, mnist.NUM_TRAIN_DATA)
+        test_data = mnist.extract_data(test_data_filename, mnist.NUM_TEST_DATA)
+        test_labels = mnist.extract_labels(test_labels_filename, mnist.NUM_TEST_DATA)
+
+        # Generate a validation set.
+        validation_data = train_data[:VALIDATION_SIZE, ...]
+        validation_labels = train_labels[:VALIDATION_SIZE]
+        train_data = train_data[VALIDATION_SIZE:, ...]
+        train_labels = train_labels[VALIDATION_SIZE:]
+        num_epochs = NUM_EPOCHS
+ 
+    dataset = {
+        "train_data" : train_data,
+        "train_labels" : train_labels,
+        "validation_data" : validation_data,
+        "validation_labels" : validation_labels,
+        "test_data" : test_data,
+        "test_labels" : test_labels,
+        "num_epochs" : num_epochs
+        }
+    
+    # reset the constants if configuration file declared
+    if FLAGS.config is "default" :
+        print("Using the builtin configuration")
+    else:
+        try: 
+            cfg = Config(file(FLAGS.config))
+            #print("Using settings in " + FLAGS.config) 
+            reset_consts(cfg)
+        except:
+            print("Invalid config file: " + FLAGS.config)
+            traceback.print_exc()
+
+    flags = FLAGS
+    
+    if FLAGS.grid_seq :
+        for f in cfg.filter_sizes:
+            flags.filter_size = f
+            for i in cfg.conv1_depths:
+                flags.conv1_depth = i
+                for j in cfg.conv2_depths:
+                    flags.conv2_depth = j
+                    for k in cfg.fc_depths:
+                        flags.fc_depth = k
+                        print("training with: " + str(f) + ", " + str(i) + ", " + str(j) + ", " + str(k))
+                        try:
+                            train_mnist(dataset, flags)
+                        except:
+                            traceback.print_exc()
+    else:
+        train_mnist(dataset, flags)
+        
+        
 if __name__ == '__main__':
     tf.app.run()
