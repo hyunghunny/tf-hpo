@@ -228,27 +228,27 @@ def train_mnist(dataset, flags):
     # Saves memory and enables this to run on smaller GPUs.
     def eval_in_batches(data, sess):
         """Get all predictions for a dataset by running it in small batches."""
-        size = data.shape[0]
-        if size < EVAL_BATCH_SIZE:
-            raise ValueError("batch size for evals larger than dataset: %d" % size)
-        predictions = numpy.ndarray(shape=(size, NUM_LABELS), dtype=numpy.float32)
-        for begin in xrange(0, size, EVAL_BATCH_SIZE):
-            end = begin + EVAL_BATCH_SIZE
-            if end <= size:
-                predictions[begin:end, :] = sess.run(
-                    eval_prediction,
-                    feed_dict={eval_data: data[begin:end, ...]})
-            else:
-                batch_predictions = sess.run(
-                   eval_prediction,
-                   feed_dict={eval_data: data[-EVAL_BATCH_SIZE:, ...]})
-                predictions[begin:, :] = batch_predictions[begin - size:, :]
+        with tf.device(EVAL_DEVICE_ID):
+            size = data.shape[0]
+            if size < EVAL_BATCH_SIZE:
+                raise ValueError("batch size for evals larger than dataset: %d" % size)
+            predictions = numpy.ndarray(shape=(size, NUM_LABELS), dtype=numpy.float32)
+            for begin in xrange(0, size, EVAL_BATCH_SIZE):
+                end = begin + EVAL_BATCH_SIZE
+                if end <= size:
+                    predictions[begin:end, :] = sess.run(
+                        eval_prediction,
+                        feed_dict={eval_data: data[begin:end, ...]})
+                else:
+                    batch_predictions = sess.run(
+                        eval_prediction,
+                        feed_dict={eval_data: data[-EVAL_BATCH_SIZE:, ...]})
+                    predictions[begin:, :] = batch_predictions[begin - size:, :]
         
         return predictions    
     
         
     train_size = train_labels.shape[0]
-
     
     with tf.device(TRAIN_DEVICE_ID):    
         # This is where training samples and labels are fed to the graph.
@@ -277,6 +277,9 @@ def train_mnist(dataset, flags):
         # Add the regularization term to the loss.
         loss += 5e-4 * regularizers
 
+        # Predictions for the current training minibatch.
+        train_prediction = tf.nn.softmax(logits)
+        
     # Optimizer: set up a variable that's incremented once per batch and
     # controls the learning rate decay.
     batch = tf.Variable(0)
@@ -291,9 +294,7 @@ def train_mnist(dataset, flags):
     # Use simple momentum for the optimization.
     optimizer = tf.train.MomentumOptimizer(learning_rate, 0.9).minimize(loss, global_step=batch)
 
-    with tf.device(TRAIN_DEVICE_ID): 
-        # Predictions for the current training minibatch.
-        train_prediction = tf.nn.softmax(logits)
+
 
     with tf.device(EVAL_DEVICE_ID): 
         # Predictions for the test and validation, which we'll compute less often.
@@ -302,8 +303,6 @@ def train_mnist(dataset, flags):
     # Create a local session to run the training.
     start_time = time.time()
     config = tf.ConfigProto(allow_soft_placement=True, log_device_placement=True)
-    config.gpu_options.per_process_gpu_memory_fraction = cfg.gpu_memory_fraction
-    
     with tf.Session(config = config) as sess:
         # Run all the initializers to prepare the trainable parameters.
         init = tf.initialize_all_variables()
@@ -327,7 +326,6 @@ def train_mnist(dataset, flags):
             # node in the graph it should be fed to.
             feed_dict = {train_data_node: batch_data,
                                      train_labels_node: batch_labels}
-            
             
             # Run the graph and fetch some of the nodes.
             _, l, lr, predictions = sess.run(
