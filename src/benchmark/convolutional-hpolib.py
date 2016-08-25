@@ -35,31 +35,23 @@ from six.moves import xrange    # pylint: disable=redefined-builtin
 import mnist_data as mnist
 
 import tensorflow as tf
-from config import Config
-from util import CSVLogger
+#from config import Config
+#from util import CSVLogger
+
+import HPOlib.benchmark_util as benchmark_util
+import HPOlib.benchmark_functions as benchmark_functions
+
 
 # DEFINE FLAGS
 def define_flags():
-    tf.app.flags.DEFINE_boolean("self_test", False, "True if running a self test.")
     tf.app.flags.DEFINE_boolean("log_only", True, "True if logging test accuracy only.")    
-    tf.app.flags.DEFINE_string("config", "default", "Set config file path. default if uses internal setting")
     
     tf.app.flags.DEFINE_integer("filter_size", 5, "Set filter size. default is 5")
     tf.app.flags.DEFINE_integer("conv1_depth", 32, "Set first conv layer depth. default is 32.")
     tf.app.flags.DEFINE_integer("conv2_depth", 64, "Set second conv layer depth. default is 64.")
     tf.app.flags.DEFINE_integer("fc_depth", 512, "Set fully connected layer depth. default is 512.")
-
-    tf.app.flags.DEFINE_boolean("grid_seq", False, "True if run a grid search sequentially.")
-    tf.app.flags.DEFINE_boolean("define_done", True, "True if the flag configuration is done properly. DO NOT set this manually.")        
         
 FLAGS = tf.app.flags.FLAGS
-
-# check the flags have been configured
-try :
-    if FLAGS.define_done is False:
-        define_flags()
-except:    
-    define_flags() # done is not set yet
 
 # DEFINE CONSTANTS
 IMAGE_SIZE = mnist.IMAGE_SIZE
@@ -73,43 +65,14 @@ SEED = 66478    # Set to None for random seed.
 
 VALIDATION_SIZE = 5000    # Size of the validation set.
 BATCH_SIZE = 64
-NUM_EPOCHS = 10
+NUM_EPOCHS = 3
 EVAL_BATCH_SIZE = 64
 EVAL_FREQUENCY = 100    # Number of steps between evaluations.
 
-TRAIN_DEVICE_ID = "cpu:0"
-EVAL_DEVICE_ID ="cpu:0"
+TRAIN_DEVICE_ID = "gpu:1"
+EVAL_DEVICE_ID ="gpu:2"
 LOG_PATH = "test.log"
 
-# reset constants from configuration
-def reset_consts(cfg):
-    # use global constants to reset
-    global VAR_INIT_VALUE
-    global DROPOUT_RATE
-    global SEED
-    global VALIDATION_SIZE
-    global BATCH_SIZE
-    global NUM_EPOCHS
-    global EVAL_BATCH_SIZE
-    global EVAL_FREQUENCY
-    global TRAIN_DEVICE_ID
-    global EVAL_DEVICE_ID
-    global LOG_PATH
-    
-    try:
-        VAR_INIT_VALUE = cfg.VAR_INIT_VALUE
-        DROPOUT_RATE = cfg.DROPOUT_RATE
-        SEED = cfg.SEED
-        VALIDATION_SIZE = cfg.VALIDATION_SIZE
-        BATCH_SIZE = cfg.BATCH_SIZE
-        NUM_EPOCHS = cfg.NUM_EPOCHS
-        EVAL_BATCH_SIZE = cfg.EVAL_BATCH_SIZE
-        EVAL_FREQUENCY = cfg.EVAL_FREQUENCY
-        TRAIN_DEVICE_ID = cfg.train_device_id
-        EVAL_DEVICE_ID = cfg.eval_device_id
-        LOG_PATH = cfg.log_path
-    except:
-        traceback.print_exc()
     
 # initialize tensorflow variables which are required to learning
 def init_vars(filter_size, conv1_depth, conv2_depth, fc_depth):
@@ -219,12 +182,12 @@ def train_mnist(dataset, flags):
     test_labels = dataset["test_labels"]
         
     num_epochs = dataset["num_epochs"]
-    
+    '''
     if flags.log_only:
         print("Logging test accuracy at " + LOG_PATH)
         logger = CSVLogger(LOG_PATH)
         logger.create(3, 3) # create log with 3 layers and mninbatch, validation, test accuracy        
-
+    '''
     # Small utility function to evaluate a dataset by feeding batches of data to
     # {eval_data} and pulling the results from {eval_predictions}.
     # Saves memory and enables this to run on smaller GPUs.
@@ -313,11 +276,11 @@ def train_mnist(dataset, flags):
         # Loop through training steps.
         print("epoch num: " + str(num_epochs) + ", total steps: " + str(int(num_epochs * train_size) // BATCH_SIZE))
         for step in xrange(int(num_epochs * train_size) // BATCH_SIZE):
-            
+            '''
             if flags.log_only:
                 logger.setTimer()
                 logger.setLayers(flags.conv1_depth, flags.conv2_depth, flags.fc_depth)
-            
+            '''
             # Compute the offset of the current minibatch in the data.
             # Note that we could use better randomization across epochs.
             offset = (step * BATCH_SIZE) % (train_size - BATCH_SIZE)
@@ -334,7 +297,7 @@ def train_mnist(dataset, flags):
             _, l, lr, predictions = sess.run(
                 [optimizer, loss, learning_rate, train_prediction],
                 feed_dict=feed_dict)
-            
+            '''
             if step % EVAL_FREQUENCY == 0:
                 with tf.device(EVAL_DEVICE_ID):
                     elapsed_time = time.time() - start_time
@@ -356,19 +319,14 @@ def train_mnist(dataset, flags):
                             "_" + str(flags.conv2_depth) + "_" + str(flags.fc_depth)
                         logger.measure(tag, step, (100.0 - minibatch_err), (100.0 - validation_err), test_accuracy)
               
-        
-        if flags.log_only is False:
-            # Finally print the result!
+           '''
+        with tf.device(EVAL_DEVICE_ID):
             test_error = error_rate(eval_in_batches(test_data, sess), test_labels)
-            print_out('Test error: %.1f%%' % test_error)
-        
-        if flags.self_test:
-            print_out('test_error', test_error)
-            assert test_error == 0.0, 'expected 0.0 test_error, got %.2f' % (
-                    test_error,)
-        
+            print('Test error: %.1f%%' % test_error)
+
         sess.close()
-            
+        
+        return test_error    
 
 def error_rate(predictions, labels):
     """Return the error rate based on dense predictions and sparse labels."""
@@ -381,46 +339,28 @@ def print_out(*args):
     if FLAGS.log_only is False:
         print(args)
 
-def main(argv=None):    # pylint: disable=unused-argument
-
-    # reset the constants if configuration file declared
-    if FLAGS.config is "default" :
-        print("Using the builtin configuration")
-    else:
-        try: 
-            cfg = Config(file(FLAGS.config))
-            #print("Using settings in " + FLAGS.config) 
-            reset_consts(cfg)
-        except:
-            print("Invalid config file: " + FLAGS.config)
-            traceback.print_exc()
-
+def main(params, **kwargs):    # pylint: disable=unused-argument
     
-    if FLAGS.self_test:
-        print('Running self-test.')
-        train_data, train_labels = mnist.fake_data(256)
-        validation_data, validation_labels = mnist.fake_data(EVAL_BATCH_SIZE)
-        test_data, test_labels = mnist.fake_data(EVAL_BATCH_SIZE)
-        num_epochs = 1
-    else:
-        # Get the data.
-        train_data_filename = mnist.maybe_download('train-images-idx3-ubyte.gz')
-        train_labels_filename = mnist.maybe_download('train-labels-idx1-ubyte.gz')
-        test_data_filename = mnist.maybe_download('t10k-images-idx3-ubyte.gz')
-        test_labels_filename = mnist.maybe_download('t10k-labels-idx1-ubyte.gz')
+    print('Params: '+ str(params))
 
-        # Extract it into numpy arrays.
-        train_data = mnist.extract_data(train_data_filename, mnist.NUM_TRAIN_DATA)
-        train_labels = mnist.extract_labels(train_labels_filename, mnist.NUM_TRAIN_DATA)
-        test_data = mnist.extract_data(test_data_filename, mnist.NUM_TEST_DATA)
-        test_labels = mnist.extract_labels(test_labels_filename, mnist.NUM_TEST_DATA)
+    # Get the data.
+    train_data_filename = mnist.maybe_download('train-images-idx3-ubyte.gz')
+    train_labels_filename = mnist.maybe_download('train-labels-idx1-ubyte.gz')
+    test_data_filename = mnist.maybe_download('t10k-images-idx3-ubyte.gz')
+    test_labels_filename = mnist.maybe_download('t10k-labels-idx1-ubyte.gz')
 
-        # Generate a validation set.
-        validation_data = train_data[:VALIDATION_SIZE, ...]
-        validation_labels = train_labels[:VALIDATION_SIZE]
-        train_data = train_data[VALIDATION_SIZE:, ...]
-        train_labels = train_labels[VALIDATION_SIZE:]
-        num_epochs = NUM_EPOCHS
+    # Extract it into numpy arrays.
+    train_data = mnist.extract_data(train_data_filename, mnist.NUM_TRAIN_DATA)
+    train_labels = mnist.extract_labels(train_labels_filename, mnist.NUM_TRAIN_DATA)
+    test_data = mnist.extract_data(test_data_filename, mnist.NUM_TEST_DATA)
+    test_labels = mnist.extract_labels(test_labels_filename, mnist.NUM_TEST_DATA)
+
+    # Generate a validation set.
+    validation_data = train_data[:VALIDATION_SIZE, ...]
+    validation_labels = train_labels[:VALIDATION_SIZE]
+    train_data = train_data[VALIDATION_SIZE:, ...]
+    train_labels = train_labels[VALIDATION_SIZE:]
+    num_epochs = NUM_EPOCHS
          
     dataset = {
         "train_data" : train_data,
@@ -431,27 +371,18 @@ def main(argv=None):    # pylint: disable=unused-argument
         "test_labels" : test_labels,
         "num_epochs" : num_epochs
         }
-    
 
-    flags = FLAGS
+    flags = kwargs
+    y = train_mnist(dataset, flags)
+    print("Result: " + str(y))
     
-    if FLAGS.grid_seq :
-        for f in cfg.filter_sizes:
-            flags.filter_size = f
-            for i in cfg.conv1_depths:
-                flags.conv1_depth = i
-                for j in cfg.conv2_depths:
-                    flags.conv2_depth = j
-                    for k in cfg.fc_depths:
-                        flags.fc_depth = k
-                        print("training with: " + str(f) + ", " + str(i) + ", " + str(j) + ", " + str(k))
-                        try:
-                            train_mnist(dataset, flags)
-                        except:
-                            traceback.print_exc()
-    else:
-        train_mnist(dataset, flags)
-        
+    return y
         
 if __name__ == '__main__':
-    tf.app.run()
+    starttime = time.time()
+    args, params = benchmark_util.parse_cli()
+    result = main(params, **args)
+    duration = time.time() - starttime
+    print "Result for ParamILS: %s, %f, 1, %f, %d, %s" % \
+        ("SAT", abs(duration), result, -1, str(__file__))
+
