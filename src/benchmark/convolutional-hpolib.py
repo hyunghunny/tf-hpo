@@ -51,7 +51,7 @@ def define_flags():
     tf.app.flags.DEFINE_integer("conv2_depth", 64, "Set second conv layer depth. default is 64.")
     tf.app.flags.DEFINE_integer("fc_depth", 512, "Set fully connected layer depth. default is 512.")
         
-FLAGS = tf.app.flags.FLAGS
+#FLAGS = tf.app.flags.FLAGS
 
 # DEFINE CONSTANTS
 IMAGE_SIZE = mnist.IMAGE_SIZE
@@ -69,8 +69,8 @@ NUM_EPOCHS = 3
 EVAL_BATCH_SIZE = 64
 EVAL_FREQUENCY = 100    # Number of steps between evaluations.
 
-TRAIN_DEVICE_ID = "gpu:1"
-EVAL_DEVICE_ID ="gpu:2"
+TRAIN_DEVICE_ID = "cpu:0"
+EVAL_DEVICE_ID ="cpu:0"
 LOG_PATH = "test.log"
 
     
@@ -228,7 +228,7 @@ def train_mnist(dataset, flags):
 
 
         # Initialize required variables
-        vars = init_vars(flags.filter_size, flags.conv1_depth, flags.conv2_depth, flags.fc_depth)
+        vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
     
         # Training computation: logits + cross-entropy loss.
         logits = model(vars, train_data_node, True)
@@ -265,7 +265,7 @@ def train_mnist(dataset, flags):
 
     # Create a local session to run the training.
     start_time = time.time()
-    config = tf.ConfigProto(allow_soft_placement=True, log_device_placement=True)
+    config = tf.ConfigProto(allow_soft_placement=False, log_device_placement=False)
     
     with tf.Session(config = config) as sess:
         # Run all the initializers to prepare the trainable parameters.
@@ -297,7 +297,7 @@ def train_mnist(dataset, flags):
             _, l, lr, predictions = sess.run(
                 [optimizer, loss, learning_rate, train_prediction],
                 feed_dict=feed_dict)
-            '''
+            
             if step % EVAL_FREQUENCY == 0:
                 with tf.device(EVAL_DEVICE_ID):
                     elapsed_time = time.time() - start_time
@@ -311,7 +311,7 @@ def train_mnist(dataset, flags):
                     validation_err = error_rate(eval_in_batches(validation_data, sess), validation_labels)
                     print_out('Validation error: %.1f%%' % validation_err)
                     sys.stdout.flush()
-                
+            '''    
                     if flags.log_only:
                         # log test accuracy 
                         test_accuracy = 100.0 - error_rate(eval_in_batches(test_data, sess), test_labels)
@@ -336,8 +336,7 @@ def error_rate(predictions, labels):
             predictions.shape[0])
 
 def print_out(*args):
-    if FLAGS.log_only is False:
-        print(args)
+    print(args)
 
 def main(params, **kwargs):    # pylint: disable=unused-argument
     
@@ -372,17 +371,19 @@ def main(params, **kwargs):    # pylint: disable=unused-argument
         "num_epochs" : num_epochs
         }
 
-    flags = kwargs
+    flags = params
+    
     y = train_mnist(dataset, flags)
     print("Result: " + str(y))
     
     return y
         
 if __name__ == '__main__':
+    print("tensorflow CNN code started")
     starttime = time.time()
     args, params = benchmark_util.parse_cli()
     result = main(params, **args)
     duration = time.time() - starttime
-    print "Result for ParamILS: %s, %f, 1, %f, %d, %s" % \
-        ("SAT", abs(duration), result, -1, str(__file__))
+    print ("Result for ParamILS: %s, %f, 1, %f, %d, %s" % \
+        ("SAT", abs(duration), result, -1, str(__file__)))
 
