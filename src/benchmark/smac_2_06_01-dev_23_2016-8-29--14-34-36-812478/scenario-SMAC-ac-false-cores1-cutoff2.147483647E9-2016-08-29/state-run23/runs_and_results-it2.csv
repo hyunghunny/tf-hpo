@@ -1,5 +1,0 @@
-Run Number,Run History Configuration ID,Instance ID,Response Value (y),Censored?,Cutoff Time Used,Seed,Runtime,Run Length,Run Result Code,Run Quality,SMAC Iteration,SMAC Cumulative Runtime,Run Result,Additional Algorithm Run Data,Wall Clock Time,
-1,1,1,75.79,0,2.147483647E9,-1,30.9508,1.0,1,75.79,0,30.9508,SAT,python ../convolutional-hpolib.py,31.245,
-2,2,1,1.23,0,2.147483647E9,-1,72.8532,1.0,1,1.23,1,103.804,SAT,python ../convolutional-hpolib.py,73.112,
-3,3,1,7.36,0,2.147483647E9,-1,38.2046,1.0,1,7.36,1,142.0086,SAT,python ../convolutional-hpolib.py,38.533,
-4,4,1,1.31,0,2.147483647E9,-1,95.553,1.0,1,1.31,2,237.5616,SAT,python ../convolutional-hpolib.py,95.853,
