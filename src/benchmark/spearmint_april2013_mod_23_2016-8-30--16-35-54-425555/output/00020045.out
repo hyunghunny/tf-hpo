@@ -1,0 +1,23 @@
+Running in wrapper mode for '/root/tf-hpolib/HPOlib/benchmarks/tf-cnn/spearmint_april2013_mod_23_2016-8-30--16-35-54-425555/jobs/00020045.pb'
+Waiting to lock grid......acquired
+Released lock on job grid.
+Running python job.
+Changed into dir /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/spearmint_april2013_mod_23_2016-8-30--16-35-54-425555
+[CRITICAL] [21:52:40:HPOlib.cv] args: (20045L, {u'filter_size': array([3]), u'fc_depth': array([341]), u'conv1_depth': array([293]), u'conv2_depth': array([175])}) kwargs: {}
+[INFO] [21:52:40:HPOlib.cv] Starting Cross validation
+[INFO] [21:52:40:HPOlib.cv] {u'conv2_depth': 175, u'fc_depth': 341, u'conv1_depth': 293, u'filter_size': 3}
+[INFO] [21:52:40:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 spearmint_april2013_mod 0 0 0 -conv2_depth 175 -fc_depth 341 -conv1_depth 293 -filter_size 3
+[INFO] [21:52:40:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [21:54:03:HPOlib.cv] Result for ParamILS: SAT, 82.130100, 1, 1.250000, 0, python ../convolutional-hpolib.py
+
+[ERROR] [21:54:03:HPOlib.cv] [INFO] [21:52:40:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[INFO] [21:54:03:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 82.130100, 1, 1.250000, 0, python ../convolutional-hpolib.py
+
+[INFO] [21:54:03:HPOlib.cv] Finished CV
+[INFO] [21:54:03:HPOlib.cv] Result: 1.250000
+Got result 1.250000
+Job file reloaded.
+Completed successfully in 82.61 seconds. [1.250000]
+Waiting to lock grid......acquired
+Released lock on job grid.

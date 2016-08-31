@@ -6,7 +6,7 @@ variable {
  type: INT
  size: 1
  min:  1
- max:  28
+ max:  14
 }
 
 variable {

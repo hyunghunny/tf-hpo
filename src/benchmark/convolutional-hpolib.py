@@ -69,8 +69,8 @@ NUM_EPOCHS = 3
 EVAL_BATCH_SIZE = 64
 EVAL_FREQUENCY = 100    # Number of steps between evaluations.
 
-TRAIN_DEVICE_ID = "cpu:0"
-EVAL_DEVICE_ID ="cpu:0"
+TRAIN_DEVICE_ID = "gpu:1"
+EVAL_DEVICE_ID ="gpu:2"
 LOG_PATH = "test.log"
 
     
@@ -228,7 +228,10 @@ def train_mnist(dataset, flags):
 
 
         # Initialize required variables
-        vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+        vars = init_vars(int(float(flags["filter_size"])),
+            int(float(flags["conv1_depth"])), 
+            int(float(flags["conv2_depth"])),
+             int(float(flags["fc_depth"])))
     
         # Training computation: logits + cross-entropy loss.
         logits = model(vars, train_data_node, True)

@@ -1,0 +1,15 @@
+0.91/0.11	I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcublas.so locally
+0.91/0.11	I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcudnn.so locally
+0.91/0.11	I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcufft.so locally
+0.91/0.11	I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcuda.so.1 locally
+0.91/0.11	I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcurand.so locally
+1.41/0.64	tensorflow CNN code started
+1.41/0.64	Params: {'conv2_depth': '340.0', 'fc_depth': '196.0', 'conv1_depth': '84.0', 'filter_size': '9.0'}
+1.71/0.98	Traceback (most recent call last):
+1.71/0.98	  File "../convolutional-hpolib.py", line 385, in <module>
+1.71/0.98	    result = main(params, **args)
+1.71/0.98	  File "../convolutional-hpolib.py", line 376, in main
+1.71/0.98	    y = train_mnist(dataset, flags)
+1.71/0.98	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.71/0.98	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.71/0.98	ValueError: invalid literal for int() with base 10: '9.0'

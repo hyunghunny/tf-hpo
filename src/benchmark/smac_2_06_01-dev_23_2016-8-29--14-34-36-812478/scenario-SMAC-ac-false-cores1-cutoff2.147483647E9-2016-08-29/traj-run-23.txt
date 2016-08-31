@@ -1,0 +1,5 @@
+"Total Time","Mean Performance","Wallclock Time","Incumbent ID","Automatic Configurator Time","Configuration..."
+0.0, 1.7976931348623157E308, 0.0, 1, 0.0,  conv1_depth='1', conv2_depth='1', fc_depth='1', filter_size='1'
+31.520733728, 75.79, 31.312, 1, 0.570413375,  conv1_depth='1', conv2_depth='1', fc_depth='1', filter_size='1'
+104.783269235, 1.23, 104.627, 2, 0.9796489499999999,  conv1_depth='190', conv2_depth='253', fc_depth='371', filter_size='3'
+2354.3599166689996, 1.21, 2354.93, 23, 7.681893295,  conv1_depth='375', conv2_depth='54', fc_depth='292', filter_size='3'

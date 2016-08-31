@@ -1,0 +1,1176 @@
+[CRITICAL] [10:05:06:HPOlib.cv] args: ({'conv2_depth': 392.0, 'fc_depth': 485.0, 'conv1_depth': 146.0, 'filter_size': 8.0},) kwargs: {}
+[INFO] [10:05:06:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:06:HPOlib.cv] {'filter_size': 8.0, 'fc_depth': 485.0, 'conv1_depth': 146.0, 'conv2_depth': 392.0}
+[INFO] [10:05:06:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 8.0 -fc_depth 485.0 -conv1_depth 146.0 -conv2_depth 392.0
+[INFO] [10:05:06:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:33:HPOlib.cv] Result for ParamILS: SAT, 26.096000, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-6-960141_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:33:HPOlib.cv] [INFO] [10:05:06:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:33:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+2.08/26.05	  File "../convolutional-hpolib.py", line 231, in train_mnist
+2.08/26.05	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+2.08/26.05	ValueError: invalid literal for int() with base 10: '8.0'
+
+[INFO] [10:05:33:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 26.096000, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-6-960141_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:33:HPOlib.cv] Finished CV
+[INFO] [10:05:33:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:33:HPOlib.cv] args: ({'conv2_depth': 512.0, 'fc_depth': 358.0, 'conv1_depth': 114.0, 'filter_size': 13.0},) kwargs: {}
+[INFO] [10:05:33:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:33:HPOlib.cv] {'filter_size': 13.0, 'fc_depth': 358.0, 'conv1_depth': 114.0, 'conv2_depth': 512.0}
+[INFO] [10:05:33:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 13.0 -fc_depth 358.0 -conv1_depth 114.0 -conv2_depth 512.0
+[INFO] [10:05:33:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:34:HPOlib.cv] Result for ParamILS: SAT, 1.055380, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-33-298765_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:34:HPOlib.cv] [INFO] [10:05:33:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:34:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.79/1.02	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.79/1.02	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.79/1.02	ValueError: invalid literal for int() with base 10: '13.0'
+
+[INFO] [10:05:34:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.055380, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-33-298765_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:34:HPOlib.cv] Finished CV
+[INFO] [10:05:34:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:34:HPOlib.cv] args: ({'conv2_depth': 144.0, 'fc_depth': 299.0, 'conv1_depth': 96.0, 'filter_size': 12.0},) kwargs: {}
+[INFO] [10:05:34:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:34:HPOlib.cv] {'filter_size': 12.0, 'fc_depth': 299.0, 'conv1_depth': 96.0, 'conv2_depth': 144.0}
+[INFO] [10:05:34:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 12.0 -fc_depth 299.0 -conv1_depth 96.0 -conv2_depth 144.0
+[INFO] [10:05:34:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:35:HPOlib.cv] Result for ParamILS: SAT, 1.028600, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-34-612564_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:35:HPOlib.cv] [INFO] [10:05:34:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:35:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.74/0.99	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.74/0.99	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.74/0.99	ValueError: invalid literal for int() with base 10: '12.0'
+
+[INFO] [10:05:35:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.028600, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-34-612564_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:35:HPOlib.cv] Finished CV
+[INFO] [10:05:35:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:35:HPOlib.cv] args: ({'conv2_depth': 394.0, 'fc_depth': 266.0, 'conv1_depth': 404.0, 'filter_size': 5.0},) kwargs: {}
+[INFO] [10:05:35:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:35:HPOlib.cv] {'filter_size': 5.0, 'fc_depth': 266.0, 'conv1_depth': 404.0, 'conv2_depth': 394.0}
+[INFO] [10:05:35:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 5.0 -fc_depth 266.0 -conv1_depth 404.0 -conv2_depth 394.0
+[INFO] [10:05:35:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:37:HPOlib.cv] Result for ParamILS: SAT, 1.047630, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-35-877626_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:37:HPOlib.cv] [INFO] [10:05:35:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:37:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.82/1.01	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.82/1.01	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.82/1.01	ValueError: invalid literal for int() with base 10: '5.0'
+
+[INFO] [10:05:37:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.047630, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-35-877626_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:37:HPOlib.cv] Finished CV
+[INFO] [10:05:37:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:37:HPOlib.cv] args: ({'conv2_depth': 376.0, 'fc_depth': 417.0, 'conv1_depth': 444.0, 'filter_size': 7.0},) kwargs: {}
+[INFO] [10:05:37:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:37:HPOlib.cv] {'filter_size': 7.0, 'fc_depth': 417.0, 'conv1_depth': 444.0, 'conv2_depth': 376.0}
+[INFO] [10:05:37:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 7.0 -fc_depth 417.0 -conv1_depth 444.0 -conv2_depth 376.0
+[INFO] [10:05:37:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:38:HPOlib.cv] Result for ParamILS: SAT, 1.041960, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-37-228146_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:38:HPOlib.cv] [INFO] [10:05:37:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:38:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.80/1.00	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.80/1.00	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.80/1.00	ValueError: invalid literal for int() with base 10: '7.0'
+
+[INFO] [10:05:38:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.041960, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-37-228146_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:38:HPOlib.cv] Finished CV
+[INFO] [10:05:38:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:38:HPOlib.cv] args: ({'conv2_depth': 64.0, 'fc_depth': 288.0, 'conv1_depth': 204.0, 'filter_size': 10.0},) kwargs: {}
+[INFO] [10:05:38:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:38:HPOlib.cv] {'filter_size': 10.0, 'fc_depth': 288.0, 'conv1_depth': 204.0, 'conv2_depth': 64.0}
+[INFO] [10:05:38:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 10.0 -fc_depth 288.0 -conv1_depth 204.0 -conv2_depth 64.0
+[INFO] [10:05:38:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:39:HPOlib.cv] Result for ParamILS: SAT, 1.048860, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-38-566956_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:39:HPOlib.cv] [INFO] [10:05:38:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:39:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.80/1.01	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.80/1.01	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.80/1.01	ValueError: invalid literal for int() with base 10: '10.0'
+
+[INFO] [10:05:39:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.048860, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-38-566956_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:39:HPOlib.cv] Finished CV
+[INFO] [10:05:39:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:39:HPOlib.cv] args: ({'conv2_depth': 38.0, 'fc_depth': 147.0, 'conv1_depth': 392.0, 'filter_size': 12.0},) kwargs: {}
+[INFO] [10:05:39:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:39:HPOlib.cv] {'filter_size': 12.0, 'fc_depth': 147.0, 'conv1_depth': 392.0, 'conv2_depth': 38.0}
+[INFO] [10:05:39:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 12.0 -fc_depth 147.0 -conv1_depth 392.0 -conv2_depth 38.0
+[INFO] [10:05:39:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:41:HPOlib.cv] Result for ParamILS: SAT, 1.118500, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-39-904236_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:41:HPOlib.cv] [INFO] [10:05:39:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:41:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.78/1.07	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.78/1.07	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.78/1.07	ValueError: invalid literal for int() with base 10: '12.0'
+
+[INFO] [10:05:41:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.118500, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-39-904236_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:41:HPOlib.cv] Finished CV
+[INFO] [10:05:41:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:41:HPOlib.cv] args: ({'conv2_depth': 340.0, 'fc_depth': 196.0, 'conv1_depth': 84.0, 'filter_size': 9.0},) kwargs: {}
+[INFO] [10:05:41:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:41:HPOlib.cv] {'filter_size': 9.0, 'fc_depth': 196.0, 'conv1_depth': 84.0, 'conv2_depth': 340.0}
+[INFO] [10:05:41:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 9.0 -fc_depth 196.0 -conv1_depth 84.0 -conv2_depth 340.0
+[INFO] [10:05:41:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:42:HPOlib.cv] Result for ParamILS: SAT, 1.017110, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-41-339154_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:42:HPOlib.cv] [INFO] [10:05:41:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:42:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.71/0.98	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.71/0.98	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.71/0.98	ValueError: invalid literal for int() with base 10: '9.0'
+
+[INFO] [10:05:42:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.017110, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-41-339154_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:42:HPOlib.cv] Finished CV
+[INFO] [10:05:42:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:42:HPOlib.cv] args: ({'conv2_depth': 394.0, 'fc_depth': 491.0, 'conv1_depth': 506.0, 'filter_size': 5.0},) kwargs: {}
+[INFO] [10:05:42:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:42:HPOlib.cv] {'filter_size': 5.0, 'fc_depth': 491.0, 'conv1_depth': 506.0, 'conv2_depth': 394.0}
+[INFO] [10:05:42:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 5.0 -fc_depth 491.0 -conv1_depth 506.0 -conv2_depth 394.0
+[INFO] [10:05:42:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:43:HPOlib.cv] Result for ParamILS: SAT, 0.999158, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-42-662987_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:43:HPOlib.cv] [INFO] [10:05:42:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:43:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.96	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.96	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.96	ValueError: invalid literal for int() with base 10: '5.0'
+
+[INFO] [10:05:43:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.999158, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-42-662987_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:43:HPOlib.cv] Finished CV
+[INFO] [10:05:43:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:43:HPOlib.cv] args: ({'conv2_depth': 284.0, 'fc_depth': 191.0, 'conv1_depth': 490.0, 'filter_size': 12.0},) kwargs: {}
+[INFO] [10:05:43:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:43:HPOlib.cv] {'filter_size': 12.0, 'fc_depth': 191.0, 'conv1_depth': 490.0, 'conv2_depth': 284.0}
+[INFO] [10:05:43:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 12.0 -fc_depth 191.0 -conv1_depth 490.0 -conv2_depth 284.0
+[INFO] [10:05:43:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:44:HPOlib.cv] Result for ParamILS: SAT, 0.955184, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-43-857336_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:44:HPOlib.cv] [INFO] [10:05:43:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:44:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.92	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.92	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.92	ValueError: invalid literal for int() with base 10: '12.0'
+
+[INFO] [10:05:44:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.955184, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-43-857336_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:44:HPOlib.cv] Finished CV
+[INFO] [10:05:44:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:44:HPOlib.cv] args: ({'conv2_depth': 210.0, 'fc_depth': 231.0, 'conv1_depth': 134.0, 'filter_size': 4.0},) kwargs: {}
+[INFO] [10:05:44:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:44:HPOlib.cv] {'filter_size': 4.0, 'fc_depth': 231.0, 'conv1_depth': 134.0, 'conv2_depth': 210.0}
+[INFO] [10:05:44:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 4.0 -fc_depth 231.0 -conv1_depth 134.0 -conv2_depth 210.0
+[INFO] [10:05:44:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:46:HPOlib.cv] Result for ParamILS: SAT, 0.948523, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-45-37691_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:46:HPOlib.cv] [INFO] [10:05:45:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:46:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.68/0.91	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.68/0.91	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.68/0.91	ValueError: invalid literal for int() with base 10: '4.0'
+
+[INFO] [10:05:46:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.948523, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-45-37691_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:46:HPOlib.cv] Finished CV
+[INFO] [10:05:46:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:46:HPOlib.cv] args: ({'conv2_depth': 48.0, 'fc_depth': 400.0, 'conv1_depth': 324.0, 'filter_size': 2.0},) kwargs: {}
+[INFO] [10:05:46:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:46:HPOlib.cv] {'filter_size': 2.0, 'fc_depth': 400.0, 'conv1_depth': 324.0, 'conv2_depth': 48.0}
+[INFO] [10:05:46:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 2.0 -fc_depth 400.0 -conv1_depth 324.0 -conv2_depth 48.0
+[INFO] [10:05:46:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:47:HPOlib.cv] Result for ParamILS: SAT, 1.015350, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-46-266555_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:47:HPOlib.cv] [INFO] [10:05:46:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:47:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.71/0.98	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.71/0.98	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.71/0.98	ValueError: invalid literal for int() with base 10: '2.0'
+
+[INFO] [10:05:47:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.015350, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-46-266555_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:47:HPOlib.cv] Finished CV
+[INFO] [10:05:47:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:47:HPOlib.cv] args: ({'conv2_depth': 120.0, 'fc_depth': 159.0, 'conv1_depth': 142.0, 'filter_size': 7.0},) kwargs: {}
+[INFO] [10:05:47:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:47:HPOlib.cv] {'filter_size': 7.0, 'fc_depth': 159.0, 'conv1_depth': 142.0, 'conv2_depth': 120.0}
+[INFO] [10:05:47:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 7.0 -fc_depth 159.0 -conv1_depth 142.0 -conv2_depth 120.0
+[INFO] [10:05:47:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:48:HPOlib.cv] Result for ParamILS: SAT, 1.015010, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-47-600056_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:48:HPOlib.cv] [INFO] [10:05:47:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:48:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.70/0.98	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.70/0.98	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.70/0.98	ValueError: invalid literal for int() with base 10: '7.0'
+
+[INFO] [10:05:48:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.015010, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-47-600056_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:48:HPOlib.cv] Finished CV
+[INFO] [10:05:48:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:48:HPOlib.cv] args: ({'conv2_depth': 488.0, 'fc_depth': 308.0, 'conv1_depth': 74.0, 'filter_size': 10.0},) kwargs: {}
+[INFO] [10:05:48:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:48:HPOlib.cv] {'filter_size': 10.0, 'fc_depth': 308.0, 'conv1_depth': 74.0, 'conv2_depth': 488.0}
+[INFO] [10:05:48:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 10.0 -fc_depth 308.0 -conv1_depth 74.0 -conv2_depth 488.0
+[INFO] [10:05:48:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:50:HPOlib.cv] Result for ParamILS: SAT, 1.110690, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-48-932486_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:50:HPOlib.cv] [INFO] [10:05:48:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:50:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.83/1.07	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.83/1.07	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.83/1.07	ValueError: invalid literal for int() with base 10: '10.0'
+
+[INFO] [10:05:50:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.110690, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-48-932486_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:50:HPOlib.cv] Finished CV
+[INFO] [10:05:50:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:50:HPOlib.cv] args: ({'conv2_depth': 100.0, 'fc_depth': 238.0, 'conv1_depth': 298.0, 'filter_size': 13.0},) kwargs: {}
+[INFO] [10:05:50:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:50:HPOlib.cv] {'filter_size': 13.0, 'fc_depth': 238.0, 'conv1_depth': 298.0, 'conv2_depth': 100.0}
+[INFO] [10:05:50:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 13.0 -fc_depth 238.0 -conv1_depth 298.0 -conv2_depth 100.0
+[INFO] [10:05:50:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:51:HPOlib.cv] Result for ParamILS: SAT, 1.074150, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-50-321221_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:51:HPOlib.cv] [INFO] [10:05:50:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:51:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.84/1.04	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.84/1.04	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.84/1.04	ValueError: invalid literal for int() with base 10: '13.0'
+
+[INFO] [10:05:51:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.074150, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-50-321221_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:51:HPOlib.cv] Finished CV
+[INFO] [10:05:51:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:51:HPOlib.cv] args: ({'conv2_depth': 484.0, 'fc_depth': 440.0, 'conv1_depth': 360.0, 'filter_size': 6.0},) kwargs: {}
+[INFO] [10:05:51:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:51:HPOlib.cv] {'filter_size': 6.0, 'fc_depth': 440.0, 'conv1_depth': 360.0, 'conv2_depth': 484.0}
+[INFO] [10:05:51:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 6.0 -fc_depth 440.0 -conv1_depth 360.0 -conv2_depth 484.0
+[INFO] [10:05:51:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:52:HPOlib.cv] Result for ParamILS: SAT, 1.030640, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-51-671166_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:52:HPOlib.cv] [INFO] [10:05:51:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:52:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.70/0.99	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.70/0.99	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.70/0.99	ValueError: invalid literal for int() with base 10: '6.0'
+
+[INFO] [10:05:52:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.030640, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-51-671166_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:52:HPOlib.cv] Finished CV
+[INFO] [10:05:52:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:52:HPOlib.cv] args: ({'conv2_depth': 420.0, 'fc_depth': 409.0, 'conv1_depth': 64.0, 'filter_size': 8.0},) kwargs: {}
+[INFO] [10:05:52:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:52:HPOlib.cv] {'filter_size': 8.0, 'fc_depth': 409.0, 'conv1_depth': 64.0, 'conv2_depth': 420.0}
+[INFO] [10:05:52:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 8.0 -fc_depth 409.0 -conv1_depth 64.0 -conv2_depth 420.0
+[INFO] [10:05:52:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:54:HPOlib.cv] Result for ParamILS: SAT, 0.960007, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-52-974198_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:54:HPOlib.cv] [INFO] [10:05:53:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:54:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.92	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.92	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.92	ValueError: invalid literal for int() with base 10: '8.0'
+
+[INFO] [10:05:54:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.960007, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-52-974198_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:54:HPOlib.cv] Finished CV
+[INFO] [10:05:54:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:54:HPOlib.cv] args: ({'conv2_depth': 404.0, 'fc_depth': 29.0, 'conv1_depth': 148.0, 'filter_size': 6.0},) kwargs: {}
+[INFO] [10:05:54:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:54:HPOlib.cv] {'filter_size': 6.0, 'fc_depth': 29.0, 'conv1_depth': 148.0, 'conv2_depth': 404.0}
+[INFO] [10:05:54:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 6.0 -fc_depth 29.0 -conv1_depth 148.0 -conv2_depth 404.0
+[INFO] [10:05:54:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:55:HPOlib.cv] Result for ParamILS: SAT, 1.062300, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-54-197065_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:55:HPOlib.cv] [INFO] [10:05:54:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:55:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.82/1.02	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.82/1.02	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.82/1.02	ValueError: invalid literal for int() with base 10: '6.0'
+
+[INFO] [10:05:55:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.062300, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-54-197065_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:55:HPOlib.cv] Finished CV
+[INFO] [10:05:55:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:55:HPOlib.cv] args: ({'conv2_depth': 346.0, 'fc_depth': 25.0, 'conv1_depth': 24.0, 'filter_size': 4.0},) kwargs: {}
+[INFO] [10:05:55:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:55:HPOlib.cv] {'filter_size': 4.0, 'fc_depth': 25.0, 'conv1_depth': 24.0, 'conv2_depth': 346.0}
+[INFO] [10:05:55:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 4.0 -fc_depth 25.0 -conv1_depth 24.0 -conv2_depth 346.0
+[INFO] [10:05:55:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:56:HPOlib.cv] Result for ParamILS: SAT, 1.019410, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-55-550644_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:56:HPOlib.cv] [INFO] [10:05:55:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:56:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.70/0.98	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.70/0.98	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.70/0.98	ValueError: invalid literal for int() with base 10: '4.0'
+
+[INFO] [10:05:56:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.019410, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-55-550644_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:56:HPOlib.cv] Finished CV
+[INFO] [10:05:56:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:56:HPOlib.cv] args: ({'conv2_depth': 376.0, 'fc_depth': 487.0, 'conv1_depth': 306.0, 'filter_size': 6.0},) kwargs: {}
+[INFO] [10:05:56:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:56:HPOlib.cv] {'filter_size': 6.0, 'fc_depth': 487.0, 'conv1_depth': 306.0, 'conv2_depth': 376.0}
+[INFO] [10:05:56:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 6.0 -fc_depth 487.0 -conv1_depth 306.0 -conv2_depth 376.0
+[INFO] [10:05:56:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:57:HPOlib.cv] Result for ParamILS: SAT, 0.961252, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-56-909663_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:57:HPOlib.cv] [INFO] [10:05:56:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:57:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.70/0.92	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.70/0.92	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.70/0.92	ValueError: invalid literal for int() with base 10: '6.0'
+
+[INFO] [10:05:57:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.961252, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-56-909663_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:57:HPOlib.cv] Finished CV
+[INFO] [10:05:57:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:58:HPOlib.cv] args: ({'conv2_depth': 450.0, 'fc_depth': 30.0, 'conv1_depth': 204.0, 'filter_size': 2.0},) kwargs: {}
+[INFO] [10:05:58:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:58:HPOlib.cv] {'filter_size': 2.0, 'fc_depth': 30.0, 'conv1_depth': 204.0, 'conv2_depth': 450.0}
+[INFO] [10:05:58:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 2.0 -fc_depth 30.0 -conv1_depth 204.0 -conv2_depth 450.0
+[INFO] [10:05:58:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:05:59:HPOlib.cv] Result for ParamILS: SAT, 1.041250, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-58-125573_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:05:59:HPOlib.cv] [INFO] [10:05:58:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:05:59:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.83/1.00	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.83/1.00	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.83/1.00	ValueError: invalid literal for int() with base 10: '2.0'
+
+[INFO] [10:05:59:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.041250, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-58-125573_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:05:59:HPOlib.cv] Finished CV
+[INFO] [10:05:59:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:05:59:HPOlib.cv] args: ({'conv2_depth': 304.0, 'fc_depth': 89.0, 'conv1_depth': 8.0, 'filter_size': 3.0},) kwargs: {}
+[INFO] [10:05:59:HPOlib.cv] Starting Cross validation
+[INFO] [10:05:59:HPOlib.cv] {'filter_size': 3.0, 'fc_depth': 89.0, 'conv1_depth': 8.0, 'conv2_depth': 304.0}
+[INFO] [10:05:59:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 3.0 -fc_depth 89.0 -conv1_depth 8.0 -conv2_depth 304.0
+[INFO] [10:05:59:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:00:HPOlib.cv] Result for ParamILS: SAT, 1.014510, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-59-488213_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:00:HPOlib.cv] [INFO] [10:05:59:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:00:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.71/0.98	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.71/0.98	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.71/0.98	ValueError: invalid literal for int() with base 10: '3.0'
+
+[INFO] [10:06:00:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.014510, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-5-59-488213_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:00:HPOlib.cv] Finished CV
+[INFO] [10:06:00:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:00:HPOlib.cv] args: ({'conv2_depth': 244.0, 'fc_depth': 507.0, 'conv1_depth': 244.0, 'filter_size': 8.0},) kwargs: {}
+[INFO] [10:06:00:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:00:HPOlib.cv] {'filter_size': 8.0, 'fc_depth': 507.0, 'conv1_depth': 244.0, 'conv2_depth': 244.0}
+[INFO] [10:06:00:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 8.0 -fc_depth 507.0 -conv1_depth 244.0 -conv2_depth 244.0
+[INFO] [10:06:00:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:01:HPOlib.cv] Result for ParamILS: SAT, 0.964157, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-0-817182_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:01:HPOlib.cv] [INFO] [10:06:00:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:01:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.74/0.93	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.74/0.93	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.74/0.93	ValueError: invalid literal for int() with base 10: '8.0'
+
+[INFO] [10:06:01:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.964157, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-0-817182_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:01:HPOlib.cv] Finished CV
+[INFO] [10:06:01:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:01:HPOlib.cv] args: ({'conv2_depth': 448.0, 'fc_depth': 99.0, 'conv1_depth': 190.0, 'filter_size': 10.0},) kwargs: {}
+[INFO] [10:06:01:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:01:HPOlib.cv] {'filter_size': 10.0, 'fc_depth': 99.0, 'conv1_depth': 190.0, 'conv2_depth': 448.0}
+[INFO] [10:06:01:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 10.0 -fc_depth 99.0 -conv1_depth 190.0 -conv2_depth 448.0
+[INFO] [10:06:01:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:03:HPOlib.cv] Result for ParamILS: SAT, 1.035570, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-2-81170_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:03:HPOlib.cv] [INFO] [10:06:02:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:03:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.79/1.00	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.79/1.00	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.79/1.00	ValueError: invalid literal for int() with base 10: '10.0'
+
+[INFO] [10:06:03:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.035570, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-2-81170_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:03:HPOlib.cv] Finished CV
+[INFO] [10:06:03:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:03:HPOlib.cv] args: ({'conv2_depth': 304.0, 'fc_depth': 105.0, 'conv1_depth': 18.0, 'filter_size': 1.0},) kwargs: {}
+[INFO] [10:06:03:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:03:HPOlib.cv] {'filter_size': 1.0, 'fc_depth': 105.0, 'conv1_depth': 18.0, 'conv2_depth': 304.0}
+[INFO] [10:06:03:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 1.0 -fc_depth 105.0 -conv1_depth 18.0 -conv2_depth 304.0
+[INFO] [10:06:03:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:04:HPOlib.cv] Result for ParamILS: SAT, 0.952629, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-3-421281_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:04:HPOlib.cv] [INFO] [10:06:03:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:04:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.74/0.91	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.74/0.91	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.74/0.91	ValueError: invalid literal for int() with base 10: '1.0'
+
+[INFO] [10:06:04:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.952629, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-3-421281_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:04:HPOlib.cv] Finished CV
+[INFO] [10:06:04:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:04:HPOlib.cv] args: ({'conv2_depth': 218.0, 'fc_depth': 468.0, 'conv1_depth': 246.0, 'filter_size': 8.0},) kwargs: {}
+[INFO] [10:06:04:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:04:HPOlib.cv] {'filter_size': 8.0, 'fc_depth': 468.0, 'conv1_depth': 246.0, 'conv2_depth': 218.0}
+[INFO] [10:06:04:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 8.0 -fc_depth 468.0 -conv1_depth 246.0 -conv2_depth 218.0
+[INFO] [10:06:04:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:05:HPOlib.cv] Result for ParamILS: SAT, 1.079550, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-4-676834_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:05:HPOlib.cv] [INFO] [10:06:04:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:05:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.84/1.04	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.84/1.04	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.84/1.04	ValueError: invalid literal for int() with base 10: '8.0'
+
+[INFO] [10:06:05:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.079550, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-4-676834_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:05:HPOlib.cv] Finished CV
+[INFO] [10:06:05:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:05:HPOlib.cv] args: ({'conv2_depth': 458.0, 'fc_depth': 74.0, 'conv1_depth': 170.0, 'filter_size': 10.0},) kwargs: {}
+[INFO] [10:06:05:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:05:HPOlib.cv] {'filter_size': 10.0, 'fc_depth': 74.0, 'conv1_depth': 170.0, 'conv2_depth': 458.0}
+[INFO] [10:06:05:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 10.0 -fc_depth 74.0 -conv1_depth 170.0 -conv2_depth 458.0
+[INFO] [10:06:05:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:07:HPOlib.cv] Result for ParamILS: SAT, 1.033300, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-5-980226_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:07:HPOlib.cv] [INFO] [10:06:06:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:07:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.99	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.99	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.99	ValueError: invalid literal for int() with base 10: '10.0'
+
+[INFO] [10:06:07:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.033300, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-5-980226_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:07:HPOlib.cv] Finished CV
+[INFO] [10:06:07:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:07:HPOlib.cv] args: ({'conv2_depth': 316.0, 'fc_depth': 347.0, 'conv1_depth': 38.0, 'filter_size': 1.0},) kwargs: {}
+[INFO] [10:06:07:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:07:HPOlib.cv] {'filter_size': 1.0, 'fc_depth': 347.0, 'conv1_depth': 38.0, 'conv2_depth': 316.0}
+[INFO] [10:06:07:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 1.0 -fc_depth 347.0 -conv1_depth 38.0 -conv2_depth 316.0
+[INFO] [10:06:07:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:08:HPOlib.cv] Result for ParamILS: SAT, 1.011200, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-7-359478_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:08:HPOlib.cv] [INFO] [10:06:07:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:08:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.70/0.97	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.70/0.97	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.70/0.97	ValueError: invalid literal for int() with base 10: '1.0'
+
+[INFO] [10:06:08:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.011200, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-7-359478_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:08:HPOlib.cv] Finished CV
+[INFO] [10:06:08:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:08:HPOlib.cv] args: ({'conv2_depth': 210.0, 'fc_depth': 461.0, 'conv1_depth': 230.0, 'filter_size': 9.0},) kwargs: {}
+[INFO] [10:06:08:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:08:HPOlib.cv] {'filter_size': 9.0, 'fc_depth': 461.0, 'conv1_depth': 230.0, 'conv2_depth': 210.0}
+[INFO] [10:06:08:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 9.0 -fc_depth 461.0 -conv1_depth 230.0 -conv2_depth 210.0
+[INFO] [10:06:08:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:09:HPOlib.cv] Result for ParamILS: SAT, 1.047190, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-8-730860_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:09:HPOlib.cv] [INFO] [10:06:08:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:09:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.82/1.01	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.82/1.01	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.82/1.01	ValueError: invalid literal for int() with base 10: '9.0'
+
+[INFO] [10:06:09:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.047190, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-8-730860_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:09:HPOlib.cv] Finished CV
+[INFO] [10:06:09:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:09:HPOlib.cv] args: ({'conv2_depth': 498.0, 'fc_depth': 351.0, 'conv1_depth': 276.0, 'filter_size': 11.0},) kwargs: {}
+[INFO] [10:06:09:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:09:HPOlib.cv] {'filter_size': 11.0, 'fc_depth': 351.0, 'conv1_depth': 276.0, 'conv2_depth': 498.0}
+[INFO] [10:06:09:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 11.0 -fc_depth 351.0 -conv1_depth 276.0 -conv2_depth 498.0
+[INFO] [10:06:09:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:11:HPOlib.cv] Result for ParamILS: SAT, 0.950858, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-10-91390_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:11:HPOlib.cv] [INFO] [10:06:10:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:11:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.91	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.91	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.91	ValueError: invalid literal for int() with base 10: '11.0'
+
+[INFO] [10:06:11:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.950858, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-10-91390_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:11:HPOlib.cv] Finished CV
+[INFO] [10:06:11:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:11:HPOlib.cv] args: ({'conv2_depth': 164.0, 'fc_depth': 347.0, 'conv1_depth': 56.0, 'filter_size': 4.0},) kwargs: {}
+[INFO] [10:06:11:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:11:HPOlib.cv] {'filter_size': 4.0, 'fc_depth': 347.0, 'conv1_depth': 56.0, 'conv2_depth': 164.0}
+[INFO] [10:06:11:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 4.0 -fc_depth 347.0 -conv1_depth 56.0 -conv2_depth 164.0
+[INFO] [10:06:11:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:12:HPOlib.cv] Result for ParamILS: SAT, 1.037530, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-11-265849_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:12:HPOlib.cv] [INFO] [10:06:11:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:12:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.83/1.00	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.83/1.00	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.83/1.00	ValueError: invalid literal for int() with base 10: '4.0'
+
+[INFO] [10:06:12:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.037530, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-11-265849_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:12:HPOlib.cv] Finished CV
+[INFO] [10:06:12:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:12:HPOlib.cv] args: ({'conv2_depth': 178.0, 'fc_depth': 458.0, 'conv1_depth': 110.0, 'filter_size': 9.0},) kwargs: {}
+[INFO] [10:06:12:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:12:HPOlib.cv] {'filter_size': 9.0, 'fc_depth': 458.0, 'conv1_depth': 110.0, 'conv2_depth': 178.0}
+[INFO] [10:06:12:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 9.0 -fc_depth 458.0 -conv1_depth 110.0 -conv2_depth 178.0
+[INFO] [10:06:12:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:13:HPOlib.cv] Result for ParamILS: SAT, 0.959706, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-12-635660_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:13:HPOlib.cv] [INFO] [10:06:12:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:13:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.92	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.92	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.92	ValueError: invalid literal for int() with base 10: '9.0'
+
+[INFO] [10:06:13:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.959706, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-12-635660_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:13:HPOlib.cv] Finished CV
+[INFO] [10:06:13:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:13:HPOlib.cv] args: ({'conv2_depth': 496.0, 'fc_depth': 389.0, 'conv1_depth': 274.0, 'filter_size': 14.0},) kwargs: {}
+[INFO] [10:06:13:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:13:HPOlib.cv] {'filter_size': 14.0, 'fc_depth': 389.0, 'conv1_depth': 274.0, 'conv2_depth': 496.0}
+[INFO] [10:06:13:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 14.0 -fc_depth 389.0 -conv1_depth 274.0 -conv2_depth 496.0
+[INFO] [10:06:13:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:15:HPOlib.cv] Result for ParamILS: SAT, 1.108870, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-13-870361_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:15:HPOlib.cv] [INFO] [10:06:13:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:15:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.82/1.06	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.82/1.06	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.82/1.06	ValueError: invalid literal for int() with base 10: '14.0'
+
+[INFO] [10:06:15:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.108870, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-13-870361_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:15:HPOlib.cv] Finished CV
+[INFO] [10:06:15:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:15:HPOlib.cv] args: ({'conv2_depth': 164.0, 'fc_depth': 323.0, 'conv1_depth': 114.0, 'filter_size': 5.0},) kwargs: {}
+[INFO] [10:06:15:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:15:HPOlib.cv] {'filter_size': 5.0, 'fc_depth': 323.0, 'conv1_depth': 114.0, 'conv2_depth': 164.0}
+[INFO] [10:06:15:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 5.0 -fc_depth 323.0 -conv1_depth 114.0 -conv2_depth 164.0
+[INFO] [10:06:15:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:16:HPOlib.cv] Result for ParamILS: SAT, 0.997866, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-15-357965_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:16:HPOlib.cv] [INFO] [10:06:15:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:16:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.74/0.96	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.74/0.96	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.74/0.96	ValueError: invalid literal for int() with base 10: '5.0'
+
+[INFO] [10:06:16:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.997866, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-15-357965_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:16:HPOlib.cv] Finished CV
+[INFO] [10:06:16:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:16:HPOlib.cv] args: ({'conv2_depth': 264.0, 'fc_depth': 511.0, 'conv1_depth': 106.0, 'filter_size': 11.0},) kwargs: {}
+[INFO] [10:06:16:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:16:HPOlib.cv] {'filter_size': 11.0, 'fc_depth': 511.0, 'conv1_depth': 106.0, 'conv2_depth': 264.0}
+[INFO] [10:06:16:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 11.0 -fc_depth 511.0 -conv1_depth 106.0 -conv2_depth 264.0
+[INFO] [10:06:16:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:17:HPOlib.cv] Result for ParamILS: SAT, 1.010180, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-16-615845_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:17:HPOlib.cv] [INFO] [10:06:16:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:17:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.97	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.97	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.97	ValueError: invalid literal for int() with base 10: '11.0'
+
+[INFO] [10:06:17:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.010180, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-16-615845_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:17:HPOlib.cv] Finished CV
+[INFO] [10:06:17:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:17:HPOlib.cv] args: ({'conv2_depth': 362.0, 'fc_depth': 374.0, 'conv1_depth': 448.0, 'filter_size': 6.0},) kwargs: {}
+[INFO] [10:06:17:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:17:HPOlib.cv] {'filter_size': 6.0, 'fc_depth': 374.0, 'conv1_depth': 448.0, 'conv2_depth': 362.0}
+[INFO] [10:06:17:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 6.0 -fc_depth 374.0 -conv1_depth 448.0 -conv2_depth 362.0
+[INFO] [10:06:17:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:19:HPOlib.cv] Result for ParamILS: SAT, 1.030210, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-18-9680_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:19:HPOlib.cv] [INFO] [10:06:18:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:19:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.66/0.99	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.66/0.99	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.66/0.99	ValueError: invalid literal for int() with base 10: '6.0'
+
+[INFO] [10:06:19:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.030210, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-18-9680_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:19:HPOlib.cv] Finished CV
+[INFO] [10:06:19:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:19:HPOlib.cv] args: ({'conv2_depth': 450.0, 'fc_depth': 271.0, 'conv1_depth': 212.0, 'filter_size': 2.0},) kwargs: {}
+[INFO] [10:06:19:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:19:HPOlib.cv] {'filter_size': 2.0, 'fc_depth': 271.0, 'conv1_depth': 212.0, 'conv2_depth': 450.0}
+[INFO] [10:06:19:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 2.0 -fc_depth 271.0 -conv1_depth 212.0 -conv2_depth 450.0
+[INFO] [10:06:19:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:20:HPOlib.cv] Result for ParamILS: SAT, 1.027830, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-19-443627_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:20:HPOlib.cv] [INFO] [10:06:19:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:20:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.70/0.99	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.70/0.99	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.70/0.99	ValueError: invalid literal for int() with base 10: '2.0'
+
+[INFO] [10:06:20:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.027830, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-19-443627_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:20:HPOlib.cv] Finished CV
+[INFO] [10:06:20:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:20:HPOlib.cv] args: ({'conv2_depth': 406.0, 'fc_depth': 59.0, 'conv1_depth': 172.0, 'filter_size': 7.0},) kwargs: {}
+[INFO] [10:06:20:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:20:HPOlib.cv] {'filter_size': 7.0, 'fc_depth': 59.0, 'conv1_depth': 172.0, 'conv2_depth': 406.0}
+[INFO] [10:06:20:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 7.0 -fc_depth 59.0 -conv1_depth 172.0 -conv2_depth 406.0
+[INFO] [10:06:20:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:21:HPOlib.cv] Result for ParamILS: SAT, 0.957068, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-20-797830_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:21:HPOlib.cv] [INFO] [10:06:20:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:21:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.92	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.92	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.92	ValueError: invalid literal for int() with base 10: '7.0'
+
+[INFO] [10:06:21:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.957068, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-20-797830_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:21:HPOlib.cv] Finished CV
+[INFO] [10:06:21:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:21:HPOlib.cv] args: ({'conv2_depth': 308.0, 'fc_depth': 129.0, 'conv1_depth': 6.0, 'filter_size': 3.0},) kwargs: {}
+[INFO] [10:06:21:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:21:HPOlib.cv] {'filter_size': 3.0, 'fc_depth': 129.0, 'conv1_depth': 6.0, 'conv2_depth': 308.0}
+[INFO] [10:06:21:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 3.0 -fc_depth 129.0 -conv1_depth 6.0 -conv2_depth 308.0
+[INFO] [10:06:21:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:23:HPOlib.cv] Result for ParamILS: SAT, 0.951521, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-22-72758_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:23:HPOlib.cv] [INFO] [10:06:22:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:23:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.91	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.91	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.91	ValueError: invalid literal for int() with base 10: '3.0'
+
+[INFO] [10:06:23:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.951521, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-22-72758_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:23:HPOlib.cv] Finished CV
+[INFO] [10:06:23:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:23:HPOlib.cv] args: ({'conv2_depth': 270.0, 'fc_depth': 191.0, 'conv1_depth': 46.0, 'filter_size': 3.0},) kwargs: {}
+[INFO] [10:06:23:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:23:HPOlib.cv] {'filter_size': 3.0, 'fc_depth': 191.0, 'conv1_depth': 46.0, 'conv2_depth': 270.0}
+[INFO] [10:06:23:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 3.0 -fc_depth 191.0 -conv1_depth 46.0 -conv2_depth 270.0
+[INFO] [10:06:23:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:24:HPOlib.cv] Result for ParamILS: SAT, 1.010960, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-23-351606_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:24:HPOlib.cv] [INFO] [10:06:23:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:24:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.97	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.97	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.97	ValueError: invalid literal for int() with base 10: '3.0'
+
+[INFO] [10:06:24:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.010960, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-23-351606_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:24:HPOlib.cv] Finished CV
+[INFO] [10:06:24:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:24:HPOlib.cv] args: ({'conv2_depth': 236.0, 'fc_depth': 502.0, 'conv1_depth': 360.0, 'filter_size': 8.0},) kwargs: {}
+[INFO] [10:06:24:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:24:HPOlib.cv] {'filter_size': 8.0, 'fc_depth': 502.0, 'conv1_depth': 360.0, 'conv2_depth': 236.0}
+[INFO] [10:06:24:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 8.0 -fc_depth 502.0 -conv1_depth 360.0 -conv2_depth 236.0
+[INFO] [10:06:24:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:25:HPOlib.cv] Result for ParamILS: SAT, 0.952346, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-24-702610_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:25:HPOlib.cv] [INFO] [10:06:24:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:25:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.70/0.91	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.70/0.91	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.70/0.91	ValueError: invalid literal for int() with base 10: '8.0'
+
+[INFO] [10:06:25:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.952346, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-24-702610_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:25:HPOlib.cv] Finished CV
+[INFO] [10:06:25:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:25:HPOlib.cv] args: ({'conv2_depth': 72.0, 'fc_depth': 428.0, 'conv1_depth': 336.0, 'filter_size': 11.0},) kwargs: {}
+[INFO] [10:06:25:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:25:HPOlib.cv] {'filter_size': 11.0, 'fc_depth': 428.0, 'conv1_depth': 336.0, 'conv2_depth': 72.0}
+[INFO] [10:06:25:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 11.0 -fc_depth 428.0 -conv1_depth 336.0 -conv2_depth 72.0
+[INFO] [10:06:25:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:27:HPOlib.cv] Result for ParamILS: SAT, 1.016730, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-25-991876_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:27:HPOlib.cv] [INFO] [10:06:26:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:27:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.98	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.98	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.98	ValueError: invalid literal for int() with base 10: '11.0'
+
+[INFO] [10:06:27:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.016730, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-25-991876_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:27:HPOlib.cv] Finished CV
+[INFO] [10:06:27:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:27:HPOlib.cv] args: ({'conv2_depth': 424.0, 'fc_depth': 216.0, 'conv1_depth': 186.0, 'filter_size': 13.0},) kwargs: {}
+[INFO] [10:06:27:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:27:HPOlib.cv] {'filter_size': 13.0, 'fc_depth': 216.0, 'conv1_depth': 186.0, 'conv2_depth': 424.0}
+[INFO] [10:06:27:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 13.0 -fc_depth 216.0 -conv1_depth 186.0 -conv2_depth 424.0
+[INFO] [10:06:27:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:28:HPOlib.cv] Result for ParamILS: SAT, 1.019560, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-27-394092_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:28:HPOlib.cv] [INFO] [10:06:27:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:28:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.98	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.98	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.98	ValueError: invalid literal for int() with base 10: '13.0'
+
+[INFO] [10:06:28:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.019560, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-27-394092_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:28:HPOlib.cv] Finished CV
+[INFO] [10:06:28:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:28:HPOlib.cv] args: ({'conv2_depth': 332.0, 'fc_depth': 162.0, 'conv1_depth': 144.0, 'filter_size': 12.0},) kwargs: {}
+[INFO] [10:06:28:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:28:HPOlib.cv] {'filter_size': 12.0, 'fc_depth': 162.0, 'conv1_depth': 144.0, 'conv2_depth': 332.0}
+[INFO] [10:06:28:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 12.0 -fc_depth 162.0 -conv1_depth 144.0 -conv2_depth 332.0
+[INFO] [10:06:28:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:29:HPOlib.cv] Result for ParamILS: SAT, 1.013450, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-28-740123_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:29:HPOlib.cv] [INFO] [10:06:28:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:29:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.97	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.97	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.97	ValueError: invalid literal for int() with base 10: '12.0'
+
+[INFO] [10:06:29:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.013450, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-28-740123_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:29:HPOlib.cv] Finished CV
+[INFO] [10:06:29:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:29:HPOlib.cv] args: ({'conv2_depth': 284.0, 'fc_depth': 126.0, 'conv1_depth': 74.0, 'filter_size': 1.0},) kwargs: {}
+[INFO] [10:06:30:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:30:HPOlib.cv] {'filter_size': 1.0, 'fc_depth': 126.0, 'conv1_depth': 74.0, 'conv2_depth': 284.0}
+[INFO] [10:06:30:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 1.0 -fc_depth 126.0 -conv1_depth 74.0 -conv2_depth 284.0
+[INFO] [10:06:30:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:31:HPOlib.cv] Result for ParamILS: SAT, 1.119150, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-30-142581_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:31:HPOlib.cv] [INFO] [10:06:30:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:31:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.79/1.08	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.79/1.08	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.79/1.08	ValueError: invalid literal for int() with base 10: '1.0'
+
+[INFO] [10:06:31:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.119150, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-30-142581_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:31:HPOlib.cv] Finished CV
+[INFO] [10:06:31:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:31:HPOlib.cv] args: ({'conv2_depth': 370.0, 'fc_depth': 280.0, 'conv1_depth': 92.0, 'filter_size': 5.0},) kwargs: {}
+[INFO] [10:06:31:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:31:HPOlib.cv] {'filter_size': 5.0, 'fc_depth': 280.0, 'conv1_depth': 92.0, 'conv2_depth': 370.0}
+[INFO] [10:06:31:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 5.0 -fc_depth 280.0 -conv1_depth 92.0 -conv2_depth 370.0
+[INFO] [10:06:31:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:32:HPOlib.cv] Result for ParamILS: SAT, 1.032950, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-31-655601_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:32:HPOlib.cv] [INFO] [10:06:31:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:32:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.74/0.99	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.74/0.99	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.74/0.99	ValueError: invalid literal for int() with base 10: '5.0'
+
+[INFO] [10:06:32:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.032950, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-31-655601_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:32:HPOlib.cv] Finished CV
+[INFO] [10:06:32:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:32:HPOlib.cv] args: ({'conv2_depth': 124.0, 'fc_depth': 453.0, 'conv1_depth': 406.0, 'filter_size': 7.0},) kwargs: {}
+[INFO] [10:06:32:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:32:HPOlib.cv] {'filter_size': 7.0, 'fc_depth': 453.0, 'conv1_depth': 406.0, 'conv2_depth': 124.0}
+[INFO] [10:06:32:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 7.0 -fc_depth 453.0 -conv1_depth 406.0 -conv2_depth 124.0
+[INFO] [10:06:32:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:34:HPOlib.cv] Result for ParamILS: SAT, 1.073920, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-33-21252_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:34:HPOlib.cv] [INFO] [10:06:33:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:34:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.83/1.04	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.83/1.04	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.83/1.04	ValueError: invalid literal for int() with base 10: '7.0'
+
+[INFO] [10:06:34:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.073920, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-33-21252_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:34:HPOlib.cv] Finished CV
+[INFO] [10:06:34:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:34:HPOlib.cv] args: ({'conv2_depth': 210.0, 'fc_depth': 304.0, 'conv1_depth': 254.0, 'filter_size': 9.0},) kwargs: {}
+[INFO] [10:06:34:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:34:HPOlib.cv] {'filter_size': 9.0, 'fc_depth': 304.0, 'conv1_depth': 254.0, 'conv2_depth': 210.0}
+[INFO] [10:06:34:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 9.0 -fc_depth 304.0 -conv1_depth 254.0 -conv2_depth 210.0
+[INFO] [10:06:34:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:35:HPOlib.cv] Result for ParamILS: SAT, 1.042720, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-34-392006_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:35:HPOlib.cv] [INFO] [10:06:34:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:35:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.84/1.00	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.84/1.00	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.84/1.00	ValueError: invalid literal for int() with base 10: '9.0'
+
+[INFO] [10:06:35:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.042720, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-34-392006_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:35:HPOlib.cv] Finished CV
+[INFO] [10:06:35:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:35:HPOlib.cv] args: ({'conv2_depth': 12.0, 'fc_depth': 251.0, 'conv1_depth': 228.0, 'filter_size': 14.0},) kwargs: {}
+[INFO] [10:06:35:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:35:HPOlib.cv] {'filter_size': 14.0, 'fc_depth': 251.0, 'conv1_depth': 228.0, 'conv2_depth': 12.0}
+[INFO] [10:06:35:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 14.0 -fc_depth 251.0 -conv1_depth 228.0 -conv2_depth 12.0
+[INFO] [10:06:35:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:36:HPOlib.cv] Result for ParamILS: SAT, 0.984718, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-35-783224_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:36:HPOlib.cv] [INFO] [10:06:35:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:36:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.95	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.95	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.95	ValueError: invalid literal for int() with base 10: '14.0'
+
+[INFO] [10:06:36:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.984718, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-35-783224_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:36:HPOlib.cv] Finished CV
+[INFO] [10:06:36:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:36:HPOlib.cv] args: ({'conv2_depth': 506.0, 'fc_depth': 3.0, 'conv1_depth': 168.0, 'filter_size': 10.0},) kwargs: {}
+[INFO] [10:06:36:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:36:HPOlib.cv] {'filter_size': 10.0, 'fc_depth': 3.0, 'conv1_depth': 168.0, 'conv2_depth': 506.0}
+[INFO] [10:06:36:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 10.0 -fc_depth 3.0 -conv1_depth 168.0 -conv2_depth 506.0
+[INFO] [10:06:36:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:38:HPOlib.cv] Result for ParamILS: SAT, 0.956568, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-37-56303_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:38:HPOlib.cv] [INFO] [10:06:37:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:38:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.72/0.92	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.72/0.92	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.72/0.92	ValueError: invalid literal for int() with base 10: '10.0'
+
+[INFO] [10:06:38:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.956568, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-37-56303_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:38:HPOlib.cv] Finished CV
+[INFO] [10:06:38:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:38:HPOlib.cv] args: ({'conv2_depth': 340.0, 'fc_depth': 336.0, 'conv1_depth': 124.0, 'filter_size': 5.0},) kwargs: {}
+[INFO] [10:06:38:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:38:HPOlib.cv] {'filter_size': 5.0, 'fc_depth': 336.0, 'conv1_depth': 124.0, 'conv2_depth': 340.0}
+[INFO] [10:06:38:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 5.0 -fc_depth 336.0 -conv1_depth 124.0 -conv2_depth 340.0
+[INFO] [10:06:38:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:39:HPOlib.cv] Result for ParamILS: SAT, 0.950423, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-38-321158_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:39:HPOlib.cv] [INFO] [10:06:38:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:39:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.72/0.91	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.72/0.91	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.72/0.91	ValueError: invalid literal for int() with base 10: '5.0'
+
+[INFO] [10:06:39:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.950423, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-38-321158_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:39:HPOlib.cv] Finished CV
+[INFO] [10:06:39:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:39:HPOlib.cv] args: ({'conv2_depth': 320.0, 'fc_depth': 384.0, 'conv1_depth': 46.0, 'filter_size': 7.0},) kwargs: {}
+[INFO] [10:06:39:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:39:HPOlib.cv] {'filter_size': 7.0, 'fc_depth': 384.0, 'conv1_depth': 46.0, 'conv2_depth': 320.0}
+[INFO] [10:06:39:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 7.0 -fc_depth 384.0 -conv1_depth 46.0 -conv2_depth 320.0
+[INFO] [10:06:39:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:40:HPOlib.cv] Result for ParamILS: SAT, 0.950448, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-39-565033_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:40:HPOlib.cv] [INFO] [10:06:39:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:40:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.91	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.91	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.91	ValueError: invalid literal for int() with base 10: '7.0'
+
+[INFO] [10:06:40:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.950448, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-39-565033_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:40:HPOlib.cv] Finished CV
+[INFO] [10:06:40:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:40:HPOlib.cv] args: ({'conv2_depth': 78.0, 'fc_depth': 480.0, 'conv1_depth': 292.0, 'filter_size': 11.0},) kwargs: {}
+[INFO] [10:06:40:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:40:HPOlib.cv] {'filter_size': 11.0, 'fc_depth': 480.0, 'conv1_depth': 292.0, 'conv2_depth': 78.0}
+[INFO] [10:06:40:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 11.0 -fc_depth 480.0 -conv1_depth 292.0 -conv2_depth 78.0
+[INFO] [10:06:40:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:42:HPOlib.cv] Result for ParamILS: SAT, 1.080030, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-40-875490_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:42:HPOlib.cv] [INFO] [10:06:40:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:42:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.84/1.04	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.84/1.04	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.84/1.04	ValueError: invalid literal for int() with base 10: '11.0'
+
+[INFO] [10:06:42:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.080030, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-40-875490_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:42:HPOlib.cv] Finished CV
+[INFO] [10:06:42:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:42:HPOlib.cv] args: ({'conv2_depth': 20.0, 'fc_depth': 415.0, 'conv1_depth': 222.0, 'filter_size': 9.0},) kwargs: {}
+[INFO] [10:06:42:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:42:HPOlib.cv] {'filter_size': 9.0, 'fc_depth': 415.0, 'conv1_depth': 222.0, 'conv2_depth': 20.0}
+[INFO] [10:06:42:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 9.0 -fc_depth 415.0 -conv1_depth 222.0 -conv2_depth 20.0
+[INFO] [10:06:42:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:43:HPOlib.cv] Result for ParamILS: SAT, 1.113260, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-42-274536_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:43:HPOlib.cv] [INFO] [10:06:42:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:43:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.80/1.07	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.80/1.07	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.80/1.07	ValueError: invalid literal for int() with base 10: '9.0'
+
+[INFO] [10:06:43:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.113260, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-42-274536_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:43:HPOlib.cv] Finished CV
+[INFO] [10:06:43:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:43:HPOlib.cv] args: ({'conv2_depth': 480.0, 'fc_depth': 364.0, 'conv1_depth': 472.0, 'filter_size': 12.0},) kwargs: {}
+[INFO] [10:06:43:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:43:HPOlib.cv] {'filter_size': 12.0, 'fc_depth': 364.0, 'conv1_depth': 472.0, 'conv2_depth': 480.0}
+[INFO] [10:06:43:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 12.0 -fc_depth 364.0 -conv1_depth 472.0 -conv2_depth 480.0
+[INFO] [10:06:43:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:44:HPOlib.cv] Result for ParamILS: SAT, 0.954480, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-43-703550_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:44:HPOlib.cv] [INFO] [10:06:43:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:44:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.70/0.92	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.70/0.92	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.70/0.92	ValueError: invalid literal for int() with base 10: '12.0'
+
+[INFO] [10:06:44:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.954480, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-43-703550_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:44:HPOlib.cv] Finished CV
+[INFO] [10:06:44:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:44:HPOlib.cv] args: ({'conv2_depth': 476.0, 'fc_depth': 319.0, 'conv1_depth': 388.0, 'filter_size': 13.0},) kwargs: {}
+[INFO] [10:06:44:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:44:HPOlib.cv] {'filter_size': 13.0, 'fc_depth': 319.0, 'conv1_depth': 388.0, 'conv2_depth': 476.0}
+[INFO] [10:06:44:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 13.0 -fc_depth 319.0 -conv1_depth 388.0 -conv2_depth 476.0
+[INFO] [10:06:44:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:46:HPOlib.cv] Result for ParamILS: SAT, 0.974105, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-44-954047_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:46:HPOlib.cv] [INFO] [10:06:45:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:46:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.68/0.93	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.68/0.93	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.68/0.93	ValueError: invalid literal for int() with base 10: '13.0'
+
+[INFO] [10:06:46:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.974105, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-44-954047_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:46:HPOlib.cv] Finished CV
+[INFO] [10:06:46:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:46:HPOlib.cv] args: ({'conv2_depth': 180.0, 'fc_depth': 431.0, 'conv1_depth': 66.0, 'filter_size': 4.0},) kwargs: {}
+[INFO] [10:06:46:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:46:HPOlib.cv] {'filter_size': 4.0, 'fc_depth': 431.0, 'conv1_depth': 66.0, 'conv2_depth': 180.0}
+[INFO] [10:06:46:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 4.0 -fc_depth 431.0 -conv1_depth 66.0 -conv2_depth 180.0
+[INFO] [10:06:46:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:47:HPOlib.cv] Result for ParamILS: SAT, 0.950279, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-46-276485_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:47:HPOlib.cv] [INFO] [10:06:46:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:47:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.71/0.91	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.71/0.91	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.71/0.91	ValueError: invalid literal for int() with base 10: '4.0'
+
+[INFO] [10:06:47:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.950279, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-46-276485_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:47:HPOlib.cv] Finished CV
+[INFO] [10:06:47:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:47:HPOlib.cv] args: ({'conv2_depth': 98.0, 'fc_depth': 214.0, 'conv1_depth': 156.0, 'filter_size': 6.0},) kwargs: {}
+[INFO] [10:06:47:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:47:HPOlib.cv] {'filter_size': 6.0, 'fc_depth': 214.0, 'conv1_depth': 156.0, 'conv2_depth': 98.0}
+[INFO] [10:06:47:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 6.0 -fc_depth 214.0 -conv1_depth 156.0 -conv2_depth 98.0
+[INFO] [10:06:47:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:48:HPOlib.cv] Result for ParamILS: SAT, 0.950239, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-47-551523_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:48:HPOlib.cv] [INFO] [10:06:47:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:48:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.73/0.91	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.73/0.91	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.73/0.91	ValueError: invalid literal for int() with base 10: '6.0'
+
+[INFO] [10:06:48:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.950239, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-47-551523_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:48:HPOlib.cv] Finished CV
+[INFO] [10:06:48:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:48:HPOlib.cv] args: ({'conv2_depth': 186.0, 'fc_depth': 452.0, 'conv1_depth': 134.0, 'filter_size': 9.0},) kwargs: {}
+[INFO] [10:06:48:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:48:HPOlib.cv] {'filter_size': 9.0, 'fc_depth': 452.0, 'conv1_depth': 134.0, 'conv2_depth': 186.0}
+[INFO] [10:06:48:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 9.0 -fc_depth 452.0 -conv1_depth 134.0 -conv2_depth 186.0
+[INFO] [10:06:48:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:50:HPOlib.cv] Result for ParamILS: SAT, 1.091600, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-48-873890_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:50:HPOlib.cv] [INFO] [10:06:48:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:50:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.83/1.05	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.83/1.05	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.83/1.05	ValueError: invalid literal for int() with base 10: '9.0'
+
+[INFO] [10:06:50:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.091600, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-48-873890_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:50:HPOlib.cv] Finished CV
+[INFO] [10:06:50:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:50:HPOlib.cv] args: ({'conv2_depth': 124.0, 'fc_depth': 400.0, 'conv1_depth': 104.0, 'filter_size': 8.0},) kwargs: {}
+[INFO] [10:06:50:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:50:HPOlib.cv] {'filter_size': 8.0, 'fc_depth': 400.0, 'conv1_depth': 104.0, 'conv2_depth': 124.0}
+[INFO] [10:06:50:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 8.0 -fc_depth 400.0 -conv1_depth 104.0 -conv2_depth 124.0
+[INFO] [10:06:50:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:51:HPOlib.cv] Result for ParamILS: SAT, 1.064210, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-50-315464_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:51:HPOlib.cv] [INFO] [10:06:50:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:51:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.83/1.03	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.83/1.03	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.83/1.03	ValueError: invalid literal for int() with base 10: '8.0'
+
+[INFO] [10:06:51:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.064210, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-50-315464_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:51:HPOlib.cv] Finished CV
+[INFO] [10:06:51:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:51:HPOlib.cv] args: ({'conv2_depth': 388.0, 'fc_depth': 390.0, 'conv1_depth': 272.0, 'filter_size': 13.0},) kwargs: {}
+[INFO] [10:06:51:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:51:HPOlib.cv] {'filter_size': 13.0, 'fc_depth': 390.0, 'conv1_depth': 272.0, 'conv2_depth': 388.0}
+[INFO] [10:06:51:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 13.0 -fc_depth 390.0 -conv1_depth 272.0 -conv2_depth 388.0
+[INFO] [10:06:51:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:52:HPOlib.cv] Result for ParamILS: SAT, 1.013950, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-51-720933_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:52:HPOlib.cv] [INFO] [10:06:51:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:52:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.70/0.98	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.70/0.98	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.70/0.98	ValueError: invalid literal for int() with base 10: '13.0'
+
+[INFO] [10:06:52:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.013950, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-51-720933_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:52:HPOlib.cv] Finished CV
+[INFO] [10:06:52:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:52:HPOlib.cv] args: ({'conv2_depth': 416.0, 'fc_depth': 487.0, 'conv1_depth': 320.0, 'filter_size': 12.0},) kwargs: {}
+[INFO] [10:06:53:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:53:HPOlib.cv] {'filter_size': 12.0, 'fc_depth': 487.0, 'conv1_depth': 320.0, 'conv2_depth': 416.0}
+[INFO] [10:06:53:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 12.0 -fc_depth 487.0 -conv1_depth 320.0 -conv2_depth 416.0
+[INFO] [10:06:53:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:54:HPOlib.cv] Result for ParamILS: SAT, 0.985434, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-53-133542_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:54:HPOlib.cv] [INFO] [10:06:53:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:54:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.71/0.95	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.71/0.95	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.71/0.95	ValueError: invalid literal for int() with base 10: '12.0'
+
+[INFO] [10:06:54:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 0.985434, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-53-133542_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:54:HPOlib.cv] Finished CV
+[INFO] [10:06:54:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:54:HPOlib.cv] args: ({'conv2_depth': 154.0, 'fc_depth': 325.0, 'conv1_depth': 86.0, 'filter_size': 5.0},) kwargs: {}
+[INFO] [10:06:54:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:54:HPOlib.cv] {'filter_size': 5.0, 'fc_depth': 325.0, 'conv1_depth': 86.0, 'conv2_depth': 154.0}
+[INFO] [10:06:54:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 5.0 -fc_depth 325.0 -conv1_depth 86.0 -conv2_depth 154.0
+[INFO] [10:06:54:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:55:HPOlib.cv] Result for ParamILS: SAT, 1.068150, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-54-418948_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:55:HPOlib.cv] [INFO] [10:06:54:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:55:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.83/1.03	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.83/1.03	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.83/1.03	ValueError: invalid literal for int() with base 10: '5.0'
+
+[INFO] [10:06:55:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.068150, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-54-418948_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:55:HPOlib.cv] Finished CV
+[INFO] [10:06:55:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:55:HPOlib.cv] args: ({'conv2_depth': 46.0, 'fc_depth': 167.0, 'conv1_depth': 28.0, 'filter_size': 7.0},) kwargs: {}
+[INFO] [10:06:55:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:55:HPOlib.cv] {'filter_size': 7.0, 'fc_depth': 167.0, 'conv1_depth': 28.0, 'conv2_depth': 46.0}
+[INFO] [10:06:55:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 7.0 -fc_depth 167.0 -conv1_depth 28.0 -conv2_depth 46.0
+[INFO] [10:06:55:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:57:HPOlib.cv] Result for ParamILS: SAT, 1.057660, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-55-846463_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:57:HPOlib.cv] [INFO] [10:06:55:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:56:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.81/1.02	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.81/1.02	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.81/1.02	ValueError: invalid literal for int() with base 10: '7.0'
+
+[INFO] [10:06:57:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.057660, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-55-846463_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:57:HPOlib.cv] Finished CV
+[INFO] [10:06:57:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:57:HPOlib.cv] args: ({'conv2_depth': 268.0, 'fc_depth': 512.0, 'conv1_depth': 116.0, 'filter_size': 11.0},) kwargs: {}
+[INFO] [10:06:57:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:57:HPOlib.cv] {'filter_size': 11.0, 'fc_depth': 512.0, 'conv1_depth': 116.0, 'conv2_depth': 268.0}
+[INFO] [10:06:57:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 11.0 -fc_depth 512.0 -conv1_depth 116.0 -conv2_depth 268.0
+[INFO] [10:06:57:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
+[INFO] [10:06:58:HPOlib.cv] Result for ParamILS: SAT, 1.112240, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-57-286521_run_instance.out.The output status is not "SAT"
+
+[ERROR] [10:06:58:HPOlib.cv] [INFO] [10:06:57:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[CRITICAL] [10:06:58:HPOlib.runsolver_wrapper] We could not find anything matching our regexp. Setting the target algorithm runtime to the time measured by the runsolver. Last lines of your output:
+1.82/1.07	  File "../convolutional-hpolib.py", line 231, in train_mnist
+1.82/1.07	    vars = init_vars(int(flags["filter_size"]), int(flags["conv1_depth"]), int(flags["conv2_depth"]), int(flags["fc_depth"]))
+1.82/1.07	ValueError: invalid literal for int() with base 10: '11.0'
+
+[INFO] [10:06:58:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 1.112240, 1, 1000000.000000, 0, Please have a look at /root/tf-hpolib/HPOlib/benchmarks/tf-cnn/hyperopt_august2013_mod_23_2016-8-30--10-5-6-511839/2016-8-30--10-6-57-286521_run_instance.out.The output status is not "SAT"
+
+[INFO] [10:06:58:HPOlib.cv] Finished CV
+[INFO] [10:06:58:HPOlib.cv] Result: 1000000.000000
+[CRITICAL] [10:06:58:HPOlib.cv] args: ({'conv2_depth': 358.0, 'fc_depth': 380.0, 'conv1_depth': 438.0, 'filter_size': 6.0},) kwargs: {}
+[INFO] [10:06:58:HPOlib.cv] Starting Cross validation
+[INFO] [10:06:58:HPOlib.cv] {'filter_size': 6.0, 'fc_depth': 380.0, 'conv1_depth': 438.0, 'conv2_depth': 358.0}
+[INFO] [10:06:58:HPOlib.cv] Calling command:
+python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 hyperopt_august2013_mod 0 0 0 -filter_size 6.0 -fc_depth 380.0 -conv1_depth 438.0 -conv2_depth 358.0
+[INFO] [10:06:58:HPOlib.cv] --------------RUNNING RUNSOLVER_WRAPPER--------------
