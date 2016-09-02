@@ -1,3 +1,8 @@
+import gzip
+import os
+
+from six.moves import urllib
+from six.moves import xrange    # pylint: disable=redefined-builtin
 import numpy
 import tensorflow as tf
 
@@ -9,6 +14,9 @@ IMAGE_SIZE = 28
 NUM_CHANNELS = 1
 PIXEL_DEPTH = 255
 NUM_LABELS = 10
+
+NUM_TRAIN_DATA = 60000
+NUM_TEST_DATA = 10000
 
 # DATA DOWNLOADER
 def maybe_download(filename):
