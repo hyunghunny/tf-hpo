@@ -3,6 +3,7 @@ import os
 
 from six.moves import urllib
 from six.moves import xrange    # pylint: disable=redefined-builtin
+
 import numpy
 import tensorflow as tf
 
@@ -37,7 +38,7 @@ def extract_data(filename, num_images):
 
     Values are rescaled from [0, 255] down to [-0.5, 0.5].
     """
-    print('Extracting', filename)
+    #print('Extracting', filename)
     with gzip.open(filename) as bytestream:
         bytestream.read(16)
         buf = bytestream.read(IMAGE_SIZE * IMAGE_SIZE * num_images)
@@ -49,7 +50,7 @@ def extract_data(filename, num_images):
 
 def extract_labels(filename, num_images):
     """Extract the labels into a vector of int64 label IDs."""
-    print('Extracting', filename)
+    #print('Extracting', filename)
     with gzip.open(filename) as bytestream:
         bytestream.read(8)
         buf = bytestream.read(1 * num_images)

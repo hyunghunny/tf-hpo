@@ -34,11 +34,10 @@ from six.moves import xrange    # pylint: disable=redefined-builtin
 import argparse
 
 import tensorflow as tf
-from config import Config # configuration file reader
 from util import PerformanceCSVLogger
 
 SEED = 66478    # Set to None for random seed.    
-NUM_EPOCHS = 2
+NUM_EPOCHS = 3
 
 BATCH_SIZE = 64
 EVAL_BATCH_SIZE = 64
@@ -55,130 +54,130 @@ SHOW_ERR=True
     
 # initialize tensorflow variables which are required to learning
 def initialize_variables(dataset, **hyperparams):
-    
-    #debug(str(hyperparams))
-    # These hyperparams will be passed from kwargs
-    var_init_value = hyperparams["var_init_value"]
-    
-    filter_size = hyperparams["filter_size"]
-    conv1_depth = hyperparams["conv1_depth"]
-    conv2_depth = hyperparams["conv2_depth"]
-    fc_depth = hyperparams["fc_depth"]
-    
-    # These placeholder nodes will be fed a batch of training data at each
-    # training step using the {feed_dict} argument to the Run() call below.
-    
-    train_data_node = tf.placeholder(
-        tf.float32,
-        shape=(BATCH_SIZE, dataset["image_size"], dataset["image_size"], dataset["num_channels"]))
-        
-    train_labels_node = tf.placeholder(tf.int64, shape=(BATCH_SIZE,))
-        
-    eval_data = tf.placeholder(
-        tf.float32,
-        shape=(EVAL_BATCH_SIZE, dataset["image_size"], dataset["image_size"], dataset["num_channels"]))
-    
-    
-    # The variables below hold all the trainable weights. They are passed an
-    # initial value which will be assigned when we call:
-    # {tf.initialize_all_variables().run()}
-    conv1_weights = tf.Variable(
-            tf.truncated_normal([filter_size, filter_size, dataset["num_channels"], conv1_depth],
-                                stddev=var_init_value,
-                                seed=SEED))
-    
-    conv1_biases = tf.Variable(tf.zeros([conv1_depth]))
-    
-    conv2_weights = tf.Variable(
-            tf.truncated_normal([filter_size, filter_size, conv1_depth, conv2_depth],
-                                                    stddev=var_init_value,
-                                                    seed=SEED))
-    
-    conv2_biases = tf.Variable(tf.constant(var_init_value, shape=[conv2_depth]))
-    
-    fc1_weights = tf.Variable(    # fully connected
-            tf.truncated_normal(
-                    [dataset["image_size"] // 4 * dataset["image_size"] // 4 * conv2_depth, fc_depth],
-                    stddev=var_init_value,
-                    seed=SEED))
-    
-    fc1_biases = tf.Variable(tf.constant(var_init_value, shape=[fc_depth]))
-    
-    fc2_weights = tf.Variable(tf.truncated_normal([fc_depth, dataset["num_labels"]],
-                                                    stddev=var_init_value,
-                                                    seed=SEED))
-    fc2_biases = tf.Variable(tf.constant(var_init_value, shape=[dataset["num_labels"]]))    
+    with tf.device(TRAIN_DEVICE_ID):    
+        #debug(str(hyperparams))
+        # These hyperparams will be passed from kwargs
+        var_init_value = hyperparams["var_init_value"]
 
-    return {
-        "train_data_node" : train_data_node,
-        "train_labels_node" : train_labels_node,
-        "eval_data" : eval_data,
-        "conv1_weights" : conv1_weights,
-        "conv1_biases" : conv1_biases,
-        "conv2_weights" : conv2_weights,
-        "conv2_biases" : conv2_biases,
-        "fc1_weights" : fc1_weights,
-        "fc1_biases" : fc1_biases,
-        "fc2_weights" : fc2_weights,
-        "fc2_biases" : fc2_biases
-        }
+        filter_size = hyperparams["filter_size"]
+        conv1_depth = hyperparams["conv1_depth"]
+        conv2_depth = hyperparams["conv2_depth"]
+        fc_depth = hyperparams["fc_depth"]
+
+        # These placeholder nodes will be fed a batch of training data at each
+        # training step using the {feed_dict} argument to the Run() call below.
+
+        train_data_node = tf.placeholder(
+            tf.float32,
+            shape=(BATCH_SIZE, dataset["image_size"], dataset["image_size"], dataset["num_channels"]))
+
+        train_labels_node = tf.placeholder(tf.int64, shape=(BATCH_SIZE,))
+
+        eval_data = tf.placeholder(
+            tf.float32,
+            shape=(EVAL_BATCH_SIZE, dataset["image_size"], dataset["image_size"], dataset["num_channels"]))
+
+
+        # The variables below hold all the trainable weights. They are passed an
+        # initial value which will be assigned when we call:
+        # {tf.initialize_all_variables().run()}
+        conv1_weights = tf.Variable(
+                tf.truncated_normal([filter_size, filter_size, dataset["num_channels"], conv1_depth],
+                                    stddev=var_init_value,
+                                    seed=SEED))
+
+        conv1_biases = tf.Variable(tf.zeros([conv1_depth]))
+
+        conv2_weights = tf.Variable(
+                tf.truncated_normal([filter_size, filter_size, conv1_depth, conv2_depth],
+                                                        stddev=var_init_value,
+                                                        seed=SEED))
+
+        conv2_biases = tf.Variable(tf.constant(var_init_value, shape=[conv2_depth]))
+
+        fc1_weights = tf.Variable(    # fully connected
+                tf.truncated_normal(
+                        [dataset["image_size"] // 4 * dataset["image_size"] // 4 * conv2_depth, fc_depth],
+                        stddev=var_init_value,
+                        seed=SEED))
+
+        fc1_biases = tf.Variable(tf.constant(var_init_value, shape=[fc_depth]))
+
+        fc2_weights = tf.Variable(tf.truncated_normal([fc_depth, dataset["num_labels"]],
+                                                        stddev=var_init_value,
+                                                        seed=SEED))
+        fc2_biases = tf.Variable(tf.constant(var_init_value, shape=[dataset["num_labels"]]))    
+
+        return {
+            "train_data_node" : train_data_node,
+            "train_labels_node" : train_labels_node,
+            "eval_data" : eval_data,
+            "conv1_weights" : conv1_weights,
+            "conv1_biases" : conv1_biases,
+            "conv2_weights" : conv2_weights,
+            "conv2_biases" : conv2_biases,
+            "fc1_weights" : fc1_weights,
+            "fc1_biases" : fc1_biases,
+            "fc2_weights" : fc2_weights,
+            "fc2_biases" : fc2_biases
+            }
             
 
 # We will replicate the model structure for the training subgraph, as well
 # as the evaluation subgraphs, while sharing the trainable parameters.
 def model(vars, data, train=False):
+    with tf.device(TRAIN_DEVICE_ID):
+        """The Model definition."""
 
-    """The Model definition."""
+        DROPOUT_RATE = 0.5
 
-    DROPOUT_RATE = 0.5
-    
-    # 2D convolution, with 'SAME' padding (i.e. the output feature map has
-    # the same size as the input). Note that {strides} is a 4D array whose
-    # shape matches the data layout: [image index, y, x, depth].
-    conv = tf.nn.conv2d(data,
-                        vars["conv1_weights"],
-                        strides=[1, 1, 1, 1],
-                        padding='SAME')
-    
-    # Bias and rectified linear non-linearity.
-    relu = tf.nn.relu(tf.nn.bias_add(conv, vars["conv1_biases"]))
-    
-    # Max pooling. The kernel size spec {ksize} also follows the layout of
-    # the data. Here we have a pooling window of 2, and a stride of 2.
-    pool = tf.nn.max_pool(relu,
-                          ksize=[1, 2, 2, 1],
-                          strides=[1, 2, 2, 1],
-                          padding='SAME')
-    
-    conv = tf.nn.conv2d(pool,
-                        vars["conv2_weights"],
-                        strides=[1, 1, 1, 1],
-                        padding='SAME')
-    
-    relu = tf.nn.relu(tf.nn.bias_add(conv, vars["conv2_biases"]))
-    
-    pool = tf.nn.max_pool(relu,
-                          ksize=[1, 2, 2, 1],
-                          strides=[1, 2, 2, 1],
-                          padding='SAME')
-    
-    # Reshape the feature map cuboid into a 2D matrix to feed it to the
-    # fully connected layers.
-    pool_shape = pool.get_shape().as_list()
-    reshape = tf.reshape(
-        pool,
-        [pool_shape[0], pool_shape[1] * pool_shape[2] * pool_shape[3]])
-    
-    # Fully connected layer. Note that the '+' operation automatically
-    # broadcasts the biases.
-    hidden = tf.nn.relu(tf.matmul(reshape, vars["fc1_weights"]) + vars["fc1_biases"])
-    
-    # Add a 50% dropout during training only. Dropout also scales
-    # activations such that no rescaling is needed at evaluation time.
-    if train:
-        hidden = tf.nn.dropout(hidden, DROPOUT_RATE, seed=SEED)
-    
-    return tf.matmul(hidden, vars["fc2_weights"]) + vars["fc2_biases"]
+        # 2D convolution, with 'SAME' padding (i.e. the output feature map has
+        # the same size as the input). Note that {strides} is a 4D array whose
+        # shape matches the data layout: [image index, y, x, depth].
+        conv = tf.nn.conv2d(data,
+                            vars["conv1_weights"],
+                            strides=[1, 1, 1, 1],
+                            padding='SAME')
+
+        # Bias and rectified linear non-linearity.
+        relu = tf.nn.relu(tf.nn.bias_add(conv, vars["conv1_biases"]))
+
+        # Max pooling. The kernel size spec {ksize} also follows the layout of
+        # the data. Here we have a pooling window of 2, and a stride of 2.
+        pool = tf.nn.max_pool(relu,
+                              ksize=[1, 2, 2, 1],
+                              strides=[1, 2, 2, 1],
+                              padding='SAME')
+
+        conv = tf.nn.conv2d(pool,
+                            vars["conv2_weights"],
+                            strides=[1, 1, 1, 1],
+                            padding='SAME')
+
+        relu = tf.nn.relu(tf.nn.bias_add(conv, vars["conv2_biases"]))
+
+        pool = tf.nn.max_pool(relu,
+                              ksize=[1, 2, 2, 1],
+                              strides=[1, 2, 2, 1],
+                              padding='SAME')
+
+        # Reshape the feature map cuboid into a 2D matrix to feed it to the
+        # fully connected layers.
+        pool_shape = pool.get_shape().as_list()
+        reshape = tf.reshape(
+            pool,
+            [pool_shape[0], pool_shape[1] * pool_shape[2] * pool_shape[3]])
+
+        # Fully connected layer. Note that the '+' operation automatically
+        # broadcasts the biases.
+        hidden = tf.nn.relu(tf.matmul(reshape, vars["fc1_weights"]) + vars["fc1_biases"])
+
+        # Add a 50% dropout during training only. Dropout also scales
+        # activations such that no rescaling is needed at evaluation time.
+        if train:
+            hidden = tf.nn.dropout(hidden, DROPOUT_RATE, seed=SEED)
+
+        return tf.matmul(hidden, vars["fc2_weights"]) + vars["fc2_biases"]
 
 
     
@@ -243,7 +242,8 @@ def train_neural_net(dataset, params, logger=None, progress=False, opt='Momentum
 
     # Optimizer: set up a variable that's incremented once per batch and
     # controls the learning rate decay.
-    batch = tf.Variable(0)
+    with tf.device(CPU_DEVICE_ID):
+        batch = tf.Variable(0)
 
     # Decay once per epoch, using an exponential schedule starting at 0.01.
     learning_rate = tf.train.exponential_decay(
@@ -406,8 +406,8 @@ def download_dataset():
     }
     
 
-def learn(params, **kwargs):    # pylint: disable=unused-argument
-
+def learn(dataset, params, **kwargs):    # pylint: disable=unused-argument
+    starttime = time.time()
     debug('Params: '+ str(params))
     debug('KVParams: ' + str(kwargs))
     
@@ -429,6 +429,7 @@ def learn(params, **kwargs):    # pylint: disable=unused-argument
     else:
         LOG_PATH = "test.csv"
     debug("Logging test errors at " + LOG_PATH)
+    
     logger = PerformanceCSVLogger(LOG_PATH)
     logger.create(4, 3) # create log with 4 hyperparams and 3 accuracy metrics        
     
@@ -437,6 +438,9 @@ def learn(params, **kwargs):    # pylint: disable=unused-argument
         
     if 'eval_dev' in kwargs:    
         EVAL_DEVICE_ID = kwargs['eval_dev']
+        
+    if 'epoch' in kwargs:
+        NUM_EPOCHS = int(kwargs['epoch'])
    
     debug('Training device id: ' + TRAIN_DEVICE_ID)
     debug('Evaluation device id: '  + EVAL_DEVICE_ID)
@@ -446,17 +450,16 @@ def learn(params, **kwargs):    # pylint: disable=unused-argument
         params["var_init_value"] = 0.1 # additional hyperparameter for variable initial value
     
     with tf.device(TRAIN_DEVICE_ID):
-        mnist = download_dataset()
-        y = train_neural_net(mnist, params, logger, progress=show_progress, opt=optimizer)
-    
-    debug("Result: " + str(y))
+        y = train_neural_net(dataset, params, logger, progress=show_progress, opt=optimizer)
+    duration = time.time() - starttime
+    debug("Result: " + str(y) + ', Duration: ' + str(abs(duration)))
     
     return y
 
 # prevent running directly
 
 if __name__ == '__main__':
-    print("Direct learning is not supported")
+    print("Direct learning is not supported. Run through train_main.py or hpolib_main.py with HPOLib-run.")
 '''
     parser = argparse.ArgumentParser()
     args = parser.parse_args()

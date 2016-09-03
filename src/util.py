@@ -11,29 +11,30 @@ import time
 import logging
 import logging.handlers
 
-class CSVLogger:
+class PerformanceCSVLogger:
     def __init__(self, path):
         self.path = path
-
+        self.setting = ""
         
     def __del__(self):
         self.delete()
-
     
-    def create(self, layers, accs):
-        
+    def create(self, num_params, num_metrics):
+                
         self.csv_format = '%(asctime)s,%(message)s'
-        self.csv_header = "Tag Name,Step"
-        for a in range(accs):
-            self.csv_header = self.csv_header + ",Accuarcy"+str(a+1)
-        self.csv_header = self.csv_header + ",Elapsed Time"    
+        self.csv_header = "Setting,Step,Elapsed Time"
+        self.num_metrics = num_metrics
+        self.num_params = num_params
+        
+        for a in range(num_metrics):
+            self.csv_header = self.csv_header + ",Metric"+str(a+1)
             
-        emptyLayers = []
-        for l in range(layers):
-            self.csv_header = self.csv_header + ",L" + str(l+1)
-            emptyLayers.append("NA")
+        hyperparams = []
+        for l in range(num_params):
+            self.csv_header = self.csv_header + ",Param" + str(l+1)
+            hyperparams.append("NA")
        
-        self.setLayers(*emptyLayers)
+        self.setParamColumns(*hyperparams)
         
         # Create logger instance
         logger = logging.getLogger('tflogger')
@@ -41,6 +42,7 @@ class CSVLogger:
         # Create logger formatter
         #fomatter = logging.Formatter('[%(levelname)s|%(filename)s:%(lineno)s] %(asctime)s > %(message)s')
         file_formatter = logging.Formatter(self.csv_format)
+        
         # Create handles to redirect the log to each stream and file
         fileHandler = logging.FileHandler(self.path)
         #streamHandler = logging.StreamHandler()
@@ -55,11 +57,18 @@ class CSVLogger:
 
         logger.setLevel(logging.DEBUG)
 
-        # add head tag if it doesn't existed
+        # add the head if it doesn't existed yet
         if os.path.getsize(self.path) < 10 :
             logger.info(self.csv_header)
             
         self.logger = logger
+
+    def setParamColumns(self, *params):
+        self.params = params
+        hyperparams = ""
+        for l in params:
+            hyperparams += "," + str(l)
+        self.hyperparams = hyperparams
         
     def delete(self) :
         handlers = self.logger.handlers[:]
@@ -70,27 +79,23 @@ class CSVLogger:
     def setTimer(self):
         self.timestamp = time.time()
         
-    def setLayers(self, *layers):
-        self.layers = layers
-        tails = ""
-        for l in layers:
-            tails += "," + str(l)
-        self.tails = tails
+    def setSetting(self, setting):
+        self.setting = setting
+    
+    def measure(self, step, *metrics):        
+        # measure elapsed time
+        timegap = time.time() - self.timestamp
         
-    def measure(self, tag, step, acc1, acc2, acc3):
-        timegap = time.time() - self.timestamp
-        msg = tag +"," + str(step) + "," + \
-            "{:.3f}".format(acc1) + "," + \
-            "{:.3f}".format(acc2) + "," + "{:.3f}".format(acc3) + "," + \
-            "{0:.3g}".format(timegap) + self.tails
+        msg = self.setting +"," + str(step) + ",{0:.3g}".format(timegap)
+        num_metric_remains = self.num_metrics - len(metrics)
+        
+        for i in range(self.num_metrics):
+            if i < len(metrics):
+                metric = metrics[i]
+                msg = msg + ",{:.3f}".format(metric)
+            else:
+                msg = msg + ",NA"
+                
+        msg = msg + self.hyperparams
         self.logger.debug(msg)
         self.setTimer() # reset timer
-"""
-    def measure(self, tag, step, acc):
-        timegap = time.time() - self.timestamp
-        msg = tag +"," + str(step) + "," + \
-            "{:.3f}".format(acc) + "," + \
-            "{0:.3g}".format(timegap) + self.tails
-        self.logger.debug(msg)
-        self.setTimer() # reset timer
-"""        
