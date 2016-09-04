@@ -17,7 +17,7 @@
 
 This should achieve a test error of 0.7%. Please keep this model as simple and
 linear as possible, it is meant as a tutorial for simple convolutional models.
-Run with --self_test on the command line to execute a short self-test.
+
 """
 from __future__ import absolute_import
 from __future__ import division
@@ -491,16 +491,5 @@ def learn(dataset, params, **kwargs):    # pylint: disable=unused-argument
 # prevent running directly
 
 if __name__ == '__main__':
-    print("Direct learning is not supported. Run with train_main.py.")
-'''
-    parser = argparse.ArgumentParser()
-    args = parser.parse_args()
-    debug("Starting to learn directly with: " + str(args))
-    params = args
-    starttime = time.time()
-    #args, params = benchmark_util.parse_cli()
-    result = learn(params, **args)
-    duration = time.time() - starttime
-    print ("Result for ParamILS: %s, %f, 1, %f, %d, %s" % \
-        ("SAT", abs(duration), result, -1, str(__file__)))
-'''
+    print("Direct learning is not supported. Run with *_main.py.")
+

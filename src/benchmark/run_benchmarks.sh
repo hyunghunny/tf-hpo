@@ -1,4 +1,5 @@
 #!/bin/bash
+HPO_LIB_DIR=~/tf-hpolib/HPOlib
 HPOlib-run -o ~/tf-hpolib/HPOlib/optimizers/smac/smac -s 23
 HPOlib-run -o ~/tf-hpolib/HPOlib/optimizers/tpe/h -s 23
 HPOlib-run -o ~/tf-hpolib/HPOlib/optimizers/spearmint/spearmint_april2013_mod -s 23
