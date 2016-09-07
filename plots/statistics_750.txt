@@ -1,0 +1,43 @@
+/usr/local/lib/python2.7/dist-packages/numpy/core/_methods.py:82: RuntimeWarning: Degrees of freedom <= 0 for slice
+  warnings.warn("Degrees of freedom <= 0 for slice", RuntimeWarning)
+/usr/local/lib/python2.7/dist-packages/numpy/core/_methods.py:116: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+/usr/local/lib/python2.7/dist-packages/scipy/stats/stats.py:3196: RuntimeWarning: invalid value encountered in absolute
+  prob = distributions.t.sf(np.abs(t), df) * 2  # use np.abs to get upper tail
+      SMAC: 3 experiment(s)
+       TPE: 2 experiment(s)
+ SPEARMINT: 1 experiment(s)
+Unpaired t-tests-----------------------------------------------------
+      SMAC vs        TPE
+Standard independent 2 sample test, equal population variance
+                          T: 1.75850e+00, p-value: 1.76904e-01 (17.690%) 
+Rounded:                  T: 1.75850e+00, p-value: 1.76904e-01 (17.690%)
+Welch's t-test, no equal population variance
+                        : T: 2.20295e+00, p-value: 1.38873e-01 (13.887%)
+Rounded:                : T: 2.20295e+00, p-value: 1.38873e-01 (13.887%)
+
+      SMAC vs  SPEARMINT
+Standard independent 2 sample test, equal population variance
+                          T:        nan, p-value:        nan (  nan%) 
+Rounded:                  T:        nan, p-value:        nan (  nan%)
+Welch's t-test, no equal population variance
+                        : T:        nan, p-value:        nan (  nan%)
+Rounded:                : T:        nan, p-value:        nan (  nan%)
+
+       TPE vs  SPEARMINT
+Standard independent 2 sample test, equal population variance
+                          T:        nan, p-value:        nan (  nan%) 
+Rounded:                  T:        nan, p-value:        nan (  nan%)
+Welch's t-test, no equal population variance
+                        : T:        nan, p-value:        nan (  nan%)
+Rounded:                : T:        nan, p-value:        nan (  nan%)
+
+Best Value-----------------------------------------------------------
+      SMAC:    1.76667 (min:    1.67000, max:    1.82000, std: 0.068)
+       TPE:    1.65500 (min:    1.64000, max:    1.67000, std: 0.015)
+ SPEARMINT:    1.53000 (min:    1.53000, max:    1.53000, std: 0.000)
+Needed Trials--------------------------------------------------------
+      SMAC:   80.00000 (min:   32.00000, max:  124.00000, std: 37.665)
+       TPE:  169.00000 (min:  148.00000, max:  190.00000, std: 21.000)
+ SPEARMINT:  197.00000 (min:  197.00000, max:  197.00000, std: 0.000)
+------------------------------------------------------------------------

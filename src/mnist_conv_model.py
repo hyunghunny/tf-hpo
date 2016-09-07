@@ -36,7 +36,7 @@ import pickle
 import datetime
 
 import tensorflow as tf
-from util import PerformanceCSVLogger
+from util import PerformanceCSVLogger, PerformancePredictor
 
 SEED = 66478    # Set to None for random seed.    
 NUM_EPOCHS = 3
@@ -53,6 +53,10 @@ BASE_LEARNING_RATE = 0.01
 CPU_DEVICE_ID = "/cpu:0"
 TRAIN_DEVICE_ID = CPU_DEVICE_ID
 EVAL_DEVICE_ID = CPU_DEVICE_ID
+
+# FOR EARLY TERMINATION
+EARLY_STOP_CHECK = False
+EARLY_STOP_CHECK_EPOCHS = 1
 
 # LOG LEVEL
 SHOW_DEBUG=False
@@ -187,7 +191,7 @@ def model(vars, data, train=False):
 
 
     
-def train_neural_net(dataset, params, logger=None, progress=False, opt='Momentum'):
+def train_neural_net(dataset, params, logger=None, predictor=None, progress=False, opt='Momentum'):
     
     #debug(str(params))
     
@@ -269,7 +273,7 @@ def train_neural_net(dataset, params, logger=None, progress=False, opt='Momentum
     if opt is 'Momentum':
         optimizer = tf.train.MomentumOptimizer(learning_rate, 0.9).minimize(loss, global_step=global_step)
     elif 'Adam':
-        optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(loss, global_step=global_step)
+        optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(loss)
     else:
         error('No ' + opt + ' optimizer implemented')
     
@@ -279,7 +283,8 @@ def train_neural_net(dataset, params, logger=None, progress=False, opt='Momentum
         setting = "filter:" + str(filter_size) + "-conv1:" + str(conv1_depth) + \
             "-conv2:" + str(conv2_depth) + "-fc:" + str(fc_depth) + "-" + opt
         
-        logger.setSetting(setting)    
+        logger.setSetting(setting)
+        logger.setTimer("total")
     
     #Predictions for the current training minibatch.
     train_prediction = tf.nn.softmax(logits)
@@ -290,6 +295,7 @@ def train_neural_net(dataset, params, logger=None, progress=False, opt='Momentum
 
     # Create a local session to run the training.
     start_time = time.time()
+    
     config = tf.ConfigProto(allow_soft_placement=False, log_device_placement=False)
     
     with tf.Session(config = config) as sess:
@@ -302,9 +308,11 @@ def train_neural_net(dataset, params, logger=None, progress=False, opt='Momentum
         debug("epoch num: " + str(NUM_EPOCHS) + ", total steps: " + str(int(NUM_EPOCHS * train_size) // BATCH_SIZE))
         for step in xrange(int(NUM_EPOCHS * train_size) // BATCH_SIZE):
             
-            if logger:
-                logger.setTimer()
+            if logger:                
+                logger.setTimer("epoch")
                 logger.setParamColumns(filter_size, conv1_depth, conv2_depth, fc_depth)
+                if progress:
+                    logger.setTimer("eval")
             
             # Compute the offset of the current minibatch in the data.
             # Note that we could use better randomization across epochs.
@@ -346,17 +354,40 @@ def train_neural_net(dataset, params, logger=None, progress=False, opt='Momentum
                             test_err = error_rate(eval_in_batches(dataset["test_data"], sess), dataset["test_labels"])
                             debug('Test error: %.1f%%' % test_err)                            
 
-                            logger.measure(step, (100.0 - test_err), (100.0 - validation_err), (100.0 - minibatch_err))
+                            logger.measure("eval", step, (100.0 - test_err), (100.0 - validation_err), (100.0 - minibatch_err))
                         
                 else:
                     debug(str(step))
                     
                 sys.stdout.flush()
+            
+            # when each epochs calculate test accuracy 
+            if step % (int(train_size) // BATCH_SIZE) == 0:
+                num_epoch = step // (int(train_size) // BATCH_SIZE)
+                with tf.device(EVAL_DEVICE_ID):
+                    test_error = error_rate(eval_in_batches(dataset["test_data"], sess), dataset["test_labels"])
+                    test_accuracy = 100.0 - test_error
+                    logger.measure("epoch", str(num_epoch) + "_epoch", test_accuracy)
+                    debug('Test error: %.1f%%' % test_error)
+                    sys.stdout.flush()
+                # Check early termination
+                if predictor:                    
+                    if num_epoch >= EARLY_STOP_CHECK_EPOCHS:
+                        if predictor.load() is False:
+                            debug("Unable to load training log")
+                        else:
+                            debug("Predicting whether keep learning or not " )
+                            result = predictor.predict(Param1=filter_size, Param2=conv1_depth, Param3=conv2_depth, Param4=fc_depth)
+                            debug("Prediction result: " + str(result))
+                            if result is False:
+                                debug("Early termination")
+                                break
+                    
            
         with tf.device(EVAL_DEVICE_ID):
             test_error = error_rate(eval_in_batches(dataset["test_data"], sess), dataset["test_labels"])
             test_accuracy = 100.0 - test_error
-            logger.measure(str(NUM_EPOCHS) + "_epoch", test_accuracy)
+            logger.measure("total", str(num_epoch) + "_epoch", test_accuracy)
             debug('Test error: %.1f%%' % test_error)
             sys.stdout.flush()
 
@@ -455,6 +486,7 @@ def learn(dataset, params, **kwargs):    # pylint: disable=unused-argument
     
     logger = PerformanceCSVLogger(LOG_PATH)
     logger.create(4, 3) # create log with 4 hyperparams and 3 accuracy metrics        
+
     
     if 'train_dev' in kwargs:
         TRAIN_DEVICE_ID = kwargs['train_dev']
@@ -464,6 +496,13 @@ def learn(dataset, params, **kwargs):    # pylint: disable=unused-argument
         
     if 'epochs' in kwargs:
         NUM_EPOCHS = int(kwargs['epochs'])
+    
+    if 'breakout' in kwargs:
+        EARLY_STOP_CHECK = bool(kwargs['breakout'])
+        
+    if EARLY_STOP_CHECK:
+        debug('Use early termination')
+        predictor = PerformancePredictor(LOG_PATH)
    
     debug('Training device id: ' + TRAIN_DEVICE_ID)
     debug('Evaluation device id: ' + EVAL_DEVICE_ID)
@@ -474,18 +513,20 @@ def learn(dataset, params, **kwargs):    # pylint: disable=unused-argument
     
     with tf.device(TRAIN_DEVICE_ID):
         try:
-            y = train_neural_net(dataset, params, logger, progress=show_progress, opt=optimizer)
+            y = train_neural_net(dataset, params, logger, predictor, progress=show_progress, opt=optimizer)
             duration = time.time() - starttime
             debug("Result: " + str(y) + ', Duration: ' + str(abs(duration)))
             return y
         
         except:
+            e = sys.exc_info()
+            traceback.print_exc()
+            print(e)
             error('Training failed: ' + str(params))
             date_str = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H:%M:%S')
             file_name = 'failed_params_' + date_str + '.pickle'
             with open(file_name, 'wb') as f:
                 pickle.dump(params, f)
-            
 
 
 # prevent running directly
