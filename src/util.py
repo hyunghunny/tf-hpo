@@ -156,7 +156,7 @@ class PerformancePredictor:
                     #print len(subset_table)
                 
                 selected = subset_table[self.acc_type]
-                print subset_table.head(1)
+                #print subset_table.head(1)
             else:            
                 selected = df.DataFrame([]) # return empty list
             
@@ -186,10 +186,11 @@ class PerformancePredictor:
                 #print self.acc_table.head(5)
                 subset_table = self.acc_table.copy()
                 #print subset_table.head(5)
-                
+                tag = "hyper params: "
                 for k in params:
                     col = k
                     val = params[k]
+                    tag += (", " + str(k) + "=" + str(val))
                     #print "column name: " + str(col) + ", search value: " + str(val)
                     subset_table = subset_table[subset_table[col] == val]
                     #print subset_table.head(5)
@@ -215,7 +216,7 @@ class PerformancePredictor:
             #(_, x), (_, y) = clean_data.iteritems()
             slope, intercept, r, p, stderr = linregress(x, y)
             
-            print "Accuracy slop: " + str(slope)
+            print tag + ", accuracy slop: " + str(slope)
             
             if math.isnan(float(slope)):
                 # keep going

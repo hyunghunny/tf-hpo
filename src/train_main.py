@@ -7,24 +7,32 @@ import sys
 import getopt
 import traceback
 from multiprocessing import Pool, Lock, Manager, Process
+
 import mnist_conv_model as model
+
 import tensorflow as tf
+
 from config import Config
 import pickle
-from util import PerformancePredictor
+from util import PerformanceCSVLogger, PerformancePredictor 
 from random import shuffle
 
 
 NUM_PROCESSES = 2
 NUM_EPOCHS = 1
-OUTPUT_LOG_PATH = "grid.csv"
-DB_LOB_PATH = "../log/grid.csv"
+OUTPUT_LOG_PATH = "train_log.csv"
+LOG_DB_PATH = "../log/grid.csv"
 PARAMS_LIST_PICKLE_FILE = "remained_params.pickle"
 CFG_PATH="train.cfg"
 
-DO_EVAL = False
-EARLY_STOP=True
-PREVALIDATE=True
+# Whether evaluation at each evaluation frequency
+DO_EVAL=True
+
+# Whether using stop training early 
+EARLY_STOP=False
+
+# Whether using prevalidation for hyperparameter vectors
+PREVALIDATE=False
 
 # CLI interface definition
 tf.app.flags.DEFINE_string("config", CFG_PATH, "set config file path. default is train.cfg")
@@ -66,36 +74,38 @@ def prevalidate(params_list):
                 validated_list.append(params)
             '''
             else:
-                print(str(params) + " is not appropriate to learn. So, skip it")
+                print(str(params) + " is not appropriate to learn. Therefore, skip it")
             '''
         return validated_list        
                 
 
-def learn_cnn(process_index, dataset, params, num_epochs):
+def train_model(process_index, dataset, params, num_epochs, logger, predictor):
     
+    # Set the same GPU device to run concurrently 
     eval_device_id = '/gpu:' + str(process_index)
     train_device_id = '/gpu:' + str(process_index)
 
     return model.learn(dataset, params, train_dev=train_device_id, \
-                       eval_dev=eval_device_id, progress=DO_EVAL, \
-                       epochs=num_epochs, log_path=OUTPUT_LOG_PATH, breakout=EARLY_STOP)
+                       eval_dev=eval_device_id, do_eval=DO_EVAL, \
+                       epochs=num_epochs, logger=logger, predictor=predictor)
 
 
-def train_seq(dataset, params_list, model_func, epochs, num_processes):
+def train_all(dataset, params_list, epochs, logger, predictor):
     
+    #TODO: If Lock is required, create here and pass
     print("Training parameter sets: " + str(len(params_list)))
     try:
         working_params_list = []
         while len(params_list) > 0:
             processes = []
-            for p in range(num_processes):
+            for p in range(FLAGS.concurrent):
                 if len(params_list) is 0:
                     break
                 else:
                     params = params_list.pop(0) # for FIFO
                     working_params_list.append(params)
                     
-                    processes.append(Process(target=learn_cnn, args=(p, dataset, params, epochs)))
+                    processes.append(Process(target=train_model, args=(p, dataset, params, epochs, logger, predictor)))
             
             # start processes at the same time
             for k in range(len(processes)):
@@ -125,7 +135,6 @@ def save_remains(params_list):
         traceback.print_exc()
         print(e)    
 
-            
 FLAGS = tf.app.flags.FLAGS
 
 def get_pending_params_list():
@@ -148,12 +157,11 @@ def get_pending_params_list():
         else:
             return params_list
 
-
 def main(argv=None):
 
-    global NUM_REPEATS
     global OUTPUT_LOG_PATH
     global DO_EVAL
+    global EARLY_STOP
     
     try:
         print("Using settings in " + FLAGS.config) 
@@ -168,6 +176,7 @@ def main(argv=None):
         if cfg.early_stop:
             EARLY_STOP = cfg.early_stop            
             
+        
         if cfg.dataset is "mnist":
             dataset = model.download_dataset()           
         else:
@@ -184,17 +193,30 @@ def main(argv=None):
                                          conv2_depths=cfg.conv2_depths, \
                                          fc_depths=cfg.fc_depths)
         
-        # drop out unsuccessful parameter sets in history
+        # eliminate unsuccessful parameter sets in history
         if cfg.prevalidate:
-            params_list = prevalidate(params_list)    
-
+            params_list = prevalidate(params_list)
+            
+        # create logger
+        logger = PerformanceCSVLogger(OUTPUT_LOG_PATH)
+        logger.create(4, 3) # create log with 4 hyperparams and 3 accuracy metrics  
+        print("Logging test errors at " + OUTPUT_LOG_PATH)        
+        
+        # create predictor
+        if EARLY_STOP:
+            # XXX: change if you want to other log DB
+            LOG_DB_PATH = OUTPUT_LOG_PATH
+            predictor = PerformancePredictor(LOG_DB_PATH)
+        else:
+            predictor = None
+        
+        # determine hyperparameter optimization algorithm
         if cfg.algorithm is "random":            
             shuffle(params_list)
-            train_seq(dataset, params_list, learn_cnn, cfg.num_epochs, FLAGS.concurrent)
+            train_all(dataset, params_list, cfg.num_epochs, logger, predictor)
 
-        elif cfg.algorithm is "grid":
-           
-            train_seq(dataset, params_list, learn_cnn, cfg.num_epochs, FLAGS.concurrent)
+        elif cfg.algorithm is "grid":           
+            train_all(dataset, params_list, cfg.num_epochs, logger, predictor)
         else:
             print("No such method is implemented yet: " + FLAGS.method)
             return 

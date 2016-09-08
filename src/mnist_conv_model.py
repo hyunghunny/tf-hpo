@@ -39,7 +39,7 @@ import tensorflow as tf
 from util import PerformanceCSVLogger, PerformancePredictor
 
 SEED = 66478    # Set to None for random seed.    
-NUM_EPOCHS = 3
+NUM_EPOCHS = 10
 
 BATCH_SIZE = 64
 EVAL_BATCH_SIZE = 64
@@ -191,7 +191,7 @@ def model(vars, data, train=False):
 
 
     
-def train_neural_net(dataset, params, logger=None, predictor=None, progress=False, opt='Momentum'):
+def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, opt='Momentum'):
     
     #debug(str(params))
     
@@ -311,7 +311,7 @@ def train_neural_net(dataset, params, logger=None, predictor=None, progress=Fals
             if logger:                
                 logger.setTimer("epoch")
                 logger.setParamColumns(filter_size, conv1_depth, conv2_depth, fc_depth)
-                if progress:
+                if eval:
                     logger.setTimer("eval")
             
             # Compute the offset of the current minibatch in the data.
@@ -333,7 +333,7 @@ def train_neural_net(dataset, params, logger=None, predictor=None, progress=Fals
             
             if step % EVAL_FREQUENCY == 0:
                 
-                if progress: 
+                if eval: 
                     with tf.device(EVAL_DEVICE_ID):
                     
                         elapsed_time = time.time() - start_time
@@ -463,13 +463,12 @@ def learn(dataset, params, **kwargs):    # pylint: disable=unused-argument
     debug('Params: '+ str(params))
     debug('KVParams: ' + str(kwargs))
     
-    if 'progress' in kwargs:
-        show_progress = bool(kwargs['progress'])        
+    if 'do_eval' in kwargs:
+        do_eval = bool(kwargs['do_eval'])        
     else:
-        show_progress=False
+        do_eval=False
         
-    debug("show progress: " + str(show_progress))
-    
+    debug("do evaluation: " + str(do_eval))
     
     if 'opt' in kwargs:
         # TODO:validation required
@@ -477,16 +476,16 @@ def learn(dataset, params, **kwargs):    # pylint: disable=unused-argument
     else:
         optimizer='Momentum'
     
-    if 'log_path' in kwargs:
-        LOG_PATH = kwargs['log_path']
-        
+    if 'logger' in kwargs:
+        logger = kwargs['logger']        
     else:
-        LOG_PATH = "test.csv"
-    debug("Logging test errors at " + LOG_PATH)
-    
-    logger = PerformanceCSVLogger(LOG_PATH)
-    logger.create(4, 3) # create log with 4 hyperparams and 3 accuracy metrics        
+        logger = None
 
+    if 'predictor' in kwargs:
+        predictor = kwargs['predictor']
+    else:
+        predictor = None        
+        
     
     if 'train_dev' in kwargs:
         TRAIN_DEVICE_ID = kwargs['train_dev']
@@ -496,13 +495,6 @@ def learn(dataset, params, **kwargs):    # pylint: disable=unused-argument
         
     if 'epochs' in kwargs:
         NUM_EPOCHS = int(kwargs['epochs'])
-    
-    if 'breakout' in kwargs:
-        EARLY_STOP_CHECK = bool(kwargs['breakout'])
-        
-    if EARLY_STOP_CHECK:
-        debug('Use early termination')
-        predictor = PerformancePredictor(LOG_PATH)
    
     debug('Training device id: ' + TRAIN_DEVICE_ID)
     debug('Evaluation device id: ' + EVAL_DEVICE_ID)
@@ -513,7 +505,7 @@ def learn(dataset, params, **kwargs):    # pylint: disable=unused-argument
     
     with tf.device(TRAIN_DEVICE_ID):
         try:
-            y = train_neural_net(dataset, params, logger, predictor, progress=show_progress, opt=optimizer)
+            y = train_neural_net(dataset, params, logger, predictor, eval=do_eval, opt=optimizer)
             duration = time.time() - starttime
             debug("Result: " + str(y) + ', Duration: ' + str(abs(duration)))
             return y
