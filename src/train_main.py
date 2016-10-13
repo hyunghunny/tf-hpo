@@ -144,7 +144,7 @@ def get_pending_params_list():
             with open(PARAMS_LIST_PICKLE_FILE, 'rb') as f:
                 params_list = pickle.load(f)
                 print("Try to resume learnings by remained trains :" + str(len(params_list)))
-                os.remove(PARAMS_LIST_PICKLE_FILE)
+                #os.remove(PARAMS_LIST_PICKLE_FILE)
                 
     except:
         e = sys.exc_info()
