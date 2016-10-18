@@ -38,7 +38,7 @@ import datetime
 import tensorflow as tf
 from util import PerformanceCSVLogger, PerformancePredictor
 
-SEED = 66478    # Set to None for random seed.    
+SEED = 50000#40000#66478    # Set to None for random seed.    
 NUM_EPOCHS = 10
 
 BATCH_SIZE = 64
@@ -232,7 +232,7 @@ def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, o
     fc_depth = int(float(params["fc_depth"]))
                     
     # Initialize required variables
-    vars = initialize_variables(dataset,
+    tf_vars = initialize_variables(dataset,
                     var_init_value = var_init_value,
                     filter_size = filter_size,
                     conv1_depth = conv1_depth, 
@@ -240,13 +240,13 @@ def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, o
                     fc_depth = fc_depth)
     
     # Training computation: logits + cross-entropy loss.
-    logits = model(vars, vars["train_data_node"], True)
+    logits = model(tf_vars, tf_vars["train_data_node"], True)
     loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(
             logits, vars["train_labels_node"]))
 
     # L2 regularization for the fully connected parameters.
-    regularizers = (tf.nn.l2_loss(vars["fc1_weights"]) + tf.nn.l2_loss(vars["fc1_biases"]) +
-                                 tf.nn.l2_loss(vars["fc2_weights"]) + tf.nn.l2_loss(vars["fc2_biases"]))
+    regularizers = (tf.nn.l2_loss(tf_vars["fc1_weights"]) + tf.nn.l2_loss(tf_vars["fc1_biases"]) +
+                                 tf.nn.l2_loss(tf_vars["fc2_weights"]) + tf.nn.l2_loss(tf_vars["fc2_biases"]))
     # Add the regularization term to the loss.
     loss += 5e-4 * regularizers
 
@@ -458,6 +458,7 @@ def learn(dataset, params, **kwargs):    # pylint: disable=unused-argument
     global TRAIN_DEVICE_ID
     global EVAL_DEVICE_ID
     global NUM_EPOCHS
+    global SEED
     
     starttime = time.time()
     debug('Params: '+ str(params))
@@ -485,7 +486,6 @@ def learn(dataset, params, **kwargs):    # pylint: disable=unused-argument
         predictor = kwargs['predictor']
     else:
         predictor = None        
-        
     
     if 'train_dev' in kwargs:
         TRAIN_DEVICE_ID = kwargs['train_dev']
@@ -495,6 +495,9 @@ def learn(dataset, params, **kwargs):    # pylint: disable=unused-argument
         
     if 'epochs' in kwargs:
         NUM_EPOCHS = int(kwargs['epochs'])
+        
+    if 'seed' in kwargs:
+        SEED = int(kwargs['seed'])
    
     debug('Training device id: ' + TRAIN_DEVICE_ID)
     debug('Evaluation device id: ' + EVAL_DEVICE_ID)
