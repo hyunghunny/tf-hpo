@@ -19,6 +19,45 @@ NUM_LABELS = 10
 NUM_TRAIN_DATA = 60000
 NUM_TEST_DATA = 10000
 
+VALIDATION_SIZE = 5000    # Size of the validation set.
+
+def import_dataset():
+    
+    # Get the data.
+    train_data_filename = maybe_download('train-images-idx3-ubyte.gz')
+    train_labels_filename = maybe_download('train-labels-idx1-ubyte.gz')
+    test_data_filename = maybe_download('t10k-images-idx3-ubyte.gz')
+    test_labels_filename = maybe_download('t10k-labels-idx1-ubyte.gz')
+
+    # Extract it into numpy arrays.
+    train_data = extract_data(train_data_filename, NUM_TRAIN_DATA)
+    train_labels = extract_labels(train_labels_filename, NUM_TRAIN_DATA)
+    test_data = extract_data(test_data_filename, NUM_TEST_DATA)
+    test_labels = extract_labels(test_labels_filename, NUM_TEST_DATA)
+
+    
+    # Generate a validation set.
+    validation_data = train_data[:VALIDATION_SIZE, ...]
+    validation_labels = train_labels[:VALIDATION_SIZE]
+    train_data = train_data[VALIDATION_SIZE:, ...]
+    train_labels = train_labels[VALIDATION_SIZE:]
+
+         
+    return {
+        "image_size" : IMAGE_SIZE,
+        "num_channels" : NUM_CHANNELS,
+        "pixel_depth" : PIXEL_DEPTH,
+        "num_labels" : NUM_LABELS,
+        
+        "train_data" : train_data,
+        "train_labels" : train_labels,
+        "validation_data" : validation_data,
+        "validation_labels" : validation_labels,
+        "test_data" : test_data,
+        "test_labels" : test_labels
+    }
+
+
 # DATA DOWNLOADER
 def maybe_download(filename):
     """Download the data from Yann's website, unless it's already here."""

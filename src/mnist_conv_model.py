@@ -59,7 +59,7 @@ EARLY_STOP_CHECK = False
 EARLY_STOP_CHECK_EPOCHS = 1
 
 # LOG LEVEL
-SHOW_DEBUG=False
+SHOW_DEBUG=True
 SHOW_ERR=True
     
 # initialize tensorflow variables which are required to learning
@@ -135,7 +135,7 @@ def initialize_variables(dataset, **hyperparams):
 
 # We will replicate the model structure for the training subgraph, as well
 # as the evaluation subgraphs, while sharing the trainable parameters.
-def model(vars, data, train=False):
+def model(tf_vars, data, train=False):
     with tf.device(TRAIN_DEVICE_ID):
         """The Model definition."""
 
@@ -145,12 +145,12 @@ def model(vars, data, train=False):
         # the same size as the input). Note that {strides} is a 4D array whose
         # shape matches the data layout: [image index, y, x, depth].
         conv = tf.nn.conv2d(data,
-                            vars["conv1_weights"],
+                            tf_vars["conv1_weights"],
                             strides=[1, 1, 1, 1],
                             padding='SAME')
 
         # Bias and rectified linear non-linearity.
-        relu = tf.nn.relu(tf.nn.bias_add(conv, vars["conv1_biases"]))
+        relu = tf.nn.relu(tf.nn.bias_add(conv, tf_vars["conv1_biases"]))
 
         # Max pooling. The kernel size spec {ksize} also follows the layout of
         # the data. Here we have a pooling window of 2, and a stride of 2.
@@ -160,11 +160,11 @@ def model(vars, data, train=False):
                               padding='SAME')
 
         conv = tf.nn.conv2d(pool,
-                            vars["conv2_weights"],
+                            tf_vars["conv2_weights"],
                             strides=[1, 1, 1, 1],
                             padding='SAME')
 
-        relu = tf.nn.relu(tf.nn.bias_add(conv, vars["conv2_biases"]))
+        relu = tf.nn.relu(tf.nn.bias_add(conv, tf_vars["conv2_biases"]))
 
         pool = tf.nn.max_pool(relu,
                               ksize=[1, 2, 2, 1],
@@ -178,16 +178,18 @@ def model(vars, data, train=False):
             pool,
             [pool_shape[0], pool_shape[1] * pool_shape[2] * pool_shape[3]])
 
+        #debug(tf_vars["fc1_weights"].get_shape())
+        #debug(reshape.get_shape())
         # Fully connected layer. Note that the '+' operation automatically
         # broadcasts the biases.
-        hidden = tf.nn.relu(tf.matmul(reshape, vars["fc1_weights"]) + vars["fc1_biases"])
+        hidden = tf.nn.relu(tf.matmul(reshape, tf_vars["fc1_weights"]) + tf_vars["fc1_biases"])
 
         # Add a 50% dropout during training only. Dropout also scales
         # activations such that no rescaling is needed at evaluation time.
         if train:
             hidden = tf.nn.dropout(hidden, DROPOUT_RATE, seed=SEED)
 
-        return tf.matmul(hidden, vars["fc2_weights"]) + vars["fc2_biases"]
+        return tf.matmul(hidden, tf_vars["fc2_weights"]) + tf_vars["fc2_biases"]
 
 
     
@@ -209,11 +211,11 @@ def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, o
             if end <= size:
                 predictions[begin:end, :] = sess.run(
                     eval_prediction,
-                    feed_dict={vars['eval_data']: data[begin:end, ...]})
+                    feed_dict={tf_vars['eval_data']: data[begin:end, ...]})
             else:
                 batch_predictions = sess.run(
                    eval_prediction,
-                   feed_dict={vars['eval_data']: data[-EVAL_BATCH_SIZE:, ...]})
+                   feed_dict={tf_vars['eval_data']: data[-EVAL_BATCH_SIZE:, ...]})
                 predictions[begin:, :] = batch_predictions[begin - size:, :]
         
         return predictions
@@ -241,8 +243,10 @@ def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, o
     
     # Training computation: logits + cross-entropy loss.
     logits = model(tf_vars, tf_vars["train_data_node"], True)
+    debug(tf_vars["train_data_node"].get_shape())
+    debug(logits.get_shape())
     loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(
-            logits, vars["train_labels_node"]))
+            logits, tf_vars["train_labels_node"]))
 
     # L2 regularization for the fully connected parameters.
     regularizers = (tf.nn.l2_loss(tf_vars["fc1_weights"]) + tf.nn.l2_loss(tf_vars["fc1_biases"]) +
@@ -291,7 +295,7 @@ def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, o
 
     with tf.device(EVAL_DEVICE_ID): 
         # Predictions for the test and validation, which we'll compute less often.
-        eval_prediction = tf.nn.softmax(model(vars, vars["eval_data"]))
+        eval_prediction = tf.nn.softmax(model(tf_vars, tf_vars["eval_data"]))
 
     # Create a local session to run the training.
     start_time = time.time()
@@ -322,8 +326,8 @@ def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, o
             
             # This dictionary maps the batch data (as a numpy array) to the
             # node in the graph it should be fed to.
-            feed_dict = {vars["train_data_node"]: batch_data,
-                                     vars["train_labels_node"]: batch_labels}
+            feed_dict = {tf_vars["train_data_node"]: batch_data,
+                                     tf_vars["train_labels_node"]: batch_labels}
             
             
             # Run the graph and fetch some of the nodes.

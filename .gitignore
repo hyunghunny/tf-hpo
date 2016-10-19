@@ -89,6 +89,10 @@ ENV/
 .ropeproject
 
 # nohup log
-src/nohup.out
+nohup.out
 
 .tmp/
+src/hyperopt_*
+src/smac_*
+src/spearmint_*
+*.pickle
