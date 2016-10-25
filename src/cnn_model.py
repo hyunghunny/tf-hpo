@@ -37,7 +37,7 @@ import datetime
 
 import tensorflow as tf
 from util import PerformanceCSVLogger, PerformancePredictor
-from hyperparam_management import ConfigManager 
+
 
 # global dictionaries which contain many parameters
 hyperparams = None
@@ -251,10 +251,7 @@ def train_model(logger=None, predictor=None):
     debug("optimizer: " + hyperparams["OPTIMIZATION"])         
 
     if logger:
-        setting = "filter:" + str(hyperparams["FILTER_SIZE"]) + "-conv1:" + str(hyperparams["CONV1_DEPTH"]) + \
-            "-fc1:" + str(hyperparams["FC1_WIDTH"]) + "-" + hyperparams["OPTIMIZATION"]
-        
-        logger.setSetting(setting)
+       
         logger.setTimer("total")
     
     #Predictions for the current training minibatch.
@@ -266,7 +263,18 @@ def train_model(logger=None, predictor=None):
 
     # Create a local session to run the training.
     start_time = time.time()
-    
+    if logger:                
+        logger.setTimer("epoch")
+        #logger.setParamColumns(hyperparams["FILTER_SIZE"], hyperparams["CONV1_DEPTH"], hyperparams["CONV2_DEPTH"], hyperparams["FC1_WIDTH"])
+        logger.setHyperparamSetting({
+            "Filter size": hyperparams["FILTER_SIZE"],
+            "Conv1 depth" : hyperparams["CONV1_DEPTH"],
+            "Conv2 depth" : hyperparams["CONV2_DEPTH"],
+            "FC neurons" : hyperparams["FC1_WIDTH"]})
+        
+        if execution["VALIDATION"]:
+            logger.setTimer("eval")
+            
     config = tf.ConfigProto(allow_soft_placement=False, log_device_placement=False)
     
     with tf.Session(config = config) as sess:
@@ -278,13 +286,7 @@ def train_model(logger=None, predictor=None):
         # Loop through training steps.
         debug("epoch num: " + str(hyperparams["NUM_EPOCHS"]) + ", total steps: " + str(int(hyperparams["NUM_EPOCHS"] * train_size) // hyperparams["BATCH_SIZE"]))
         for step in xrange(int(hyperparams["NUM_EPOCHS"] * train_size) // hyperparams["BATCH_SIZE"]):
-            
-            if logger:                
-                logger.setTimer("epoch")
-                logger.setParamColumns(hyperparams["FILTER_SIZE"], hyperparams["CONV1_DEPTH"], hyperparams["CONV2_DEPTH"], hyperparams["FC1_WIDTH"])
-                if execution["VALIDATION"]:
-                    logger.setTimer("eval")
-            
+          
             # Compute the offset of the current minibatch in the data.
             # Note that we could use better randomization across epochs.
             offset = (step * hyperparams["BATCH_SIZE"]) % (train_size - hyperparams["BATCH_SIZE"])
@@ -314,18 +316,21 @@ def train_model(logger=None, predictor=None):
                             (step, float(step) * hyperparams["BATCH_SIZE"] / train_size,
                              1000 * elapsed_time / hyperparams["EVAL_FREQUENCY"]))
                         debug('Minibatch loss: %.3f, learning rate: %.6f' % (l, lr))
-                        minibatch_err = error_rate(predictions, batch_labels)
-                        debug('Minibatch error: %.1f%%' % minibatch_err)
-                        validation_err = error_rate(eval_in_batches(data_info["validation_data"], sess),\
+                        minibatch_err_rate = error_rate(predictions, batch_labels)
+                        debug('Minibatch error rate: %.1f%%' % minibatch_err_rate)
+                        validation_err_rate = error_rate(eval_in_batches(data_info["validation_data"], sess),\
                                                     data_info["validation_labels"])
-                        debug('Validation error: %.1f%%' % validation_err)
+                        debug('Validation error rate: %.1f%%' % validation_err_rate)
                                         
                         if logger:
                             # log test accuracy 
-                            test_err = error_rate(eval_in_batches(data_info["test_data"], sess), data_info["test_labels"])
-                            debug('Test error: %.1f%%' % test_err)                            
+                            test_err_rate = error_rate(eval_in_batches(data_info["test_data"], sess), data_info["test_labels"])
+                            debug('Test error rate per epoch: %.1f%%' % test_err_rate)                            
 
-                            logger.measure("eval", step, (100.0 - test_err), (100.0 - validation_err), (100.0 - minibatch_err))
+                            logger.measure("eval", step, 
+                                           {"Test Error" : test_err_rate / 100.0, 
+                                            "Validation Error" : validation_err_rate / 100.0, 
+                                            "Training Error" : minibatch_err_rate / 100.0})
                 else:
                     debug(str(step))
                     
@@ -335,10 +340,15 @@ def train_model(logger=None, predictor=None):
             if step % (int(train_size) // hyperparams["BATCH_SIZE"]) == 0:
                 num_epoch = step // (int(train_size) // hyperparams["BATCH_SIZE"])
                 with tf.device(execution["TEST_DEVICE_ID"]):
-                    test_error = error_rate(eval_in_batches(data_info["test_data"], sess), data_info["test_labels"])
-                    test_accuracy = 100.0 - test_error
-                    logger.measure("epoch", str(num_epoch), test_accuracy)
-                    debug('Test error: %.1f%%' % test_error)
+                    test_error_rate = error_rate(eval_in_batches(data_info["test_data"], sess), data_info["test_labels"])
+                    
+                    validation_err_rate = error_rate(eval_in_batches(dataset["validation_data"], sess),\
+                                                    dataset["validation_labels"])                    
+
+                    logger.measure("epoch", num_epoch, 
+                                   {"Test Error" : test_error_rate / 100.0, 
+                                    "Validation Error" : validation_err_rate / 100.0})
+                    debug('Test error rate of total: %.1f%%' % test_error_rate)
                     sys.stdout.flush()
                 # Check early termination
                 if predictor:                    
@@ -355,15 +365,20 @@ def train_model(logger=None, predictor=None):
                     
            
         with tf.device(execution["TEST_DEVICE_ID"]):
-            test_error = error_rate(eval_in_batches(data_info["test_data"], sess), data_info["test_labels"])
-            test_accuracy = 100.0 - test_error
-            logger.measure("total", str(num_epoch), test_accuracy)
-            debug('Test error: %.1f%%' % test_error)
+            test_error_rate = error_rate(eval_in_batches(data_info["test_data"], sess), data_info["test_labels"])             
+            validation_err_rate = error_rate(eval_in_batches(dataset["validation_data"], sess),\
+                                        dataset["validation_labels"])                    
+                      
+            logger.measure("total", hyperparams["NUM_EPOCHS"], 
+                           {"Test Error" : test_error_rate / 100.0, 
+                            "Validation Error" : validation_err_rate / 100.0 })
+            
+            debug('Test error rate of total: %.1f%%' % test_error_rate)
             sys.stdout.flush()
 
         sess.close()
         
-        return test_error    
+        return test_error_rate    
 
 def error_rate(predictions, labels):
     """Return the error rate based on dense predictions and sparse labels."""
@@ -425,14 +440,20 @@ def learn(dataset, configuration, **kwargs):    # pylint: disable=unused-argumen
 if __name__ == '__main__':
     
     import mnist_data as mnist
-    dataset = mnist.import_dataset()
+    dataset = mnist.import_dataset()                                    
+    
+    from hyperparam_management import ConfigManager 
     
     cfg = ConfigManager('HPV_002.ini')
     log_file = cfg.getOption('Execution', 'output_log_file')
     
+    hyperparams = ['Filter size', 'Conv1 depth', 'Conv2 depth', 'FC neurons']
+    metrics = ['Test Error', 'Validation Error', 'Training Error']                                 
+    
     # create logger
     logger = PerformanceCSVLogger(log_file)
-    logger.create(4, 3) # create log with dynamic 4 hyperparams and 3 accuracy metrics
+    logger.create(hyperparams, metrics) 
+    logger.setSetting(cfg.getConfigPath())
     
     learn(dataset, cfg, logger=logger)
     

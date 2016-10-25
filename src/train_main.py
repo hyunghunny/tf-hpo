@@ -22,7 +22,7 @@ NUM_PROCESSES = 2
 NUM_EPOCHS = 1
 OUTPUT_LOG_PATH = "train_log.csv"
 LOG_DB_PATH = "../log/grid.csv"
-PARAMS_LIST_PICKLE_FILE = "remained_params.pickle"
+PARAMS_LIST_PICKLE_FILE = "./temp/remained_params.pickle"
 CFG_PATH="train.cfg"
 
 # Whether evaluation at each evaluation frequency
@@ -199,7 +199,7 @@ def main(argv=None):
             
         # create logger
         logger = PerformanceCSVLogger(OUTPUT_LOG_PATH)
-        logger.create(4, 3) # create log with 4 hyperparams and 3 accuracy metrics  
+        logger.create(['Filter size', 'Conv1 depth', 'Conv2 depth', 'FC neurons'], ['Test Accuracy', 'Validation Accuarcy', 'Training Accuracy'])  
         print("Logging test errors at " + OUTPUT_LOG_PATH)        
         
         # create predictor

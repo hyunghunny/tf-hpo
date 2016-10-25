@@ -28,7 +28,12 @@ class ConfigManager:
             e = sys.exc_info()
             print("Configuration file error: " + str(e))
             traceback.print_exc()
+            
         self.parser = parser
+        self.config_file = config_file
+    
+    def getConfigPath(self):
+        return self.config_file
     
     def setExecutionInfo(self, exec_dict):
         for key in exec_dict:

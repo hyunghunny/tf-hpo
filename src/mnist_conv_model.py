@@ -13,6 +13,8 @@
 # limitations under the License.
 # ==============================================================================
 
+# code refactored from https://github.com/tensorflow/tensorflow/blob/r0.9/tensorflow/models/image/mnist/convolutional.py
+
 """Simple, end-to-end, LeNet-5-like convolutional MNIST model example.
 
 This should achieve a test error of 0.7%. Please keep this model as simple and
@@ -38,7 +40,7 @@ import datetime
 import tensorflow as tf
 from util import PerformanceCSVLogger, PerformancePredictor
 
-SEED = 50000#40000#66478    # Set to None for random seed.    
+SEED = 66478    # Set to None for random seed.    
 NUM_EPOCHS = 10
 
 BATCH_SIZE = 64
@@ -300,6 +302,12 @@ def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, o
     # Create a local session to run the training.
     start_time = time.time()
     
+    if logger:
+        logger.setParamColumns(filter_size, conv1_depth, conv2_depth, fc_depth)        
+        logger.setTimer("epoch")
+        if eval:
+            logger.setTimer("eval")    
+    
     config = tf.ConfigProto(allow_soft_placement=False, log_device_placement=False)
     
     with tf.Session(config = config) as sess:
@@ -311,12 +319,6 @@ def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, o
         # Loop through training steps.
         debug("epoch num: " + str(NUM_EPOCHS) + ", total steps: " + str(int(NUM_EPOCHS * train_size) // BATCH_SIZE))
         for step in xrange(int(NUM_EPOCHS * train_size) // BATCH_SIZE):
-            
-            if logger:                
-                logger.setTimer("epoch")
-                logger.setParamColumns(filter_size, conv1_depth, conv2_depth, fc_depth)
-                if eval:
-                    logger.setTimer("eval")
             
             # Compute the offset of the current minibatch in the data.
             # Note that we could use better randomization across epochs.
@@ -358,7 +360,10 @@ def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, o
                             test_err = error_rate(eval_in_batches(dataset["test_data"], sess), dataset["test_labels"])
                             debug('Test error: %.1f%%' % test_err)                            
 
-                            logger.measure("eval", step, (100.0 - test_err), (100.0 - validation_err), (100.0 - minibatch_err))
+                            logger.measure("eval", step, 
+                                           {"Test Accuracy" : (100.0 - test_err), 
+                                            "Validation Accuarcy" : (100.0 - validation_err), 
+                                            "Training Accuracy" : (100.0 - minibatch_err)})
                         
                 else:
                     debug(str(step))
@@ -369,9 +374,15 @@ def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, o
             if step % (int(train_size) // BATCH_SIZE) == 0:
                 num_epoch = step // (int(train_size) // BATCH_SIZE)
                 with tf.device(EVAL_DEVICE_ID):
+                    debug("step number when " +  str(num_epoch) + " epochs ended : " + str(step))
                     test_error = error_rate(eval_in_batches(dataset["test_data"], sess), dataset["test_labels"])
                     test_accuracy = 100.0 - test_error
-                    logger.measure("epoch", str(num_epoch) + "_epoch", test_accuracy)
+                    validation_err = error_rate(eval_in_batches(dataset["validation_data"], sess),\
+                                                    dataset["validation_labels"])                    
+                    valid_accuracy = 100.0 - validation_err
+                    logger.measure("epoch", str(num_epoch) + "_epoch", 
+                                   {"Test Accuracy" : test_accuracy, 
+                                    "Validation Accuarcy" : valid_accuracy})
                     debug('Test error: %.1f%%' % test_error)
                     sys.stdout.flush()
                 # Check early termination
@@ -387,11 +398,18 @@ def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, o
                                 debug("Early termination")
                                 break
                     
-           
+        
+        debug("step number when training ended : " + str(step))
         with tf.device(EVAL_DEVICE_ID):
             test_error = error_rate(eval_in_batches(dataset["test_data"], sess), dataset["test_labels"])
             test_accuracy = 100.0 - test_error
-            logger.measure("total", str(num_epoch) + "_epoch", test_accuracy)
+            validation_err = error_rate(eval_in_batches(dataset["validation_data"], sess),\
+                                        dataset["validation_labels"])                    
+            valid_accuracy = 100.0 - validation_err            
+            logger.measure("total", str(NUM_EPOCHS) + "_epoch", 
+                           {"Test Accuracy" : test_accuracy, 
+                            "Validation Accuarcy" : valid_accuracy})
+            
             debug('Test error: %.1f%%' % test_error)
             sys.stdout.flush()
 
@@ -523,7 +541,7 @@ def learn(dataset, params, **kwargs):    # pylint: disable=unused-argument
             print(e)
             error('Training failed: ' + str(params))
             date_str = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H:%M:%S')
-            file_name = 'failed_params_' + date_str + '.pickle'
+            file_name = './temp/failed_params_' + date_str + '.pickle'
             with open(file_name, 'wb') as f:
                 pickle.dump(params, f)
 

@@ -20,6 +20,7 @@ import pandas as pd
 import numpy as np
 from scipy.stats import linregress
 
+
 class PerformanceCSVLogger:
     def __init__(self, path):
         self.path = path
@@ -28,24 +29,28 @@ class PerformanceCSVLogger:
     def __del__(self):
         self.delete()
     
-    def create(self, num_params, num_metrics):
-                
+    def create(self, params_list, metrics_list):
+        num_params = len(params_list)
+        num_metrics = len(metrics_list)
         self.csv_format = '%(asctime)s,%(message)s'
-        self.csv_header = "Setting,Measure Type,Step,Elapsed Time"
+        self.csv_header = "Timestamp,Msec,Setting,Measure Type,Step/Epoch,Elapsed Time"
         self.num_metrics = num_metrics
         self.num_params = num_params
         self.timers = {}
+        self.elapsed_times_dict = {}
+        self.params_list = params_list
+        self.metrics_list = metrics_list
         
-        for a in range(num_metrics):
-            self.csv_header = self.csv_header + ",Metric"+str(a+1)
+        for m in metrics_list:
+            self.csv_header = self.csv_header + "," + m
             
-        hyperparams = []
-        for l in range(num_params):
-            self.csv_header = self.csv_header + ",Param" + str(l+1)
-            hyperparams.append("NA")
+        for p in params_list:
+            self.csv_header = self.csv_header + "," + p
        
-        self.setParamColumns(*hyperparams)
         
+        # set timezone as GMT+9 
+        
+        os.environ['TZ'] = 'Asia/Seoul'
         # Create logger instance
         logger = logging.getLogger('tflogger')
 
@@ -69,7 +74,10 @@ class PerformanceCSVLogger:
 
         # add the head if it doesn't existed yet
         if os.path.getsize(self.path) < 10 :
-            logger.info(self.csv_header)
+            f = open(self.path, 'w')
+            f.writelines([self.csv_header + os.linesep])
+            f.close()
+            #logger.info(self.csv_header)
             
         self.logger = logger
 
@@ -78,7 +86,13 @@ class PerformanceCSVLogger:
         hyperparams = ""
         for l in params:
             hyperparams += "," + str(l)
-        self.hyperparams = hyperparams
+        self.hyperparams_vector = hyperparams
+        
+    def setHyperparamSetting(self, dict):
+        hyperparams = ""
+        for param in self.params_list:
+            hyperparams += "," + str(dict[param])
+        self.hyperparams_vector = hyperparams
         
     def delete(self) :
         handlers = self.logger.handlers[:]
@@ -86,17 +100,47 @@ class PerformanceCSVLogger:
             handler.close()
             self.logger.removeHandler(handler)
             
-    def setTimer(self, type):
-        self.timers[type] = time.time()
+    def setTimer(self, measure_type):
+        self.timers[measure_type] = time.time()
+        
+        # add empty list if key did not existed in accumulated
+        if not measure_type in self.elapsed_times_dict:
+            self.elapsed_times_dict[measure_type] = []
         
     def setSetting(self, setting):
         self.setting = setting
-    
-    def measure(self, type, step, *metrics):        
+
+    def measure(self, measure_type, step, metrics_dict):        
         # measure elapsed time
-        timegap = time.time() - self.timers[type]
+        timegap = time.time() - self.timers[measure_type]
         
-        msg = self.setting + "," + type + "," + str(step) + ",{0:.3g}".format(timegap)
+        self.elapsed_times_dict[measure_type].append(timegap)
+        
+        #print(timegap)
+        accumulated_time = sum(self.elapsed_times_dict[measure_type])
+        #print(self.elapsed_times_dict[measure_type])
+        msg = self.setting + "," + measure_type + "," + str(step) + ",{0:.3g}".format(accumulated_time)
+        #print (metrics_dict)        
+        for metric in self.metrics_list:
+            if metric in metrics_dict:
+                value = metrics_dict[metric]                
+                msg = msg + ",{:.3f}".format(value)
+            else:
+                msg = msg + ",NA"
+                
+        msg = msg + self.hyperparams_vector
+        self.logger.debug(msg) # print out to log file
+        self.setTimer(measure_type) # reset timer        
+'''    
+    def measure(self, measure_type, step, *metrics):        
+        # measure elapsed time
+        timegap = time.time() - self.timers[measure_type]
+        
+        self.elapsed_times_dict[measure_type].append(timegap)
+        print(timegap)
+        accumulated_time = sum(self.elapsed_times_dict[measure_type])
+        print(accumulated_time)
+        msg = self.setting + "," + measure_type + "," + str(step) + ",{0:.3g}".format(accumulated_time)
         num_metric_remains = self.num_metrics - len(metrics)
         
         for i in range(self.num_metrics):
@@ -106,10 +150,10 @@ class PerformanceCSVLogger:
             else:
                 msg = msg + ",NA"
                 
-        msg = msg + self.hyperparams
-        self.logger.debug(msg)
-        self.setTimer(type) # reset timer
-
+        msg = msg + self.hyperparams_vector
+        self.logger.debug(msg) # print out to log file
+        self.setTimer(measure_type) # reset timer
+'''
         
 class PerformancePredictor:
     def __init__(self, log_path, acc_type="Metric1", threshold=50.0):
