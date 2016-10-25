@@ -8,13 +8,14 @@ import getopt
 import traceback
 from multiprocessing import Pool, Lock, Manager, Process
 
-import conv_model_draft as model
+import models.cnn_model as model
 
 import tensorflow as tf
 
 from config import Config
 import pickle
-from util import PerformanceCSVLogger, PerformancePredictor 
+from modules.logger import PerformanceCSVLogger
+from modules.predictor PerformancePredictor 
 from random import shuffle
 
 

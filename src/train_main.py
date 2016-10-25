@@ -20,7 +20,7 @@ from random import shuffle
 
 NUM_PROCESSES = 2
 NUM_EPOCHS = 1
-OUTPUT_LOG_PATH = "train_log.csv"
+OUTPUT_LOG_PATH = "./temp/train_log.csv"
 LOG_DB_PATH = "../log/grid.csv"
 PARAMS_LIST_PICKLE_FILE = "./temp/remained_params.pickle"
 CFG_PATH="train.cfg"

@@ -1,0 +1,13 @@
+0.93/0.12	I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcublas.so locally
+0.93/0.12	I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcudnn.so locally
+0.93/0.12	I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcufft.so locally
+0.93/0.13	I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcuda.so.1 locally
+0.93/0.13	I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcurand.so locally
+1.63/0.89	hyperparameter optimization for tensorflow is being started
+1.63/0.89	Params: {'conv2_depth': '278', 'fc_depth': '109', 'conv1_depth': '164', 'filter_size': '14'}
+2.04/1.22	Traceback (most recent call last):
+2.04/1.22	  File "/root/tf-hpolib/tf-hpo/src/hpolib-main.py", line 42, in <module>
+2.04/1.22	    result = main(params, **args)
+2.04/1.22	  File "/root/tf-hpolib/tf-hpo/src/hpolib-main.py", line 32, in main
+2.04/1.22	    print("Logging test errors at " + OUTPUT_LOG_PATH)        
+2.04/1.22	NameError: global name 'OUTPUT_LOG_PATH' is not defined

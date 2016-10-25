@@ -1,0 +1,3 @@
+1: conv1_depth='1', conv2_depth='1', fc_depth='1', filter_size='1'
+2: conv1_depth='190', conv2_depth='253', fc_depth='371', filter_size='3'
+3: conv1_depth='93', conv2_depth='262', fc_depth='265', filter_size='1'

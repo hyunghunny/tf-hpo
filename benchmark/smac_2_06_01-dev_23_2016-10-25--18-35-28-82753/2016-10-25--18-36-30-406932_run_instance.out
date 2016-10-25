@@ -1,0 +1,20 @@
+0.88/0.12	I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcublas.so locally
+0.88/0.12	I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcudnn.so locally
+0.88/0.12	I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcufft.so locally
+0.88/0.12	I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcuda.so.1 locally
+0.88/0.12	I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcurand.so locally
+1.59/0.88	hyperparameter optimization for tensorflow is being started
+1.59/0.88	Params: {'conv2_depth': '504', 'fc_depth': '357', 'conv1_depth': '356', 'filter_size': '1'}
+2.00/1.21	Traceback (most recent call last):
+2.00/1.21	  File "/root/tf-hpolib/tf-hpo/src/hpolib-main.py", line 42, in <module>
+2.00/1.21	    result = main(params, **args)
+2.00/1.21	  File "/root/tf-hpolib/tf-hpo/src/hpolib-main.py", line 31, in main
+2.00/1.21	    logger.create(['Filter size', 'Conv1 depth', 'Conv2 depth', 'FC neurons'], ['Test Accuracy', 'Validation Accuarcy', 'Training Accuracy'])  
+2.00/1.21	  File "/root/tf-hpolib/tf-hpo/src/modules/logger.py", line 57, in create
+2.00/1.21	    fileHandler = logging.FileHandler(self.path)
+2.00/1.21	  File "/usr/lib/python2.7/logging/__init__.py", line 903, in __init__
+2.00/1.21	    StreamHandler.__init__(self, self._open())
+2.00/1.21	  File "/usr/lib/python2.7/logging/__init__.py", line 928, in _open
+2.00/1.21	    stream = open(self.baseFilename, self.mode)
+2.00/1.21	IOError: [Errno 2] No such file or directory: '/root/tf-hpolib/tf-hpo/benchmark/log/hpolib.csv'
+2.00/1.24	Exception AttributeError: "PerformanceCSVLogger instance has no attribute 'logger'" in <bound method PerformanceCSVLogger.__del__ of <modules.logger.PerformanceCSVLogger instance at 0x7fcf5a6733b0>> ignored

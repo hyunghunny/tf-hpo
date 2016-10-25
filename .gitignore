@@ -92,8 +92,8 @@ ENV/
 nohup.out
 
 .tmp/
-src/hyperopt_*
-src/smac_*
-src/spearmint_*
+src/benchmark/hyperopt_auguest2013_mod_*
+src/benchmark/smac_2_06_01-dev_*
+src/benchmark/spearmint_april2013_mod_*
 *.pickle
 src/benchmark/
