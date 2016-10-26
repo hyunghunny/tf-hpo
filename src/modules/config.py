@@ -48,7 +48,7 @@ def prevalidate(params_list):
         return validated_list        
 
 # TODO: produce hyperparameter vectos by cartesian product
-class HyConfigurator:
+class HPConfigurator:
     def __init__(self, path):
         self.path = path
         self.setting = ""

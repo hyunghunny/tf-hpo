@@ -1,2 +1,4 @@
 #!/bin/bash
-export PYTHONPATH=/root/tf-hpolib/tf-hpo/src/
+export PYTHONPATH=/root/tf-hpolib/tf-hpo/src/:$PYTHONPATH
+echo $PYTHONPATH
+echo "/root/tf-hpolib/tf-hpo/src/ should be shown properly"

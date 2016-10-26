@@ -9243,4 +9243,3079 @@ cd /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-827
 [INFO ] Optimizing EI at valdata.iteration 77. fmin: 1.67
 [INFO ] Compute negEI for all conf. seen at valdata.iteration 77: took 0.0 s
 [INFO ] 10 Local Searches took 0.003 seconds in total 
-[INFO ] Challenger 1 predicted 202.52829444444447 +/- 420.30545229032725, expected improvement 4.454800266189
+[INFO ] Challenger 1 predicted 202.52829444444447 +/- 420.30545229032725, expected improvement 4.454800266189574
+[INFO ] Challenger 2 predicted 203.44929444444443 +/- 419.8287920795971, expected improvement 4.449434214129315
+[INFO ] Challenger 3 predicted 204.18956944444446 +/- 419.47656904057266, expected improvement 4.445238441743521
+[INFO ] Challenger 4 predicted 204.18956944444446 +/- 419.47656904057266, expected improvement 4.445238441743521
+[INFO ] Challenger 5 predicted 204.39008611111112 +/- 419.3706763620561, expected improvement 4.444056593679214
+[INFO ] Challenger 6 predicted 204.95441944444445 +/- 419.0753220427598, expected improvement 4.4407374422384835
+[INFO ] Challenger 7 predicted 212.71975277777779 +/- 415.6167856328445, expected improvement 4.397062214684115
+[INFO ] Challenger 8 predicted 104.02377738095238 +/- 314.8196845084395, expected improvement 4.394423940004515
+[INFO ] Challenger 9 predicted 104.02377738095238 +/- 314.8196845084395, expected improvement 4.394423940004515
+[INFO ] Challenger 10 predicted 104.02377738095238 +/- 314.8196845084395, expected improvement 4.394423940004515
+[INFO ] Selecting 10010 challengers based on EI took 0.055 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x234B37) up to a total bound of Infinity 
+[INFO ] Iteration 77: Scheduling 1 run(s):
+[INFO ] Iteration 77: Scheduling run for config (0x234B37) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:16:08:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:16:22:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 13.711600, 1, 9.810000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 225
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 148
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2403.289097504999 s (0%)
+ Configuration Time Budget remaining: 2.1474812437109025E9 s
+ Wall-clock Time Budget used: 2453.765 s (0%)
+ Wall-clock Time Budget remaining: 2.147481193235E9 s
+ Algorithm Runs used: 149.0  (74%)
+ Algorithm Runs remaining: 51.0 
+ Model/Iteration used: 77.0  (0%)
+ Model/Iteration remaining: 2.14748357E9 
+ Configuration Space Searched 7.92954649244036E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2376.579159999999 s
+ CPU time of Configurator: 12.997668871 s
+ User time of Configurator: 12.998015362 s
+ Total Reported Algorithm Runtime: 2390.290759999999 s
+ Sum of Measured Wallclock Runtime: 2443.6440000000016 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 899.5 MB
+ Free Java Memory: 783.0165023803711 MB
+[INFO ] Iteration 77: Completed run for config (0x234B37) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 9.81, wallclock time: 14.266 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 149 (0x234B37)  has a lower bound 9.81 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 149 (0x234B37) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 13.71160000000009  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x239584) up to a total bound of Infinity 
+[INFO ] Iteration 77: Scheduling 1 run(s):
+[INFO ] Iteration 77: Scheduling run for config (0x239584) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:16:22:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:16:54:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 31.962100, 1, 89.720000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 226
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 149
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2435.339497379999 s (0%)
+ Configuration Time Budget remaining: 2.1474812116605027E9 s
+ Wall-clock Time Budget used: 2486.187 s (0%)
+ Wall-clock Time Budget remaining: 2.147481160813E9 s
+ Algorithm Runs used: 150.0  (75%)
+ Algorithm Runs remaining: 50.0 
+ Model/Iteration used: 77.0  (0%)
+ Model/Iteration remaining: 2.14748357E9 
+ Configuration Space Searched 7.98276492527553E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2390.290759999999 s
+ CPU time of Configurator: 13.086014287 s
+ User time of Configurator: 13.086325947 s
+ Total Reported Algorithm Runtime: 2422.252859999999 s
+ Sum of Measured Wallclock Runtime: 2476.011000000002 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 899.5 MB
+ Free Java Memory: 780.0493316650391 MB
+[INFO ] Iteration 77: Completed run for config (0x239584) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 89.72, wallclock time: 32.367 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 150 (0x239584)  has a lower bound 89.72 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 150 (0x239584) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 45.67370000000028  (s)
+[INFO ] At end of iteration 77, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 77 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 6 ms
+[INFO ] Starting Iteration 78
+[INFO ] *****Runtime Statistics*****
+ Count: 227
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 150
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2435.3488537519993 s (0%)
+ Configuration Time Budget remaining: 2.1474812116511462E9 s
+ Wall-clock Time Budget used: 2486.196 s (0%)
+ Wall-clock Time Budget remaining: 2.147481160804E9 s
+ Algorithm Runs used: 150.0  (75%)
+ Algorithm Runs remaining: 50.0 
+ Model/Iteration used: 77.0  (0%)
+ Model/Iteration remaining: 2.14748357E9 
+ Configuration Space Searched 7.98276492527553E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2422.252859999999 s
+ CPU time of Configurator: 13.095329501 s
+ User time of Configurator: 13.095658031 s
+ Total Reported Algorithm Runtime: 2422.252859999999 s
+ Sum of Measured Wallclock Runtime: 2476.011000000002 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 899.5 MB
+ Free Java Memory: 780.0493316650391 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 150 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.007 (s)
+[INFO ] Prediction for incumbent: 261.9798055555556 +/- 115658.88988477668 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 78. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 78: took 0.0 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 207.51522817460318 +/- 417.8027168859949, expected improvement 4.425885739091175
+[INFO ] Challenger 2 predicted 210.0207619047619 +/- 416.67898160018854, expected improvement 4.411757655356227
+[INFO ] Challenger 3 predicted 102.43287103174605 +/- 315.374020050904, expected improvement 4.404305231126195
+[INFO ] Challenger 4 predicted 103.20052579365081 +/- 315.10391459464915, expected improvement 4.399531454596335
+[INFO ] Challenger 5 predicted 103.20052579365081 +/- 315.10391459464915, expected improvement 4.399531454596335
+[INFO ] Challenger 6 predicted 104.8539007936508 +/- 314.54042524856754, expected improvement 4.38929435563704
+[INFO ] Challenger 7 predicted 104.8539007936508 +/- 314.54042524856754, expected improvement 4.38929435563704
+[INFO ] Challenger 8 predicted 216.13799206349205 +/- 413.7415579564653, expected improvement 4.375972283222622
+[INFO ] Challenger 9 predicted 108.46111150793652 +/- 313.56637635527636, expected improvement 4.367987657183943
+[INFO ] Challenger 10 predicted 197.24868055555552 +/- 394.8746544281965, expected improvement 4.365387107199047
+[INFO ] Selecting 10010 challengers based on EI took 0.056 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x23DBF4) up to a total bound of Infinity 
+[INFO ] Iteration 78: Scheduling 1 run(s):
+[INFO ] Iteration 78: Scheduling run for config (0x23DBF4) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:16:55:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:17:06:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 11.287900, 1, 3.130000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 228
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 150
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2446.744769090999 s (0%)
+ Configuration Time Budget remaining: 2.147481200255231E9 s
+ Wall-clock Time Budget used: 2498.044 s (0%)
+ Wall-clock Time Budget remaining: 2.147481148956E9 s
+ Algorithm Runs used: 151.0  (75%)
+ Algorithm Runs remaining: 49.0 
+ Model/Iteration used: 78.0  (0%)
+ Model/Iteration remaining: 2.147483569E9 
+ Configuration Space Searched 8.035983358110701E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2422.252859999999 s
+ CPU time of Configurator: 13.203343271 s
+ User time of Configurator: 13.203675508 s
+ Total Reported Algorithm Runtime: 2433.540759999999 s
+ Sum of Measured Wallclock Runtime: 2487.7430000000018 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 899.5 MB
+ Free Java Memory: 757.4140625 MB
+[INFO ] Iteration 78: Completed run for config (0x23DBF4) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 3.13, wallclock time: 11.732 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 151 (0x23DBF4)  has a lower bound 3.13 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 151 (0x23DBF4) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 11.287899999999809  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x240C37) up to a total bound of Infinity 
+[INFO ] Iteration 78: Scheduling 1 run(s):
+[INFO ] Iteration 78: Scheduling run for config (0x240C37) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:17:06:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:17:43:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 36.473400, 1, 2.090000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 229
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 151
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2483.3250247849987 s (0%)
+ Configuration Time Budget remaining: 2.1474811636749752E9 s
+ Wall-clock Time Budget used: 2534.927 s (0%)
+ Wall-clock Time Budget remaining: 2.147481112073E9 s
+ Algorithm Runs used: 152.0  (76%)
+ Algorithm Runs remaining: 48.0 
+ Model/Iteration used: 78.0  (0%)
+ Model/Iteration remaining: 2.147483569E9 
+ Configuration Space Searched 8.089201790945871E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2433.540759999999 s
+ CPU time of Configurator: 13.31021133 s
+ User time of Configurator: 13.310534405999999 s
+ Total Reported Algorithm Runtime: 2470.014159999999 s
+ Sum of Measured Wallclock Runtime: 2524.5790000000015 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 899.5 MB
+ Free Java Memory: 754.6452331542969 MB
+[INFO ] Iteration 78: Completed run for config (0x240C37) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 2.09, wallclock time: 36.836 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 152 (0x240C37)  has a lower bound 2.09 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 152 (0x240C37) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 47.761299999999665  (s)
+[INFO ] At end of iteration 78, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 78 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 6 ms
+[INFO ] Starting Iteration 79
+[INFO ] *****Runtime Statistics*****
+ Count: 230
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 152
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2483.333785469999 s (0%)
+ Configuration Time Budget remaining: 2.1474811636662145E9 s
+ Wall-clock Time Budget used: 2534.935 s (0%)
+ Wall-clock Time Budget remaining: 2.147481112065E9 s
+ Algorithm Runs used: 152.0  (76%)
+ Algorithm Runs remaining: 48.0 
+ Model/Iteration used: 78.0  (0%)
+ Model/Iteration remaining: 2.147483569E9 
+ Configuration Space Searched 8.089201790945871E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2470.014159999999 s
+ CPU time of Configurator: 13.319186033 s
+ User time of Configurator: 13.319404192 s
+ Total Reported Algorithm Runtime: 2470.014159999999 s
+ Sum of Measured Wallclock Runtime: 2524.5790000000015 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 899.5 MB
+ Free Java Memory: 751.2187957763672 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 152 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.006 (s)
+[INFO ] Prediction for incumbent: 80.47379642857143 +/- 38527.97161161172 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 79. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 79: took 0.0 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 202.0680833333333 +/- 420.54721443051324, expected improvement 4.45749049840779
+[INFO ] Challenger 2 predicted 202.3598373015873 +/- 420.39407635834283, expected improvement 4.455786001236773
+[INFO ] Challenger 3 predicted 202.36573611111112 +/- 420.39088130690675, expected improvement 4.455751113937371
+[INFO ] Challenger 4 predicted 202.36573611111112 +/- 420.39088130690675, expected improvement 4.455751113937371
+[INFO ] Challenger 5 predicted 202.36573611111112 +/- 420.39088130690675, expected improvement 4.455751113937371
+[INFO ] Challenger 6 predicted 202.38476666666668 +/- 420.38138722993625, expected improvement 4.455641920666892
+[INFO ] Challenger 7 predicted 202.4033611111111 +/- 420.3709480397723, expected improvement 4.455530416798759
+[INFO ] Challenger 8 predicted 202.71528174603174 +/- 420.2063914320999, expected improvement 4.453702625607184
+[INFO ] Challenger 9 predicted 203.12433611111112 +/- 419.99494514833754, expected improvement 4.451320918423108
+[INFO ] Challenger 10 predicted 203.12433611111112 +/- 419.99494514833754, expected improvement 4.451320918423108
+[INFO ] Selecting 10010 challengers based on EI took 0.056 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2455D4) up to a total bound of Infinity 
+[INFO ] Iteration 79: Scheduling 1 run(s):
+[INFO ] Iteration 79: Scheduling run for config (0x2455D4) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:17:43:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:17:57:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 13.871800, 1, 1.900000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 231
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 152
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2497.3177316529986 s (0%)
+ Configuration Time Budget remaining: 2.1474811496822684E9 s
+ Wall-clock Time Budget used: 2549.338 s (0%)
+ Wall-clock Time Budget remaining: 2.147481097662E9 s
+ Algorithm Runs used: 153.0  (76%)
+ Algorithm Runs remaining: 47.0 
+ Model/Iteration used: 79.0  (0%)
+ Model/Iteration remaining: 2.147483568E9 
+ Configuration Space Searched 8.142420223781041E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2470.014159999999 s
+ CPU time of Configurator: 13.431123943000001 s
+ User time of Configurator: 13.431434648 s
+ Total Reported Algorithm Runtime: 2483.8859599999987 s
+ Sum of Measured Wallclock Runtime: 2538.9060000000018 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 899.5 MB
+ Free Java Memory: 728.859245300293 MB
+[INFO ] Iteration 79: Completed run for config (0x2455D4) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 1.9, wallclock time: 14.327 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 153 (0x2455D4)  has a lower bound 1.9 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 153 (0x2455D4) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 13.871799999999894  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x24835C) up to a total bound of Infinity 
+[INFO ] Iteration 79: Scheduling 1 run(s):
+[INFO ] Iteration 79: Scheduling run for config (0x24835C) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:17:58:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:18:17:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 19.302700, 1, 6.990000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 232
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 153
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2516.679388961999 s (0%)
+ Configuration Time Budget remaining: 2.147481130320611E9 s
+ Wall-clock Time Budget used: 2569.231 s (0%)
+ Wall-clock Time Budget remaining: 2.147481077769E9 s
+ Algorithm Runs used: 154.0  (77%)
+ Algorithm Runs remaining: 46.0 
+ Model/Iteration used: 79.0  (0%)
+ Model/Iteration remaining: 2.147483568E9 
+ Configuration Space Searched 8.195638656616211E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2483.8859599999987 s
+ CPU time of Configurator: 13.490090367 s
+ User time of Configurator: 13.490419866 s
+ Total Reported Algorithm Runtime: 2503.188659999999 s
+ Sum of Measured Wallclock Runtime: 2558.7600000000016 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 899.5 MB
+ Free Java Memory: 726.2416839599609 MB
+[INFO ] Iteration 79: Completed run for config (0x24835C) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 6.99, wallclock time: 19.854 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 154 (0x24835C)  has a lower bound 6.99 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 154 (0x24835C) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 33.17450000000008  (s)
+[INFO ] At end of iteration 79, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 79 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 7 ms
+[INFO ] Starting Iteration 80
+[INFO ] *****Runtime Statistics*****
+ Count: 233
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 154
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2516.688923989999 s (0%)
+ Configuration Time Budget remaining: 2.147481130311076E9 s
+ Wall-clock Time Budget used: 2569.241 s (0%)
+ Wall-clock Time Budget remaining: 2.147481077759E9 s
+ Algorithm Runs used: 154.0  (77%)
+ Algorithm Runs remaining: 46.0 
+ Model/Iteration used: 79.0  (0%)
+ Model/Iteration remaining: 2.147483568E9 
+ Configuration Space Searched 8.195638656616211E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2503.188659999999 s
+ CPU time of Configurator: 13.499635764 s
+ User time of Configurator: 13.499937592 s
+ Total Reported Algorithm Runtime: 2503.188659999999 s
+ Sum of Measured Wallclock Runtime: 2558.7600000000016 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 899.5 MB
+ Free Java Memory: 726.1417617797852 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 154 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.007 (s)
+[INFO ] Prediction for incumbent: 275.4258952380952 +/- 72967.23444149742 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 80. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 80: took 0.0 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 202.0334623015873 +/- 420.565824120664, expected improvement 4.4576944626754225
+[INFO ] Challenger 2 predicted 202.1464623015873 +/- 420.50643891884016, expected improvement 4.457034252280339
+[INFO ] Challenger 3 predicted 202.37108928571428 +/- 420.3878320023019, expected improvement 4.4557188339259275
+[INFO ] Challenger 4 predicted 202.43283928571427 +/- 420.3552749019067, expected improvement 4.4553572563946435
+[INFO ] Challenger 5 predicted 202.47808928571428 +/- 420.3314506353936, expected improvement 4.455092387000576
+[INFO ] Challenger 6 predicted 204.8532400793651 +/- 419.1334830473103, expected improvement 4.441354734629071
+[INFO ] Challenger 7 predicted 205.89928730158732 +/- 418.6907886803856, expected improvement 4.435628238178529
+[INFO ] Challenger 8 predicted 206.18925714285714 +/- 418.5341702452272, expected improvement 4.433895390067152
+[INFO ] Challenger 9 predicted 206.23691428571428 +/- 418.50853389563076, expected improvement 4.433610872397695
+[INFO ] Challenger 10 predicted 206.55305714285714 +/- 418.3398050790736, expected improvement 4.431727958206191
+[INFO ] Selecting 10010 challengers based on EI took 0.056 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2483F0) up to a total bound of Infinity 
+[INFO ] Iteration 80: Scheduling 1 run(s):
+[INFO ] Iteration 80: Scheduling run for config (0x2483F0) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:18:18:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:18:27:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 9.513380, 1, 2.190000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 234
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 154
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2526.3045222379988 s (0%)
+ Configuration Time Budget remaining: 2.1474811206954777E9 s
+ Wall-clock Time Budget used: 2579.339 s (0%)
+ Wall-clock Time Budget remaining: 2.147481067661E9 s
+ Algorithm Runs used: 155.0  (77%)
+ Algorithm Runs remaining: 45.0 
+ Model/Iteration used: 80.0  (0%)
+ Model/Iteration remaining: 2.147483567E9 
+ Configuration Space Searched 8.248857089451381E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2503.188659999999 s
+ CPU time of Configurator: 13.601828077 s
+ User time of Configurator: 13.602153802999998 s
+ Total Reported Algorithm Runtime: 2512.7020399999988 s
+ Sum of Measured Wallclock Runtime: 2568.7670000000016 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 899.5 MB
+ Free Java Memory: 703.5707702636719 MB
+[INFO ] Iteration 80: Completed run for config (0x2483F0) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 2.19, wallclock time: 10.007 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 155 (0x2483F0)  has a lower bound 2.19 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 155 (0x2483F0) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 9.51337999999987  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x24FA1F) up to a total bound of Infinity 
+[INFO ] Iteration 80: Scheduling 1 run(s):
+[INFO ] Iteration 80: Scheduling run for config (0x24FA1F) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:18:28:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:19:37:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 69.599100, 1, 89.720000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 235
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 155
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2596.081078334999 s (0%)
+ Configuration Time Budget remaining: 2.1474810509189217E9 s
+ Wall-clock Time Budget used: 2649.361 s (0%)
+ Wall-clock Time Budget remaining: 2.147480997639E9 s
+ Algorithm Runs used: 156.0  (78%)
+ Algorithm Runs remaining: 44.0 
+ Model/Iteration used: 80.0  (0%)
+ Model/Iteration remaining: 2.147483567E9 
+ Configuration Space Searched 8.302075522286551E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2512.7020399999988 s
+ CPU time of Configurator: 13.779419113 s
+ User time of Configurator: 13.779609533999999 s
+ Total Reported Algorithm Runtime: 2582.3011399999987 s
+ Sum of Measured Wallclock Runtime: 2638.7670000000016 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 899.5 MB
+ Free Java Memory: 699.3427581787109 MB
+[INFO ] Iteration 80: Completed run for config (0x24FA1F) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 89.72, wallclock time: 70.0 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 156 (0x24FA1F)  has a lower bound 89.72 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 156 (0x24FA1F) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 79.11247999999978  (s)
+[INFO ] At end of iteration 80, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 80 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 4 ms
+[INFO ] Starting Iteration 81
+[INFO ] *****Runtime Statistics*****
+ Count: 236
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 156
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2596.0880512039985 s (0%)
+ Configuration Time Budget remaining: 2.1474810509119487E9 s
+ Wall-clock Time Budget used: 2649.368 s (0%)
+ Wall-clock Time Budget remaining: 2.147480997632E9 s
+ Algorithm Runs used: 156.0  (78%)
+ Algorithm Runs remaining: 44.0 
+ Model/Iteration used: 80.0  (0%)
+ Model/Iteration remaining: 2.147483567E9 
+ Configuration Space Searched 8.302075522286551E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2582.3011399999987 s
+ CPU time of Configurator: 13.786282136 s
+ User time of Configurator: 13.78659488 s
+ Total Reported Algorithm Runtime: 2582.3011399999987 s
+ Sum of Measured Wallclock Runtime: 2638.7670000000016 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 899.5 MB
+ Free Java Memory: 699.3427581787109 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 156 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.004 (s)
+[INFO ] Prediction for incumbent: 299.4619761904762 +/- 167079.33539968156 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 81. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 81: took 0.0 s
+[INFO ] 10 Local Searches took 0.002 seconds in total 
+[INFO ] Challenger 1 predicted 210.07112499999994 +/- 416.5509121600775, expected improvement 4.411021818864033
+[INFO ] Challenger 2 predicted 210.07112499999994 +/- 416.5509121600775, expected improvement 4.411021818864033
+[INFO ] Challenger 3 predicted 210.41645833333328 +/- 416.361521230075, expected improvement 4.40891772392251
+[INFO ] Challenger 4 predicted 210.41645833333328 +/- 416.361521230075, expected improvement 4.40891772392251
+[INFO ] Challenger 5 predicted 210.41645833333328 +/- 416.361521230075, expected improvement 4.40891772392251
+[INFO ] Challenger 6 predicted 210.47594642857143 +/- 416.3283386826791, expected improvement 4.40855263291936
+[INFO ] Challenger 7 predicted 104.87798452380953 +/- 314.5893587006178, expected improvement 4.3894129013211405
+[INFO ] Challenger 8 predicted 215.13337499999994 +/- 414.05439386329874, expected improvement 4.38115500242186
+[INFO ] Challenger 9 predicted 216.6757916666666 +/- 413.3952010497467, expected improvement 4.372406208013581
+[INFO ] Challenger 10 predicted 216.6757916666666 +/- 413.3952010497467, expected improvement 4.372406208013581
+[INFO ] Selecting 10010 challengers based on EI took 0.039 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x24FA82) up to a total bound of Infinity 
+[INFO ] Iteration 81: Scheduling 1 run(s):
+[INFO ] Iteration 81: Scheduling run for config (0x24FA82) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:19:38:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:19:55:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 17.557200, 1, 3.210000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 237
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 156
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2613.746266205999 s (0%)
+ Configuration Time Budget remaining: 2.1474810332537339E9 s
+ Wall-clock Time Budget used: 2667.464 s (0%)
+ Wall-clock Time Budget remaining: 2.147480979536E9 s
+ Algorithm Runs used: 157.0  (78%)
+ Algorithm Runs remaining: 43.0 
+ Model/Iteration used: 81.0  (0%)
+ Model/Iteration remaining: 2.147483566E9 
+ Configuration Space Searched 8.35529395512172E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2582.3011399999987 s
+ CPU time of Configurator: 13.887259473 s
+ User time of Configurator: 13.887589619999998 s
+ Total Reported Algorithm Runtime: 2599.858339999999 s
+ Sum of Measured Wallclock Runtime: 2656.806000000002 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 899.5 MB
+ Free Java Memory: 677.0410766601562 MB
+[INFO ] Iteration 81: Completed run for config (0x24FA82) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 3.21, wallclock time: 18.039 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 157 (0x24FA82)  has a lower bound 3.21 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 157 (0x24FA82) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 17.557200000000194  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2570F4) up to a total bound of Infinity 
+[INFO ] Iteration 81: Scheduling 1 run(s):
+[INFO ] Iteration 81: Scheduling run for config (0x2570F4) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:19:56:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:20:56:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 60.389400, 1, 2.160000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 238
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 157
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2674.2882451829987 s (0%)
+ Configuration Time Budget remaining: 2.1474809727117548E9 s
+ Wall-clock Time Budget used: 2728.273 s (0%)
+ Wall-clock Time Budget remaining: 2.147480918727E9 s
+ Algorithm Runs used: 158.0  (79%)
+ Algorithm Runs remaining: 42.0 
+ Model/Iteration used: 81.0  (0%)
+ Model/Iteration remaining: 2.147483566E9 
+ Configuration Space Searched 8.408512387956892E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2599.858339999999 s
+ CPU time of Configurator: 14.03985656 s
+ User time of Configurator: 14.040178692 s
+ Total Reported Algorithm Runtime: 2660.247739999999 s
+ Sum of Measured Wallclock Runtime: 2717.599000000002 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 899.5 MB
+ Free Java Memory: 672.8149642944336 MB
+[INFO ] Iteration 81: Completed run for config (0x2570F4) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 2.16, wallclock time: 60.793 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 158 (0x2570F4)  has a lower bound 2.16 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 158 (0x2570F4) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 77.94660000000022  (s)
+[INFO ] At end of iteration 81, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 81 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 7 ms
+[INFO ] Starting Iteration 82
+[INFO ] *****Runtime Statistics*****
+ Count: 239
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 158
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2674.2974140439987 s (0%)
+ Configuration Time Budget remaining: 2.147480972702586E9 s
+ Wall-clock Time Budget used: 2728.282 s (0%)
+ Wall-clock Time Budget remaining: 2.147480918718E9 s
+ Algorithm Runs used: 158.0  (79%)
+ Algorithm Runs remaining: 42.0 
+ Model/Iteration used: 81.0  (0%)
+ Model/Iteration remaining: 2.147483566E9 
+ Configuration Space Searched 8.408512387956892E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2660.247739999999 s
+ CPU time of Configurator: 14.049035325999998 s
+ User time of Configurator: 14.049355242 s
+ Total Reported Algorithm Runtime: 2660.247739999999 s
+ Sum of Measured Wallclock Runtime: 2717.599000000002 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 899.5 MB
+ Free Java Memory: 669.490119934082 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 158 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.006 (s)
+[INFO ] Prediction for incumbent: 317.74693650793654 +/- 123461.37194932978 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 82. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 82: took 0.0 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 205.98904761904765 +/- 418.51435837906695, expected improvement 4.43455474630819
+[INFO ] Challenger 2 predicted 208.4861277777778 +/- 417.2397510762012, expected improvement 4.4198820512361
+[INFO ] Challenger 3 predicted 208.4861277777778 +/- 417.2397510762012, expected improvement 4.4198820512361
+[INFO ] Challenger 4 predicted 208.4861277777778 +/- 417.2397510762012, expected improvement 4.4198820512361
+[INFO ] Challenger 5 predicted 216.11151349206352 +/- 414.6984026565169, expected improvement 4.380262153092635
+[INFO ] Challenger 6 predicted 216.24048015873018 +/- 414.6244669502172, expected improvement 4.379450257212118
+[INFO ] Challenger 7 predicted 215.27098214285712 +/- 413.77789106024846, expected improvement 4.379423805701335
+[INFO ] Challenger 8 predicted 215.27098214285712 +/- 413.77789106024846, expected improvement 4.379423805701335
+[INFO ] Challenger 9 predicted 215.3919821428571 +/- 413.70905231221184, expected improvement 4.378663149252672
+[INFO ] Challenger 10 predicted 215.55460714285715 +/- 413.6174100919737, expected improvement 4.377644163155452
+[INFO ] Selecting 10010 challengers based on EI took 0.061 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x257126) up to a total bound of Infinity 
+[INFO ] Iteration 82: Scheduling 1 run(s):
+[INFO ] Iteration 82: Scheduling run for config (0x257126) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:20:57:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:21:21:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 23.656200, 1, 3.060000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 240
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 158
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2698.0967467449987 s (0%)
+ Configuration Time Budget remaining: 2.1474809489032533E9 s
+ Wall-clock Time Budget used: 2752.508 s (0%)
+ Wall-clock Time Budget remaining: 2.147480894492E9 s
+ Algorithm Runs used: 159.0  (79%)
+ Algorithm Runs remaining: 41.0 
+ Model/Iteration used: 82.0  (0%)
+ Model/Iteration remaining: 2.147483565E9 
+ Configuration Space Searched 8.461730820792062E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2660.247739999999 s
+ CPU time of Configurator: 14.192166461 s
+ User time of Configurator: 14.192481475000001 s
+ Total Reported Algorithm Runtime: 2683.903939999999 s
+ Sum of Measured Wallclock Runtime: 2741.734000000002 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 865.2723236083984 MB
+[INFO ] Iteration 82: Completed run for config (0x257126) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 3.06, wallclock time: 24.135 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 159 (0x257126)  has a lower bound 3.06 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 159 (0x257126) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 23.6561999999999  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x25E82A) up to a total bound of Infinity 
+[INFO ] Iteration 82: Scheduling 1 run(s):
+[INFO ] Iteration 82: Scheduling run for config (0x25E82A) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:21:21:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:21:40:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 19.037300, 1, 4.760000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 241
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 159
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2717.1950435379986 s (0%)
+ Configuration Time Budget remaining: 2.1474809298049564E9 s
+ Wall-clock Time Budget used: 2772.063 s (0%)
+ Wall-clock Time Budget remaining: 2.147480874937E9 s
+ Algorithm Runs used: 160.0  (80%)
+ Algorithm Runs remaining: 40.0 
+ Model/Iteration used: 82.0  (0%)
+ Model/Iteration remaining: 2.147483565E9 
+ Configuration Space Searched 8.514949253627232E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2683.903939999999 s
+ CPU time of Configurator: 14.253169482999999 s
+ User time of Configurator: 14.253485185 s
+ Total Reported Algorithm Runtime: 2702.9412399999987 s
+ Sum of Measured Wallclock Runtime: 2761.274000000002 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 862.5307998657227 MB
+[INFO ] Iteration 82: Completed run for config (0x25E82A) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 4.76, wallclock time: 19.54 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 160 (0x25E82A)  has a lower bound 4.76 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 160 (0x25E82A) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 42.69349999999986  (s)
+[INFO ] At end of iteration 82, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 82 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 6 ms
+[INFO ] Starting Iteration 83
+[INFO ] *****Runtime Statistics*****
+ Count: 242
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 160
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2717.203852121999 s (0%)
+ Configuration Time Budget remaining: 2.1474809297961478E9 s
+ Wall-clock Time Budget used: 2772.071 s (0%)
+ Wall-clock Time Budget remaining: 2.147480874929E9 s
+ Algorithm Runs used: 160.0  (80%)
+ Algorithm Runs remaining: 40.0 
+ Model/Iteration used: 82.0  (0%)
+ Model/Iteration remaining: 2.147483565E9 
+ Configuration Space Searched 8.514949253627232E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2702.9412399999987 s
+ CPU time of Configurator: 14.261975410000002 s
+ User time of Configurator: 14.262291131 s
+ Total Reported Algorithm Runtime: 2702.9412399999987 s
+ Sum of Measured Wallclock Runtime: 2761.274000000002 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 862.4743041992188 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 160 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.007 (s)
+[INFO ] Prediction for incumbent: 217.8724126984127 +/- 58653.37630448504 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 83. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 83: took 0.0 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 201.97571428571428 +/- 420.5958293346326, expected improvement 4.4580303505002465
+[INFO ] Challenger 2 predicted 205.3559285714286 +/- 418.9073862030618, expected improvement 4.438548994565802
+[INFO ] Challenger 3 predicted 208.43065 +/- 417.53280176214895, expected improvement 4.421332663671144
+[INFO ] Challenger 4 predicted 102.59408134920636 +/- 315.3170911884085, expected improvement 4.4033027646093545
+[INFO ] Challenger 5 predicted 102.64395634920633 +/- 315.29958724896466, expected improvement 4.402993019277763
+[INFO ] Challenger 6 predicted 102.72908134920635 +/- 315.26955612794956, expected improvement 4.402463515228675
+[INFO ] Challenger 7 predicted 102.72908134920635 +/- 315.26955612794956, expected improvement 4.402463515228675
+[INFO ] Challenger 8 predicted 191.2884007936508 +/- 397.8818309278608, expected improvement 4.402008175365658
+[INFO ] Challenger 9 predicted 191.3735257936508 +/- 397.8369592058782, expected improvement 4.401481844648782
+[INFO ] Challenger 10 predicted 191.8088722222222 +/- 397.611405780453, expected improvement 4.398804883927767
+[INFO ] Selecting 10010 challengers based on EI took 0.056 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x25E87D) up to a total bound of Infinity 
+[INFO ] Iteration 83: Scheduling 1 run(s):
+[INFO ] Iteration 83: Scheduling run for config (0x25E87D) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:21:40:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:22:20:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 38.871000, 1, 2.050000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 243
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 160
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2756.248956299999 s (0%)
+ Configuration Time Budget remaining: 2.1474808907510438E9 s
+ Wall-clock Time Budget used: 2811.522 s (0%)
+ Wall-clock Time Budget remaining: 2.147480835478E9 s
+ Algorithm Runs used: 161.0  (80%)
+ Algorithm Runs remaining: 39.0 
+ Model/Iteration used: 83.0  (0%)
+ Model/Iteration remaining: 2.147483564E9 
+ Configuration Space Searched 8.568167686462402E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2702.9412399999987 s
+ CPU time of Configurator: 14.436078187000001 s
+ User time of Configurator: 14.436388974 s
+ Total Reported Algorithm Runtime: 2741.812239999999 s
+ Sum of Measured Wallclock Runtime: 2800.610000000002 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 839.1331939697266 MB
+[INFO ] Iteration 83: Completed run for config (0x25E87D) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 2.05, wallclock time: 39.336 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 161 (0x25E87D)  has a lower bound 2.05 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 161 (0x25E87D) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 38.871000000000095  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x265F70) up to a total bound of Infinity 
+[INFO ] Iteration 83: Scheduling 1 run(s):
+[INFO ] Iteration 83: Scheduling run for config (0x265F70) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:22:20:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:22:50:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 29.809700, 1, 2.920000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 244
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 161
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2786.1398817039985 s (0%)
+ Configuration Time Budget remaining: 2.1474808608601184E9 s
+ Wall-clock Time Budget used: 2841.932 s (0%)
+ Wall-clock Time Budget remaining: 2.147480805068E9 s
+ Algorithm Runs used: 162.0  (81%)
+ Algorithm Runs remaining: 38.0 
+ Model/Iteration used: 83.0  (0%)
+ Model/Iteration remaining: 2.147483564E9 
+ Configuration Space Searched 8.621386119297572E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2741.812239999999 s
+ CPU time of Configurator: 14.517597830000001 s
+ User time of Configurator: 14.517759743000001 s
+ Total Reported Algorithm Runtime: 2771.6219399999986 s
+ Sum of Measured Wallclock Runtime: 2830.967000000002 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 836.0932464599609 MB
+[INFO ] Iteration 83: Completed run for config (0x265F70) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 2.92, wallclock time: 30.357 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 162 (0x265F70)  has a lower bound 2.92 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 162 (0x265F70) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 68.68069999999989  (s)
+[INFO ] At end of iteration 83, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 83 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 7 ms
+[INFO ] Starting Iteration 84
+[INFO ] *****Runtime Statistics*****
+ Count: 245
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 162
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2786.1492335209987 s (0%)
+ Configuration Time Budget remaining: 2.1474808608507664E9 s
+ Wall-clock Time Budget used: 2841.942 s (0%)
+ Wall-clock Time Budget remaining: 2.147480805058E9 s
+ Algorithm Runs used: 162.0  (81%)
+ Algorithm Runs remaining: 38.0 
+ Model/Iteration used: 83.0  (0%)
+ Model/Iteration remaining: 2.147483564E9 
+ Configuration Space Searched 8.621386119297572E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2771.6219399999986 s
+ CPU time of Configurator: 14.526651455 s
+ User time of Configurator: 14.526968963 s
+ Total Reported Algorithm Runtime: 2771.6219399999986 s
+ Sum of Measured Wallclock Runtime: 2830.967000000002 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 832.7653503417969 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 162 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.006 (s)
+[INFO ] Prediction for incumbent: 257.6576972222222 +/- 93073.22566045685 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 84. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 84: took 0.0 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 201.94879999999998 +/- 420.6100518380977, expected improvement 4.4581878572089
+[INFO ] Challenger 2 predicted 204.03574166666664 +/- 419.54713909581386, expected improvement 4.446100175372139
+[INFO ] Challenger 3 predicted 204.38858333333332 +/- 419.3465832152103, expected improvement 4.443961671092569
+[INFO ] Challenger 4 predicted 204.79473611111112 +/- 419.1335532598744, expected improvement 4.44157136713043
+[INFO ] Challenger 5 predicted 206.34066666666666 +/- 418.3152421679646, expected improvement 4.43241309681588
+[INFO ] Challenger 6 predicted 206.9729416666666 +/- 418.18875979020214, expected improvement 4.4295321476005345
+[INFO ] Challenger 7 predicted 207.3207472222222 +/- 418.0006997638743, expected improvement 4.427445758739418
+[INFO ] Challenger 8 predicted 101.86298015873017 +/- 315.57326635448334, expected improvement 4.407835520857651
+[INFO ] Challenger 9 predicted 101.8878134920635 +/- 315.5645214649541, expected improvement 4.407681534056309
+[INFO ] Challenger 10 predicted 101.99114682539684 +/- 315.52834060007694, expected improvement 4.407041607208358
+[INFO ] Selecting 10010 challengers based on EI took 0.056 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x266013) up to a total bound of Infinity 
+[INFO ] Iteration 84: Scheduling 1 run(s):
+[INFO ] Iteration 84: Scheduling run for config (0x266013) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:22:50:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:22:59:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 8.985820, 1, 1.980000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 246
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 162
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2795.2319194769984 s (0%)
+ Configuration Time Budget remaining: 2.1474808517680805E9 s
+ Wall-clock Time Budget used: 2851.391 s (0%)
+ Wall-clock Time Budget remaining: 2.147480795609E9 s
+ Algorithm Runs used: 163.0  (81%)
+ Algorithm Runs remaining: 37.0 
+ Model/Iteration used: 84.0  (0%)
+ Model/Iteration remaining: 2.147483563E9 
+ Configuration Space Searched 8.674604552132742E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2771.6219399999986 s
+ CPU time of Configurator: 14.623803994000001 s
+ User time of Configurator: 14.623980679 s
+ Total Reported Algorithm Runtime: 2780.6077599999985 s
+ Sum of Measured Wallclock Runtime: 2840.3210000000017 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 813.5305099487305 MB
+[INFO ] Iteration 84: Completed run for config (0x266013) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 1.98, wallclock time: 9.354 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 163 (0x266013)  has a lower bound 1.98 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 163 (0x266013) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 8.985819999999876  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x26D682) up to a total bound of Infinity 
+[INFO ] Iteration 84: Scheduling 1 run(s):
+[INFO ] Iteration 84: Scheduling run for config (0x26D682) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:23:00:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:23:35:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 34.965800, 1, 2.590000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 247
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 163
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2830.2966475699986 s (0%)
+ Configuration Time Budget remaining: 2.1474808167033525E9 s
+ Wall-clock Time Budget used: 2886.813 s (0%)
+ Wall-clock Time Budget remaining: 2.147480760187E9 s
+ Algorithm Runs used: 164.0  (82%)
+ Algorithm Runs remaining: 36.0 
+ Model/Iteration used: 84.0  (0%)
+ Model/Iteration remaining: 2.147483563E9 
+ Configuration Space Searched 8.727822984967912E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2780.6077599999985 s
+ CPU time of Configurator: 14.722562030999999 s
+ User time of Configurator: 14.722799193 s
+ Total Reported Algorithm Runtime: 2815.5735599999985 s
+ Sum of Measured Wallclock Runtime: 2875.7250000000017 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 806.9203872680664 MB
+[INFO ] Iteration 84: Completed run for config (0x26D682) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 2.59, wallclock time: 35.404 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 164 (0x26D682)  has a lower bound 2.59 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 164 (0x26D682) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 43.95161999999982  (s)
+[INFO ] At end of iteration 84, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 84 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 6 ms
+[INFO ] Starting Iteration 85
+[INFO ] *****Runtime Statistics*****
+ Count: 248
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 164
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2830.3060111239984 s (0%)
+ Configuration Time Budget remaining: 2.1474808166939888E9 s
+ Wall-clock Time Budget used: 2886.822 s (0%)
+ Wall-clock Time Budget remaining: 2.147480760178E9 s
+ Algorithm Runs used: 164.0  (82%)
+ Algorithm Runs remaining: 36.0 
+ Model/Iteration used: 84.0  (0%)
+ Model/Iteration remaining: 2.147483563E9 
+ Configuration Space Searched 8.727822984967912E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2815.5735599999985 s
+ CPU time of Configurator: 14.731904618 s
+ User time of Configurator: 14.732189291 s
+ Total Reported Algorithm Runtime: 2815.5735599999985 s
+ Sum of Measured Wallclock Runtime: 2875.7250000000017 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 806.8422012329102 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 164 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.007 (s)
+[INFO ] Prediction for incumbent: 115.83638412698413 +/- 27536.26082073911 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 85. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 85: took 0.001 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 208.14084722222225 +/- 417.6056847779677, expected improvement 4.422721862609135
+[INFO ] Challenger 2 predicted 208.40473611111116 +/- 417.4096249851255, expected improvement 4.42090676507579
+[INFO ] Challenger 3 predicted 209.6195761904762 +/- 417.0397074846332, expected improvement 4.414797615101366
+[INFO ] Challenger 4 predicted 210.11561666666665 +/- 416.4154320410255, expected improvement 4.410275878801885
+[INFO ] Challenger 5 predicted 210.38745 +/- 416.26540583352994, expected improvement 4.408614936607534
+[INFO ] Challenger 6 predicted 210.38745 +/- 416.26540583352994, expected improvement 4.408614936607534
+[INFO ] Challenger 7 predicted 210.38745 +/- 416.26540583352994, expected improvement 4.408614936607534
+[INFO ] Challenger 8 predicted 102.4024880952381 +/- 315.38511776043816, expected improvement 4.404495811397614
+[INFO ] Challenger 9 predicted 212.75712222222222 +/- 415.32636914258376, expected improvement 4.395666648892231
+[INFO ] Challenger 10 predicted 212.75712222222222 +/- 415.32636914258376, expected improvement 4.395666648892231
+[INFO ] Selecting 10010 challengers based on EI took 0.057 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x26D88B) up to a total bound of Infinity 
+[INFO ] Iteration 85: Scheduling 1 run(s):
+[INFO ] Iteration 85: Scheduling run for config (0x26D88B) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:23:35:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:23:47:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 11.799500, 1, 2.270000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 249
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 164
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2842.2123037179986 s (0%)
+ Configuration Time Budget remaining: 2.1474808047876964E9 s
+ Wall-clock Time Budget used: 2899.127 s (0%)
+ Wall-clock Time Budget remaining: 2.147480747873E9 s
+ Algorithm Runs used: 165.0  (82%)
+ Algorithm Runs remaining: 35.0 
+ Model/Iteration used: 85.0  (0%)
+ Model/Iteration remaining: 2.147483562E9 
+ Configuration Space Searched 8.781041417803084E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2815.5735599999985 s
+ CPU time of Configurator: 14.838695525 s
+ User time of Configurator: 14.838968634999999 s
+ Total Reported Algorithm Runtime: 2827.3730599999985 s
+ Sum of Measured Wallclock Runtime: 2887.9340000000016 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 784.2186737060547 MB
+[INFO ] Iteration 85: Completed run for config (0x26D88B) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 2.27, wallclock time: 12.209 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 165 (0x26D88B)  has a lower bound 2.27 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 165 (0x26D88B) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 11.79950000000008  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x274DC6) up to a total bound of Infinity 
+[INFO ] Iteration 85: Scheduling 1 run(s):
+[INFO ] Iteration 85: Scheduling run for config (0x274DC6) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:23:47:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:24:38:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 49.911400, 1, 89.720000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 250
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 165
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2892.2531804199984 s (0%)
+ Configuration Time Budget remaining: 2.1474807547468195E9 s
+ Wall-clock Time Budget used: 2949.568 s (0%)
+ Wall-clock Time Budget remaining: 2.147480697432E9 s
+ Algorithm Runs used: 166.0  (83%)
+ Algorithm Runs remaining: 34.0 
+ Model/Iteration used: 85.0  (0%)
+ Model/Iteration remaining: 2.147483562E9 
+ Configuration Space Searched 8.834259850638254E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2827.3730599999985 s
+ CPU time of Configurator: 14.968202334 s
+ User time of Configurator: 14.968454557000001 s
+ Total Reported Algorithm Runtime: 2877.2844599999985 s
+ Sum of Measured Wallclock Runtime: 2938.3590000000017 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 780.6992492675781 MB
+[INFO ] Iteration 85: Completed run for config (0x274DC6) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 89.72, wallclock time: 50.425 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 166 (0x274DC6)  has a lower bound 89.72 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 166 (0x274DC6) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 61.71090000000004  (s)
+[INFO ] At end of iteration 85, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 85 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 7 ms
+[INFO ] Starting Iteration 86
+[INFO ] *****Runtime Statistics*****
+ Count: 251
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 166
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2892.2626974629984 s (0%)
+ Configuration Time Budget remaining: 2.1474807547373025E9 s
+ Wall-clock Time Budget used: 2949.578 s (0%)
+ Wall-clock Time Budget remaining: 2.147480697422E9 s
+ Algorithm Runs used: 166.0  (83%)
+ Algorithm Runs remaining: 34.0 
+ Model/Iteration used: 85.0  (0%)
+ Model/Iteration remaining: 2.147483562E9 
+ Configuration Space Searched 8.834259850638254E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2877.2844599999985 s
+ CPU time of Configurator: 14.977614998 s
+ User time of Configurator: 14.977937976 s
+ Total Reported Algorithm Runtime: 2877.2844599999985 s
+ Sum of Measured Wallclock Runtime: 2938.3590000000017 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 780.642692565918 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 166 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.007 (s)
+[INFO ] Prediction for incumbent: 367.89647619047616 +/- 232420.07342534635 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 86. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 86: took 0.0 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 201.67569722222225 +/- 420.7538846895355, expected improvement 4.459783327730339
+[INFO ] Challenger 2 predicted 201.7861011904762 +/- 420.69577017179, expected improvement 4.459138642974529
+[INFO ] Challenger 3 predicted 201.95702222222224 +/- 420.6060282502598, expected improvement 4.458141066728381
+[INFO ] Challenger 4 predicted 202.03484166666667 +/- 420.56512340565195, expected improvement 4.457686504911562
+[INFO ] Challenger 5 predicted 202.04230396825398 +/- 420.56074859809445, expected improvement 4.457641042823212
+[INFO ] Challenger 6 predicted 202.1655 +/- 420.49604541581135, expected improvement 4.456921394883926
+[INFO ] Challenger 7 predicted 203.06772222222224 +/- 420.0354793412073, expected improvement 4.451697462269003
+[INFO ] Challenger 8 predicted 203.07089285714284 +/- 420.03376581521167, expected improvement 4.45167868398672
+[INFO ] Challenger 9 predicted 203.0861150793651 +/- 420.0256915771253, expected improvement 4.451589158638484
+[INFO ] Challenger 10 predicted 204.71763571428573 +/- 419.1602420244584, expected improvement 4.441967929858304
+[INFO ] Selecting 10010 challengers based on EI took 0.058 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x274EFD) up to a total bound of Infinity 
+[INFO ] Iteration 86: Scheduling 1 run(s):
+[INFO ] Iteration 86: Scheduling run for config (0x274EFD) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:24:38:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:24:48:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 10.056900, 1, 2.420000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 252
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 166
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2902.4246110639983 s (0%)
+ Configuration Time Budget remaining: 2.147480744575389E9 s
+ Wall-clock Time Budget used: 2960.237 s (0%)
+ Wall-clock Time Budget remaining: 2.147480686763E9 s
+ Algorithm Runs used: 167.0  (83%)
+ Algorithm Runs remaining: 33.0 
+ Model/Iteration used: 86.0  (0%)
+ Model/Iteration remaining: 2.147483561E9 
+ Configuration Space Searched 8.887478283473424E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2877.2844599999985 s
+ CPU time of Configurator: 15.082576963 s
+ User time of Configurator: 15.082925119000002 s
+ Total Reported Algorithm Runtime: 2887.3413599999985 s
+ Sum of Measured Wallclock Runtime: 2948.920000000002 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 758.0739364624023 MB
+[INFO ] Iteration 86: Completed run for config (0x274EFD) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 2.42, wallclock time: 10.561 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 167 (0x274EFD)  has a lower bound 2.42 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 167 (0x274EFD) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 10.056900000000041  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x27C4EB) up to a total bound of Infinity 
+[INFO ] Iteration 86: Scheduling 1 run(s):
+[INFO ] Iteration 86: Scheduling run for config (0x27C4EB) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:24:49:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:26:13:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 83.807900, 1, 89.720000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 253
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 167
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2986.4349441599984 s (0%)
+ Configuration Time Budget remaining: 2.1474806605650558E9 s
+ Wall-clock Time Budget used: 3044.576 s (0%)
+ Wall-clock Time Budget remaining: 2.147480602424E9 s
+ Algorithm Runs used: 168.0  (84%)
+ Algorithm Runs remaining: 32.0 
+ Model/Iteration used: 86.0  (0%)
+ Model/Iteration remaining: 2.147483561E9 
+ Configuration Space Searched 8.940696716308594E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2887.3413599999985 s
+ CPU time of Configurator: 15.28533823 s
+ User time of Configurator: 15.285510284 s
+ Total Reported Algorithm Runtime: 2971.1492599999983 s
+ Sum of Measured Wallclock Runtime: 3033.220000000002 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 753.2968978881836 MB
+[INFO ] Iteration 86: Completed run for config (0x27C4EB) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 89.72, wallclock time: 84.3 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 168 (0x27C4EB)  has a lower bound 89.72 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 168 (0x27C4EB) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 93.86479999999983  (s)
+[INFO ] At end of iteration 86, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 86 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 7 ms
+[INFO ] Starting Iteration 87
+[INFO ] *****Runtime Statistics*****
+ Count: 254
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 168
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2986.4444115699985 s (0%)
+ Configuration Time Budget remaining: 2.1474806605555885E9 s
+ Wall-clock Time Budget used: 3044.585 s (0%)
+ Wall-clock Time Budget remaining: 2.147480602415E9 s
+ Algorithm Runs used: 168.0  (84%)
+ Algorithm Runs remaining: 32.0 
+ Model/Iteration used: 86.0  (0%)
+ Model/Iteration remaining: 2.147483561E9 
+ Configuration Space Searched 8.940696716308594E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2971.1492599999983 s
+ CPU time of Configurator: 15.29450202 s
+ User time of Configurator: 15.294808262 s
+ Total Reported Algorithm Runtime: 2971.1492599999983 s
+ Sum of Measured Wallclock Runtime: 3033.220000000002 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 749.968879699707 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 168 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.007 (s)
+[INFO ] Prediction for incumbent: 496.07002619047626 +/- 161245.60527560645 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 87. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 87: took 0.0 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 202.17024206349205 +/- 420.4935310255424, expected improvement 4.45689359005609
+[INFO ] Challenger 2 predicted 202.95993452380952 +/- 420.0921391833618, expected improvement 4.452329125807971
+[INFO ] Challenger 3 predicted 202.97550595238096 +/- 420.0838765288444, expected improvement 4.452237566209324
+[INFO ] Challenger 4 predicted 203.12218452380952 +/- 420.0061705252373, expected improvement 4.4513753954369015
+[INFO ] Challenger 5 predicted 203.12218452380952 +/- 420.0061705252373, expected improvement 4.4513753954369015
+[INFO ] Challenger 6 predicted 203.12804563492062 +/- 420.00306284810574, expected improvement 4.451340924634906
+[INFO ] Challenger 7 predicted 203.14329563492066 +/- 419.9949420932636, expected improvement 4.451251087374652
+[INFO ] Challenger 8 predicted 203.14329563492066 +/- 419.9949420932636, expected improvement 4.451251087374652
+[INFO ] Challenger 9 predicted 203.15475674603172 +/- 419.9889796490509, expected improvement 4.451184150970585
+[INFO ] Challenger 10 predicted 203.1924345238095 +/- 419.9689380973895, expected improvement 4.450962257173382
+[INFO ] Selecting 10010 challengers based on EI took 0.057 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x27C52D) up to a total bound of Infinity 
+[INFO ] Iteration 87: Scheduling 1 run(s):
+[INFO ] Iteration 87: Scheduling run for config (0x27C52D) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:26:13:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:26:23:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 9.691640, 1, 1.810000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 255
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 168
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 2996.2407076949985 s (0%)
+ Configuration Time Budget remaining: 2.1474806507592924E9 s
+ Wall-clock Time Budget used: 3054.83 s (0%)
+ Wall-clock Time Budget remaining: 2.14748059217E9 s
+ Algorithm Runs used: 169.0  (84%)
+ Algorithm Runs remaining: 31.0 
+ Model/Iteration used: 87.0  (0%)
+ Model/Iteration remaining: 2.14748356E9 
+ Configuration Space Searched 8.993915149143764E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2971.1492599999983 s
+ CPU time of Configurator: 15.399116461 s
+ User time of Configurator: 15.399418797000001 s
+ Total Reported Algorithm Runtime: 2980.8408999999983 s
+ Sum of Measured Wallclock Runtime: 3043.3750000000023 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 726.4259719848633 MB
+[INFO ] Iteration 87: Completed run for config (0x27C52D) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 1.81, wallclock time: 10.155 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 169 (0x27C52D)  has a lower bound 1.81 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 169 (0x27C52D) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 9.691640000000007  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x283C60) up to a total bound of Infinity 
+[INFO ] Iteration 87: Scheduling 1 run(s):
+[INFO ] Iteration 87: Scheduling run for config (0x283C60) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:26:23:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:26:57:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 33.381600, 1, 89.720000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 256
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 169
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3029.7147471379985 s (0%)
+ Configuration Time Budget remaining: 2.1474806172852528E9 s
+ Wall-clock Time Budget used: 3088.703 s (0%)
+ Wall-clock Time Budget remaining: 2.147480558297E9 s
+ Algorithm Runs used: 170.0  (85%)
+ Algorithm Runs remaining: 30.0 
+ Model/Iteration used: 87.0  (0%)
+ Model/Iteration remaining: 2.14748356E9 
+ Configuration Space Searched 9.047133581978934E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 2980.8408999999983 s
+ CPU time of Configurator: 15.491588709000002 s
+ User time of Configurator: 15.491803978 s
+ Total Reported Algorithm Runtime: 3014.2224999999985 s
+ Sum of Measured Wallclock Runtime: 3077.2370000000024 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 723.2088775634766 MB
+[INFO ] Iteration 87: Completed run for config (0x283C60) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 89.72, wallclock time: 33.862 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 170 (0x283C60)  has a lower bound 89.72 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 170 (0x283C60) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 43.07324000000017  (s)
+[INFO ] At end of iteration 87, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 87 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 7 ms
+[INFO ] Starting Iteration 88
+[INFO ] *****Runtime Statistics*****
+ Count: 257
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 170
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3029.7244384059986 s (0%)
+ Configuration Time Budget remaining: 2.1474806172755616E9 s
+ Wall-clock Time Budget used: 3088.713 s (0%)
+ Wall-clock Time Budget remaining: 2.147480558287E9 s
+ Algorithm Runs used: 170.0  (85%)
+ Algorithm Runs remaining: 30.0 
+ Model/Iteration used: 87.0  (0%)
+ Model/Iteration remaining: 2.14748356E9 
+ Configuration Space Searched 9.047133581978934E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3014.2224999999985 s
+ CPU time of Configurator: 15.501225996999999 s
+ User time of Configurator: 15.501508846999998 s
+ Total Reported Algorithm Runtime: 3014.2224999999985 s
+ Sum of Measured Wallclock Runtime: 3077.2370000000024 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 723.0761260986328 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 170 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.007 (s)
+[INFO ] Prediction for incumbent: 317.994 +/- 154969.5284051817 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 88. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 88: took 0.001 s
+[INFO ] 10 Local Searches took 0.002 seconds in total 
+[INFO ] Challenger 1 predicted 201.8675496031746 +/- 420.652857752651, expected improvement 4.458662729259223
+[INFO ] Challenger 2 predicted 201.88410515873016 +/- 420.64411438828483, expected improvement 4.458565891928294
+[INFO ] Challenger 3 predicted 201.91261904761907 +/- 420.62911314501076, expected improvement 4.458399332939119
+[INFO ] Challenger 4 predicted 201.91261904761907 +/- 420.62911314501076, expected improvement 4.458399332939119
+[INFO ] Challenger 5 predicted 201.99210515873017 +/- 420.58718551744846, expected improvement 4.457934494934879
+[INFO ] Challenger 6 predicted 202.04521944444448 +/- 420.55915996171007, expected improvement 4.45762377842192
+[INFO ] Challenger 7 predicted 202.04521944444448 +/- 420.55915996171007, expected improvement 4.45762377842192
+[INFO ] Challenger 8 predicted 202.0595051587302 +/- 420.5516011256385, expected improvement 4.457540111652138
+[INFO ] Challenger 9 predicted 202.0595051587302 +/- 420.5516011256385, expected improvement 4.457540111652138
+[INFO ] Challenger 10 predicted 202.08900515873017 +/- 420.53615137550565, expected improvement 4.457367984986172
+[INFO ] Selecting 10010 challengers based on EI took 0.056 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x287703) up to a total bound of Infinity 
+[INFO ] Iteration 88: Scheduling 1 run(s):
+[INFO ] Iteration 88: Scheduling run for config (0x287703) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:26:57:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:27:05:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 7.921010, 1, 2.170000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 258
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 170
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3037.7404229079984 s (0%)
+ Configuration Time Budget remaining: 2.147480609259577E9 s
+ Wall-clock Time Budget used: 3097.31 s (0%)
+ Wall-clock Time Budget remaining: 2.14748054969E9 s
+ Algorithm Runs used: 171.0  (85%)
+ Algorithm Runs remaining: 29.0 
+ Model/Iteration used: 88.0  (0%)
+ Model/Iteration remaining: 2.147483559E9 
+ Configuration Space Searched 9.100352014814104E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3014.2224999999985 s
+ CPU time of Configurator: 15.596267451 s
+ User time of Configurator: 15.596588391000001 s
+ Total Reported Algorithm Runtime: 3022.1435099999985 s
+ Sum of Measured Wallclock Runtime: 3085.7130000000025 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 700.3062515258789 MB
+[INFO ] Iteration 88: Completed run for config (0x287703) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 2.17, wallclock time: 8.476 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 171 (0x287703)  has a lower bound 2.17 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 171 (0x287703) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 7.921010000000024  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x28B344) up to a total bound of Infinity 
+[INFO ] Iteration 88: Scheduling 1 run(s):
+[INFO ] Iteration 88: Scheduling run for config (0x28B344) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:27:06:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:28:22:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 76.369500, 1, 89.720000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 259
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 171
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3114.294997951998 s (0%)
+ Configuration Time Budget remaining: 2.147480532705002E9 s
+ Wall-clock Time Budget used: 3174.141 s (0%)
+ Wall-clock Time Budget remaining: 2.147480472859E9 s
+ Algorithm Runs used: 172.0  (86%)
+ Algorithm Runs remaining: 28.0 
+ Model/Iteration used: 88.0  (0%)
+ Model/Iteration remaining: 2.147483559E9 
+ Configuration Space Searched 9.153570447649275E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3022.1435099999985 s
+ CPU time of Configurator: 15.781314376000001 s
+ User time of Configurator: 15.781640217 s
+ Total Reported Algorithm Runtime: 3098.5130099999983 s
+ Sum of Measured Wallclock Runtime: 3162.5190000000025 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 695.7704772949219 MB
+[INFO ] Iteration 88: Completed run for config (0x28B344) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 89.72, wallclock time: 76.806 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 172 (0x28B344)  has a lower bound 89.72 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 172 (0x28B344) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 84.29050999999981  (s)
+[INFO ] At end of iteration 88, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 88 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 7 ms
+[INFO ] Starting Iteration 89
+[INFO ] *****Runtime Statistics*****
+ Count: 260
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 172
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3114.304662004998 s (0%)
+ Configuration Time Budget remaining: 2.147480532695338E9 s
+ Wall-clock Time Budget used: 3174.15 s (0%)
+ Wall-clock Time Budget remaining: 2.14748047285E9 s
+ Algorithm Runs used: 172.0  (86%)
+ Algorithm Runs remaining: 28.0 
+ Model/Iteration used: 88.0  (0%)
+ Model/Iteration remaining: 2.147483559E9 
+ Configuration Space Searched 9.153570447649275E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3098.5130099999983 s
+ CPU time of Configurator: 15.791052581 s
+ User time of Configurator: 15.791368785000001 s
+ Total Reported Algorithm Runtime: 3098.5130099999983 s
+ Sum of Measured Wallclock Runtime: 3162.5190000000025 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 695.7704772949219 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 172 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.007 (s)
+[INFO ] Prediction for incumbent: 205.59826388888888 +/- 101299.63717429308 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 89. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 89: took 0.0 s
+[INFO ] 10 Local Searches took 0.002 seconds in total 
+[INFO ] Challenger 1 predicted 203.8900492063492 +/- 419.6322421887981, expected improvement 4.44699197466435
+[INFO ] Challenger 2 predicted 204.22563253968255 +/- 419.45396311111926, expected improvement 4.445011103010841
+[INFO ] Challenger 3 predicted 204.24795 +/- 419.44220241033725, expected improvement 4.444879689431936
+[INFO ] Challenger 4 predicted 206.3642476190476 +/- 418.3405203876178, expected improvement 4.432431900975531
+[INFO ] Challenger 5 predicted 206.8772253968254 +/- 418.07510473005925, expected improvement 4.42940870508112
+[INFO ] Challenger 6 predicted 102.24288253968255 +/- 315.44008296522446, expected improvement 4.405481207224197
+[INFO ] Challenger 7 predicted 104.46478253968255 +/- 314.7190174302876, expected improvement 4.391923808619223
+[INFO ] Challenger 8 predicted 104.77128333333334 +/- 314.60909584967953, expected improvement 4.389997160514653
+[INFO ] Challenger 9 predicted 104.77128333333334 +/- 314.60909584967953, expected improvement 4.389997160514653
+[INFO ] Challenger 10 predicted 215.6374166666667 +/- 414.21368636637004, expected improvement 4.379940050175485
+[INFO ] Selecting 10010 challengers based on EI took 0.057 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Aborting challenge of incumbent. Incumbent has 1 runs, challenger has 1 runs, and the maximum runs for any config is set to 1.
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2929D7) up to a total bound of Infinity 
+[INFO ] Iteration 89: Scheduling 1 run(s):
+[INFO ] Iteration 89: Scheduling run for config (0x2929D7) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:28:23:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:29:10:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 47.393600, 1, 89.720000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 261
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 172
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3161.895238703998 s (0%)
+ Configuration Time Budget remaining: 2.1474804851047614E9 s
+ Wall-clock Time Budget used: 3222.113 s (0%)
+ Wall-clock Time Budget remaining: 2.147480424887E9 s
+ Algorithm Runs used: 173.0  (86%)
+ Algorithm Runs remaining: 27.0 
+ Model/Iteration used: 89.0  (0%)
+ Model/Iteration remaining: 2.147483558E9 
+ Configuration Space Searched 9.206788880484445E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3098.5130099999983 s
+ CPU time of Configurator: 15.987997377 s
+ User time of Configurator: 15.988312635 s
+ Total Reported Algorithm Runtime: 3145.906609999998 s
+ Sum of Measured Wallclock Runtime: 3210.3640000000023 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 672.2873611450195 MB
+[INFO ] Iteration 89: Completed run for config (0x2929D7) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 89.72, wallclock time: 47.845 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 173 (0x2929D7)  has a lower bound 89.72 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 173 (0x2929D7) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 47.39359999999988  (s)
+[INFO ] At end of iteration 89, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 89 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 6 ms
+[INFO ] Starting Iteration 90
+[INFO ] *****Runtime Statistics*****
+ Count: 262
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 173
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3161.904886677998 s (0%)
+ Configuration Time Budget remaining: 2.1474804850951133E9 s
+ Wall-clock Time Budget used: 3222.122 s (0%)
+ Wall-clock Time Budget remaining: 2.147480424878E9 s
+ Algorithm Runs used: 173.0  (86%)
+ Algorithm Runs remaining: 27.0 
+ Model/Iteration used: 89.0  (0%)
+ Model/Iteration remaining: 2.147483558E9 
+ Configuration Space Searched 9.206788880484445E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3145.906609999998 s
+ CPU time of Configurator: 15.997636115999999 s
+ User time of Configurator: 15.997953882 s
+ Total Reported Algorithm Runtime: 3145.906609999998 s
+ Sum of Measured Wallclock Runtime: 3210.3640000000023 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 894.0 MB
+ Free Java Memory: 668.885009765625 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 173 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.007 (s)
+[INFO ] Prediction for incumbent: 371.5412035714286 +/- 133626.87356420804 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 90. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 90: took 0.0 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 201.8608630952381 +/- 420.65636186734974, expected improvement 4.458701726645059
+[INFO ] Challenger 2 predicted 201.8608630952381 +/- 420.65636186734974, expected improvement 4.458701726645059
+[INFO ] Challenger 3 predicted 201.95880595238094 +/- 420.6047960528892, expected improvement 4.458129433288224
+[INFO ] Challenger 4 predicted 202.02375595238095 +/- 420.5705309048156, expected improvement 4.4577495344946065
+[INFO ] Challenger 5 predicted 202.98802261904763 +/- 420.0724271852031, expected improvement 4.452144039078577
+[INFO ] Challenger 6 predicted 203.45563214285716 +/- 419.8353825396143, expected improvement 4.4494382287490595
+[INFO ] Challenger 7 predicted 203.45563214285716 +/- 419.8353825396143, expected improvement 4.4494382287490595
+[INFO ] Challenger 8 predicted 204.15555595238095 +/- 419.50051011263383, expected improvement 4.44546374629903
+[INFO ] Challenger 9 predicted 206.42450277777775 +/- 418.26460649938144, expected improvement 4.431888786037719
+[INFO ] Challenger 10 predicted 207.10803928571426 +/- 418.0317729402907, expected improvement 4.428367901940962
+[INFO ] Selecting 10010 challengers based on EI took 0.06 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x296F67) up to a total bound of Infinity 
+[INFO ] Iteration 90: Scheduling 1 run(s):
+[INFO ] Iteration 90: Scheduling run for config (0x296F67) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:29:10:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:29:43:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 32.477000, 1, 3.710000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 263
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 173
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3194.539054122998 s (0%)
+ Configuration Time Budget remaining: 2.1474804524609458E9 s
+ Wall-clock Time Budget used: 3255.107 s (0%)
+ Wall-clock Time Budget remaining: 2.147480391893E9 s
+ Algorithm Runs used: 174.0  (87%)
+ Algorithm Runs remaining: 26.0 
+ Model/Iteration used: 90.0  (0%)
+ Model/Iteration remaining: 2.147483557E9 
+ Configuration Space Searched 9.260007313319615E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3145.906609999998 s
+ CPU time of Configurator: 16.154850348 s
+ User time of Configurator: 16.155169342 s
+ Total Reported Algorithm Runtime: 3178.383609999998 s
+ Sum of Measured Wallclock Runtime: 3243.254000000002 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 860.0084533691406 MB
+[INFO ] Iteration 90: Completed run for config (0x296F67) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 3.71, wallclock time: 32.89 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 174 (0x296F67)  has a lower bound 3.71 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 174 (0x296F67) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 32.47699999999986  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x29A0CB) up to a total bound of Infinity 
+[INFO ] Iteration 90: Scheduling 1 run(s):
+[INFO ] Iteration 90: Scheduling run for config (0x29A0CB) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:29:43:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:30:35:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 50.862100, 1, 79.020000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 264
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 174
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3245.533686720998 s (0%)
+ Configuration Time Budget remaining: 2.1474804014663134E9 s
+ Wall-clock Time Budget used: 3306.504 s (0%)
+ Wall-clock Time Budget remaining: 2.147480340496E9 s
+ Algorithm Runs used: 175.0  (87%)
+ Algorithm Runs remaining: 25.0 
+ Model/Iteration used: 90.0  (0%)
+ Model/Iteration remaining: 2.147483557E9 
+ Configuration Space Searched 9.313225746154785E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3178.383609999998 s
+ CPU time of Configurator: 16.287428225 s
+ User time of Configurator: 16.287723136 s
+ Total Reported Algorithm Runtime: 3229.245709999998 s
+ Sum of Measured Wallclock Runtime: 3294.6390000000024 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 856.5718536376953 MB
+[INFO ] Iteration 90: Completed run for config (0x29A0CB) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 79.02, wallclock time: 51.385 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 175 (0x29A0CB)  has a lower bound 79.02 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 175 (0x29A0CB) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 83.33909999999969  (s)
+[INFO ] At end of iteration 90, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 90 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 7 ms
+[INFO ] Starting Iteration 91
+[INFO ] *****Runtime Statistics*****
+ Count: 265
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 175
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3245.5437059089977 s (0%)
+ Configuration Time Budget remaining: 2.147480401456294E9 s
+ Wall-clock Time Budget used: 3306.514 s (0%)
+ Wall-clock Time Budget remaining: 2.147480340486E9 s
+ Algorithm Runs used: 175.0  (87%)
+ Algorithm Runs remaining: 25.0 
+ Model/Iteration used: 90.0  (0%)
+ Model/Iteration remaining: 2.147483557E9 
+ Configuration Space Searched 9.313225746154785E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3229.245709999998 s
+ CPU time of Configurator: 16.297362132 s
+ User time of Configurator: 16.297675333 s
+ Total Reported Algorithm Runtime: 3229.245709999998 s
+ Sum of Measured Wallclock Runtime: 3294.6390000000024 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 853.2300262451172 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 175 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.008 (s)
+[INFO ] Prediction for incumbent: 160.71744841269842 +/- 92461.36593688308 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 91. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 91: took 0.0 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 202.00624404761908 +/- 420.5799132994942, expected improvement 4.45785256450001
+[INFO ] Challenger 2 predicted 203.02181666666664 +/- 420.05329820078884, expected improvement 4.451940342529594
+[INFO ] Challenger 3 predicted 203.9432345238095 +/- 419.6026735686323, expected improvement 4.446672709895104
+[INFO ] Challenger 4 predicted 203.9538777777778 +/- 419.57009765572184, expected improvement 4.446497853256821
+[INFO ] Challenger 5 predicted 204.22280952380953 +/- 419.45654569126566, expected improvement 4.44503228785663
+[INFO ] Challenger 6 predicted 204.22280952380953 +/- 419.45654569126566, expected improvement 4.44503228785663
+[INFO ] Challenger 7 predicted 204.94865674603176 +/- 419.13319596253643, expected improvement 4.441000670587961
+[INFO ] Challenger 8 predicted 205.0061011904762 +/- 419.10267210883063, expected improvement 4.440660614831275
+[INFO ] Challenger 9 predicted 205.04756785714284 +/- 419.08036941268443, expected improvement 4.440413979595304
+[INFO ] Challenger 10 predicted 205.06876785714286 +/- 419.0689168404533, expected improvement 4.4402876633283395
+[INFO ] Selecting 10010 challengers based on EI took 0.058 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x29DE18) up to a total bound of Infinity 
+[INFO ] Iteration 91: Scheduling 1 run(s):
+[INFO ] Iteration 91: Scheduling run for config (0x29DE18) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:30:35:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:30:45:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 9.749410, 1, 3.110000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 266
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 175
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3255.398225229998 s (0%)
+ Configuration Time Budget remaining: 2.1474803916017747E9 s
+ Wall-clock Time Budget used: 3316.817 s (0%)
+ Wall-clock Time Budget remaining: 2.147480330183E9 s
+ Algorithm Runs used: 176.0  (88%)
+ Algorithm Runs remaining: 24.0 
+ Model/Iteration used: 91.0  (0%)
+ Model/Iteration remaining: 2.147483556E9 
+ Configuration Space Searched 9.366444178989955E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3229.245709999998 s
+ CPU time of Configurator: 16.402500763 s
+ User time of Configurator: 16.402819418 s
+ Total Reported Algorithm Runtime: 3238.9951199999978 s
+ Sum of Measured Wallclock Runtime: 3304.8610000000026 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 831.1180267333984 MB
+[INFO ] Iteration 91: Completed run for config (0x29DE18) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 3.11, wallclock time: 10.222 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 176 (0x29DE18)  has a lower bound 3.11 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 176 (0x29DE18) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 9.749409999999898  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2A17AE) up to a total bound of Infinity 
+[INFO ] Iteration 91: Scheduling 1 run(s):
+[INFO ] Iteration 91: Scheduling run for config (0x2A17AE) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:30:45:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:31:07:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 22.169800, 1, 4.060000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 267
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 176
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3277.630231622998 s (0%)
+ Configuration Time Budget remaining: 2.1474803693697684E9 s
+ Wall-clock Time Budget used: 3339.475 s (0%)
+ Wall-clock Time Budget remaining: 2.147480307525E9 s
+ Algorithm Runs used: 177.0  (88%)
+ Algorithm Runs remaining: 23.0 
+ Model/Iteration used: 91.0  (0%)
+ Model/Iteration remaining: 2.147483556E9 
+ Configuration Space Searched 9.419662611825125E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3238.9951199999978 s
+ CPU time of Configurator: 16.464761127000003 s
+ User time of Configurator: 16.465037433000003 s
+ Total Reported Algorithm Runtime: 3261.164919999998 s
+ Sum of Measured Wallclock Runtime: 3327.4920000000025 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 828.1840438842773 MB
+[INFO ] Iteration 91: Completed run for config (0x2A17AE) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 4.06, wallclock time: 22.631 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 177 (0x2A17AE)  has a lower bound 4.06 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 177 (0x2A17AE) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 31.91921000000002  (s)
+[INFO ] At end of iteration 91, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 91 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 6 ms
+[INFO ] Starting Iteration 92
+[INFO ] *****Runtime Statistics*****
+ Count: 268
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 177
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3277.6390035339978 s (0%)
+ Configuration Time Budget remaining: 2.1474803693609965E9 s
+ Wall-clock Time Budget used: 3339.483 s (0%)
+ Wall-clock Time Budget remaining: 2.147480307517E9 s
+ Algorithm Runs used: 177.0  (88%)
+ Algorithm Runs remaining: 23.0 
+ Model/Iteration used: 91.0  (0%)
+ Model/Iteration remaining: 2.147483556E9 
+ Configuration Space Searched 9.419662611825125E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3261.164919999998 s
+ CPU time of Configurator: 16.473549583 s
+ User time of Configurator: 16.473815668 s
+ Total Reported Algorithm Runtime: 3261.164919999998 s
+ Sum of Measured Wallclock Runtime: 3327.4920000000025 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 828.1215591430664 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 177 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.008 (s)
+[INFO ] Prediction for incumbent: 367.8548531746032 +/- 164810.3754226372 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 92. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 92: took 0.0 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 201.72097023809525 +/- 420.7301154483214, expected improvement 4.459519245421155
+[INFO ] Challenger 2 predicted 202.48309325396826 +/- 420.3318360854948, expected improvement 4.455075583702337
+[INFO ] Challenger 3 predicted 203.26243492063492 +/- 419.93574643716516, expected improvement 4.450566712209902
+[INFO ] Challenger 4 predicted 203.34127420634923 +/- 419.893810277899, expected improvement 4.450102220574325
+[INFO ] Challenger 5 predicted 203.40919880952384 +/- 419.85782189394774, expected improvement 4.449702528595019
+[INFO ] Challenger 6 predicted 203.48719880952382 +/- 419.8163023169415, expected improvement 4.449242639442101
+[INFO ] Challenger 7 predicted 203.48719880952382 +/- 419.8163023169415, expected improvement 4.449242639442101
+[INFO ] Challenger 8 predicted 101.9766369047619 +/- 315.53343907047906, expected improvement 4.407131561132841
+[INFO ] Challenger 9 predicted 101.9766369047619 +/- 315.53343907047906, expected improvement 4.407131561132841
+[INFO ] Challenger 10 predicted 101.9766369047619 +/- 315.53343907047906, expected improvement 4.407131561132841
+[INFO ] Selecting 10010 challengers based on EI took 0.057 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2A1821) up to a total bound of Infinity 
+[INFO ] Iteration 92: Scheduling 1 run(s):
+[INFO ] Iteration 92: Scheduling run for config (0x2A1821) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:31:08:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:31:25:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 17.156600, 1, 1.960000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 269
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 177
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3294.9164193279976 s (0%)
+ Configuration Time Budget remaining: 2.1474803520835807E9 s
+ Wall-clock Time Budget used: 3357.249 s (0%)
+ Wall-clock Time Budget remaining: 2.147480289751E9 s
+ Algorithm Runs used: 178.0  (89%)
+ Algorithm Runs remaining: 22.0 
+ Model/Iteration used: 92.0  (0%)
+ Model/Iteration remaining: 2.147483555E9 
+ Configuration Space Searched 9.472881044660295E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3261.164919999998 s
+ CPU time of Configurator: 16.594292590000002 s
+ User time of Configurator: 16.594620678 s
+ Total Reported Algorithm Runtime: 3278.3215199999977 s
+ Sum of Measured Wallclock Runtime: 3345.1800000000026 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 805.7379531860352 MB
+[INFO ] Iteration 92: Completed run for config (0x2A1821) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 1.96, wallclock time: 17.688 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 178 (0x2A1821)  has a lower bound 1.96 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 178 (0x2A1821) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 17.1565999999998  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2A8EB2) up to a total bound of Infinity 
+[INFO ] Iteration 92: Scheduling 1 run(s):
+[INFO ] Iteration 92: Scheduling run for config (0x2A8EB2) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:31:26:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:32:14:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 48.066700, 1, 89.720000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 270
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 178
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3343.1053820329976 s (0%)
+ Configuration Time Budget remaining: 2.147480303894618E9 s
+ Wall-clock Time Budget used: 3405.889 s (0%)
+ Wall-clock Time Budget remaining: 2.147480241111E9 s
+ Algorithm Runs used: 179.0  (89%)
+ Algorithm Runs remaining: 21.0 
+ Model/Iteration used: 92.0  (0%)
+ Model/Iteration remaining: 2.147483555E9 
+ Configuration Space Searched 9.526099477495467E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3278.3215199999977 s
+ CPU time of Configurator: 16.716527540999998 s
+ User time of Configurator: 16.716825951 s
+ Total Reported Algorithm Runtime: 3326.3882199999975 s
+ Sum of Measured Wallclock Runtime: 3393.7810000000027 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 802.3385467529297 MB
+[INFO ] Iteration 92: Completed run for config (0x2A8EB2) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 89.72, wallclock time: 48.601 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 179 (0x2A8EB2)  has a lower bound 89.72 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 179 (0x2A8EB2) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 65.22329999999965  (s)
+[INFO ] At end of iteration 92, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 92 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 5 ms
+[INFO ] Starting Iteration 93
+[INFO ] *****Runtime Statistics*****
+ Count: 271
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 179
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3343.1130131119976 s (0%)
+ Configuration Time Budget remaining: 2.147480303886987E9 s
+ Wall-clock Time Budget used: 3405.897 s (0%)
+ Wall-clock Time Budget remaining: 2.147480241103E9 s
+ Algorithm Runs used: 179.0  (89%)
+ Algorithm Runs remaining: 21.0 
+ Model/Iteration used: 92.0  (0%)
+ Model/Iteration remaining: 2.147483555E9 
+ Configuration Space Searched 9.526099477495467E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3326.3882199999975 s
+ CPU time of Configurator: 16.724221352 s
+ User time of Configurator: 16.724505166 s
+ Total Reported Algorithm Runtime: 3326.3882199999975 s
+ Sum of Measured Wallclock Runtime: 3393.7810000000027 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 798.9975967407227 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 179 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.008 (s)
+[INFO ] Prediction for incumbent: 357.1324087301587 +/- 151730.8593461316 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 93. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 93: took 0.001 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 201.75838571428568 +/- 420.71040918246047, expected improvement 4.45930071080431
+[INFO ] Challenger 2 predicted 201.8093857142857 +/- 420.6835278299184, expected improvement 4.459002706289191
+[INFO ] Challenger 3 predicted 201.84186190476188 +/- 420.66641300337716, expected improvement 4.458812927020714
+[INFO ] Challenger 4 predicted 201.91689642857142 +/- 420.6269703464997, expected improvement 4.458374789680553
+[INFO ] Challenger 5 predicted 201.95962976190475 +/- 420.6044283671873, expected improvement 4.458124891377625
+[INFO ] Challenger 6 predicted 201.98980833333331 +/- 420.5884371206649, expected improvement 4.457948093865396
+[INFO ] Challenger 7 predicted 201.99800476190472 +/- 420.5841730296729, expected improvement 4.45790039949872
+[INFO ] Challenger 8 predicted 202.0523857142857 +/- 420.55627186993655, expected improvement 4.4575855386620775
+[INFO ] Challenger 9 predicted 202.07237976190473 +/- 420.5449932155572, expected improvement 4.4574655492798225
+[INFO ] Challenger 10 predicted 202.1081119047619 +/- 420.5261050278666, expected improvement 4.457256328067695
+[INFO ] Selecting 10010 challengers based on EI took 0.057 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2A8FB8) up to a total bound of Infinity 
+[INFO ] Iteration 93: Scheduling 1 run(s):
+[INFO ] Iteration 93: Scheduling run for config (0x2A8FB8) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:32:14:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:32:28:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 13.090400, 1, 1.940000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 272
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 179
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3356.3148918929974 s (0%)
+ Configuration Time Budget remaining: 2.1474802906851082E9 s
+ Wall-clock Time Budget used: 3419.554 s (0%)
+ Wall-clock Time Budget remaining: 2.147480227446E9 s
+ Algorithm Runs used: 180.0  (90%)
+ Algorithm Runs remaining: 20.0 
+ Model/Iteration used: 93.0  (0%)
+ Model/Iteration remaining: 2.147483554E9 
+ Configuration Space Searched 9.579317910330637E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3326.3882199999975 s
+ CPU time of Configurator: 16.836008935 s
+ User time of Configurator: 16.836139364999998 s
+ Total Reported Algorithm Runtime: 3339.4786199999976 s
+ Sum of Measured Wallclock Runtime: 3407.353000000003 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 776.2734451293945 MB
+[INFO ] Iteration 93: Completed run for config (0x2A8FB8) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 1.94, wallclock time: 13.572 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 180 (0x2A8FB8)  has a lower bound 1.94 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 180 (0x2A8FB8) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 13.090400000000045  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2B05C6) up to a total bound of Infinity 
+[INFO ] Iteration 93: Scheduling 1 run(s):
+[INFO ] Iteration 93: Scheduling run for config (0x2B05C6) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:32:28:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:34:07:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 99.243900, 1, 89.720000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 273
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 180
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3455.7923521799976 s (0%)
+ Configuration Time Budget remaining: 2.1474801912076478E9 s
+ Wall-clock Time Budget used: 3519.428 s (0%)
+ Wall-clock Time Budget remaining: 2.147480127572E9 s
+ Algorithm Runs used: 181.0  (90%)
+ Algorithm Runs remaining: 19.0 
+ Model/Iteration used: 93.0  (0%)
+ Model/Iteration remaining: 2.147483554E9 
+ Configuration Space Searched 9.632536343165807E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3339.4786199999976 s
+ CPU time of Configurator: 17.069283387 s
+ User time of Configurator: 17.069560113 s
+ Total Reported Algorithm Runtime: 3438.7225199999975 s
+ Sum of Measured Wallclock Runtime: 3507.204000000003 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 771.1412200927734 MB
+[INFO ] Iteration 93: Completed run for config (0x2B05C6) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 89.72, wallclock time: 99.851 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 181 (0x2B05C6)  has a lower bound 89.72 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 181 (0x2B05C6) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 112.33429999999998  (s)
+[INFO ] At end of iteration 93, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 93 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 4 ms
+[INFO ] Starting Iteration 94
+[INFO ] *****Runtime Statistics*****
+ Count: 274
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 181
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3455.7989420839976 s (0%)
+ Configuration Time Budget remaining: 2.147480191201058E9 s
+ Wall-clock Time Budget used: 3519.434 s (0%)
+ Wall-clock Time Budget remaining: 2.147480127566E9 s
+ Algorithm Runs used: 181.0  (90%)
+ Algorithm Runs remaining: 19.0 
+ Model/Iteration used: 93.0  (0%)
+ Model/Iteration remaining: 2.147483554E9 
+ Configuration Space Searched 9.632536343165807E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3438.7225199999975 s
+ CPU time of Configurator: 17.075900482999998 s
+ User time of Configurator: 17.076168266 s
+ Total Reported Algorithm Runtime: 3438.7225199999975 s
+ Sum of Measured Wallclock Runtime: 3507.204000000003 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 771.0807800292969 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 181 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.008 (s)
+[INFO ] Prediction for incumbent: 205.8146353174603 +/- 141847.66338116213 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 94. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 94: took 0.0 s
+[INFO ] 10 Local Searches took 0.004 seconds in total 
+[INFO ] Challenger 1 predicted 201.55953174603175 +/- 420.81508468683415, expected improvement 4.460461625898103
+[INFO ] Challenger 2 predicted 201.6112742063492 +/- 420.78787561004174, expected improvement 4.460159738079626
+[INFO ] Challenger 3 predicted 201.62409563492062 +/- 420.78115911361084, expected improvement 4.460085030570083
+[INFO ] Challenger 4 predicted 201.7032861111111 +/- 420.73947757808105, expected improvement 4.459622723230818
+[INFO ] Challenger 5 predicted 201.7789527777778 +/- 420.69963023193117, expected improvement 4.459180792849793
+[INFO ] Challenger 6 predicted 201.79886944444445 +/- 420.6891574106704, expected improvement 4.459064516328597
+[INFO ] Challenger 7 predicted 202.00633055555554 +/- 420.5802084900538, expected improvement 4.457853465035559
+[INFO ] Challenger 8 predicted 202.06193055555553 +/- 420.55087675210217, expected improvement 4.457528213783805
+[INFO ] Challenger 9 predicted 202.13258055555556 +/- 420.5136546271767, expected improvement 4.457115041577991
+[INFO ] Challenger 10 predicted 202.28715277777778 +/- 420.4343421444312, expected improvement 4.456219528641178
+[INFO ] Selecting 10010 challengers based on EI took 0.059 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2B068A) up to a total bound of Infinity 
+[INFO ] Iteration 94: Scheduling 1 run(s):
+[INFO ] Iteration 94: Scheduling run for config (0x2B068A) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:34:08:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:34:23:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 14.535100, 1, 1.790000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 275
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 181
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3470.455969088998 s (0%)
+ Configuration Time Budget remaining: 2.147480176544031E9 s
+ Wall-clock Time Budget used: 3534.598 s (0%)
+ Wall-clock Time Budget remaining: 2.147480112402E9 s
+ Algorithm Runs used: 182.0  (91%)
+ Algorithm Runs remaining: 18.0 
+ Model/Iteration used: 94.0  (0%)
+ Model/Iteration remaining: 2.147483553E9 
+ Configuration Space Searched 9.685754776000977E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3438.7225199999975 s
+ CPU time of Configurator: 17.197707467 s
+ User time of Configurator: 17.198027045000003 s
+ Total Reported Algorithm Runtime: 3453.2576199999976 s
+ Sum of Measured Wallclock Runtime: 3522.285000000003 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 748.8524856567383 MB
+[INFO ] Iteration 94: Completed run for config (0x2B068A) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 1.79, wallclock time: 15.081 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 182 (0x2B068A)  has a lower bound 1.79 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 182 (0x2B068A) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 14.535100000000057  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2B7D2A) up to a total bound of Infinity 
+[INFO ] Iteration 94: Scheduling 1 run(s):
+[INFO ] Iteration 94: Scheduling run for config (0x2B7D2A) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:34:23:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:34:44:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 20.777100, 1, 2.880000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 276
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 182
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3491.2968398869975 s (0%)
+ Configuration Time Budget remaining: 2.14748015570316E9 s
+ Wall-clock Time Budget used: 3555.849 s (0%)
+ Wall-clock Time Budget remaining: 2.147480091151E9 s
+ Algorithm Runs used: 183.0  (91%)
+ Algorithm Runs remaining: 17.0 
+ Model/Iteration used: 94.0  (0%)
+ Model/Iteration remaining: 2.147483553E9 
+ Configuration Space Searched 9.738973208836147E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3453.2576199999976 s
+ CPU time of Configurator: 17.261530161 s
+ User time of Configurator: 17.261817282 s
+ Total Reported Algorithm Runtime: 3474.0347199999974 s
+ Sum of Measured Wallclock Runtime: 3543.528000000003 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 745.8695449829102 MB
+[INFO ] Iteration 94: Completed run for config (0x2B7D2A) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 2.88, wallclock time: 21.243 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 183 (0x2B7D2A)  has a lower bound 2.88 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 183 (0x2B7D2A) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 35.31219999999985  (s)
+[INFO ] At end of iteration 94, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 94 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 7 ms
+[INFO ] Starting Iteration 95
+[INFO ] *****Runtime Statistics*****
+ Count: 277
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 183
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3491.3065314389974 s (0%)
+ Configuration Time Budget remaining: 2.1474801556934686E9 s
+ Wall-clock Time Budget used: 3555.859 s (0%)
+ Wall-clock Time Budget remaining: 2.147480091141E9 s
+ Algorithm Runs used: 183.0  (91%)
+ Algorithm Runs remaining: 17.0 
+ Model/Iteration used: 94.0  (0%)
+ Model/Iteration remaining: 2.147483553E9 
+ Configuration Space Searched 9.738973208836147E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3474.0347199999974 s
+ CPU time of Configurator: 17.271209391 s
+ User time of Configurator: 17.271511225999998 s
+ Total Reported Algorithm Runtime: 3474.0347199999974 s
+ Sum of Measured Wallclock Runtime: 3543.528000000003 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 742.5287094116211 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 183 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.008 (s)
+[INFO ] Prediction for incumbent: 168.30594642857142 +/- 60046.65923842153 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 95. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 95: took 0.001 s
+[INFO ] 10 Local Searches took 0.002 seconds in total 
+[INFO ] Challenger 1 predicted 205.15482222222226 +/- 419.0232610831926, expected improvement 4.439778315135691
+[INFO ] Challenger 2 predicted 205.7008888888889 +/- 418.73296700630254, expected improvement 4.436540433474022
+[INFO ] Challenger 3 predicted 205.7008888888889 +/- 418.73296700630254, expected improvement 4.436540433474022
+[INFO ] Challenger 4 predicted 211.4946650793651 +/- 415.8932097733484, expected improvement 4.402861655154658
+[INFO ] Challenger 5 predicted 103.57845555555555 +/- 314.9782722191969, expected improvement 4.39721100505321
+[INFO ] Challenger 6 predicted 104.30123650793652 +/- 314.7629287982585, expected improvement 4.3928820931531565
+[INFO ] Challenger 7 predicted 214.05445357142858 +/- 414.5604504174944, expected improvement 4.387447250624515
+[INFO ] Challenger 8 predicted 214.22895357142858 +/- 414.46297160472045, expected improvement 4.386362927129088
+[INFO ] Challenger 9 predicted 105.90530158730155 +/- 314.3487738966461, expected improvement 4.3835417219536685
+[INFO ] Challenger 10 predicted 105.95287936507934 +/- 314.33118936186116, expected improvement 4.38323905091482
+[INFO ] Selecting 10010 challengers based on EI took 0.056 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2B7E71) up to a total bound of Infinity 
+[INFO ] Iteration 95: Scheduling 1 run(s):
+[INFO ] Iteration 95: Scheduling run for config (0x2B7E71) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:34:44:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:35:15:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 31.094900, 1, 89.720000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 278
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 183
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3522.5519617309974 s (0%)
+ Configuration Time Budget remaining: 2.1474801244480383E9 s
+ Wall-clock Time Budget used: 3587.443 s (0%)
+ Wall-clock Time Budget remaining: 2.147480059557E9 s
+ Algorithm Runs used: 184.0  (92%)
+ Algorithm Runs remaining: 16.0 
+ Model/Iteration used: 95.0  (0%)
+ Model/Iteration remaining: 2.147483552E9 
+ Configuration Space Searched 9.792191641671316E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3474.0347199999974 s
+ CPU time of Configurator: 17.422052346 s
+ User time of Configurator: 17.422196317999997 s
+ Total Reported Algorithm Runtime: 3505.1296199999974 s
+ Sum of Measured Wallclock Runtime: 3575.030000000003 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 719.1886749267578 MB
+[INFO ] Iteration 95: Completed run for config (0x2B7E71) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 89.72, wallclock time: 31.502 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 184 (0x2B7E71)  has a lower bound 89.72 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 184 (0x2B7E71) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 31.094900000000052  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2BF41E) up to a total bound of Infinity 
+[INFO ] Iteration 95: Scheduling 1 run(s):
+[INFO ] Iteration 95: Scheduling run for config (0x2BF41E) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:35:16:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:35:42:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 25.662900, 1, 2.820000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 279
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 184
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3548.2857203989975 s (0%)
+ Configuration Time Budget remaining: 2.1474800987142797E9 s
+ Wall-clock Time Budget used: 3613.654 s (0%)
+ Wall-clock Time Budget remaining: 2.147480033346E9 s
+ Algorithm Runs used: 185.0  (92%)
+ Algorithm Runs remaining: 15.0 
+ Model/Iteration used: 95.0  (0%)
+ Model/Iteration remaining: 2.147483552E9 
+ Configuration Space Searched 9.845410074506486E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3505.1296199999974 s
+ CPU time of Configurator: 17.492574122 s
+ User time of Configurator: 17.492885429999998 s
+ Total Reported Algorithm Runtime: 3530.7925199999972 s
+ Sum of Measured Wallclock Runtime: 3601.228000000003 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 716.2925262451172 MB
+[INFO ] Iteration 95: Completed run for config (0x2BF41E) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 2.82, wallclock time: 26.198 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 185 (0x2BF41E)  has a lower bound 2.82 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 185 (0x2BF41E) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 56.75779999999986  (s)
+[INFO ] At end of iteration 95, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 95 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 6 ms
+[INFO ] Starting Iteration 96
+[INFO ] *****Runtime Statistics*****
+ Count: 280
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 185
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3548.294408162997 s (0%)
+ Configuration Time Budget remaining: 2.147480098705592E9 s
+ Wall-clock Time Budget used: 3613.663 s (0%)
+ Wall-clock Time Budget remaining: 2.147480033337E9 s
+ Algorithm Runs used: 185.0  (92%)
+ Algorithm Runs remaining: 15.0 
+ Model/Iteration used: 95.0  (0%)
+ Model/Iteration remaining: 2.147483552E9 
+ Configuration Space Searched 9.845410074506486E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3530.7925199999972 s
+ CPU time of Configurator: 17.501275734000004 s
+ User time of Configurator: 17.501582698 s
+ Total Reported Algorithm Runtime: 3530.7925199999972 s
+ Sum of Measured Wallclock Runtime: 3601.228000000003 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 716.232063293457 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 185 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.008 (s)
+[INFO ] Prediction for incumbent: 178.2173873015873 +/- 63695.19304954353 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 96. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 96: took 0.0 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 201.98438888888887 +/- 420.591502860222, expected improvement 4.457980645010597
+[INFO ] Challenger 2 predicted 202.15391666666665 +/- 420.5024007142994, expected improvement 4.45699019279454
+[INFO ] Challenger 3 predicted 202.18102777777779 +/- 420.48792881700996, expected improvement 4.456830829063541
+[INFO ] Challenger 4 predicted 202.34394444444445 +/- 420.40253769258777, expected improvement 4.455879385665742
+[INFO ] Challenger 5 predicted 202.5307722222222 +/- 420.3044144893495, expected improvement 4.454786862584218
+[INFO ] Challenger 6 predicted 202.68179999999998 +/- 420.2246289668197, expected improvement 4.453901285564844
+[INFO ] Challenger 7 predicted 202.86146666666664 +/- 420.12988767132595, expected improvement 4.452847936314091
+[INFO ] Challenger 8 predicted 202.9402738095238 +/- 420.0928927181426, expected improvement 4.452404615465677
+[INFO ] Challenger 9 predicted 203.01280555555553 +/- 420.054697150572, expected improvement 4.451979315503599
+[INFO ] Challenger 10 predicted 203.75839285714284 +/- 419.66564454283645, expected improvement 4.447616564256232
+[INFO ] Selecting 10010 challengers based on EI took 0.059 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2BF4F4) up to a total bound of Infinity 
+[INFO ] Iteration 96: Scheduling 1 run(s):
+[INFO ] Iteration 96: Scheduling run for config (0x2BF4F4) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:35:42:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:35:54:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 11.796700, 1, 1.740000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 281
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 185
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3560.201408609997 s (0%)
+ Configuration Time Budget remaining: 2.1474800867985914E9 s
+ Wall-clock Time Budget used: 3626.073 s (0%)
+ Wall-clock Time Budget remaining: 2.147480020927E9 s
+ Algorithm Runs used: 186.0  (93%)
+ Algorithm Runs remaining: 14.0 
+ Model/Iteration used: 96.0  (0%)
+ Model/Iteration remaining: 2.147483551E9 
+ Configuration Space Searched 9.898628507341658E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3530.7925199999972 s
+ CPU time of Configurator: 17.611545967 s
+ User time of Configurator: 17.611863418000002 s
+ Total Reported Algorithm Runtime: 3542.589219999997 s
+ Sum of Measured Wallclock Runtime: 3613.516000000003 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 694.0037231445312 MB
+[INFO ] Iteration 96: Completed run for config (0x2BF4F4) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 1.74, wallclock time: 12.288 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 186 (0x2BF4F4)  has a lower bound 1.74 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 186 (0x2BF4F4) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 11.796699999999873  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2C6B43) up to a total bound of Infinity 
+[INFO ] Iteration 96: Scheduling 1 run(s):
+[INFO ] Iteration 96: Scheduling run for config (0x2C6B43) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:35:54:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:36:08:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 12.927600, 1, 18.420000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 282
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 186
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3573.1705756149972 s (0%)
+ Configuration Time Budget remaining: 2.1474800738294244E9 s
+ Wall-clock Time Budget used: 3639.556 s (0%)
+ Wall-clock Time Budget remaining: 2.147480007444E9 s
+ Algorithm Runs used: 187.0  (93%)
+ Algorithm Runs remaining: 13.0 
+ Model/Iteration used: 96.0  (0%)
+ Model/Iteration remaining: 2.147483551E9 
+ Configuration Space Searched 9.951846940176828E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3542.589219999997 s
+ CPU time of Configurator: 17.653119893 s
+ User time of Configurator: 17.653438038 s
+ Total Reported Algorithm Runtime: 3555.516819999997 s
+ Sum of Measured Wallclock Runtime: 3626.9860000000026 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 691.2991027832031 MB
+[INFO ] Iteration 96: Completed run for config (0x2C6B43) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 18.42, wallclock time: 13.47 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 187 (0x2C6B43)  has a lower bound 18.42 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 187 (0x2C6B43) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 24.724299999999857  (s)
+[INFO ] At end of iteration 96, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 96 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 7 ms
+[INFO ] Starting Iteration 97
+[INFO ] *****Runtime Statistics*****
+ Count: 283
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 187
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3573.180469885997 s (0%)
+ Configuration Time Budget remaining: 2.14748007381953E9 s
+ Wall-clock Time Budget used: 3639.565 s (0%)
+ Wall-clock Time Budget remaining: 2.147480007435E9 s
+ Algorithm Runs used: 187.0  (93%)
+ Algorithm Runs remaining: 13.0 
+ Model/Iteration used: 96.0  (0%)
+ Model/Iteration remaining: 2.147483551E9 
+ Configuration Space Searched 9.951846940176828E-6 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3555.516819999997 s
+ CPU time of Configurator: 17.663057479 s
+ User time of Configurator: 17.663336747000002 s
+ Total Reported Algorithm Runtime: 3555.516819999997 s
+ Sum of Measured Wallclock Runtime: 3626.9860000000026 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 888.5 MB
+ Free Java Memory: 687.9583206176758 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 187 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.008 (s)
+[INFO ] Prediction for incumbent: 26.944154761904763 +/- 6242.422809137149 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 97. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 97: took 0.0 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 202.088623015873 +/- 420.53708886580955, expected improvement 4.457373258885568
+[INFO ] Challenger 2 predicted 202.12095634920635 +/- 420.5195277959226, expected improvement 4.4571819915407875
+[INFO ] Challenger 3 predicted 202.19545634920638 +/- 420.4803888235575, expected improvement 4.456746678729699
+[INFO ] Challenger 4 predicted 202.31567301587302 +/- 420.41667325056125, expected improvement 4.456041707281842
+[INFO ] Challenger 5 predicted 202.36422857142855 +/- 420.39115182664636, expected improvement 4.455757773073022
+[INFO ] Challenger 6 predicted 202.41547857142857 +/- 420.3643081674931, expected improvement 4.455458423298559
+[INFO ] Challenger 7 predicted 204.16181666666665 +/- 419.45527473068995, expected improvement 4.4452521837620536
+[INFO ] Challenger 8 predicted 204.39820833333332 +/- 419.3739104604921, expected improvement 4.444040078774722
+[INFO ] Challenger 9 predicted 205.05251904761909 +/- 418.98783528596704, expected improvement 4.440008671721197
+[INFO ] Challenger 10 predicted 205.12920634920638 +/- 418.9564533146545, expected improvement 4.439593599365005
+[INFO ] Selecting 10010 challengers based on EI took 0.057 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2CA9A0) up to a total bound of Infinity 
+[INFO ] Iteration 97: Scheduling 1 run(s):
+[INFO ] Iteration 97: Scheduling run for config (0x2CA9A0) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:36:08:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:36:18:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 9.475270, 1, 2.360000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 284
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 187
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3582.758224453997 s (0%)
+ Configuration Time Budget remaining: 2.1474800642417755E9 s
+ Wall-clock Time Budget used: 3649.622 s (0%)
+ Wall-clock Time Budget remaining: 2.147479997378E9 s
+ Algorithm Runs used: 188.0  (94%)
+ Algorithm Runs remaining: 12.0 
+ Model/Iteration used: 97.0  (0%)
+ Model/Iteration remaining: 2.14748355E9 
+ Configuration Space Searched 1.0005065373011998E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3555.516819999997 s
+ CPU time of Configurator: 17.765528463 s
+ User time of Configurator: 17.765816953 s
+ Total Reported Algorithm Runtime: 3564.992089999997 s
+ Sum of Measured Wallclock Runtime: 3636.9590000000026 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 870.3017196655273 MB
+[INFO ] Iteration 97: Completed run for config (0x2CA9A0) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 2.36, wallclock time: 9.973 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 188 (0x2CA9A0)  has a lower bound 2.36 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 188 (0x2CA9A0) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 9.47526999999991  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2CE227) up to a total bound of Infinity 
+[INFO ] Iteration 97: Scheduling 1 run(s):
+[INFO ] Iteration 97: Scheduling run for config (0x2CE227) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:36:18:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:36:26:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 8.010170, 1, 13.410000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 285
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 188
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3590.795345058997 s (0%)
+ Configuration Time Budget remaining: 2.147480056204655E9 s
+ Wall-clock Time Budget used: 3658.205 s (0%)
+ Wall-clock Time Budget remaining: 2.147479988795E9 s
+ Algorithm Runs used: 189.0  (94%)
+ Algorithm Runs remaining: 11.0 
+ Model/Iteration used: 97.0  (0%)
+ Model/Iteration remaining: 2.14748355E9 
+ Configuration Space Searched 1.0058283805847168E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3564.992089999997 s
+ CPU time of Configurator: 17.792415143 s
+ User time of Configurator: 17.792762931000002 s
+ Total Reported Algorithm Runtime: 3573.002259999997 s
+ Sum of Measured Wallclock Runtime: 3645.4930000000027 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 868.1691970825195 MB
+[INFO ] Iteration 97: Completed run for config (0x2CE227) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 13.41, wallclock time: 8.534 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 189 (0x2CE227)  has a lower bound 13.41 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 189 (0x2CE227) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 17.485439999999926  (s)
+[INFO ] At end of iteration 97, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 97 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 7 ms
+[INFO ] Starting Iteration 98
+[INFO ] *****Runtime Statistics*****
+ Count: 286
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 189
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3590.805252450997 s (0%)
+ Configuration Time Budget remaining: 2.1474800561947474E9 s
+ Wall-clock Time Budget used: 3658.215 s (0%)
+ Wall-clock Time Budget remaining: 2.147479988785E9 s
+ Algorithm Runs used: 189.0  (94%)
+ Algorithm Runs remaining: 11.0 
+ Model/Iteration used: 97.0  (0%)
+ Model/Iteration remaining: 2.14748355E9 
+ Configuration Space Searched 1.0058283805847168E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3573.002259999997 s
+ CPU time of Configurator: 17.802359727000002 s
+ User time of Configurator: 17.802677646 s
+ Total Reported Algorithm Runtime: 3573.002259999997 s
+ Sum of Measured Wallclock Runtime: 3645.4930000000027 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 868.1196594238281 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 189 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.009 (s)
+[INFO ] Prediction for incumbent: 55.22923690476191 +/- 13605.237184235839 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 98. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 98: took 0.0 s
+[INFO ] 10 Local Searches took 0.004 seconds in total 
+[INFO ] Challenger 1 predicted 201.60970634920633 +/- 420.78865920530075, expected improvement 4.46016871799587
+[INFO ] Challenger 2 predicted 201.64459523809523 +/- 420.77028695854494, expected improvement 4.459965027868969
+[INFO ] Challenger 3 predicted 201.65148373015873 +/- 420.7666433433935, expected improvement 4.459924741733284
+[INFO ] Challenger 4 predicted 201.86594444444444 +/- 420.65365491955316, expected improvement 4.458671909435434
+[INFO ] Challenger 5 predicted 201.86795277777776 +/- 420.65266766728655, expected improvement 4.458660465258746
+[INFO ] Challenger 6 predicted 201.9049777777778 +/- 420.63339090153295, expected improvement 4.45844503245969
+[INFO ] Challenger 7 predicted 201.93193055555557 +/- 420.6189561283714, expected improvement 4.458286531061872
+[INFO ] Challenger 8 predicted 201.93193055555557 +/- 420.6189561283714, expected improvement 4.458286531061872
+[INFO ] Challenger 9 predicted 201.93193055555557 +/- 420.6189561283714, expected improvement 4.458286531061872
+[INFO ] Challenger 10 predicted 201.93193055555557 +/- 420.6189561283714, expected improvement 4.458286531061872
+[INFO ] Selecting 10010 challengers based on EI took 0.057 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2CE390) up to a total bound of Infinity 
+[INFO ] Iteration 98: Scheduling 1 run(s):
+[INFO ] Iteration 98: Scheduling run for config (0x2CE390) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:36:27:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:36:39:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 11.948100, 1, 1.850000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 287
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 189
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3602.862361702997 s (0%)
+ Configuration Time Budget remaining: 2.1474800441376383E9 s
+ Wall-clock Time Budget used: 3670.775 s (0%)
+ Wall-clock Time Budget remaining: 2.147479976225E9 s
+ Algorithm Runs used: 190.0  (95%)
+ Algorithm Runs remaining: 10.0 
+ Model/Iteration used: 98.0  (0%)
+ Model/Iteration remaining: 2.147483549E9 
+ Configuration Space Searched 1.0111502238682338E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3573.002259999997 s
+ CPU time of Configurator: 17.911379463 s
+ User time of Configurator: 17.911688418 s
+ Total Reported Algorithm Runtime: 3584.950359999997 s
+ Sum of Measured Wallclock Runtime: 3657.9700000000025 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 846.3152694702148 MB
+[INFO ] Iteration 98: Completed run for config (0x2CE390) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 1.85, wallclock time: 12.477 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 190 (0x2CE390)  has a lower bound 1.85 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 190 (0x2CE390) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 11.948100000000068  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2D594D) up to a total bound of Infinity 
+[INFO ] Iteration 98: Scheduling 1 run(s):
+[INFO ] Iteration 98: Scheduling run for config (0x2D594D) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:36:39:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:37:55:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 75.559000, 1, 78.990000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 288
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 190
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3678.6036737359973 s (0%)
+ Configuration Time Budget remaining: 2.1474799683963263E9 s
+ Wall-clock Time Budget used: 3746.806 s (0%)
+ Wall-clock Time Budget remaining: 2.147479900194E9 s
+ Algorithm Runs used: 191.0  (95%)
+ Algorithm Runs remaining: 9.0 
+ Model/Iteration used: 98.0  (0%)
+ Model/Iteration remaining: 2.147483549E9 
+ Configuration Space Searched 1.0164720671517508E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3584.950359999997 s
+ CPU time of Configurator: 18.09369621 s
+ User time of Configurator: 18.0940018 s
+ Total Reported Algorithm Runtime: 3660.5093599999973 s
+ Sum of Measured Wallclock Runtime: 3733.9810000000025 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 842.2795791625977 MB
+[INFO ] Iteration 98: Completed run for config (0x2D594D) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 78.99, wallclock time: 76.011 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 191 (0x2D594D)  has a lower bound 78.99 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 191 (0x2D594D) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 87.50710000000026  (s)
+[INFO ] At end of iteration 98, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 98 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 8 ms
+[INFO ] Starting Iteration 99
+[INFO ] *****Runtime Statistics*****
+ Count: 289
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 191
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3678.612550251997 s (0%)
+ Configuration Time Budget remaining: 2.1474799683874497E9 s
+ Wall-clock Time Budget used: 3746.814 s (0%)
+ Wall-clock Time Budget remaining: 2.147479900186E9 s
+ Algorithm Runs used: 191.0  (95%)
+ Algorithm Runs remaining: 9.0 
+ Model/Iteration used: 98.0  (0%)
+ Model/Iteration remaining: 2.147483549E9 
+ Configuration Space Searched 1.0164720671517508E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3660.5093599999973 s
+ CPU time of Configurator: 18.102903041999998 s
+ User time of Configurator: 18.10303716 s
+ Total Reported Algorithm Runtime: 3660.5093599999973 s
+ Sum of Measured Wallclock Runtime: 3733.9810000000025 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 839.0138702392578 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 191 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.008 (s)
+[INFO ] Prediction for incumbent: 487.06886111111106 +/- 189481.78793656474 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 99. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 99: took 0.0 s
+[INFO ] 10 Local Searches took 0.004 seconds in total 
+[INFO ] Challenger 1 predicted 201.5824484126984 +/- 420.8030182982464, expected improvement 4.460327862430363
+[INFO ] Challenger 2 predicted 201.59625992063494 +/- 420.79575476449423, expected improvement 4.460247276347536
+[INFO ] Challenger 3 predicted 201.64655555555558 +/- 420.7693275139038, expected improvement 4.459953882505779
+[INFO ] Challenger 4 predicted 201.65930555555556 +/- 420.7625964837184, expected improvement 4.459879368715942
+[INFO ] Challenger 5 predicted 201.66022222222222 +/- 420.76212316418224, expected improvement 4.4598740551194185
+[INFO ] Challenger 6 predicted 201.70869444444443 +/- 420.73654593965654, expected improvement 4.459590795270209
+[INFO ] Challenger 7 predicted 201.84535555555556 +/- 420.66459122488556, expected improvement 4.458792590037107
+[INFO ] Challenger 8 predicted 201.84708095238096 +/- 420.66356423518505, expected improvement 4.458782021325737
+[INFO ] Challenger 9 predicted 201.97169047619047 +/- 420.5980417168361, expected improvement 4.458054254419782
+[INFO ] Challenger 10 predicted 201.9917753968254 +/- 420.5872984652817, expected improvement 4.457936171934955
+[INFO ] Selecting 10010 challengers based on EI took 0.058 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2D5AD4) up to a total bound of Infinity 
+[INFO ] Iteration 99: Scheduling 1 run(s):
+[INFO ] Iteration 99: Scheduling run for config (0x2D5AD4) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:37:55:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:38:09:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 13.549300, 1, 2.100000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 290
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 191
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3692.2762976599975 s (0%)
+ Configuration Time Budget remaining: 2.1474799547237024E9 s
+ Wall-clock Time Budget used: 3761.023 s (0%)
+ Wall-clock Time Budget remaining: 2.147479885977E9 s
+ Algorithm Runs used: 192.0  (96%)
+ Algorithm Runs remaining: 8.0 
+ Model/Iteration used: 99.0  (0%)
+ Model/Iteration remaining: 2.147483548E9 
+ Configuration Space Searched 1.0217939104352678E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3660.5093599999973 s
+ CPU time of Configurator: 18.217037861 s
+ User time of Configurator: 18.217318659 s
+ Total Reported Algorithm Runtime: 3674.0586599999974 s
+ Sum of Measured Wallclock Runtime: 3748.0680000000025 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 817.2342987060547 MB
+[INFO ] Iteration 99: Completed run for config (0x2D5AD4) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 2.1, wallclock time: 14.087 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 192 (0x2D5AD4)  has a lower bound 2.1 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 192 (0x2D5AD4) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 13.54930000000013  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2DD0F2) up to a total bound of Infinity 
+[INFO ] Iteration 99: Scheduling 1 run(s):
+[INFO ] Iteration 99: Scheduling run for config (0x2DD0F2) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:38:09:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:38:40:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 30.968300, 1, 10.020000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 291
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 192
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3723.3252654659973 s (0%)
+ Configuration Time Budget remaining: 2.1474799236747346E9 s
+ Wall-clock Time Budget used: 3792.487 s (0%)
+ Wall-clock Time Budget remaining: 2.147479854513E9 s
+ Algorithm Runs used: 193.0  (96%)
+ Algorithm Runs remaining: 7.0 
+ Model/Iteration used: 99.0  (0%)
+ Model/Iteration remaining: 2.147483548E9 
+ Configuration Space Searched 1.027115753718785E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3674.0586599999974 s
+ CPU time of Configurator: 18.297660033 s
+ User time of Configurator: 18.297981783 s
+ Total Reported Algorithm Runtime: 3705.0269599999974 s
+ Sum of Measured Wallclock Runtime: 3779.4990000000025 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 814.3475799560547 MB
+[INFO ] Iteration 99: Completed run for config (0x2DD0F2) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 10.02, wallclock time: 31.431 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 193 (0x2DD0F2)  has a lower bound 10.02 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 193 (0x2DD0F2) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 44.51760000000013  (s)
+[INFO ] At end of iteration 99, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 99 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 7 ms
+[INFO ] Starting Iteration 100
+[INFO ] *****Runtime Statistics*****
+ Count: 292
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 193
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3723.3354984089974 s (0%)
+ Configuration Time Budget remaining: 2.1474799236645017E9 s
+ Wall-clock Time Budget used: 3792.497 s (0%)
+ Wall-clock Time Budget remaining: 2.147479854503E9 s
+ Algorithm Runs used: 193.0  (96%)
+ Algorithm Runs remaining: 7.0 
+ Model/Iteration used: 99.0  (0%)
+ Model/Iteration remaining: 2.147483548E9 
+ Configuration Space Searched 1.027115753718785E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3705.0269599999974 s
+ CPU time of Configurator: 18.307939513 s
+ User time of Configurator: 18.308230132000002 s
+ Total Reported Algorithm Runtime: 3705.0269599999974 s
+ Sum of Measured Wallclock Runtime: 3779.4990000000025 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 811.0818710327148 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 193 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.009 (s)
+[INFO ] Prediction for incumbent: 101.66858888888888 +/- 99629.59008153582 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 100. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 100: took 0.0 s
+[INFO ] 10 Local Searches took 0.004 seconds in total 
+[INFO ] Challenger 1 predicted 201.42992222222225 +/- 420.8833961718189, expected improvement 4.461218243753466
+[INFO ] Challenger 2 predicted 201.42992222222225 +/- 420.8833961718189, expected improvement 4.461218243753466
+[INFO ] Challenger 3 predicted 201.46054722222223 +/- 420.86728117822554, expected improvement 4.461039600970826
+[INFO ] Challenger 4 predicted 201.5528138888889 +/- 420.8186608489106, expected improvement 4.4605009964036375
+[INFO ] Challenger 5 predicted 201.6380138888889 +/- 420.77381122217434, expected improvement 4.460003694513768
+[INFO ] Challenger 6 predicted 201.6525888888889 +/- 420.76608603429787, expected improvement 4.459918390629664
+[INFO ] Challenger 7 predicted 201.6525888888889 +/- 420.76608603429787, expected improvement 4.459918390629664
+[INFO ] Challenger 8 predicted 201.7123138888889 +/- 420.73474462804836, expected improvement 4.45957008974178
+[INFO ] Challenger 9 predicted 201.7756527777778 +/- 420.7013602641472, expected improvement 4.459200036538079
+[INFO ] Challenger 10 predicted 201.79731388888888 +/- 420.6901142752545, expected improvement 4.459074170871675
+[INFO ] Selecting 10010 challengers based on EI took 0.057 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2DD135) up to a total bound of Infinity 
+[INFO ] Iteration 100: Scheduling 1 run(s):
+[INFO ] Iteration 100: Scheduling run for config (0x2DD135) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:38:41:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:38:52:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 11.172300, 1, 1.970000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 293
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 193
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3734.6128799439975 s (0%)
+ Configuration Time Budget remaining: 2.14747991238712E9 s
+ Wall-clock Time Budget used: 3804.353 s (0%)
+ Wall-clock Time Budget remaining: 2.147479842647E9 s
+ Algorithm Runs used: 194.0  (97%)
+ Algorithm Runs remaining: 6.0 
+ Model/Iteration used: 100.0  (0%)
+ Model/Iteration remaining: 2.147483547E9 
+ Configuration Space Searched 1.032437597002302E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3705.0269599999974 s
+ CPU time of Configurator: 18.413021565 s
+ User time of Configurator: 18.413312909000002 s
+ Total Reported Algorithm Runtime: 3716.1992599999976 s
+ Sum of Measured Wallclock Runtime: 3791.2760000000026 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 789.4754943847656 MB
+[INFO ] Iteration 100: Completed run for config (0x2DD135) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 1.97, wallclock time: 11.777 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 194 (0x2DD135)  has a lower bound 1.97 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 194 (0x2DD135) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 11.172300000000178  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2E4878) up to a total bound of Infinity 
+[INFO ] Iteration 100: Scheduling 1 run(s):
+[INFO ] Iteration 100: Scheduling run for config (0x2E4878) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:38:53:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:40:07:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 73.758900, 1, 89.720000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 294
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 194
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3808.5573803219972 s (0%)
+ Configuration Time Budget remaining: 2.1474798384426196E9 s
+ Wall-clock Time Budget used: 3878.632 s (0%)
+ Wall-clock Time Budget remaining: 2.147479768368E9 s
+ Algorithm Runs used: 195.0  (97%)
+ Algorithm Runs remaining: 5.0 
+ Model/Iteration used: 100.0  (0%)
+ Model/Iteration remaining: 2.147483547E9 
+ Configuration Space Searched 1.037759440285819E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3716.1992599999976 s
+ CPU time of Configurator: 18.598832180000002 s
+ User time of Configurator: 18.599023426 s
+ Total Reported Algorithm Runtime: 3789.9581599999974 s
+ Sum of Measured Wallclock Runtime: 3865.5430000000024 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 785.2392044067383 MB
+[INFO ] Iteration 100: Completed run for config (0x2E4878) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 89.72, wallclock time: 74.267 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 195 (0x2E4878)  has a lower bound 89.72 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 195 (0x2E4878) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 84.93119999999999  (s)
+[INFO ] At end of iteration 100, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 100 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 7 ms
+[INFO ] Starting Iteration 101
+[INFO ] *****Runtime Statistics*****
+ Count: 295
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 195
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3808.5664680259974 s (0%)
+ Configuration Time Budget remaining: 2.147479838433532E9 s
+ Wall-clock Time Budget used: 3878.641 s (0%)
+ Wall-clock Time Budget remaining: 2.147479768359E9 s
+ Algorithm Runs used: 195.0  (97%)
+ Algorithm Runs remaining: 5.0 
+ Model/Iteration used: 100.0  (0%)
+ Model/Iteration remaining: 2.147483547E9 
+ Configuration Space Searched 1.037759440285819E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3789.9581599999974 s
+ CPU time of Configurator: 18.60792525 s
+ User time of Configurator: 18.608116257 s
+ Total Reported Algorithm Runtime: 3789.9581599999974 s
+ Sum of Measured Wallclock Runtime: 3865.5430000000024 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 785.1938018798828 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 195 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.008 (s)
+[INFO ] Prediction for incumbent: 168.22627500000004 +/- 57543.97139742597 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 101. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 101: took 0.001 s
+[INFO ] 10 Local Searches took 0.003 seconds in total 
+[INFO ] Challenger 1 predicted 201.66670833333336 +/- 420.7586664342075, expected improvement 4.459836013426313
+[INFO ] Challenger 2 predicted 201.6834166666667 +/- 420.749865992777, expected improvement 4.459738442904433
+[INFO ] Challenger 3 predicted 201.70032063492064 +/- 420.7410493132606, expected improvement 4.459640082354637
+[INFO ] Challenger 4 predicted 201.74435515873014 +/- 420.71779094377183, expected improvement 4.459382630117809
+[INFO ] Challenger 5 predicted 201.80945952380952 +/- 420.6835793333217, expected improvement 4.459002647741514
+[INFO ] Challenger 6 predicted 201.81217857142855 +/- 420.6821264498952, expected improvement 4.458986677074959
+[INFO ] Challenger 7 predicted 201.86311309523808 +/- 420.6553438392843, expected improvement 4.458689268597585
+[INFO ] Challenger 8 predicted 202.16145833333331 +/- 420.4980456439908, expected improvement 4.456944502957894
+[INFO ] Challenger 9 predicted 202.70198730158728 +/- 420.2155602286606, expected improvement 4.453789487469286
+[INFO ] Challenger 10 predicted 202.78747619047618 +/- 420.17418466548963, expected improvement 4.453303668880675
+[INFO ] Selecting 10010 challengers based on EI took 0.054 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2E7293) up to a total bound of Infinity 
+[INFO ] Iteration 101: Scheduling 1 run(s):
+[INFO ] Iteration 101: Scheduling run for config (0x2E7293) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:40:07:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:40:15:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 7.950270, 1, 2.130000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 296
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 195
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3816.6119369249973 s (0%)
+ Configuration Time Budget remaining: 2.1474798303880632E9 s
+ Wall-clock Time Budget used: 3887.243 s (0%)
+ Wall-clock Time Budget remaining: 2.147479759757E9 s
+ Algorithm Runs used: 196.0  (98%)
+ Algorithm Runs remaining: 4.0 
+ Model/Iteration used: 101.0  (0%)
+ Model/Iteration remaining: 2.147483546E9 
+ Configuration Space Searched 1.043081283569336E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3789.9581599999974 s
+ CPU time of Configurator: 18.702865535 s
+ User time of Configurator: 18.703184243 s
+ Total Reported Algorithm Runtime: 3797.908429999997 s
+ Sum of Measured Wallclock Runtime: 3874.0230000000024 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 760.3290634155273 MB
+[INFO ] Iteration 101: Completed run for config (0x2E7293) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 2.13, wallclock time: 8.48 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 196 (0x2E7293)  has a lower bound 2.13 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 196 (0x2E7293) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 7.9502699999998185  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2EC01D) up to a total bound of Infinity 
+[INFO ] Iteration 101: Scheduling 1 run(s):
+[INFO ] Iteration 101: Scheduling run for config (0x2EC01D) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:40:16:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:40:29:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 13.512100, 1, 11.060000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 297
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 196
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3830.163117974997 s (0%)
+ Configuration Time Budget remaining: 2.147479816836882E9 s
+ Wall-clock Time Budget used: 3901.383 s (0%)
+ Wall-clock Time Budget remaining: 2.147479745617E9 s
+ Algorithm Runs used: 197.0  (98%)
+ Algorithm Runs remaining: 3.0 
+ Model/Iteration used: 101.0  (0%)
+ Model/Iteration remaining: 2.147483546E9 
+ Configuration Space Searched 1.048403126852853E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3797.908429999997 s
+ CPU time of Configurator: 18.74199717 s
+ User time of Configurator: 18.742272965999998 s
+ Total Reported Algorithm Runtime: 3811.420529999997 s
+ Sum of Measured Wallclock Runtime: 3888.1220000000026 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 757.9760818481445 MB
+[INFO ] Iteration 101: Completed run for config (0x2EC01D) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 11.06, wallclock time: 14.099 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 197 (0x2EC01D)  has a lower bound 11.06 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 197 (0x2EC01D) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 21.462369999999737  (s)
+[INFO ] At end of iteration 101, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 101 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 10 ms
+[INFO ] Starting Iteration 102
+[INFO ] *****Runtime Statistics*****
+ Count: 298
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 197
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3830.175551171997 s (0%)
+ Configuration Time Budget remaining: 2.1474798168244488E9 s
+ Wall-clock Time Budget used: 3901.395 s (0%)
+ Wall-clock Time Budget remaining: 2.147479745605E9 s
+ Algorithm Runs used: 197.0  (98%)
+ Algorithm Runs remaining: 3.0 
+ Model/Iteration used: 101.0  (0%)
+ Model/Iteration remaining: 2.147483546E9 
+ Configuration Space Searched 1.048403126852853E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3811.420529999997 s
+ CPU time of Configurator: 18.754360404 s
+ User time of Configurator: 18.754707427999996 s
+ Total Reported Algorithm Runtime: 3811.420529999997 s
+ Sum of Measured Wallclock Runtime: 3888.1220000000026 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 757.8970489501953 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 197 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.009 (s)
+[INFO ] Prediction for incumbent: 236.99891269841268 +/- 111816.38069673872 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 102. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 102: took 0.0 s
+[INFO ] 10 Local Searches took 0.004 seconds in total 
+[INFO ] Challenger 1 predicted 201.51803055555555 +/- 420.8369711392026, expected improvement 4.460703984097873
+[INFO ] Challenger 2 predicted 201.56350714285713 +/- 420.8129962061873, expected improvement 4.460438441758176
+[INFO ] Challenger 3 predicted 201.75967857142857 +/- 420.7098700466702, expected improvement 4.459293743606342
+[INFO ] Challenger 4 predicted 202.0004365079365 +/- 420.5828361864053, expected improvement 4.4578859529965
+[INFO ] Challenger 5 predicted 202.7346257936508 +/- 420.1997539120409, expected improvement 4.453603983397821
+[INFO ] Challenger 6 predicted 202.81880357142856 +/- 420.1552154512211, expected improvement 4.453109841073172
+[INFO ] Challenger 7 predicted 206.24852777777778 +/- 418.4377195185685, expected improvement 4.433270125608676
+[INFO ] Challenger 8 predicted 206.70847222222227 +/- 418.1886610252237, expected improvement 4.430514348046836
+[INFO ] Challenger 9 predicted 209.56072222222224 +/- 416.8491849537121, expected improvement 4.414205477525115
+[INFO ] Challenger 10 predicted 210.89749801587305 +/- 416.7770124022655, expected improvement 4.408893669896781
+[INFO ] Selecting 10010 challengers based on EI took 0.056 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2EC03F) up to a total bound of Infinity 
+[INFO ] Iteration 102: Scheduling 1 run(s):
+[INFO ] Iteration 102: Scheduling run for config (0x2EC03F) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:40:30:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:40:39:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 9.329480, 1, 1.980000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 299
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 197
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3839.6043110079972 s (0%)
+ Configuration Time Budget remaining: 2.147479807395689E9 s
+ Wall-clock Time Budget used: 3911.395 s (0%)
+ Wall-clock Time Budget remaining: 2.147479735605E9 s
+ Algorithm Runs used: 198.0  (99%)
+ Algorithm Runs remaining: 2.0 
+ Model/Iteration used: 102.0  (0%)
+ Model/Iteration remaining: 2.147483545E9 
+ Configuration Space Searched 1.05372497013637E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3811.420529999997 s
+ CPU time of Configurator: 18.853738078000003 s
+ User time of Configurator: 18.854018607 s
+ Total Reported Algorithm Runtime: 3820.750009999997 s
+ Sum of Measured Wallclock Runtime: 3898.0220000000027 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 736.3632431030273 MB
+[INFO ] Iteration 102: Completed run for config (0x2EC03F) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 1.98, wallclock time: 9.9 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 198 (0x2EC03F)  has a lower bound 1.98 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 198 (0x2EC03F) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 9.329479999999876  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2F3761) up to a total bound of Infinity 
+[INFO ] Iteration 102: Scheduling 1 run(s):
+[INFO ] Iteration 102: Scheduling run for config (0x2F3761) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:40:40:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR]  [INFO] [19:40:58:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 18.146700, 1, 3.500000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 300
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 198
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3857.8034320789966 s (0%)
+ Configuration Time Budget remaining: 2.147479789196568E9 s
+ Wall-clock Time Budget used: 3930.138 s (0%)
+ Wall-clock Time Budget remaining: 2.147479716862E9 s
+ Algorithm Runs used: 199.0  (99%)
+ Algorithm Runs remaining: 1.0 
+ Model/Iteration used: 102.0  (0%)
+ Model/Iteration remaining: 2.147483545E9 
+ Configuration Space Searched 1.059046813419887E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3820.750009999997 s
+ CPU time of Configurator: 18.906113940000004 s
+ User time of Configurator: 18.90641755 s
+ Total Reported Algorithm Runtime: 3838.896709999997 s
+ Sum of Measured Wallclock Runtime: 3916.715000000003 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 733.9443664550781 MB
+[INFO ] Iteration 102: Completed run for config (0x2F3761) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 3.5, wallclock time: 18.693 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 199 (0x2F3761)  has a lower bound 3.5 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 199 (0x2F3761) is worse; aborting its evaluation
+[INFO ] Out of time for intensification timeBound: 0.0 (s); used: 27.47617999999966  (s)
+[INFO ] At end of iteration 102, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 102 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 8 ms
+[INFO ] Starting Iteration 103
+[INFO ] *****Runtime Statistics*****
+ Count: 301
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 199
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3857.8137260489966 s (0%)
+ Configuration Time Budget remaining: 2.147479789186274E9 s
+ Wall-clock Time Budget used: 3930.149 s (0%)
+ Wall-clock Time Budget remaining: 2.147479716851E9 s
+ Algorithm Runs used: 199.0  (99%)
+ Algorithm Runs remaining: 1.0 
+ Model/Iteration used: 102.0  (0%)
+ Model/Iteration remaining: 2.147483545E9 
+ Configuration Space Searched 1.059046813419887E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3838.896709999997 s
+ CPU time of Configurator: 18.916423706 s
+ User time of Configurator: 18.916725466 s
+ Total Reported Algorithm Runtime: 3838.896709999997 s
+ Sum of Measured Wallclock Runtime: 3916.715000000003 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 730.673210144043 MB
+[INFO ] Discarding 0 constant inputs of 0 in total.
+[INFO ] Building Random Forest with 199 data points 
+[INFO ] Random Forest Built
+[INFO ] Model Learn Time: 0.009 (s)
+[INFO ] Prediction for incumbent: 252.01023611111114 +/- 169329.71098446523 (in log space if logModel=true)
+[INFO ] Optimizing EI at valdata.iteration 103. fmin: 1.67
+[INFO ] Compute negEI for all conf. seen at valdata.iteration 103: took 0.0 s
+[INFO ] 10 Local Searches took 0.004 seconds in total 
+[INFO ] Challenger 1 predicted 201.57098611111113 +/- 420.8091020101172, expected improvement 4.4603949680306805
+[INFO ] Challenger 2 predicted 201.78394444444444 +/- 420.6969613321301, expected improvement 4.459151469537197
+[INFO ] Challenger 3 predicted 201.9039611111111 +/- 420.6336983277159, expected improvement 4.458450033045757
+[INFO ] Challenger 4 predicted 201.91829444444446 +/- 420.626224404027, expected improvement 4.4583665798319885
+[INFO ] Challenger 5 predicted 201.91829444444446 +/- 420.626224404027, expected improvement 4.4583665798319885
+[INFO ] Challenger 6 predicted 202.17065833333334 +/- 420.4933122085029, expected improvement 4.456891157116465
+[INFO ] Challenger 7 predicted 202.1964047619048 +/- 420.48069216318396, expected improvement 4.456744447209218
+[INFO ] Challenger 8 predicted 202.21400158730157 +/- 420.4703270102078, expected improvement 4.456636982805003
+[INFO ] Challenger 9 predicted 203.2153515873016 +/- 419.95587556530216, expected improvement 4.450823659769284
+[INFO ] Challenger 10 predicted 203.64039444444444 +/- 419.73211410907174, expected improvement 4.448328075096161
+[INFO ] Selecting 10010 challengers based on EI took 0.058 seconds
+[INFO ] Calling intensify with 20020 challenger(s)
+[INFO ] Intensification timeBound: 0.0 (s); used: 0.0  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2F3898) up to a total bound of Infinity 
+[INFO ] Iteration 103: Scheduling 1 run(s):
+[INFO ] Iteration 103: Scheduling run for config (0x2F3898) on instance 1 with seed -1 and captime 2.147483647E9
+[WARN ] [PROCESS-ERR]  [INFO] [19:40:59:HPOlib.runsolver_wrapper] -----------------------RUNNING RUNSOLVER----------------------------
+[WARN ] [PROCESS-ERR] [INFO] [19:41:10:HPOlib.runsolver_wrapper] Result for ParamILS: SAT, 11.292600, 1, 2.190000, -1, python /root/tf-hpolib/tf-hpo/src/hpolib-main.py
+[INFO ] *****Runtime Statistics*****
+ Count: 302
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 199
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3869.213335720997 s (0%)
+ Configuration Time Budget remaining: 2.1474797777866642E9 s
+ Wall-clock Time Budget used: 3942.011 s (0%)
+ Wall-clock Time Budget remaining: 2.147479704989E9 s
+ Algorithm Runs used: 200.0  (100%)
+ Algorithm Runs remaining: 0.0 
+ Model/Iteration used: 103.0  (0%)
+ Model/Iteration remaining: 2.147483544E9 
+ Configuration Space Searched 1.0643686567034041E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3838.896709999997 s
+ CPU time of Configurator: 19.023694206000002 s
+ User time of Configurator: 19.023859095 s
+ Total Reported Algorithm Runtime: 3850.189309999997 s
+ Sum of Measured Wallclock Runtime: 3928.4800000000027 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 708.9371871948242 MB
+[INFO ] Iteration 103: Completed run for config (0x2F3898) on instance 1 with seed -1 and captime 2.147483647E9 => Result: SAT, response: 2.19, wallclock time: 11.765 seconds
+[INFO ] Based on 1 common runs on (up to) 1 instances, challenger 200 (0x2F3898)  has a lower bound 2.19 and incumbent 115 (0x1AC1E9) has obj 1.67
+[INFO ] Challenger 200 (0x2F3898) is worse; aborting its evaluation
+[INFO ] Intensification timeBound: 0.0 (s); used: 11.29260000000022  (s)
+[INFO ] Performing up to 1 run(s) for challenger (0x2FAEE7) up to a total bound of Infinity 
+[INFO ] Cannot schedule any more runs, out of time
+[INFO ] At end of iteration 103, incumbent is 115 (0x1AC1E9) 
+[INFO ] State saved for iteration 103 in /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/state-run23 
+[INFO ] Saving state took 6 ms
+[INFO ] SMAC Completed
+[INFO ] Cleaning old states
+[INFO ] Deleting all saved state files except those applicable to iteration 103 
+[INFO ] Writing trajectory file to /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/traj-run-23
+[INFO ] *****Runtime Statistics*****
+ Count: 303
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 200
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3869.253507967997 s (0%)
+ Configuration Time Budget remaining: 2.1474797777464921E9 s
+ Wall-clock Time Budget used: 3942.051 s (0%)
+ Wall-clock Time Budget remaining: 2.147479704949E9 s
+ Algorithm Runs used: 200.0  (100%)
+ Algorithm Runs remaining: 0.0 
+ Model/Iteration used: 103.0  (0%)
+ Model/Iteration remaining: 2.147483544E9 
+ Configuration Space Searched 1.0643686567034041E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3850.189309999997 s
+ CPU time of Configurator: 19.063753748 s
+ User time of Configurator: 19.06397513 s
+ Total Reported Algorithm Runtime: 3850.189309999997 s
+ Sum of Measured Wallclock Runtime: 3928.4800000000027 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 705.6261367797852 MB
+[INFO ] Total Reported Runtime: 3850.189309999997 (s), Total of Sum Max(runtime-cutoff,0): 0.0 (s)
+[INFO ] Total Walltime: 3928.4800000000027 (s), Total of Sum Max(walltime - cutoff, 0): 0.0 (s)
+[INFO ] Total Difference between Walltime and Runtime (Sum of the amount of wallclock time - sum of the amount of reported CPU time) : 78.29069000000001 seconds
+[INFO ] SMAC Termination Reason: Algorithm Run Limit (200 runs) has been reached   
+[INFO ] Total Objective of Incumbent 115 (0x1AC1E9) at time 3869.251880436997 on training set: 1.67
+[INFO ] **********************************************
+[INFO ] Total Objective of Final Incumbent 115 (0x1AC1E9) on training set: 1.67
+[INFO ] Sample Call for Final Incumbent 115 (0x1AC1E9) 
+cd /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753; python /usr/local/lib/python2.7/dist-packages/HPOlib-0.1.0-py2.7.egg/HPOlib/runsolver_wrapper.py 0 0 2.147483647E9 2147483647 -1 -conv2_depth '24' -conv1_depth '85' -fc_depth '430' -filter_size '4'  
+[INFO ] Complete Configuration (no inactive conditionals): conv1_depth='85', conv2_depth='24', fc_depth='430', filter_size='4'
+[INFO ] Complete Configuration (including inactive conditionals): conv1_depth='85', conv2_depth='24', fc_depth='430', filter_size='4'
+[INFO ] *****Runtime Statistics*****
+ Count: 303
+ Incumbent ID: 115 (0x1AC1E9)
+ Number of Runs for Incumbent: 1
+ Number of Instances for Incumbent: 1
+ Number of Configurations Run: 200
+ Performance of the Incumbent: 1.67
+ Configuration Time Budget used: 3869.253507967997 s (0%)
+ Configuration Time Budget remaining: 2.1474797777464921E9 s
+ Wall-clock Time Budget used: 3942.051 s (0%)
+ Wall-clock Time Budget remaining: 2.147479704949E9 s
+ Algorithm Runs used: 200.0  (100%)
+ Algorithm Runs remaining: 0.0 
+ Model/Iteration used: 103.0  (0%)
+ Model/Iteration remaining: 2.147483544E9 
+ Configuration Space Searched 1.0643686567034041E-5 % 
+ Sum of Target Algorithm Execution Times (treating minimum value as 0.1): 3850.189309999997 s
+ CPU time of Configurator: 19.063753748 s
+ User time of Configurator: 19.06397513 s
+ Total Reported Algorithm Runtime: 3850.189309999997 s
+ Sum of Measured Wallclock Runtime: 3928.4800000000027 s
+ Max Memory: 910.5 MB
+ Total Java Memory: 885.0 MB
+ Free Java Memory: 705.6261367797852 MB
+[INFO ] SMAC Termination Reason: Algorithm Run Limit (200 runs) has been reached   
+[INFO ] SMAC Completed Successfully. Log: /root/tf-hpolib/tf-hpo/benchmark/smac_2_06_01-dev_23_2016-10-25--18-35-28-82753/scenario-SMAC-ac-false-cores1-cutoff2.147483647E9-2016-10-25/log-run23.txt
+[INFO ] Returning with value: 0

@@ -70,7 +70,7 @@ class PerformancePredictor:
             traceback.print_exc()
             print(e) 
 
-    def predict(self, **params):
+    def check(self, **params):
         ''' predict increase or decrease using linear regression '''
         try:
             if self.acc_table is not None:

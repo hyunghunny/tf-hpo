@@ -28,13 +28,14 @@ class PerformanceCSVLogger:
         num_params = len(params_list)
         num_metrics = len(metrics_list)
         self.csv_format = '%(asctime)s,%(message)s'
-        self.csv_header = "Timestamp,Msec,Setting,Measure Type,Step/Epoch,Elapsed Time"
+        self.csv_header = "Timestamp,Msec,Setting,Measure Type,Step,Epoch,Elapsed Time"
         self.num_metrics = num_metrics
         self.num_params = num_params
         self.timers = {}
         self.elapsed_times_dict = {}
         self.params_list = params_list
         self.metrics_list = metrics_list
+        self.steps_epoch = 0
         
         for m in metrics_list:
             self.csv_header = self.csv_header + "," + m
@@ -105,16 +106,24 @@ class PerformanceCSVLogger:
     def setSetting(self, setting):
         self.setting = setting
 
+    def setStepsPerEpoch(self, steps):
+        self.steps_epoch = steps
+    
     def measure(self, measure_type, step, metrics_dict):        
         # measure elapsed time
         timegap = time.time() - self.timers[measure_type]
         
         self.elapsed_times_dict[measure_type].append(timegap)
         
+        if self.steps_epoch == 0:
+            epochs = "NA"
+        else:
+            epochs = "{0:.2g}".format(self.steps_epoch)
+            
         #print(timegap)
         accumulated_time = sum(self.elapsed_times_dict[measure_type])
-        #print(self.elapsed_times_dict[measure_type])
-        msg = self.setting + "," + measure_type + "," + str(step) + ",{0:.3g}".format(accumulated_time)
+        #print(self.elapsed_times_dict[measure_type]) 
+        msg = self.setting + "," + measure_type + "," + str(step) + "," + epochs + ",{0:.3g}".format(accumulated_time)
         #print (metrics_dict)        
         for metric in self.metrics_list:
             if metric in metrics_dict:

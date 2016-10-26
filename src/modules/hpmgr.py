@@ -32,8 +32,8 @@ class HPVManager:
         self.parser = parser
         self.config_file = config_file
     
-    def getConfigPath(self):
-        return self.config_file
+    def getPath(self):
+        return os.path.abspath(self.config_file)
     
     def setExecutionInfo(self, exec_dict):
         for key in exec_dict:

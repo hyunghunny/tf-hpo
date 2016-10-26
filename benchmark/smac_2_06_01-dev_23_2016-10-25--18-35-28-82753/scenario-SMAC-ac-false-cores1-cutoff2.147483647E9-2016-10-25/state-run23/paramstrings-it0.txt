@@ -1,1 +1,0 @@
-1: conv1_depth='1', conv2_depth='1', fc_depth='1', filter_size='1'

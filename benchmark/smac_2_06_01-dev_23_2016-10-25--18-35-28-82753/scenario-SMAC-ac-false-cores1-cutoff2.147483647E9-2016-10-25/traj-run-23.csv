@@ -8,3 +8,4 @@
 233.306788276, 1.98, 258.138, 78, 4.141308148,  conv1_depth='81', conv2_depth='17', fc_depth='320', filter_size='5'
 572.492924086, 1.73, 600.679, 89, 5.532088397,  conv1_depth='66', conv2_depth='21', fc_depth='485', filter_size='4'
 1608.5924597190003, 1.67, 1644.863, 115, 9.341115587,  conv1_depth='85', conv2_depth='24', fc_depth='430', filter_size='4'
+3869.251880436997, 1.67, 3942.049, 115, 19.062831855999995,  conv1_depth='85', conv2_depth='24', fc_depth='430', filter_size='4'

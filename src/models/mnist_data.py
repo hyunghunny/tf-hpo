@@ -32,15 +32,16 @@ def import_dataset():
     # Extract it into numpy arrays.
     train_data = extract_data(train_data_filename, NUM_TRAIN_DATA)
     train_labels = extract_labels(train_labels_filename, NUM_TRAIN_DATA)
-    test_data = extract_data(test_data_filename, NUM_TEST_DATA)
-    test_labels = extract_labels(test_labels_filename, NUM_TEST_DATA)
 
+    train_data = train_data[VALIDATION_SIZE:, ...]
+    train_labels = train_labels[VALIDATION_SIZE:]
     
     # Generate a validation set.
     validation_data = train_data[:VALIDATION_SIZE, ...]
     validation_labels = train_labels[:VALIDATION_SIZE]
-    train_data = train_data[VALIDATION_SIZE:, ...]
-    train_labels = train_labels[VALIDATION_SIZE:]
+    
+    test_data = extract_data(test_data_filename, NUM_TEST_DATA)
+    test_labels = extract_labels(test_labels_filename, NUM_TEST_DATA)
 
          
     return {
