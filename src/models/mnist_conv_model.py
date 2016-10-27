@@ -304,7 +304,8 @@ def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, o
     start_time = time.time()
     
     if logger:
-        logger.setParamColumns(filter_size, conv1_depth, conv2_depth, fc_depth)        
+        logger.setParamColumns(filter_size, conv1_depth, conv2_depth, fc_depth)
+        logger.setTimer("total")
         logger.setTimer("epoch")
         if eval:
             logger.setTimer("eval")    
@@ -319,7 +320,12 @@ def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, o
         
         # Loop through training steps.
         debug("epoch num: " + str(NUM_EPOCHS) + ", total steps: " + str(int(NUM_EPOCHS * train_size) // BATCH_SIZE))
-        for step in xrange(int(NUM_EPOCHS * train_size) // BATCH_SIZE):
+        if logger:
+            steps_per_epoch = int(train_size // self.hp["BATCH_SIZE"])
+            logger.setStepsPerEpoch(steps_per_epoch)
+        
+        for i in xrange(int(NUM_EPOCHS * train_size) // BATCH_SIZE):
+            step = i + 1 # XXX: step MUST start with 1 not 0
             
             # Compute the offset of the current minibatch in the data.
             # Note that we could use better randomization across epochs.
@@ -382,7 +388,7 @@ def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, o
                                                     dataset["validation_labels"])                    
                     valid_accuracy = 100.0 - validation_err
                     if logger:
-                        logger.measure("epoch", str(num_epoch) + "_epoch", 
+                        logger.measure("epoch", step, 
                                        {"Test Accuracy" : test_accuracy, 
                                         "Validation Accuarcy" : valid_accuracy})
                     debug('Test error: %.1f%%' % test_error)
@@ -409,7 +415,7 @@ def train_neural_net(dataset, params, logger=None, predictor=None, eval=False, o
                                         dataset["validation_labels"])                    
             valid_accuracy = 100.0 - validation_err
             if logger:
-                logger.measure("total", str(NUM_EPOCHS) + "_epoch", 
+                logger.measure("total", step, 
                                {"Test Accuracy" : test_accuracy, 
                                 "Validation Accuarcy" : valid_accuracy})
             

@@ -44,7 +44,7 @@ from modules.predictor import PerformancePredictor
 CPU_DEVICE_ID = '/cpu:0'
 
 # LOG LEVEL
-SHOW_DEBUG = True
+SHOW_DEBUG = False
 SHOW_ERR = True
 
 # Abstract interface for models
@@ -142,9 +142,6 @@ class CNN(ModelInterface):
 
         debug("Adaptive Learning Rate Algorithm: " + self.hp["OPTIMIZATION"])       
 
-        if self.logger:
-            self.logger.setTimer("total")
-
         #Predictions for the current training minibatch.
         train_prediction = tf.nn.softmax(logits)
         
@@ -152,22 +149,23 @@ class CNN(ModelInterface):
             # Predictions for the test and validation, which we'll compute less often.
             self.eval_prediction = tf.nn.softmax(self.leNet5(self.eval_data))
         
-        # Create a local session to run the training.
         start_time = time.time()
         if self.logger:                
+            self.logger.setTimer("total")
             self.logger.setTimer("epoch")
             
-            self.logger.setHyperparamSetting({
-                "Filter size": self.hp["FILTER_SIZE"],
-                "Conv1 depth" : self.hp["CONV1_DEPTH"],
-                "Conv2 depth" : self.hp["CONV2_DEPTH"],
-                "FC neurons" : self.hp["FC1_WIDTH"]})
+            setting = {}
+            for param in self.logger.getParamList():
+                setting[param] = self.hp[param]
+                
+            self.logger.setHyperparamSetting(setting)
 
             if self.flag["VALIDATION"]:
                 self.logger.setTimer("eval")
 
         config = tf.ConfigProto(allow_soft_placement=False, log_device_placement=False)
 
+        # Create a local session to run the training.
         with tf.Session(config = config) as sess:
             # Run all the initializers to prepare the trainable parameters.
             init = tf.initialize_all_variables()
@@ -230,8 +228,6 @@ class CNN(ModelInterface):
                 
                 # test and validation error calcuation at each epochs 
                 if step % steps_per_epoch == 0:
-                    debug('Step %d (epoch %.2f), %.1f ms' %
-                          (step, num_epoch, 1000 * elapsed_time / self.hp["EVAL_FREQUENCY"]))
                     
                     with tf.device(self.flag["TEST_DEVICE_ID"]):                        
                         validation_err_rate = error_rate(self.evaluateInBatches(self.data["validation_data"], sess),\
@@ -239,7 +235,7 @@ class CNN(ModelInterface):
                         test_error_rate = error_rate(self.evaluateInBatches(self.data["test_data"], sess), self.data["test_labels"])
 
                         if self.logger:
-                            self.logger.measure("epoch", num_epoch, 
+                            self.logger.measure("epoch", step, 
                                        {"Test Error" : test_error_rate / 100.0, 
                                         "Validation Error" : validation_err_rate / 100.0})
                         debug('Test error rate per epoch: %.1f%%' % test_error_rate)
@@ -253,14 +249,12 @@ class CNN(ModelInterface):
 
             # test error calculation after being trained
             with tf.device(self.flag["TEST_DEVICE_ID"]):
-                debug('Step %d (epoch %.2f), %.1f ms' %
-                      (step, num_epoch, 1000 * elapsed_time / self.hp["EVAL_FREQUENCY"]))
                           
                 validation_err_rate = error_rate(self.evaluateInBatches(self.data["validation_data"], sess),\
                                             self.data["validation_labels"])                    
                 test_error_rate = error_rate(self.evaluateInBatches(self.data["test_data"], sess), self.data["test_labels"])   
                 if self.logger:
-                    self.logger.measure("total", self.hp["NUM_EPOCHS"], 
+                    self.logger.measure("total", step, 
                                {"Test Error" : test_error_rate / 100.0, 
                                 "Validation Error" : validation_err_rate / 100.0 })
 
@@ -448,10 +442,11 @@ if __name__ == '__main__':
     
     from modules.hpmgr import HPVManager 
     
-    hpv = HPVManager('HPV_002.ini')
+    hpv = HPVManager('HPV_002.ini', ini_dir='../config/')
+    hpv.show()
     log_file = hpv.getOption('Execution', 'output_log_file')
-    
-    hyperparams = ['Filter size', 'Conv1 depth', 'Conv2 depth', 'FC neurons']
+    print("log file: " + log_file)
+    hyperparams = ['filter_size', 'pooling_size', 'conv1_depth', 'conv2_depth', 'fc1_width', 'optimization']
     metrics = ['Test Error', 'Validation Error', 'Training Error']                                 
     
     # create logger

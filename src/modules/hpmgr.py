@@ -12,54 +12,72 @@ def DebugPrint(*args):
         print(args)
 
 class HPVManager:
-    def __init__(self, config_file, config_dir='../config/'):
+    def __init__(self, ini_path, ini_dir='./config/'):
         # for setting timezone
         os.environ['TZ'] = 'Asia/Seoul'
         time.tzset()
         
-        self.config_dir = config_dir
-        self.read(config_dir + config_file)
+        self.ini_path = ini_path
+        self.ini_dir = ini_dir
+        self.read(ini_path)
         
-    def read(self, config_file):
+    def read(self, ini_file):
         try:
             parser = ConfigParser.ConfigParser()
-            parser.read(config_file)
+            parser.read(ini_file)
         except:
             e = sys.exc_info()
             print("Configuration file error: " + str(e))
             traceback.print_exc()
             
         self.parser = parser
-        self.config_file = config_file
+        self.ini_path = ini_file
     
     def getPath(self):
-        return os.path.abspath(self.config_file)
+        return os.path.abspath(self.ini_path)
     
     def setExecutionInfo(self, exec_dict):
         for key in exec_dict:
             self.parser.set('Execution', key, exec_dict[key])
 
-    def write(self, new_config_file=None):
-        if new_config_file is None:
-            date_str = time.strftime('%Y%m%d%H%M%S', time.localtime())
-            new_config_file = 'HPV_' + date_str + '.ini'
-        new_config_file = self.config_dir + new_config_file    
+    def save(self):
         try:
-            cfg_file = open(new_config_file, 'w')
+            cfg_file = open(self.ini_path, 'w')
+            sections = self.parser.sections()            
+            self.parser.set('Execution', 'created', time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
+
+            self.parser.write(cfg_file)
+            cfg_file.close()            
+        
+        except:
+            e = sys.exc_info()
+            print("Save error: " + str(e))
+            traceback.print_exc()        
+    
+    def saveAs(self, new_ini_file=None, prefix="HPV_"):
+        if new_ini_file is None:
+            date_str = str(int(time.time() * 10000))
+            new_ini_file = prefix + date_str + '.ini'
+        
+        new_ini_file = self.ini_dir + new_ini_file    
+        try:
+            cfg_file = open(new_ini_file, 'w')
             sections = self.parser.sections()            
             self.parser.set('Execution', 'created', time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
 
             self.parser.write(cfg_file)
             cfg_file.close()
+            return os.path.abspath(new_ini_file)
+        
         except:
             e = sys.exc_info()
-            print("Configuration file error: " + str(e))
+            print("Save as error: " + str(e))
             traceback.print_exc()
             
     def validate(self, template_file="HPV_001.ini"):
         try:
             validator = ConfigParser.ConfigParser()
-            validator.read(self.config_dir + template_file)
+            validator.read(self.ini_dir + template_file)
         except:
             e = sys.exc_info()
             print("Configuration file error: " + str(e))
@@ -95,12 +113,14 @@ class HPVManager:
                 #DebugPrint(option_type)
                 value = self.getOption(section, option, option_type)
                 #DebugPrint(type(value))
-                option = option.upper()
+                
                 dict1[option] = value
+                dict1[option.upper()] = value
                 if dict1[option] == -1:
                     DebugPrint("skip: %s" % option)
             except:
                 print("get section map: exception on %s" % option)
+                dict1[option] = None
                 dict1[option.upper()] = None
         return dict1
     
@@ -109,15 +129,17 @@ class HPVManager:
     
     def getOption(self, section, option, type=None):
         try:
-            #DebugPrint(type)
+            DebugPrint(section + ":" + option)
             if type == 'bool':
                 value = self.parser.getboolean(section, option)
             elif type == 'int':
                 value = self.parser.getint(section, option)
             elif type == 'float':
                 value = self.parser.getfloat(section, option)                
-            else:        
+            else:
+                DebugPrint("fallback here")
                 value = self.parser.get(section, option)
+                DebugPrint(value)
         except:
             print("get option : exception on %s:" % option)
             value = None        

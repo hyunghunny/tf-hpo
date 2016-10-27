@@ -54,6 +54,7 @@ class PerformanceCSVLogger:
         #fomatter = logging.Formatter('[%(levelname)s|%(filename)s:%(lineno)s] %(asctime)s > %(message)s')
         file_formatter = logging.Formatter(self.csv_format)
         
+        
         # Create handles to redirect the log to each stream and file
         fileHandler = logging.FileHandler(self.path)
         #streamHandler = logging.StreamHandler()
@@ -90,6 +91,10 @@ class PerformanceCSVLogger:
             hyperparams += "," + str(dict[param])
         self.hyperparams_vector = hyperparams
         
+    
+    def getParamList(self):
+        return self.params_list
+    
     def delete(self) :
         handlers = self.logger.handlers[:]
         for handler in handlers:
@@ -118,7 +123,7 @@ class PerformanceCSVLogger:
         if self.steps_epoch == 0:
             epochs = "NA"
         else:
-            epochs = "{0:.2g}".format(self.steps_epoch)
+            epochs = "{0:.2f}".format(float(step) / float(self.steps_epoch))
             
         #print(timegap)
         accumulated_time = sum(self.elapsed_times_dict[measure_type])

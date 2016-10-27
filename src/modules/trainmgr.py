@@ -1,64 +1,117 @@
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import os
+import sys
+import getopt
+import traceback
+from multiprocessing import Pool, Lock, Manager, Process
+
+import models.cnn_model as model
+
+import tensorflow as tf
+
+import pickle
+from modules.logger import PerformanceCSVLogger
+from modules.predictor import PerformancePredictor
+from modules.hpvconf import HPVGenerator
+from modules.hpmgr import HPVManager
+
+from random import shuffle
+
 
 class TrainingManager:
     
-    def __init__(self, dataset, params_list):
-        self.dataset = dataset
-        self.params_list = params_list
-        self.num_epochs = 1
-        self.logger = None
-        self.predictor = None        
+    def __init__(self, model, config):        
+        self.model = model
+        
+        self.cfg = config
+        
         self.dev_type = 'cpu'
         self.num_devs = 1
-        self.do_validation = False
-        self.pickle_file = PARAMS_LIST_PICKLE_FILE
         
-    def setPickleFile(self, pickle_file):
+        self.validation = False
+        self.logging = True
+        
+        self.hyperparams = []
+        self.metrics = ['Test Error', 'Validation Error', 'Training Error']
+        
+        self.early_stop = False
+        self.early_stop_check_epochs = 1
+
+        self.pickle_file = "backup.pickle"
+        
+        self.hpv_file_list = []
+        
+    def setPickle(self, pickle_file):
         self.pickle_file = pickle_file
     
-    def setTrainingDevices(self, dev_type, num_devs):
-        if dev_type is 'cpu':
-            self.dev_type = dev_type
-        elif dev_type is 'gpu':
-            self.dev_type = dev_type
-            
-        self.num_devs = num_devs
-        
-    def setEpochs(self, num_epochs):
-        self.num_epochs = num_epochs
-        
-    def setHyperparamTemplate(self, template_file):
-        self.template_file = template_file
-        
-    def setValidationProcess(do_val):
-        self.do_validation = do_val
     
-    def train(self, params, process_index = 0):
-        eval_device_id = '/' + self.dev_type + ':' + str(process_index)
+    def setTrainingDevices(self, dev_type, num_devs):
+        self.dev_type = dev_type            
+        self.num_devs = num_devs
+
+    def enableValidation(self, flag):
+        self.validation = flag
+    
+    def enableLogging(self, flag):
+        self.logging = flag
+    
+    def setLoggingParams(self, hyperparams):
+        self.hyperparams = hyperparams
+ 
+    def setLoggingMetrics(self, metrics):
+        self.metrics = metrics
+
+    def enableEarlyStop(self, flag, db_log_path=None, min_epochs=1):
+        self.early_stop = flag
+        if self.early_stop is True:
+            self.validation = self.early_stop
+            self.early_stop_check_epochs = min_epochs
+    
+
+    def train(self, hpv, process_index = 0):
+        #print(self.dev_type)
+        test_device_id = '/' + self.dev_type + ':' + str(process_index)
         train_device_id = '/' + self.dev_type + ':' + str(process_index)
 
-        return model.learn(self.dataset, \
-                           params,\
-                           train_dev = train_device_id, \
-                           eval_dev = eval_device_id,\
-                           do_validation = self.do_validation, \
-                           epochs = self.num_epochs,\
-                           logger = self.logger,\
-                           predictor = self.predictor)        
+        
+        if self.cfg is not None:
+            hpv.setOption('Execution', 'output_log_file', self.cfg.train_log_path)
+        hpv.setOption('Execution', 'train_device_id', train_device_id)
+        hpv.setOption('Execution', 'test_device_id', test_device_id)
+        hpv.setOption('Execution', 'validation', self.validation)
+        hpv.setOption('Execution', 'early_stop_check_epochs', self.early_stop_check_epochs)
+
+        if self.logging:
+            logger = PerformanceCSVLogger(self.cfg.train_log_path)
+            logger.create(self.hyperparams, self.metrics)    
+            logger.setSetting(hpv.getPath())
+            self.model.setLogger(logger)
+        
+        if self.early_stop:
+            predictor = PerformancePredictor(self.cfg.train_log_path)
+            self.model.setPredictor(predictor)
+        
+        hpv.save()
+        
+        self.model.learn(hpv)    
     
-    def runConcurrent(self, num_processes):
+    def runAll(self, hpv_file_list = None, num_processes=1):
         try:
-            working_params_list = []
-            while len(params_list) > 0:
+            self.hpv_file_list = hpv_file_list
+            working_hpv_list = []
+            while len(self.hpv_file_list) > 0:
                 processes = []
                 for p in range(num_processes):
-                    if len(params_list) is 0:
+                    if len(hpv_file_list) is 0:
                         break
                     else:
-                        params = params_list.pop(0) # for FIFO
-                        working_params_list.append(params)
-
-                        #processes.append(Process(target=train_model, args=(p, dataset, params, epochs, logger, predictor)))
-                        processes.append(Process(target=self.train, args=(params, p)))
+                        hpv_file = self.hpv_file_list.pop(0) # for FIFO
+                        working_hpv_list.append(hpv_file)
+                        hpv = HPVManager(hpv_file)
+                        processes.append(Process(target=self.train, args=(hpv, p)))
 
                 # start processes at the same time
                 for k in range(len(processes)):
@@ -67,21 +120,40 @@ class TrainingManager:
                 for j in range(len(processes)):
                     processes[j].join()
                 # XXX: to prepare shutdown
-                self.saveRemains(params_list)
+                self.backup()
 
         except:
             # save undone params list to pickle file
-            remains_list = params_list + working_params_list
-            self.saveRemains(remains_list)
+            self.hpv_file_list = self.hpv_file_list + working_hpv_list
+            self.backup()
+            traceback.print_exc()
             sys.exit(-1)
         
-    def saveRemains(params_list):        
-        print(str(len(params_list)) + " params remained to learn")
+    def backup(self):        
+        
         try:
             with open(self.pickle_file, 'wb') as f:
-                pickle.dump(params_list, f)
-                print(self.pickle_file + " saved properly")
+                pickle.dump(self.hpv_file_list, f)
+                print(str(len(self.hpv_file_list)) + " HPV files remained.")
         except:
             e = sys.exc_info()
             traceback.print_exc()
-            print(e) 
+            print(e)
+            
+    def restore(self):
+        try:
+            hpv_file_list = []
+            if os.path.exists(self.pickle_file):
+                with open(self.pickle_file, 'rb') as f:
+                    hpv_file_list = pickle.load(f)
+                    print("restore remained HPV files :" + str(len(self.hpv_file_list)))
+
+        except:
+            e = sys.exc_info()
+            print("Pickle file error: " + str(e))
+            traceback.print_exc()
+            hpv_file_list = []
+
+        finally:
+            self.hpv_file_list = hpv_file_list
+            return self.hpv_file_list
