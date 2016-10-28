@@ -23,10 +23,10 @@ from random import shuffle
 
 class TrainingManager:
     
-    def __init__(self, model, config):        
+    def __init__(self, model, train_log_path):        
         self.model = model
         
-        self.cfg = config
+        self.train_log_path = train_log_path
         
         self.dev_type = 'cpu'
         self.num_devs = 1
@@ -69,29 +69,26 @@ class TrainingManager:
         if self.early_stop is True:
             self.validation = self.early_stop
             self.early_stop_check_epochs = min_epochs
-    
 
-    def train(self, hpv, process_index = 0):
+    def run(self, hpv, process_index = 0):
         #print(self.dev_type)
         test_device_id = '/' + self.dev_type + ':' + str(process_index)
         train_device_id = '/' + self.dev_type + ':' + str(process_index)
-
         
-        if self.cfg is not None:
-            hpv.setOption('Execution', 'output_log_file', self.cfg.train_log_path)
+        hpv.setOption('Execution', 'output_log_file', self.train_log_path)
         hpv.setOption('Execution', 'train_device_id', train_device_id)
         hpv.setOption('Execution', 'test_device_id', test_device_id)
         hpv.setOption('Execution', 'validation', self.validation)
         hpv.setOption('Execution', 'early_stop_check_epochs', self.early_stop_check_epochs)
 
         if self.logging:
-            logger = PerformanceCSVLogger(self.cfg.train_log_path)
+            logger = PerformanceCSVLogger(self.train_log_path)
             logger.create(self.hyperparams, self.metrics)    
             logger.setSetting(hpv.getPath())
             self.model.setLogger(logger)
         
         if self.early_stop:
-            predictor = PerformancePredictor(self.cfg.train_log_path)
+            predictor = PerformancePredictor(self.train_log_path)
             self.model.setPredictor(predictor)
         
         hpv.save()
@@ -111,7 +108,7 @@ class TrainingManager:
                         hpv_file = self.hpv_file_list.pop(0) # for FIFO
                         working_hpv_list.append(hpv_file)
                         hpv = HPVManager(hpv_file)
-                        processes.append(Process(target=self.train, args=(hpv, p)))
+                        processes.append(Process(target=self.run, args=(hpv, p)))
 
                 # start processes at the same time
                 for k in range(len(processes)):

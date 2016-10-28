@@ -1,4 +1,0 @@
-filter_size [1, 14] [1]i
-conv1_depth [1, 512] [1]i
-conv2_depth [1, 512] [1]i
-fc_depth [1, 512] [1]i

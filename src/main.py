@@ -13,7 +13,7 @@ import models.cnn_model as model
 import tensorflow as tf
 
 from modules.trainmgr import TrainingManager
-from modules.hpvconf import HPVGenerator
+from modules.hpvconf import HPVGridGenerator
 import models.mnist_data as mnist
 from models.cnn_model import CNN
 
@@ -21,7 +21,7 @@ CFG_PATH = "main.cfg"
 HPV_TEMPLATE_FILE = 'CNN_HPV.ini'
 PICKLE_PATH = 'temp/backup.pickle'
 NUM_GPUS = 4
-MAX_COUNT = 10 # limits the number of each hyperparameter values 
+MAX_COUNT = 10 # limits the number of each hyperparameter values (use for debugging purpose)
 RESUME = False
 
 # CLI interface definition
@@ -36,13 +36,14 @@ def main(argv=None):
     try:
         cfg = Config(file(FLAGS.config))
         # generate hyperparameter vectors from configurator's configuration
-        generator = HPVGenerator(cfg)
-        generator.loadTemplate(cfg.ini_template_path)
-        grid_search_list = generator.grid(MAX_COUNT)
+        generator = HPVGridGenerator(cfg)
+        generator.setTemplate(cfg.ini_template_path)
+        grid_search_list = generator.generate(MAX_COUNT)
                 
-        train_manager = TrainingManager(CNN(mnist.import_dataset()), cfg)
+        train_manager = TrainingManager(CNN(mnist.import_dataset()), cfg.train_log_path)
         train_manager.setTrainingDevices('gpu', NUM_GPUS)
         train_manager.setPickle(PICKLE_PATH)
+        train_manager.enableValidation(cfg.enable_validation)
         
         train_manager.setLoggingParams([ hyperparam for hyperparam in cfg.hyperparameters])
         

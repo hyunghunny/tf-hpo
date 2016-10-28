@@ -133,7 +133,7 @@ class PerformanceCSVLogger:
         for metric in self.metrics_list:
             if metric in metrics_dict:
                 value = metrics_dict[metric]                
-                msg = msg + ",{:.3f}".format(value)
+                msg = msg + ",{:.5f}".format(value)
             else:
                 msg = msg + ",NA"
                 

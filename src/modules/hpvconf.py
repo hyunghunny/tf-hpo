@@ -8,16 +8,35 @@ import math
 from modules.hpmgr import HPVManager
 import itertools
 
-
 class HPVGenerator:
+    def __init__(self):
+        self.template_file = "CNN_HPV.ini"
+    
+    def setTemplate(self, template_file):
+        self.template_file = template_file
+        
+    def generate(self, param_dict, prefix="HPV_", output_dir="./config/"):        
+        ''' produce a hyperparameter vector with given param_dict '''        
+        try:
+            hpv = HPVManager(self.template_file, output_dir)
+            for key in param_dict:
+                value = param_dict[key]
+                hpv.setOption('Hyperparameters', key, value)
+            new_hpv_file = hpv.saveAs(prefix=prefix)            
+            
+        except:
+            traceback.print_exc()
+           
+        return new_hpv_file
+
+    
+class HPVGridGenerator(HPVGenerator):
     def __init__(self, config, cfg_dir = "./"):
         self.cfg = config 
         self.hpv_file_list = []
+ 
     
-    def loadTemplate(self, template_file):
-        self.template_file = template_file
-    
-    def grid(self, max_count=100, output_dir = "./config/"):
+    def generate(self, max_count=100, output_dir="./config/"):
         '''produce hyperparameter vectors by cartesian product'''
         hp_values_dict = {}
         
@@ -82,27 +101,4 @@ class HPVGenerator:
             item = item + spans[i] 
 
         return values
-
-
-def prevalidate(params_list):
-    predictor = PerformancePredictor(DB_LOB_PATH)
-    if predictor.load() is False:
-        print("Unable to load training log")
-        return params_list
-    else:        
-        validated_list = []
-        for i in range(len(params_list)):
-            params = params_list[i]
-            #print ("Show your content: " + str(params))
-            result = predictor.validate(Param1=params["filter_size"], Param2=params["conv1_depth"],\
-                                      Param3=params["conv2_depth"], Param4=params["fc_depth"])
-            if result is True:
-                validated_list.append(params)
-            '''
-            else:
-                print(str(params) + " is not appropriate to learn. Therefore, skip it")
-            '''
-        return validated_list        
-
-
 

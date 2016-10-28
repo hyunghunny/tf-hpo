@@ -301,8 +301,7 @@ class CNN(ModelInterface):
                 tf.float32,
                 shape=(self.hp["EVAL_BATCH_SIZE"], self.data["image_size"], self.data["image_size"], self.data["num_channels"]))
 
-            # The variables below hold all the trainable weights. They are passed an
-            # initial value which will be assigned when we call:
+            # The variables below hold all the trainable weights. They are passed an initial value which will be assigned when we call:
             # {tf.initialize_all_variables().run()}
             self.conv1_weights = tf.Variable(
                     tf.truncated_normal([self.hp["FILTER_SIZE"], self.hp["FILTER_SIZE"], self.data["num_channels"], self.hp["CONV1_DEPTH"]],
