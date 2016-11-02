@@ -1,12 +1,13 @@
 #!/bin/bash
 HPO_LIB_DIR=~/tf-hpolib/HPOlib
-MODEL_NAME=LeNet-5_EPOCHS_1
 OUTPUT_PATH=`pwd`/plots/
 SEED=23
 if [[ $# != 2 ]]
 then
     echo "Usage: ./run_benchmarks.sh {model name} {optimizer name}"
 fi
+
+MODEL_NAME=$1
 
 if [[ $2 == "smac" ]]  
 then

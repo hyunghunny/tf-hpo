@@ -20,6 +20,9 @@ from modules.hpmgr import HPVManager
 
 from random import shuffle
 
+IN_PROGRESS_PICKLE="ongoing.pickle"
+ERROR_PICKLE="error.pickle"
+REMAIN_PICKLE="remain.pickle"
 
 class TrainingManager:
     
@@ -40,13 +43,12 @@ class TrainingManager:
         self.early_stop = False
         self.early_stop_check_epochs = 1
 
-        self.pickle_file = "backup.pickle"
-        
+        self.pickle_dir = "./"
         self.hpv_file_list = []
+        self.working_hpv_list = []
         
-    def setPickle(self, pickle_file):
-        self.pickle_file = pickle_file
-    
+    def setPickleDir(self, pickle_dir):
+        self.pickle_dir = pickle_dir    
     
     def setTrainingDevices(self, dev_type, num_devs):
         self.dev_type = dev_type            
@@ -93,64 +95,76 @@ class TrainingManager:
         
         hpv.save()
         
-        self.model.learn(hpv)    
+        result = self.model.learn(hpv)
+        
+        # saving working HPV list after learning terminated
+        self.working_hpv_list = self.restore(IN_PROGRESS_PICKLE)
+        hpv_file = hpv.getPath()
+        print ("Training with " + hpv_file + " is terminated properly"
+        self.working_hpv_list.remove(hpv_file) 
+        self.backup(self.working_hpv_list, IN_PROGRESS_PICKLE) 
+        
+        return result
     
-    def runAll(self, hpv_file_list = None, num_processes=1):
+    def runAll(self, hpv_file_list, num_processes=1):
         try:
             self.hpv_file_list = hpv_file_list
-            working_hpv_list = []
-            while len(self.hpv_file_list) > 0:
+            
+            while len(self.hpv_file_list) > 0:                
                 processes = []
                 for p in range(num_processes):
-                    if len(hpv_file_list) is 0:
-                        break
-                    else:
+                    if len(self.hpv_file_list) > 0:
                         hpv_file = self.hpv_file_list.pop(0) # for FIFO
-                        working_hpv_list.append(hpv_file)
+                        self.working_hpv_list.append(hpv_file)                        
                         hpv = HPVManager(hpv_file)
                         processes.append(Process(target=self.run, args=(hpv, p)))
 
+                
+                self.backup(self.hpv_file_list, REMAIN_PICKLE)
+                self.backup(self.working_hpv_list, IN_PROGRESS_PICKLE) # saving working HPV list before learning is terminated 
                 # start processes at the same time
                 for k in range(len(processes)):
                     processes[k].start()
+                
                 # wait until processes done
                 for j in range(len(processes)):
                     processes[j].join()
-                # XXX: to prepare shutdown
-                self.backup()
+                
+                self.working_hpv_list = []
 
         except:
-            # save undone params list to pickle file
-            self.hpv_file_list = self.hpv_file_list + working_hpv_list
-            self.backup()
+            # save undone params list to pickle file            
+            error_list = self.restore(ERROR_PICKLE)
+            error_list = error_list + self.working_hpv_list
+            self.backup(error_list, ERROR_PICKLE)
             traceback.print_exc()
             sys.exit(-1)
         
-    def backup(self):        
+    def backup(self, file_list, pickle_file):        
         
         try:
-            with open(self.pickle_file, 'wb') as f:
-                pickle.dump(self.hpv_file_list, f)
-                print(str(len(self.hpv_file_list)) + " HPV files remained.")
+            pickle_path = self.pickle_dir + pickle_file
+            with open(pickle_path, 'wb') as f:
+                pickle.dump(file_list, f)
+                print("Backup " + str(len(file_list)) + " HPV files to " + pickle_file)
         except:
             e = sys.exc_info()
             traceback.print_exc()
             print(e)
             
-    def restore(self):
+    def restore(self, pickle_file):
+        hpv_file_list = []
+        pickle_path = self.pickle_dir + pickle_file
         try:
-            hpv_file_list = []
-            if os.path.exists(self.pickle_file):
-                with open(self.pickle_file, 'rb') as f:
+            if os.path.exists(pickle_path):
+                with open(pickle_path, 'rb') as f:
                     hpv_file_list = pickle.load(f)
-                    print("restore remained HPV files :" + str(len(self.hpv_file_list)))
+                    print("restore " + str(len(hpv_file_list)) + " HPV files at " + pickle_path)
 
         except:
-            e = sys.exc_info()
-            print("Pickle file error: " + str(e))
+            e = sys.exc_info()            
             traceback.print_exc()
             hpv_file_list = []
 
         finally:
-            self.hpv_file_list = hpv_file_list
-            return self.hpv_file_list
+            return hpv_file_list

@@ -34,7 +34,7 @@ def main(params, **kwargs):    # pylint: disable=unused-argument
         train_manager.setTrainingDevices('gpu', NUM_GPUS)
         train_manager.setLoggingParams([ hyperparam for hyperparam in params])
         hpv = HPVManager(hpv_file, ini_dir=CONFIG_PATH)
-        train_manager.run(hpv)
+        return train_manager.run(hpv)
            
     except:
         e = sys.exc_info()
