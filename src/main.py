@@ -42,7 +42,7 @@ def main(argv=None):
         # generate hyperparameter vectors from configurator's configuration
         generator = HPVGridGenerator(cfg)
         generator.setTemplate(cfg.ini_template_path)
-        grid_search_list = generator.generate(MAX_COUNT)
+        hpv_list = generator.generate(MAX_COUNT)
                 
         train_manager = TrainingManager(CNN(mnist.import_dataset()), cfg.train_log_path)
         train_manager.setTrainingDevices('gpu', NUM_GPUS)
@@ -62,10 +62,10 @@ def main(argv=None):
             restore_list = train_manager.restore(FLAGS.pickle)
             
             if len(restore_list) > 0:
-                grid_search_list = restore_list
-                print ("previous HPV list is restored: " + str(len(grid_search_list)))
-        #print (grid_search_list)
-        train_manager.runAll(grid_search_list, num_processes=FLAGS.concurrent)
+                hpv_list = restore_list
+                print ("previous HPV list is restored: " + str(len(hpv_list)))
+        #print (hpv_list)
+        train_manager.runAll(hpv_list, num_processes=FLAGS.concurrent)
            
     except:
         e = sys.exc_info()

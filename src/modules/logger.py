@@ -14,12 +14,13 @@ import time
 import logging
 import logging.handlers
 import traceback
-
+from multiprocessing import Lock
 
 class PerformanceCSVLogger:
-    def __init__(self, path):
+    def __init__(self, path, lock=None):
         self.path = path
         self.setting = ""
+        self.lock = lock
         
     def __del__(self):
         self.delete()
@@ -71,10 +72,13 @@ class PerformanceCSVLogger:
 
         # add the head if it doesn't existed yet
         if os.path.getsize(self.path) < 10 :
+            if self.lock:
+                self.lock.acquire()
             f = open(self.path, 'w')
             f.writelines([self.csv_header + os.linesep])
             f.close()
-            #logger.info(self.csv_header)
+            if self.lock:
+                self.lock.release()
             
         self.logger = logger
 
@@ -138,7 +142,11 @@ class PerformanceCSVLogger:
                 msg = msg + ",NA"
                 
         msg = msg + self.hyperparams_vector
+        if self.lock:
+                self.lock.acquire()
         self.logger.debug(msg) # print out to log file
+        if self.lock:
+                self.lock.release()
         self.setTimer(measure_type) # reset timer        
 
      

@@ -6,7 +6,7 @@ import os
 import sys
 import getopt
 import traceback
-from multiprocessing import Pool, Lock, Manager, Process
+from multiprocessing import Lock, Manager, Process
 
 import models.cnn_model as model
 
@@ -47,6 +47,8 @@ class TrainingManager:
         self.hpv_file_list = []
         self.working_hpv_list = []
         
+        self.lock = Lock()
+        
     def setPickleDir(self, pickle_dir):
         self.pickle_dir = pickle_dir    
     
@@ -84,7 +86,7 @@ class TrainingManager:
         hpv.setOption('Execution', 'early_stop_check_epochs', self.early_stop_check_epochs)
 
         if self.logging:
-            logger = PerformanceCSVLogger(self.train_log_path)
+            logger = PerformanceCSVLogger(self.train_log_path, lock=self.lock)
             logger.create(self.hyperparams, self.metrics)    
             logger.setSetting(hpv.getPath())
             self.model.setLogger(logger)
@@ -100,9 +102,10 @@ class TrainingManager:
         # saving working HPV list after learning terminated
         self.working_hpv_list = self.restore(IN_PROGRESS_PICKLE)
         hpv_file = hpv.getPath()
-        print ("Training with " + hpv_file + " is terminated properly"
-        self.working_hpv_list.remove(hpv_file) 
-        self.backup(self.working_hpv_list, IN_PROGRESS_PICKLE) 
+        print ("Training with " + hpv_file + " is terminated properly")
+        if hpv_file in self.working_hpv_list:
+            self.working_hpv_list.remove(hpv_file) 
+            self.backup(self.working_hpv_list, IN_PROGRESS_PICKLE) 
         
         return result
     
@@ -118,7 +121,6 @@ class TrainingManager:
                         self.working_hpv_list.append(hpv_file)                        
                         hpv = HPVManager(hpv_file)
                         processes.append(Process(target=self.run, args=(hpv, p)))
-
                 
                 self.backup(self.hpv_file_list, REMAIN_PICKLE)
                 self.backup(self.working_hpv_list, IN_PROGRESS_PICKLE) # saving working HPV list before learning is terminated 
@@ -160,7 +162,6 @@ class TrainingManager:
                 with open(pickle_path, 'rb') as f:
                     hpv_file_list = pickle.load(f)
                     print("restore " + str(len(hpv_file_list)) + " HPV files at " + pickle_path)
-
         except:
             e = sys.exc_info()            
             traceback.print_exc()
