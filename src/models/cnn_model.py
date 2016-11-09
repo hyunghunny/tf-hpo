@@ -128,7 +128,7 @@ class CNN(ModelInterface):
                     staircase=True)
             global_step = batch
         else:
-            learning_rate = self.hp["STATIC_LEARNING_RATE"]
+            learning_rate = tf.Variable(self.hp["BASE_LEARNING_RATE"]) # self.hp["STATIC_LEARNING_RATE"]
             global_step = None
 
         
@@ -389,7 +389,7 @@ class CNN(ModelInterface):
             # Add a dropout during training only. Dropout also scales
             # activations such that no rescaling is needed at evaluation time.
             if train:
-                hidden = tf.nn.dropout(hidden, self.hp["DROPOUT_RATE"], seed=self.hp["SEED"])
+                hidden = tf.nn.dropout(hidden, 1.0 - self.hp["DROPOUT_RATE"], seed=self.hp["SEED"])
 
         return tf.matmul(hidden, self.output_weights) + self.output_biases
 

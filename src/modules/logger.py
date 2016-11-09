@@ -28,8 +28,9 @@ class PerformanceCSVLogger:
     def create(self, params_list, metrics_list):
         num_params = len(params_list)
         num_metrics = len(metrics_list)
+        column_names = "Timestamp,Msec,Setting,Measure Type,Step,Epoch,Elapsed Time"
         self.csv_format = '%(asctime)s,%(message)s'
-        self.csv_header = "Timestamp,Msec,Setting,Measure Type,Step,Epoch,Elapsed Time"
+        self.csv_header = column_names
         self.num_metrics = num_metrics
         self.num_params = num_params
         self.timers = {}
@@ -38,12 +39,15 @@ class PerformanceCSVLogger:
         self.metrics_list = metrics_list
         self.steps_epoch = 0
         
+        metric_names = ""
         for m in metrics_list:
-            self.csv_header = self.csv_header + "," + m
-            
+            metric_names = metric_names + "," + m
+        self.csv_header = self.csv_header + metric_names
+        
+        params_names = ""
         for p in params_list:
-            self.csv_header = self.csv_header + "," + p
-       
+            params_names = params_names + "," + p
+        self.csv_header = self.csv_header + params_names
         
         # set timezone as GMT+9 
         
@@ -79,6 +83,30 @@ class PerformanceCSVLogger:
             f.close()
             if self.lock:
                 self.lock.release()
+        else:
+            f = open(self.path, 'r')
+            csv_header = f.readline()
+            csv_header = csv_header.rstrip()
+            f.close()
+            if csv_header != self.csv_header:
+                print "CAUTION! the logging column number or order is different"
+                metrics_params_list = csv_header.replace(column_names, "").split(",")
+                adjusted_metrics = []
+                adjusted_params = []
+                for col in metrics_params_list:
+                    if col is "":
+                        print metrics_params_list
+                        pass
+                    elif col in metrics_list:
+                        adjusted_metrics.append(col)
+                    elif col in params_list:
+                        adjusted_params.append(col)
+                    else:
+                        print "missing column is existed: " + col
+                        raise ValueError("Compatiblity error: missing column is found in existed log file")
+                        
+                self.params_list = adjusted_params
+                self.metrics_list = adjusted_metrics 
             
         self.logger = logger
 

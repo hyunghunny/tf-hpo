@@ -99,13 +99,14 @@ class TrainingManager:
         
         result = self.model.learn(hpv)
         
-        # saving working HPV list after learning terminated
-        self.working_hpv_list = self.restore(IN_PROGRESS_PICKLE)
-        hpv_file = hpv.getPath()
-        print ("Training with " + hpv_file + " is terminated properly")
-        if hpv_file in self.working_hpv_list:
-            self.working_hpv_list.remove(hpv_file) 
-            self.backup(self.working_hpv_list, IN_PROGRESS_PICKLE) 
+        if result:
+            # saving working HPV list after learning terminated
+            self.working_hpv_list = self.restore(IN_PROGRESS_PICKLE)
+            hpv_file = hpv.getPath()
+            print ("Training with " + hpv_file + " is terminated properly")
+            if hpv_file in self.working_hpv_list:
+                self.working_hpv_list.remove(hpv_file) 
+                self.backup(self.working_hpv_list, IN_PROGRESS_PICKLE) 
         
         return result
     
