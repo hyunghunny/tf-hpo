@@ -2,7 +2,7 @@ language: PYTHON
 name:     "HPOlib.cv"
 
 variable {
- name: "filter_size"
+ name: "FILTER_SIZE"
  type: INT
  size: 1
  min:  1
@@ -10,7 +10,7 @@ variable {
 }
 
 variable {
- name: "conv1_depth"
+ name: "CONV1_DEPTH"
  type: INT
  size: 1
  min:  1
@@ -18,7 +18,7 @@ variable {
 }
 
 variable {
- name: "conv2_depth"
+ name: "CONV2_DEPTH"
  type: INT
  size: 1
  min:  1
@@ -26,9 +26,33 @@ variable {
 }
 
 variable {
- name: "fc_depth"
+ name: "FC1_WIDTH"
  type: INT
  size: 1
  min:  1
- max:  512
+ max:  1024
+}
+
+variable {
+ name: "BASE_LEARNING_RATE"
+ type: FLOAT
+ size: 1
+ min:  0.0001
+ max:  0.1
+}
+
+variable {
+ name: "DROPOUT_RATE"
+ type: FLOAT
+ size: 1
+ min:  0.1
+ max:  1
+}
+
+variable {
+ name: "REGULARIZER_FACTOR"
+ type: FLOAT
+ size: 1
+ min:  0
+ max:  1
 }

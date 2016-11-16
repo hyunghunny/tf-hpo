@@ -113,15 +113,17 @@ class TrainingManager:
     def runAll(self, hpv_file_list, num_processes=1):
         try:
             self.hpv_file_list = hpv_file_list
-            
+            dev_ids = [i for i in range(self.num_devs)]
+            dev_ids.reverse() # use higher device id first           
             while len(self.hpv_file_list) > 0:                
                 processes = []
                 for p in range(num_processes):
+                    
                     if len(self.hpv_file_list) > 0:
                         hpv_file = self.hpv_file_list.pop(0) # for FIFO
                         self.working_hpv_list.append(hpv_file)                        
                         hpv = HPVManager(hpv_file)
-                        processes.append(Process(target=self.run, args=(hpv, p)))
+                        processes.append(Process(target=self.run, args=(hpv, dev_ids[p])))
                 
                 self.backup(self.hpv_file_list, REMAIN_PICKLE)
                 self.backup(self.working_hpv_list, IN_PROGRESS_PICKLE) # saving working HPV list before learning is terminated 

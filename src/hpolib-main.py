@@ -16,25 +16,25 @@ from modules.trainmgr import TrainingManager
 import HPOlib.benchmark_util as benchmark_util
 import HPOlib.benchmark_functions as benchmark_functions
 
-LOG_PATH = '../../log/hpolib-history.csv'
-TEMPLATE_PATH = '../../src/CNN_HPV.ini'
-CONFIG_PATH = '../../src/config/'
-NUM_GPUS = 1 # only one gpu can be used for HPOlib
+from config import Config
+
+CONFIG_FILE = "../../src/hpolib.cfg"
 
 def main(params, **kwargs):    # pylint: disable=unused-argument
     
     print('Params: '+ str(params))
     
-    try:        
+    try:
+        cfg = Config(file(CONFIG_FILE))
         generator = HPVGenerator()
-        generator.setTemplate(TEMPLATE_PATH)
-        hpv_file = generator.generate(params, output_dir=CONFIG_PATH)
+        generator.setTemplate(cfg.TEMPLATE_PATH)
+        hpv_file = generator.generate(params, output_dir=cfg.CONFIG_PATH)
                 
-        train_manager = TrainingManager(CNN(mnist.import_dataset()), LOG_PATH)
-        train_manager.setTrainingDevices('gpu', NUM_GPUS)
+        train_manager = TrainingManager(CNN(mnist.import_dataset()), cfg.LOG_PATH)
+        train_manager.setTrainingDevices('gpu', cfg.NUM_GPUS)
         train_manager.setLoggingParams([ hyperparam for hyperparam in params])
-        hpv = HPVManager(hpv_file, ini_dir=CONFIG_PATH)
-        return train_manager.run(hpv)
+        hpv = HPVManager(hpv_file, ini_dir=cfg.CONFIG_PATH)
+        return train_manager.run(hpv, cfg.GPU_ID)
            
     except:
         e = sys.exc_info()
