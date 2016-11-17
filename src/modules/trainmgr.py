@@ -26,17 +26,22 @@ REMAIN_PICKLE="remain.pickle"
 
 class TrainingManager:
     
-    def __init__(self, model, train_log_path):        
+    def __init__(self, model, train_log_path = None):        
         self.model = model
         
-        self.train_log_path = train_log_path
         
         self.dev_type = 'cpu'
         self.num_devs = 1
         
         self.validation = False
-        self.logging = True
+
+        self.train_log_path = train_log_path
         
+        if train_log_path is None:
+            self.logging = False
+        else:
+            self.logging = True
+            
         self.hyperparams = []
         self.metrics = ['Test Error', 'Validation Error', 'Training Error']
         
@@ -59,8 +64,9 @@ class TrainingManager:
     def enableValidation(self, flag):
         self.validation = flag
     
-    def enableLogging(self, flag):
+    def enableLogging(self, flag, train_log_path = None):
         self.logging = flag
+        self.train_log_path = train_log_path
     
     def setLoggingParams(self, hyperparams):
         self.hyperparams = hyperparams
@@ -77,8 +83,8 @@ class TrainingManager:
     def run(self, hpv, process_index = 0):
         #print(self.dev_type)
         test_device_id = '/' + self.dev_type + ':' + str(process_index)
-        train_device_id = '/' + self.dev_type + ':' + str(process_index)
-        
+        train_device_id = '/' + self.dev_type + ':' + str(process_index)        
+                
         hpv.setOption('Execution', 'output_log_file', self.train_log_path)
         hpv.setOption('Execution', 'train_device_id', train_device_id)
         hpv.setOption('Execution', 'test_device_id', test_device_id)

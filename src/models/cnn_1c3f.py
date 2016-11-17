@@ -38,22 +38,17 @@ import datetime
 import tensorflow as tf
 from modules.logger import PerformanceCSVLogger
 from modules.predictor import PerformancePredictor
-
+from modules.interface import ModelInterface
 
 # For learning rate decay
 CPU_DEVICE_ID = '/cpu:0'
 
 # LOG LEVEL
-SHOW_DEBUG = True
+SHOW_DEBUG = False
 SHOW_ERR = True
 
-# Abstract interface for models
-class ModelInterface:
-    def learn(self, dataset, configuration, **kwargs):
-        raise NotImplementedError()
 
-
-class LeNet5(ModelInterface):
+class CNN1C3F(ModelInterface):
     def __init__(self, dataset):
         self.data = dataset
         self.logger = None
@@ -88,7 +83,7 @@ class LeNet5(ModelInterface):
                     
     def train(self):
 
-        train_size = self.data["train_labels"].shape[0]
+        train_size = self.data["TRAIN_LABELS"].shape[0]
 
         # This is where training samples and labels are fed to the graph.
         # parameter type casting 
@@ -168,8 +163,9 @@ class LeNet5(ModelInterface):
             debug("total epoch num: " + str(self.hp["NUM_EPOCHS"]) + 
                   ", total steps: " + str(int(self.hp["NUM_EPOCHS"] * train_size) // self.hp["BATCH_SIZE"]))            
             
-            if self.logger:
-                steps_per_epoch = int(train_size // self.hp["BATCH_SIZE"])
+            steps_per_epoch = int(train_size // self.hp["BATCH_SIZE"])
+            
+            if self.logger:                
                 self.logger.setStepsPerEpoch(steps_per_epoch)
             
             for i in xrange(self.hp["NUM_EPOCHS"] * steps_per_epoch):
@@ -178,8 +174,8 @@ class LeNet5(ModelInterface):
                 # Compute the offset of the current minibatch in the data.
                 # Note that we could use better randomization across epochs.
                 offset = (step * self.hp["BATCH_SIZE"]) % (train_size - self.hp["BATCH_SIZE"])
-                batch_data = self.data["train_data"][offset:(offset + self.hp["BATCH_SIZE"]), ...]
-                batch_labels = self.data["train_labels"][offset:(offset + self.hp["BATCH_SIZE"])]
+                batch_data = self.data["TRAIN_DATA"][offset:(offset + self.hp["BATCH_SIZE"]), ...]
+                batch_labels = self.data["TRAIN_LABELS"][offset:(offset + self.hp["BATCH_SIZE"])]
 
                 # This dictionary maps the batch data (as a numpy array) to the node in the graph it should be fed to.
                 feed_dict = {self.train_data_node: batch_data,
@@ -204,12 +200,12 @@ class LeNet5(ModelInterface):
                             debug('Minibatch loss: %.3f, learning rate: %.6f' % (l, lr))
                             minibatch_err_rate = error_rate(predictions, batch_labels)
                             debug('Minibatch error rate: %.1f%%' % minibatch_err_rate)
-                            validation_err_rate = error_rate(self.evaluateInBatches(self.data["validation_data"], sess),\
-                                                        self.data["validation_labels"])
+                            validation_err_rate = error_rate(self.evaluateInBatches(self.data["VALIDATION_DATA"], sess),\
+                                                        self.data["VALIDATION_LABELS"])
                             debug('Validation error rate: %.1f%%' % validation_err_rate)
 
                             if self.logger:                                
-                                test_err_rate = error_rate(self.evaluateInBatches(self.data["test_data"], sess), self.data["test_labels"])
+                                test_err_rate = error_rate(self.evaluateInBatches(self.data["TEST_DATA"], sess), self.data["TEST_LABELS"])
                                 debug('Test error rate per evaluation: %.1f%%' % test_err_rate)                            
 
                                 self.logger.measure("eval", step, 
@@ -223,9 +219,9 @@ class LeNet5(ModelInterface):
                 if step % steps_per_epoch == 0:
                     
                     with tf.device(self.flag["TEST_DEVICE_ID"]):                        
-                        validation_err_rate = error_rate(self.evaluateInBatches(self.data["validation_data"], sess),\
-                                                        self.data["validation_labels"])
-                        test_error_rate = error_rate(self.evaluateInBatches(self.data["test_data"], sess), self.data["test_labels"])
+                        validation_err_rate = error_rate(self.evaluateInBatches(self.data["VALIDATION_DATA"], sess),\
+                                                        self.data["VALIDATION_LABELS"])
+                        test_error_rate = error_rate(self.evaluateInBatches(self.data["TEST_DATA"], sess), self.data["TEST_LABELS"])
 
                         if self.logger:
                             self.logger.measure("epoch", step, 
@@ -243,9 +239,9 @@ class LeNet5(ModelInterface):
             # test error calculation after being trained
             with tf.device(self.flag["TEST_DEVICE_ID"]):
                           
-                validation_err_rate = error_rate(self.evaluateInBatches(self.data["validation_data"], sess),\
-                                            self.data["validation_labels"])                    
-                test_error_rate = error_rate(self.evaluateInBatches(self.data["test_data"], sess), self.data["test_labels"])   
+                validation_err_rate = error_rate(self.evaluateInBatches(self.data["VALIDATION_DATA"], sess),\
+                                            self.data["VALIDATION_LABELS"])                    
+                test_error_rate = error_rate(self.evaluateInBatches(self.data["TEST_DATA"], sess), self.data["TEST_LABELS"])   
                 if self.logger:
                     self.logger.measure("total", step, 
                                {"Test Error" : test_error_rate / 100.0, 
@@ -268,13 +264,9 @@ class LeNet5(ModelInterface):
                     debug("Unable to load training log")
                 else:
                     debug("Predicting whether keep learning or not " )
-                    # TODO:refactoring required
-                    togo = self.predictor.check(Param1=self.hp["FILTER_SIZE"], 
-                                                Param2=self.hp["CONV1_DEPTH"], 
-                                                Param3=self.hp["CONV2_DEPTH"], 
-                                                Param4=self.hp["FC1_WIDTH"])
-                    debug("Prediction result: " + str(result))
+                    togo = self.predictor.check(self.hp)                    
                     result = not togo 
+                    debug("Prediction result: " + str(result))
         return result                       
     
     # initialize tensorflow variables which are required to learning
@@ -286,47 +278,58 @@ class LeNet5(ModelInterface):
 
             self.train_data_node = tf.placeholder(
                 tf.float32,
-                shape=(self.hp["BATCH_SIZE"], self.data["image_size"], self.data["image_size"], self.data["num_channels"]))
+                shape=(self.hp["BATCH_SIZE"], self.data["IMAGE_SIZE"], self.data["IMAGE_SIZE"], self.data["NUM_CHANNELS"]))
 
             self.train_labels_node = tf.placeholder(tf.int64, shape=(self.hp["BATCH_SIZE"],))
 
             self.eval_data = tf.placeholder(
                 tf.float32,
-                shape=(self.hp["EVAL_BATCH_SIZE"], self.data["image_size"], self.data["image_size"], self.data["num_channels"]))
+                shape=(self.hp["EVAL_BATCH_SIZE"], self.data["IMAGE_SIZE"], self.data["IMAGE_SIZE"], self.data["NUM_CHANNELS"]))
 
             # The variables below hold all the trainable weights. They are passed an initial value which will be assigned when we call:
             # {tf.initialize_all_variables().run()}
             self.conv1_weights = tf.Variable(
-                    tf.truncated_normal([self.hp["FILTER_SIZE"], self.hp["FILTER_SIZE"], self.data["num_channels"], self.hp["CONV1_DEPTH"]],
+                    tf.truncated_normal([self.hp["FILTER_SIZE"], self.hp["FILTER_SIZE"], self.data["NUM_CHANNELS"], self.hp["CONV1_DEPTH"]],
                                         stddev=self.hp["INIT_STDDEV"],
                                         seed=self.hp["SEED"]))
 
             self.conv1_biases = tf.Variable(tf.zeros([self.hp["CONV1_DEPTH"]]))
 
-            self.conv2_weights = tf.Variable(
-                    tf.truncated_normal([self.hp["FILTER_SIZE"], self.hp["FILTER_SIZE"], self.hp["CONV1_DEPTH"], self.hp["CONV2_DEPTH"]],
-                                                            stddev=self.hp["INIT_STDDEV"],
-                                                            seed=self.hp["SEED"]))
-            self.conv2_biases = tf.Variable(tf.constant(self.hp["INIT_WEIGHT_VALUE"], shape=[self.hp["CONV2_DEPTH"]]))
-
+            resized = self.data["IMAGE_SIZE"] // (self.hp["STRIDE_SIZE"])
             self.fc1_weights = tf.Variable(    # fully connected
                     tf.truncated_normal(                          
-                            [self.data["image_size"] // (2 * self.hp["NUM_POOLING"]) * \
-                             self.data["image_size"] // (2 * self.hp["NUM_POOLING"]) * \
-                             self.hp["CONV2_DEPTH"], 
-                             self.hp["FC1_WIDTH"]],
+                            [ resized * resized * self.hp["CONV1_DEPTH"], 
+                            self.hp["FC1_WIDTH"]],
                             stddev=self.hp["INIT_STDDEV"],
                             seed=self.hp["SEED"]))
 
-            self.fc1_biases = tf.Variable(tf.constant(self.hp["INIT_WEIGHT_VALUE"], shape=[self.hp["FC1_WIDTH"]]))
+            self.fc1_biases = tf.Variable(tf.constant(self.hp["INIT_WEIGHT_VALUE"], shape=[self.hp["FC2_WIDTH"]]))
 
+            self.fc2_weights = tf.Variable(    # fully connected 2
+                    tf.truncated_normal(                          
+                            [self.hp["FC1_WIDTH"], 
+                             self.hp["FC2_WIDTH"]],
+                            stddev=self.hp["INIT_STDDEV"],
+                            seed=self.hp["SEED"]))
+
+            self.fc2_biases = tf.Variable(tf.constant(self.hp["INIT_WEIGHT_VALUE"], shape=[self.hp["FC3_WIDTH"]]))
+
+            self.fc3_weights = tf.Variable(    # fully connected 3
+                    tf.truncated_normal(                          
+                            [self.hp["FC2_WIDTH"], 
+                             self.hp["FC3_WIDTH"]],
+                            stddev=self.hp["INIT_STDDEV"],
+                            seed=self.hp["SEED"]))
+
+            self.fc3_biases = tf.Variable(tf.constant(self.hp["INIT_WEIGHT_VALUE"], shape=[self.hp["FC3_WIDTH"]]))
+            
             # output layer
-            self.output_weights = tf.Variable(tf.truncated_normal([self.hp["FC1_WIDTH"], 
-                                                              self.data["num_labels"]],
+            self.output_weights = tf.Variable(tf.truncated_normal([self.hp["FC3_WIDTH"], 
+                                                              self.data["NUM_LABELS"]],
                                                             stddev=self.hp["INIT_STDDEV"],
                                                             seed=self.hp["SEED"]))
 
-            self.output_biases = tf.Variable(tf.constant(self.hp["INIT_WEIGHT_VALUE"], shape=[self.data["num_labels"]]))    
+            self.output_biases = tf.Variable(tf.constant(self.hp["INIT_WEIGHT_VALUE"], shape=[self.data["NUM_LABELS"]]))    
             
 
     # We will replicate the model structure for the training subgraph, as well
@@ -351,40 +354,34 @@ class LeNet5(ModelInterface):
             pool = tf.nn.max_pool(relu,
                                   ksize=[1, self.hp["POOLING_SIZE"], self.hp["POOLING_SIZE"], 1],
                                   strides=[1, self.hp["STRIDE_SIZE"], self.hp["STRIDE_SIZE"], 1],
-                                  padding='SAME')
-
-            conv = tf.nn.conv2d(pool,
-                                self.conv2_weights,
-                                strides=[1, 1, 1, 1],
-                                padding='SAME')
-
-            relu = tf.nn.relu(tf.nn.bias_add(conv, self.conv2_biases))
-
-            pool = tf.nn.max_pool(relu,
-                                  ksize=[1, self.hp["POOLING_SIZE"], self.hp["POOLING_SIZE"], 1],
-                                  strides=[1, self.hp["STRIDE_SIZE"], self.hp["STRIDE_SIZE"], 1],
-                                  padding='SAME')
+                                  padding=self.hp["PADDING"])
 
             # Reshape the feature map cuboid into a 2D matrix to feed it to the
             # fully connected layers.
             pool_shape = pool.get_shape().as_list()
+            debug('pool shape: ' + str(pool_shape))
             reshape = tf.reshape(
                 pool,
                 [pool_shape[0], pool_shape[1] * pool_shape[2] * pool_shape[3]]) # XXX:I couldn't understand what this operation did
 
-            # Fully connected layer. Note that the '+' operation automatically
-            # broadcasts the biases.
-            #debug(self.fc1_weights.get_shape())
-            #debug(reshape.get_shape())
-
-            hidden = tf.nn.relu(tf.matmul(reshape, self.fc1_weights) + self.fc1_biases)
+            # Fully connected layer. Note that the '+' operation automatically broadcasts the biases.
+            debug('reshaped: ' + str(reshape.get_shape()))
+            debug('fully connected: ' + str(self.fc1_weights.get_shape()))
+            
+            hidden1 = tf.nn.relu(tf.matmul(reshape, self.fc1_weights) + self.fc1_biases)
+            
+            hidden2 = tf.nn.relu(tf.matmul(hidden1, self.fc2_weights) + self.fc2_biases)
+            
+            hidden3 = tf.nn.relu(tf.matmul(hidden2, self.fc2_weights) + self.fc2_biases)
 
             # Add a dropout during training only. Dropout also scales
             # activations such that no rescaling is needed at evaluation time.
             if train:
-                hidden = tf.nn.dropout(hidden, 1.0 - self.hp["DROPOUT_RATE"], seed=self.hp["SEED"])
+                hidden1 = tf.nn.dropout(hidden1, 1.0 - self.hp["DROPOUT_RATE"], seed=self.hp["SEED"])
+                hidden2 = tf.nn.dropout(hidden2, 1.0 - self.hp["DROPOUT_RATE"], seed=self.hp["SEED"])
+                hidden3 = tf.nn.dropout(hidden2, 1.0 - self.hp["DROPOUT_RATE"], seed=self.hp["SEED"])
 
-        return tf.matmul(hidden, self.output_weights) + self.output_biases
+        return tf.matmul(hidden3, self.output_weights) + self.output_biases
 
     
     # Small utility function to evaluate a dataset by feeding batches of data to
@@ -396,7 +393,7 @@ class LeNet5(ModelInterface):
         size = data.shape[0]
         if size < self.hp["EVAL_BATCH_SIZE"]:
             raise ValueError("batch size for evals larger than dataset: %d" % size)
-        predictions = numpy.ndarray(shape=(size, self.data["num_labels"]), dtype=numpy.float32)
+        predictions = numpy.ndarray(shape=(size, self.data["NUM_LABELS"]), dtype=numpy.float32)
         for begin in xrange(0, size, self.hp["EVAL_BATCH_SIZE"]):
             end = begin + self.hp["EVAL_BATCH_SIZE"]
             if end <= size:
@@ -433,20 +430,8 @@ if __name__ == '__main__':
     dataset = mnist.import_dataset()                                    
     
     from modules.hpmgr import HPVManager 
-    
+   
     hpv = HPVManager('HPV_002.ini', ini_dir='../config/')
-    hpv.show()
-    log_file = hpv.getOption('Execution', 'output_log_file')
-    print("log file: " + log_file)
-    hyperparams = ['filter_size', 'pooling_size', 'conv1_depth', 'conv2_depth', 'fc1_width', 'optimization']
-    metrics = ['Test Error', 'Validation Error', 'Training Error']                                 
-    
-    # create logger
-    logger = PerformanceCSVLogger(log_file)
-    logger.create(hyperparams, metrics) 
-    logger.setSetting(hpv.getPath())
-    
-    model = CNN(dataset)
-    model.setLogger(logger)
+    model = CNN1C3F(dataset)
     model.learn(hpv)
     

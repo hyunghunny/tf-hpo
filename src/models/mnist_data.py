@@ -45,17 +45,17 @@ def import_dataset():
 
          
     return {
-        "image_size" : IMAGE_SIZE,
-        "num_channels" : NUM_CHANNELS,
-        "pixel_depth" : PIXEL_DEPTH,
-        "num_labels" : NUM_LABELS,
+        "IMAGE_SIZE" : IMAGE_SIZE,
+        "NUM_CHANNELS" : NUM_CHANNELS,
+        "PIXEL_DEPTH" : PIXEL_DEPTH,
+        "NUM_LABELS" : NUM_LABELS,
         
-        "train_data" : train_data,
-        "train_labels" : train_labels,
-        "validation_data" : validation_data,
-        "validation_labels" : validation_labels,
-        "test_data" : test_data,
-        "test_labels" : test_labels
+        "TRAIN_DATA" : train_data,
+        "TRAIN_LABELS" : train_labels,
+        "VALIDATION_DATA" : validation_data,
+        "VALIDATION_LABELS" : validation_labels,
+        "TEST_DATA" : test_data,
+        "TEST_LABELS" : test_labels
     }
 
 

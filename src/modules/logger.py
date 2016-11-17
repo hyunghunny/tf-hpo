@@ -35,6 +35,7 @@ class PerformanceCSVLogger:
         self.num_params = num_params
         self.timers = {}
         self.elapsed_times_dict = {}
+        params_list.sort() # sorting hyperparameter list
         self.params_list = params_list
         self.metrics_list = metrics_list
         self.steps_epoch = 0
@@ -50,15 +51,14 @@ class PerformanceCSVLogger:
         self.csv_header = self.csv_header + params_names
         
         # set timezone as GMT+9 
-        
         os.environ['TZ'] = 'Asia/Seoul'
+
         # Create logger instance
         logger = logging.getLogger('tflogger')
 
         # Create logger formatter
         #fomatter = logging.Formatter('[%(levelname)s|%(filename)s:%(lineno)s] %(asctime)s > %(message)s')
         file_formatter = logging.Formatter(self.csv_format)
-        
         
         # Create handles to redirect the log to each stream and file
         fileHandler = logging.FileHandler(self.path)
@@ -74,7 +74,7 @@ class PerformanceCSVLogger:
 
         logger.setLevel(logging.DEBUG)
 
-        # add the head if it doesn't existed yet
+        # add the head if it doesn't existed yet        
         if os.path.getsize(self.path) < 10 :
             if self.lock:
                 self.lock.acquire()
