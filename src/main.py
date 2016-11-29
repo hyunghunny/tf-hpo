@@ -59,7 +59,7 @@ def main(argv=None):
             train_manager.backup(merge_remains, ERROR_PICKLE)
             print ("undone HPV list merged to error list: " + str(len(merge_remains)))
             
-            restore_list = train_manager.restore(FLAGS.pickle)
+            restore_list = train_manager.restore(FLAGS.pickle) # reload from remained 
             
             if len(restore_list) > 0:
                 hpv_list = restore_list

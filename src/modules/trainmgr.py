@@ -52,10 +52,15 @@ class TrainingManager:
         self.hpv_file_list = []
         self.working_hpv_list = []
         
+        self.ini_dir = None
+        
         self.lock = Lock()
         
     def setPickleDir(self, pickle_dir):
         self.pickle_dir = pickle_dir    
+    
+    def setIniDir(self, ini_dir):
+        self.ini_dir = ini_dir
     
     def setTrainingDevices(self, dev_type, num_devs):
         self.dev_type = dev_type            
@@ -127,8 +132,11 @@ class TrainingManager:
                     
                     if len(self.hpv_file_list) > 0:
                         hpv_file = self.hpv_file_list.pop(0) # for FIFO
-                        self.working_hpv_list.append(hpv_file)                        
-                        hpv = HPVManager(hpv_file)
+                        self.working_hpv_list.append(hpv_file)
+                        if self.ini_dir:
+                            hpv = HPVManager(hpv_file, ini_dir=self.ini_dir)
+                        else:
+                            hpv = HPVManager(hpv_file)
                         processes.append(Process(target=self.run, args=(hpv, dev_ids[p])))
                 
                 self.backup(self.hpv_file_list, REMAIN_PICKLE)

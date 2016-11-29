@@ -174,7 +174,7 @@ class CNN(ModelInterface):
             if self.logger:                
                 self.logger.setStepsPerEpoch(steps_per_epoch)
             
-            for i in xrange(self.hp["NUM_EPOCHS"] * steps_per_epoch):
+            for i in xrange(int(self.hp["NUM_EPOCHS"] * steps_per_epoch)):
                 step = i + 1 # XXX: step MUST start with 1 not 0
                 
                 # Compute the offset of the current minibatch in the data.

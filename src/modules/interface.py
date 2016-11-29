@@ -40,6 +40,7 @@ class ModelInterface:
             e = sys.exc_info()
             traceback.print_exc()
             print(e)
+        
 
     def checkEarlyStop(self):
         result = False

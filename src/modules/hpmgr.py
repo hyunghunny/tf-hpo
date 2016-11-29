@@ -148,7 +148,7 @@ class HPVManager:
 
     def setOption(self, section, option, value):
         try:
-            #print ('try to set ' + str(value) + ' to ' + option)
+            #print ('try to set ' + str(value) + ' to ' + str(option) + ' in ' + str(section) + ':' + str(self.ini_path))
             self.parser.set(section, option, str(value))
         except:
             traceback.print_exc()

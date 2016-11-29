@@ -47,56 +47,56 @@ CPU_DEVICE_ID = '/cpu:0'
 class CNN(ModelInterface):
                     
     def train(self):
+        with tf.device(self.flag["TRAIN_DEVICE_ID"]):
+            train_size = self.data["TRAIN_LABELS"].shape[0]
 
-        train_size = self.data["TRAIN_LABELS"].shape[0]
+            # This is where training samples and labels are fed to the graph.
+            # parameter type casting 
 
-        # This is where training samples and labels are fed to the graph.
-        # parameter type casting 
+            # Initialize required variables
+            self.initialize()
 
-        # Initialize required variables
-        self.initialize()
+            # Training computation: logits + cross-entropy loss.
+            logits = self.createModel(self.train_data_node, True)
+            loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits, self.train_labels_node))
 
-        # Training computation: logits + cross-entropy loss.
-        logits = self.createModel(self.train_data_node, True)
-        loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits, self.train_labels_node))
+            # L2 regularization for the fully connected parameters.
+            regularizers = (tf.nn.l2_loss(self.fc1_weights) + tf.nn.l2_loss(self.fc1_biases) + \
+                                         tf.nn.l2_loss(self.output_weights) + tf.nn.l2_loss(self.output_biases))
+            # Add the regularization term to the loss.
+            loss += self.hp["REGULARIZER_FACTOR"] * regularizers
 
-        # L2 regularization for the fully connected parameters.
-        regularizers = (tf.nn.l2_loss(self.fc1_weights) + tf.nn.l2_loss(self.fc1_biases) + \
-                                     tf.nn.l2_loss(self.output_weights) + tf.nn.l2_loss(self.output_biases))
-        # Add the regularization term to the loss.
-        loss += self.hp["REGULARIZER_FACTOR"] * regularizers
+            if self.hp["USE_LEARNING_RATE_DECAY"]:
+                # Optimizer: set up a variable that's incremented once per batch and
+                # controls the learning rate decay.
+                with tf.device(CPU_DEVICE_ID):
+                    batch = tf.Variable(0)
 
-        if self.hp["USE_LEARNING_RATE_DECAY"]:
-            # Optimizer: set up a variable that's incremented once per batch and
-            # controls the learning rate decay.
-            with tf.device(CPU_DEVICE_ID):
-                batch = tf.Variable(0)
+                # Decay once per epoch, using an exponential schedule starting at 0.01.
+                learning_rate = tf.train.exponential_decay(
+                        self.hp["BASE_LEARNING_RATE"],    # Base learning rate.
+                        batch * self.hp["BATCH_SIZE"],    # Current index into the dataset.
+                        train_size,            # Decay step.
+                        self.hp["DECAY_RATE"],                  # Decay rate.
+                        staircase=True)
+                global_step = batch
+            else:
+                learning_rate = tf.Variable(self.hp["BASE_LEARNING_RATE"]) # self.hp["STATIC_LEARNING_RATE"]
+                global_step = None
 
-            # Decay once per epoch, using an exponential schedule starting at 0.01.
-            learning_rate = tf.train.exponential_decay(
-                    self.hp["BASE_LEARNING_RATE"],    # Base learning rate.
-                    batch * self.hp["BATCH_SIZE"],    # Current index into the dataset.
-                    train_size,            # Decay step.
-                    self.hp["DECAY_RATE"],                  # Decay rate.
-                    staircase=True)
-            global_step = batch
-        else:
-            learning_rate = tf.Variable(self.hp["BASE_LEARNING_RATE"]) # self.hp["STATIC_LEARNING_RATE"]
-            global_step = None
 
-        
-        if self.hp["OPTIMIZATION"] == 'Momentum':
-            optimizer = tf.train.MomentumOptimizer(learning_rate, self.hp["MOMENTUM_VALUE"]).minimize(loss, global_step=global_step)
-        elif self.hp["OPTIMIZATION"] == 'Adam':
-            optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(loss)
-        else:
-            error('No ' + optimizer_name + ' optimizer implemented')
-            raise NotImplementedError()
+            if self.hp["OPTIMIZATION"] == 'Momentum':
+                optimizer = tf.train.MomentumOptimizer(learning_rate, self.hp["MOMENTUM_VALUE"]).minimize(loss, global_step=global_step)
+            elif self.hp["OPTIMIZATION"] == 'Adam':
+                optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(loss)
+            else:
+                error('No ' + optimizer_name + ' optimizer implemented')
+                raise NotImplementedError()
 
-        debug("Adaptive Learning Rate Algorithm: " + self.hp["OPTIMIZATION"])       
+            debug("Adaptive Learning Rate Algorithm: " + self.hp["OPTIMIZATION"])       
 
-        #Predictions for the current training minibatch.
-        train_prediction = tf.nn.softmax(logits)
+            #Predictions for the current training minibatch.
+            train_prediction = tf.nn.softmax(logits)
         
         with tf.device(self.flag["TEST_DEVICE_ID"]): 
             # Predictions for the test and validation, which we'll compute less often.
@@ -133,7 +133,7 @@ class CNN(ModelInterface):
             if self.logger:                
                 self.logger.setStepsPerEpoch(steps_per_epoch)
             
-            for i in xrange(self.hp["NUM_EPOCHS"] * steps_per_epoch):
+            for i in xrange(int(self.hp["NUM_EPOCHS"] * steps_per_epoch)):
                 step = i + 1 # XXX: step MUST start with 1 not 0
                 
                 # Compute the offset of the current minibatch in the data.
