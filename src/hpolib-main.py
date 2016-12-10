@@ -23,16 +23,19 @@ CONFIG_FILE = "../../src/hpolib.cfg"
 def main(params, **kwargs):    # pylint: disable=unused-argument
     
     print('Params: '+ str(params))
+    print('Dicts: ' + str(kwargs))
     
     try:
         cfg = Config(file(CONFIG_FILE))
         generator = HPVGenerator()
         generator.setTemplate(cfg.TEMPLATE_PATH)
         hpv_file = generator.generate(params, output_dir=cfg.CONFIG_PATH)
-                
+        
+        logging_params = [ hyperparam for hyperparam in params]
         train_manager = TrainingManager(CNN(mnist.import_dataset()), cfg.LOG_PATH)
         train_manager.setTrainingDevices('gpu', cfg.NUM_GPUS)
-        train_manager.setLoggingParams([ hyperparam for hyperparam in params])
+        train_manager.setLoggingParams(logging_params)
+        
         hpv = HPVManager(hpv_file, ini_dir=cfg.CONFIG_PATH)
         return train_manager.run(hpv, cfg.GPU_ID)
            
@@ -42,7 +45,7 @@ def main(params, **kwargs):    # pylint: disable=unused-argument
         traceback.print_exc()
 
 if __name__ == '__main__':
-    print("hyperparameter optimization for tensorflow is being started")
+    print("hyperparameter Optimization for TensorFlow is being started")
     starttime = time.time()
     args, params = benchmark_util.parse_cli()
     result = main(params, **args)

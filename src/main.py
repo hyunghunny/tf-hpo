@@ -23,7 +23,7 @@ PICKLE_DIR = 'temp/'
 REMAIN_PICKLE="remain.pickle"
 IN_PROGRESS_PICKLE="ongoing.pickle"
 ERROR_PICKLE="error.pickle"
-NUM_GPUS = 4
+NUM_GPUS = 3
 MAX_COUNT = 10 # limits the number of each hyperparameter values (use for debugging purpose)
 RESUME = False
 
@@ -40,12 +40,12 @@ def main(argv=None):
     try:
         cfg = Config(file(FLAGS.config))
         # generate hyperparameter vectors from configurator's configuration
-        generator = HPVGridGenerator(cfg)
-        generator.setTemplate(cfg.ini_template_path)
-        hpv_list = generator.generate(MAX_COUNT)
+
+
+
                 
         train_manager = TrainingManager(CNN(mnist.import_dataset()), cfg.train_log_path)
-        train_manager.setTrainingDevices('gpu', NUM_GPUS)
+        train_manager.setTrainingDevices('gpu', 4)
         train_manager.setPickleDir(PICKLE_DIR)
         train_manager.enableValidation(cfg.enable_validation)
         
@@ -59,12 +59,18 @@ def main(argv=None):
             train_manager.backup(merge_remains, ERROR_PICKLE)
             print ("undone HPV list merged to error list: " + str(len(merge_remains)))
             
-            restore_list = train_manager.restore(FLAGS.pickle) # reload from remained 
+            hpv_list = train_manager.restore(FLAGS.pickle) # reload from remained 
             
-            if len(restore_list) > 0:
-                hpv_list = restore_list
-                print ("previous HPV list is restored: " + str(len(hpv_list)))
-        #print (hpv_list)
+            #if len(restore_list) > 0:
+                #hpv_list = restore_list
+                #print ("previous HPV list is restored: " + str(len(hpv_list)))
+        else:
+
+            generator = HPVGridGenerator(cfg)
+            generator.setTemplate(cfg.ini_template_path)
+
+            hpv_list = generator.generate(MAX_COUNT)
+        
         train_manager.runAll(hpv_list, num_processes=FLAGS.concurrent)
            
     except:
@@ -73,7 +79,6 @@ def main(argv=None):
         traceback.print_exc()
         
         return
-
     
 if __name__ == '__main__':
     tf.app.run()
