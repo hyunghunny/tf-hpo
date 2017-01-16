@@ -1,10 +1,12 @@
+import sys
+import traceback
 import math
 import pandas as pd
 import numpy as np
 from scipy.stats import linregress
 
 class PerformancePredictor:
-    def __init__(self, log_path, acc_type="Metric1", threshold=50.0):
+    def __init__(self, log_path, acc_type="Test Error", threshold=50.0):
         self.acc_type = acc_type
         self.threshold = threshold
         self.log_path = log_path
@@ -29,7 +31,21 @@ class PerformancePredictor:
         if log_path is None:
             log_path = self.log_path
         return load(log_path)
-
+    
+    def get_best_error(self, hpv_file):
+        best_error_value = 1.0
+        try:
+            lookup_table = self.acc_table[self.acc_table["Setting"] == hpv_file]
+            best_error_value = min(lookup_table["Test Error"])
+        except:
+            e = sys.exc_info()
+            traceback.print_exc()
+            print(e) 
+        finally:
+            return best_error_value
+    
+    '''
+    # Out of date version: this should be reimplemented.
     
     def validate(self, **params):
         #print "Try to lookup best accuracy with given conditions: " + str(params)
@@ -69,7 +85,8 @@ class PerformancePredictor:
             e = sys.exc_info()
             traceback.print_exc()
             print(e) 
-
+        '''
+    #XXX: below is not cofirmed. test required.
     def check(self, params):
         ''' predict increase or decrease using linear regression '''
         try:

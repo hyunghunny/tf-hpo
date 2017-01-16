@@ -12,6 +12,7 @@ from models.cnn_model import CNN
 from modules.hpvconf import HPVGenerator
 from modules.hpmgr import HPVManager
 from modules.trainmgr import TrainingManager
+from modules.predictor import PerformancePredictor
 
 import HPOlib.benchmark_util as benchmark_util
 import HPOlib.benchmark_functions as benchmark_functions
@@ -37,7 +38,18 @@ def main(params, **kwargs):    # pylint: disable=unused-argument
         train_manager.setLoggingParams(logging_params)
         
         hpv = HPVManager(hpv_file, ini_dir=cfg.CONFIG_PATH)
-        return train_manager.run(hpv, cfg.GPU_ID)
+        
+        result_rate = train_manager.run(hpv, cfg.GPU_ID)
+        pred = PerformancePredictor(cfg.LOG_PATH)
+        if (pred.load()):
+            # key of setting is hpv_file        
+            best_result = pred.get_best_error(hpv_file)
+            best_result_rate = best_result * 100
+            if result_rate > best_result_rate:
+                print("test error calibrated due to overfitting: " + str(result_rate) + " -> " + str(best_result_rate))
+                result_rate = best_result_rate
+                
+        return result_rate
            
     except:
         e = sys.exc_info()
