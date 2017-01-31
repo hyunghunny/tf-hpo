@@ -58,7 +58,7 @@ class CNN(ModelInterface):
 
             # Training computation: logits + cross-entropy loss.
             logits = self.createModel(self.train_data_node, True)
-            loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits, self.train_labels_node))
+            loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits, labels=self.train_labels_node))
 
             # L2 regularization for the fully connected parameters.
             regularizers = (tf.nn.l2_loss(self.fc1_weights) + tf.nn.l2_loss(self.fc1_biases) + \
@@ -121,7 +121,7 @@ class CNN(ModelInterface):
         # Create a local session to run the training.
         with tf.Session(config = config) as sess:
             # Run all the initializers to prepare the trainable parameters.
-            init = tf.initialize_all_variables()
+            init = tf.global_variables_initializer()
             sess.run(init)
             
             # Loop through training steps.
@@ -218,7 +218,31 @@ class CNN(ModelInterface):
             sess.close()
 
         return test_error_rate   
+
     
+    # Small utility function to evaluate a dataset by feeding batches of data to
+    # {eval_data} and pulling the results from {eval_predictions}.
+    # Saves memory and enables this to run on smaller GPUs.
+    def evaluateInBatches(self, data, sess):
+        """Get all predictions for a dataset by running it in small batches."""
+              
+        size = data.shape[0]
+        if size < self.hp["EVAL_BATCH_SIZE"]:
+            raise ValueError("batch size for evals larger than dataset: %d" % size)
+        predictions = numpy.ndarray(shape=(size, self.data["NUM_LABELS"]), dtype=numpy.float32)
+        for begin in xrange(0, size, self.hp["EVAL_BATCH_SIZE"]):
+            end = begin + self.hp["EVAL_BATCH_SIZE"]
+            if end <= size:
+                predictions[begin:end, :] = sess.run(
+                    self.eval_prediction,
+                    feed_dict={self.eval_data: data[begin:end, ...]})
+            else:
+                batch_predictions = sess.run(
+                   self.eval_prediction,
+                   feed_dict={self.eval_data: data[-self.hp["EVAL_BATCH_SIZE"]:, ...]})
+                predictions[begin:, :] = batch_predictions[begin - size:, :]
+
+        return predictions      
 
 class LeNet5(CNN):
     
@@ -330,30 +354,7 @@ class LeNet5(CNN):
 
         return tf.matmul(hidden, self.output_weights) + self.output_biases
 
-    
-    # Small utility function to evaluate a dataset by feeding batches of data to
-    # {eval_data} and pulling the results from {eval_predictions}.
-    # Saves memory and enables this to run on smaller GPUs.
-    def evaluateInBatches(self, data, sess):
-        """Get all predictions for a dataset by running it in small batches."""
-              
-        size = data.shape[0]
-        if size < self.hp["EVAL_BATCH_SIZE"]:
-            raise ValueError("batch size for evals larger than dataset: %d" % size)
-        predictions = numpy.ndarray(shape=(size, self.data["NUM_LABELS"]), dtype=numpy.float32)
-        for begin in xrange(0, size, self.hp["EVAL_BATCH_SIZE"]):
-            end = begin + self.hp["EVAL_BATCH_SIZE"]
-            if end <= size:
-                predictions[begin:end, :] = sess.run(
-                    self.eval_prediction,
-                    feed_dict={self.eval_data: data[begin:end, ...]})
-            else:
-                batch_predictions = sess.run(
-                   self.eval_prediction,
-                   feed_dict={self.eval_data: data[-self.hp["EVAL_BATCH_SIZE"]:, ...]})
-                predictions[begin:, :] = batch_predictions[begin - size:, :]
 
-        return predictions  
     
 def error_rate(predictions, labels):
     """Return the error rate based on dense predictions and sparse labels."""

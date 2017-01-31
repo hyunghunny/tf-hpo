@@ -9,7 +9,7 @@ import tensorflow as tf
 
 # DEFINE CONSTANTS
 SOURCE_URL = 'http://yann.lecun.com/exdb/mnist/'
-WORK_DIRECTORY = '/root/data'
+WORK_DIRECTORY = '../data'
 
 IMAGE_SIZE = 28
 NUM_CHANNELS = 1
